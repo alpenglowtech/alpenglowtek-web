@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpenglow Tek - FPGA Solutions & AI Hardware Acceleration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        :root {
+            --main1: #0c317d;
+            --main2: #2fe8fa;
+            --accent1: #ffffff;
+            --accent2: #ececec;
+        }
+        
+        body {
+            background: #000000;
+            color: var(--accent1);
+            overflow-x: hidden;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--main2) 0%, var(--main1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(44, 232, 250, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(47, 232, 250, 0.15);
+        }
+        
+        .tech-grid {
+            background-image: 
+                linear-gradient(rgba(47, 232, 250, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(47, 232, 250, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(47, 232, 250, 0.4); }
+            to { box-shadow: 0 0 40px rgba(12, 49, 125, 0.8); }
+        }
+        
+        .slide-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .tech-card {
+            background: linear-gradient(135deg, rgba(44, 232, 250, 0.08) 0%, rgba(12, 49, 125, 0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(47, 232, 250, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(47, 232, 250, 0.3);
+            border-color: var(--main2);
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, var(--main2) 0%, var(--main1) 100%);
+            padding: 2px;
+            border-radius: 12px;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--main1) 0%, var(--accent2) 100%);
+            border-radius: 10px;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--main2);
+            border-radius: 50%;
+            animation: particle-float 6s infinite linear;
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Utility classes for color pairings */
+        .bg-main1 { background-color: var(--main1) !important; }
+        .bg-main2 { background-color: var(--main2) !important; }
+        .bg-accent1 { background-color: var(--accent1) !important; }
+        .bg-accent2 { background-color: var(--accent2) !important; }
+        .text-main1 { color: var(--main1) !important; }
+        .text-main2 { color: var(--main2) !important; }
+        .text-accent1 { color: var(--accent1) !important; }
+        .text-accent2 { color: var(--accent2) !important; }
+        .border-main1 { border-color: var(--main1) !important; }
+        .border-main2 { border-color: var(--main2) !important; }
+        .border-accent1 { border-color: var(--accent1) !important; }
+        .border-accent2 { border-color: var(--accent2) !important; }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-microchip text-white text-lg"></i>
+                        </div>
+                        <span class="text-xl font-bold text-main2">Alpenglow Tek</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300">Home</a>
+                    <a href="#services" class="text-gray-300 hover:text-white transition-colors duration-300">Services</a>
+                    <a href="#solutions" class="text-gray-300 hover:text-white transition-colors duration-300">Solutions</a>
+                    <a href="#cases" class="text-gray-300 hover:text-white transition-colors duration-300">Case Studies</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">About</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">Contact</a>
+                    <a href="index.html" class="text-main2 hover:text-white transition-colors duration-300">中文</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-effect">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">Home</a>
+                <a href="#services" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">Services</a>
+                <a href="#solutions" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">Solutions</a>
+                <a href="#cases" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">Case Studies</a>
+                <a href="#about" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">About</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">Contact</a>
+                <a href="index.html" class="block px-3 py-2 text-main2 hover:text-white hover:bg-white/10 rounded-md">中文</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center tech-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <div class="slide-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="text-main2">Accelerate</span><br>
+                    <span class="text-white">for Your AI System</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    FPGA Platform Solutions & AI Model Hardware Acceleration IP Design<br>
+                    Delivering optimized hardware implementations for your innovative ideas
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="glass-effect px-8 py-4 text-white font-semibold text-lg border border-white/20 hover:bg-white/10 transition-colors duration-300">
+                        <i class="fas fa-handshake mr-2"></i>Consultation
+                    </a>
+                    <a href="#contact" class="glass-effect px-8 py-4 text-white font-semibold text-lg border border-white/20 hover:bg-white/10 transition-colors duration-300">
+                        <i class="fas fa-play mr-2"></i>Request Demo
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="absolute top-20 left-10 floating">
+                <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full opacity-20"></div>
+            </div>
+            <div class="absolute bottom-20 right-10 floating" style="animation-delay: 1s;">
+                <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full opacity-20"></div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">Core Services</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Specializing in FPGA IP design, FPGA platform solutions, and AI model hardware acceleration, providing optimized hardware implementations for your products
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="tech-card rounded-xl p-8 slide-in">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-microchip text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">FPGA IP Design</h3>
+                    <p class="text-gray-300 mb-6">
+                        Professional FPGA Intellectual Property (IP) design services, providing complete FPGA IP development process from specification to verification
+                    </p>
+                    <ul class="text-gray-300 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            FPGA IP architecture design & specification
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            RTL design & functional verification
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            FPGA IP integration & system verification
+                        </li>
+                    </ul>
+                    <a href="#" class="text-blue-400 hover:text-blue-300 font-medium">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="tech-card rounded-xl p-8 slide-in">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">FPGA Platform Solutions</h3>
+                    <p class="text-gray-300 mb-6">
+                        FPGA-based custom hardware solutions providing high-performance, low-latency real-time processing capabilities
+                    </p>
+                    <ul class="text-gray-300 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-400 mr-3"></i>
+                            FPGA prototype design & verification
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-400 mr-3"></i>
+                            High-speed interface IP development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-400 mr-3"></i>
+                            Real-time signal processing systems
+                        </li>
+                    </ul>
+                    <a href="#" class="text-purple-400 hover:text-purple-300 font-medium">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="tech-card rounded-xl p-8 slide-in">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">AI Model Hardware Acceleration</h3>
+                    <p class="text-gray-300 mb-6">
+                        Professional AI algorithm development and hardware acceleration IP design, achieving high-performance AI inference computation
+                    </p>
+                    <ul class="text-gray-300 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            AI algorithm development & optimization
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Neural network accelerator IP
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            Model quantization & hardware mapping
+                        </li>
+                    </ul>
+                    <a href="#" class="text-green-400 hover:text-green-300 font-medium">
+                        Learn More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">Solutions</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Professional FPGA hardware acceleration solutions providing high-performance computing support for AI applications
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="slide-in">
+                    <div class="tech-card rounded-xl p-8">
+                        <div class="text-center mb-8">
+                            <h3 class="text-4xl font-bold mb-3">Lynx Edge AI Acceleration Platform</h3>
+                            <p class="text-xl text-main2 font-semibold">FPGA-based LLM Inference System</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-bolt text-orange-400 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">Custom FPGA with GenAI</h4>
+                                        <p class="text-gray-300 text-sm">Real-time inference using custom FPGA combined with GenAI models</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <i class="fas fa-tachometer-alt text-green-400 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">Ultra-Low Latency</h4>
+                                        <p class="text-gray-300 text-sm">High-speed processing capabilities</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-battery-half text-blue-400 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">Ultra-Low Power</h4>
+                                        <p class="text-gray-300 text-sm">Power consumption under 3W, suitable for edge deployment</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <i class="fas fa-cube text-purple-400 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">Lightweight Modular Design</h4>
+                                        <p class="text-gray-300 text-sm">Modular architecture for easy deployment and maintenance</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- YouTube Video Embed -->
+                        <div class="mb-8" id="video-container">
+                            <div class="relative w-full" style="padding-bottom: 56.25%;">
+                                <iframe 
+                                    id="youtube-video"
+                                    class="absolute top-0 left-0 w-full h-full rounded-lg"
+                                    src="https://www.youtube.com/embed/3xwgCzI4VTY?start=10&end=59&autoplay=0&mute=1&rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&fs=0&enablejsapi=1"
+                                    title="Lynx Edge AI Acceleration Platform Demo"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <p class="text-center text-gray-400 text-sm mt-2">Lynx Edge AI Acceleration Platform Demo</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-orange-500/10 to-red-600/10 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-white font-semibold text-lg">Technical Advantages</span>
+                                <span class="text-orange-400 font-bold">AI Accelerator</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-bold text-orange-400 mb-1">< 3W</div>
+                                    <div class="text-gray-300 text-sm">Ultra-Low Power</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-orange-400 mb-1">Edge</div>
+                                    <div class="text-gray-300 text-sm">AI Acceleration Platform</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="cases" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">Case Studies</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Real-world cases demonstrating our technical expertise and solution effectiveness
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Case Study 1 -->
+                <div class="slide-in">
+                    <div class="tech-card rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-shield-alt text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Defense Security & AI Image Processing Applications</h3>
+                                <p class="text-gray-300">Implementation of FPGA encryption/decryption modules and drone object tracking</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">AES / PQC Support</h4>
+                                    <p class="text-gray-300 text-sm">Advanced Encryption Standard and Post-Quantum Cryptography support</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">Drone Object Tracking</h4>
+                                    <p class="text-gray-300 text-sm">Real-time image processing and target identification technology</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">FPGA Encryption/Decryption Modules</h4>
+                                    <p class="text-gray-300 text-sm">Hardware-accelerated encryption and decryption processing</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-500/10 to-purple-600/10 rounded-lg p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-white font-semibold">Technical Features</span>
+                                <span class="text-blue-400 font-bold">Defense-Grade Security</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Case Study 2 -->
+                <div class="slide-in">
+                    <div class="tech-card rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-industry text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Semiconductor Fab Laser Optical Equipment Acceleration</h3>
+                                <p class="text-gray-300">FPGA acceleration for image processing and sensor data preprocessing</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">High-Speed Signal Processing, 32% Latency Reduction</h4>
+                                    <p class="text-gray-300 text-sm">28% power reduction, multi-algorithm switching support</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">65% Latency Reduction</h4>
+                                    <p class="text-gray-300 text-sm">Improved data stability and enhanced task flexibility</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">Custom SoM Space Saving</h4>
+                                    <p class="text-gray-300 text-sm">Shared across multiple devices</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-green-500/10 to-blue-600/10 rounded-lg p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-white font-semibold">Performance Improvement</span>
+                                <span class="text-green-400 font-bold">65% Latency Reduction</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">Alpenglow Tek's Mission</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto mb-12">
+                    Founded by engineers graduated from NTU Graduate Institute of Electronics Engineering with years of industry experience, in an environment lacking high-tech talent, we focus on providing excellent FPGA and IC design services. Whether you need to address urgent technical challenges or seek to improve design efficiency, we can provide flexible and efficient solutions to help you stand out in fierce market competition.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Chien-Yen Chen -->
+                <div class="tech-card rounded-xl p-6 slide-in">
+                    <h3 class="text-xl font-bold text-center mb-2">Chien-Yen Chen</h3>
+                    <p class="text-main2 text-center font-semibold mb-4">CEO</p>
+                    <p class="text-gray-300 text-sm text-center">
+                        With over 20 years of industry product experience, focusing on leading enterprise innovation in IC design and promoting the company's strategic development in high-performance computing and custom hardware acceleration solutions
+                    </p>
+                </div>
+                
+                <!-- Mark Chen -->
+                <div class="tech-card rounded-xl p-6 slide-in">
+                    <h3 class="text-xl font-bold text-center mb-2">Mark Chen</h3>
+                    <p class="text-main2 text-center font-semibold mb-4">CTO</p>
+                    <p class="text-gray-300 text-sm text-center">
+                        With extensive industry IC design project experience, multiple hardware accelerator patents, and publications in top conferences, focusing on hardware acceleration and embedded system design, leading the team in continuous innovation and optimization in FPGA and custom hardware fields
+                    </p>
+                </div>
+                
+                <!-- Fylia Hunag -->
+                <div class="tech-card rounded-xl p-6 slide-in">
+                    <h3 class="text-xl font-bold text-center mb-2">Fylia Hunag</h3>
+                    <p class="text-main2 text-center font-semibold mb-4">Product Manager</p>
+                    <p class="text-gray-300 text-sm text-center">
+                        Focusing on market demand analysis and product planning in the IC design field, dedicated to enhancing product market competitiveness
+                    </p>
+                </div>
+                
+                <!-- Oscar Hsu -->
+                <div class="tech-card rounded-xl p-6 slide-in">
+                    <h3 class="text-xl font-bold text-center mb-2">Oscar Hsu</h3>
+                    <p class="text-main2 text-center font-semibold mb-4">Backend Manager</p>
+                    <p class="text-gray-300 text-sm text-center">
+                        Focusing on system performance optimization and maintenance, assisting in designing and implementing ASIC solutions to ensure product stability and high performance at the hardware level
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">Contact Us</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Let's discuss your project requirements and provide free system evaluation services
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="slide-in">
+                    <div class="tech-card rounded-xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Phone</h4>
+                                    <p class="text-gray-300">+886 2 8991 5872</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-gray-300">alpengtech@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fab fa-line text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Line@</h4>
+                                    <p class="text-gray-300">@501ytnim (Alpenglow Tek)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Address</h4>
+                                    <a href="https://maps.app.goo.gl/kNsySHBNFydNt3B6A" target="_blank" class="text-gray-300 hover:text-main2 transition-colors duration-300">
+                                        1F, No. 32, Lixin 1st Street, Xinzhuang District, New Taipei City, Taiwan
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Google Maps Embed -->
+                            <div class="mb-8">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7229.088749624024!2d121.44069315988465!3d25.049531953543802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7d67605d7c7%3A0x1d204f883944a1d9!2z6Ie76Iez56eR5oqAfOWkp-aamOizh-ioig!5e0!3m2!1sen!2stw!4v1752294100127!5m2!1sen!2stw"
+                                    width="100%"
+                                    height="300"
+                                    style="border:0; border-radius: 8px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-microchip text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold text-main2">Alpenglow Tek</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Professional FPGA IP design and AI hardware acceleration experts, committed to providing optimized hardware implementation solutions for customers
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">FPGA IP Design</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">FPGA Platform Solutions</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">AI Model Hardware Acceleration</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">AI Algorithm Development</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Team</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">News</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Support</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2025 Alpenglow Tek. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Particle background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Scroll animation
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.slide-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // Mobile menu
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Smooth scroll
+        function initSmoothScroll() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // YouTube autoplay functionality
+        function initYouTubeAutoplay() {
+            const videoContainer = document.getElementById('video-container');
+            const iframe = document.getElementById('youtube-video');
+            let hasPlayed = false;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasPlayed) {
+                        // Trigger playback when video enters viewport
+                        const currentSrc = iframe.src;
+                        // Use muted playback for better browser compatibility
+                        const newSrc = currentSrc.replace('autoplay=0', 'autoplay=1&mute=1');
+                        iframe.src = newSrc;
+                        hasPlayed = true;
+                        
+                        console.log('YouTube video autoplay triggered');
+                    }
+                });
+            }, {
+                threshold: 0.3, // Trigger when 30% visible
+                rootMargin: '0px 0px -50px 0px' // Reduce early trigger distance
+            });
+            
+            if (videoContainer) {
+                observer.observe(videoContainer);
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            initMobileMenu();
+            initSmoothScroll();
+            handleScrollAnimation();
+            initYouTubeAutoplay();
+            
+            window.addEventListener('scroll', handleScrollAnimation);
+        });
+    </script>
+</body>
+</html> 

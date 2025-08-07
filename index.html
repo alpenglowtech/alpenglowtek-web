@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>臻至科技 Alpenglow Tek</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        :root {
+            --main1: #0c317d;
+            --main2: #2fe8fa;
+            --accent1: #ffffff;
+            --accent2: #ececec;
+        }
+        
+        body {
+            background: #000000;
+            color: var(--accent1);
+            overflow-x: hidden;
+        }
+        
+
+        
+
+        
+
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--main2) 0%, var(--main1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-effect {
+            background: rgba(44, 232, 250, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(47, 232, 250, 0.15);
+        }
+        
+        .tech-grid {
+            background-image: 
+                linear-gradient(rgba(47, 232, 250, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(47, 232, 250, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 20px rgba(47, 232, 250, 0.4); }
+            to { box-shadow: 0 0 40px rgba(12, 49, 125, 0.8); }
+        }
+        
+        .slide-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .tech-card {
+            background: linear-gradient(135deg, rgba(44, 232, 250, 0.08) 0%, rgba(12, 49, 125, 0.05) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(47, 232, 250, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(47, 232, 250, 0.3);
+            border-color: var(--main2);
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, var(--main2) 0%, var(--main1) 100%);
+            padding: 2px;
+            border-radius: 12px;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--main1) 0%, var(--accent2) 100%);
+            border-radius: 10px;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--main2);
+            border-radius: 50%;
+            animation: particle-float 6s infinite linear;
+        }
+        
+        @keyframes particle-float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        /* Utility classes for color pairings */
+        .bg-main1 { background-color: var(--main1) !important; }
+        .bg-main2 { background-color: var(--main2) !important; }
+        .bg-accent1 { background-color: var(--accent1) !important; }
+        .bg-accent2 { background-color: var(--accent2) !important; }
+        .text-main1 { color: var(--main1) !important; }
+        .text-main2 { color: var(--main2) !important; }
+        .text-accent1 { color: var(--accent1) !important; }
+        .text-accent2 { color: var(--accent2) !important; }
+        .border-main1 { border-color: var(--main1) !important; }
+        .border-main2 { border-color: var(--main2) !important; }
+        .border-accent1 { border-color: var(--accent1) !important; }
+        .border-accent2 { border-color: var(--accent2) !important; }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div id="particles" class="fixed inset-0 pointer-events-none z-0"></div>
+    
+
+    
+    <!-- 導航欄 -->
+    <nav class="fixed w-full z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                                    <div class="flex-shrink-0 flex items-center">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-microchip text-white text-lg"></i>
+                    </div>
+                                            <span class="text-xl font-bold text-main2">臻至科技 Alpenglow Tek</span>
+                </div>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white transition-colors duration-300">首頁</a>
+                    <a href="#services" class="text-gray-300 hover:text-white transition-colors duration-300">核心服務</a>
+                    <a href="#solutions" class="text-gray-300 hover:text-white transition-colors duration-300">解決方案</a>
+                    <a href="#cases" class="text-gray-300 hover:text-white transition-colors duration-300">合作案例</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition-colors duration-300">關於我們</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition-colors duration-300">聯絡我們</a>
+                    <a href="index_en.html" class="text-main2 hover:text-white transition-colors duration-300">English</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 行動選單 -->
+        <div id="mobile-menu" class="hidden md:hidden glass-effect">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">首頁</a>
+                <a href="#services" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">核心服務</a>
+                <a href="#solutions" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">解決方案</a>
+                <a href="#cases" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">合作案例</a>
+                <a href="#about" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">關於我們</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-md">聯絡我們</a>
+                <a href="index_en.html" class="block px-3 py-2 text-main2 hover:text-white hover:bg-white/10 rounded-md">English</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄區塊 -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center tech-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <div class="slide-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="text-main2">Accelerate</span><br>
+                    <span class="text-white">for Your AI System</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    FPGA平台解決方案與AI模型硬體加速IP設計<br>
+                    為您的創新想法提供最優化的硬體實現
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="glass-effect px-8 py-4 text-white font-semibold text-lg border border-white/20 hover:bg-white/10 transition-colors duration-300">
+                        <i class="fas fa-handshake mr-2"></i>需求洽談
+                    </a>
+                    <a href="#contact" class="glass-effect px-8 py-4 text-white font-semibold text-lg border border-white/20 hover:bg-white/10 transition-colors duration-300">
+                        <i class="fas fa-play mr-2"></i>DEMO請求
+                    </a>
+                </div>
+
+            </div>
+            
+            <!-- 浮動元素 -->
+            <div class="absolute top-20 left-10 floating">
+                <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full opacity-20"></div>
+            </div>
+            <div class="absolute bottom-20 right-10 floating" style="animation-delay: 1s;">
+                <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full opacity-20"></div>
+            </div>
+        </div>
+        
+        <!-- 滾動指示器 -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- 服務區塊 -->
+    <section id="services" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">核心服務</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    專精於FPGA IP設計、FPGA平台解決方案與AI模型硬體加速，為您的產品提供最優化的硬體實現
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 服務卡片 1 -->
+                <div class="tech-card rounded-xl p-8 slide-in">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-microchip text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">FPGA IP設計</h3>
+                    <p class="text-gray-300 mb-6">
+                        專業的FPGA智慧財產權(IP)設計服務，從規格制定到驗證完成，提供完整的FPGA IP開發流程
+                    </p>
+                    <ul class="text-gray-300 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            FPGA IP架構設計與規格制定
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            RTL設計與功能驗證
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-blue-400 mr-3"></i>
+                            FPGA IP整合與系統驗證
+                        </li>
+                    </ul>
+                    <a href="#" class="text-blue-400 hover:text-blue-300 font-medium">
+                        了解更多 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- 服務卡片 2 -->
+                <div class="tech-card rounded-xl p-8 slide-in">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">FPGA平台解決方案</h3>
+                    <p class="text-gray-300 mb-6">
+                        基於FPGA的客製化硬體解決方案，提供高效能、低延遲的實時處理能力
+                    </p>
+                    <ul class="text-gray-300 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-400 mr-3"></i>
+                            FPGA原型設計與驗證
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-400 mr-3"></i>
+                            高速介面IP開發
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-purple-400 mr-3"></i>
+                            實時信號處理系統
+                        </li>
+                    </ul>
+                    <a href="#" class="text-purple-400 hover:text-purple-300 font-medium">
+                        了解更多 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- 服務卡片 3 -->
+                <div class="tech-card rounded-xl p-8 slide-in">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">AI模型硬體加速</h3>
+                    <p class="text-gray-300 mb-6">
+                        專業的AI模型演算法開發與硬體加速IP設計，實現高效能的AI推理運算
+                    </p>
+                    <ul class="text-gray-300 space-y-2 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            AI演算法開發與優化
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            神經網路加速器IP
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-400 mr-3"></i>
+                            模型量化與硬體映射
+                        </li>
+                    </ul>
+                    <a href="#" class="text-green-400 hover:text-green-300 font-medium">
+                        了解更多 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 解決方案區塊 -->
+    <section id="solutions" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">解決方案</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    專業的FPGA硬體加速解決方案，為AI應用提供高效能運算支援
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="slide-in">
+                    <div class="tech-card rounded-xl p-8">
+                        <div class="text-center mb-8">
+                            <h3 class="text-4xl font-bold mb-3">Lynx 邊緣 AI 加速平台</h3>
+                            <p class="text-xl text-main2 font-semibold">基於 FPGA 的 LLM 推論系統</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-bolt text-orange-400 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">客製化 FPGA 結合 GenAI</h4>
+                                        <p class="text-gray-300 text-sm">採用客製化 FPGA 結合 GenAI 模型的即時推論</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <i class="fas fa-tachometer-alt text-green-400 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">極低延遲</h4>
+                                        <p class="text-gray-300 text-sm">高速處理能力</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i class="fas fa-battery-half text-blue-400 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">極低功耗</h4>
+                                        <p class="text-gray-300 text-sm">功耗低於 3W，適合邊緣部署</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <i class="fas fa-cube text-purple-400 mr-3 mt-1"></i>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">輕量化模組化設計</h4>
+                                        <p class="text-gray-300 text-sm">便於部署與維護的模組化架構</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- YouTube 影片嵌入 -->
+                        <div class="mb-8" id="video-container">
+                            <div class="relative w-full" style="padding-bottom: 56.25%;">
+                                <iframe 
+                                    id="youtube-video"
+                                    class="absolute top-0 left-0 w-full h-full rounded-lg"
+                                    src="https://www.youtube.com/embed/3xwgCzI4VTY?start=10&end=59&autoplay=0&mute=1&rel=0&modestbranding=1&controls=0&showinfo=0&iv_load_policy=3&fs=0&enablejsapi=1"
+                                    title="Lynx 邊緣 AI 加速平台演示"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <p class="text-center text-gray-400 text-sm mt-2">Lynx 邊緣 AI 加速平台演示影片</p>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-orange-500/10 to-red-600/10 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-white font-semibold text-lg">技術優勢</span>
+                                <span class="text-orange-400 font-bold">AI加速器</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-center">
+                                <div>
+                                    <div class="text-2xl font-bold text-orange-400 mb-1">< 3W</div>
+                                    <div class="text-gray-300 text-sm">極低功耗</div>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-bold text-orange-400 mb-1">邊緣</div>
+                                    <div class="text-gray-300 text-sm">AI 加速平台</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 合作案例 -->
+    <section id="cases" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">合作案例</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    實際案例展示我們的技術實力與解決方案成效
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- 合作案例 1 -->
+                <div class="slide-in">
+                    <div class="tech-card rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-shield-alt text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">國防資安防護與AI影像處理應用</h3>
+                                <p class="text-gray-300">導入 FPGA 加解密模組、無人機物件追蹤</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">支援 AES / PQC</h4>
+                                    <p class="text-gray-300 text-sm">先進加密標準與後量子密碼學支援</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">無人機物件追蹤</h4>
+                                    <p class="text-gray-300 text-sm">即時影像處理與目標識別技術</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">FPGA 加解密模組</h4>
+                                    <p class="text-gray-300 text-sm">硬體加速加密解密處理</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-500/10 to-purple-600/10 rounded-lg p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-white font-semibold">技術特色</span>
+                                <span class="text-blue-400 font-bold">國防級安全</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 合作案例 2 -->
+                <div class="slide-in">
+                    <div class="tech-card rounded-xl p-8">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-industry text-white text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold">晶圓廠雷射光學機台加速應用</h3>
+                                <p class="text-gray-300">導入 FPGA 加速影像處理與感測資料前處理</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">高速訊號處理，延遲降 32%</h4>
+                                    <p class="text-gray-300 text-sm">功耗降 28%，支援多演算法切換</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">延遲降 65%</h4>
+                                    <p class="text-gray-300 text-sm">資料穩定性提升，強化任務彈性</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-purple-400 mr-3 mt-1"></i>
+                                <div>
+                                    <h4 class="font-semibold text-white mb-1">客製 SoM 節省空間</h4>
+                                    <p class="text-gray-300 text-sm">可共用於多台設備</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-green-500/10 to-blue-600/10 rounded-lg p-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-white font-semibold">效能提升</span>
+                                <span class="text-green-400 font-bold">延遲降 65%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我們 -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">關於我們</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-4xl mx-auto mb-12">
+                    由臺大電子研究所畢業，深耕業界多年的工程師群創立，在缺乏高科技人才的環境下，我們專注於提供卓越的FPGA、IC設計服務。無論您是需要應對急迫的技術挑戰，還是尋求提升設計效率，我們都能提供靈活且高效的解決方案，幫助您在激烈的市場競爭中脫穎而出。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Chien-Yen Chen -->
+                <div class="tech-card rounded-xl p-6 slide-in">
+                    <h3 class="text-xl font-bold text-center mb-2">Chien-Yen Chen</h3>
+                    <p class="text-main2 text-center font-semibold mb-4">執行長 CEO</p>
+                    <p class="text-gray-300 text-sm text-center">
+                        擁有 20 年以上業界產品經驗，專注於領導企業在 IC 設計領域的創新發展，並推動公司在高效能計算及自訂硬體加速解決方案方面的佈局
+                    </p>
+                </div>
+                
+                <!-- Mark Chen -->
+                <div class="tech-card rounded-xl p-6 slide-in">
+                    <h3 class="text-xl font-bold text-center mb-2">Mark Chen</h3>
+                    <p class="text-main2 text-center font-semibold mb-4">技術長 CTO</p>
+                    <p class="text-gray-300 text-sm text-center">
+                        擁有深厚業界 IC 設計專案經驗、多項硬體加速器專利與頂尖論壇發表論文，專注於硬體加速和嵌入式系統設計，領導團隊在 FPGA 和定制化硬體領域的持續創新與優化
+                    </p>
+                </div>
+                
+                <!-- Fylia Hunag -->
+                <div class="tech-card rounded-xl p-6 slide-in">
+                    <h3 class="text-xl font-bold text-center mb-2">Fylia Hunag</h3>
+                    <p class="text-main2 text-center font-semibold mb-4">產品經理 PM</p>
+                    <p class="text-gray-300 text-sm text-center">
+                        專注於 IC 設計領域的市場需求分析與產品規劃，並致力於提升產品的市場競爭力
+                    </p>
+                </div>
+                
+                <!-- Oscar Hsu -->
+                <div class="tech-card rounded-xl p-6 slide-in">
+                    <h3 class="text-xl font-bold text-center mb-2">Oscar Hsu</h3>
+                    <p class="text-main2 text-center font-semibold mb-4">後端開發經理 BM</p>
+                    <p class="text-gray-300 text-sm text-center">
+                        專注於系統性能的優化和維護，並協助設計和實現 ASIC 解決方案，確保產品在硬體層面的穩定性和高效能
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡我們 -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 slide-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                    <span class="text-main2">聯絡我們</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    讓我們一起討論您的專案需求，為您提供免費系統評估服務
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="slide-in">
+                    <div class="tech-card rounded-xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">聯絡資訊</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">電話</h4>
+                                    <p class="text-gray-300">+886 2 8991 5872</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-gray-300">alpengtech@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fab fa-line text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Line@</h4>
+                                    <p class="text-gray-300">@501ytnim (臻至科技)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">地址</h4>
+                                    <a href="https://maps.app.goo.gl/kNsySHBNFydNt3B6A" target="_blank" class="text-gray-300 hover:text-main2 transition-colors duration-300">
+                                        新北市新莊區立信一街32號(一樓)
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Google地圖嵌入 -->
+                            <div class="mb-8">
+                                <iframe 
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7229.088749624024!2d121.44069315988465!3d25.049531953543802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7d67605d7c7%3A0x1d204f883944a1d9!2z6Ie76Iez56eR5oqAfOWkp-aamOizh-ioig!5e0!3m2!1sen!2stw!4v1752294100127!5m2!1sen!2stw"
+                                    width="100%"
+                                    height="300"
+                                    style="border:0; border-radius: 8px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer class="py-12 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-microchip text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold text-main2">臻至科技</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        專業的FPGA IP設計與AI硬體加速專家，致力於為客戶提供最優化的硬體實現方案
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">服務</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">FPGA IP設計</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">FPGA平台解決方案</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">AI模型硬體加速</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">AI演算法開發</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">公司</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">關於我們</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">團隊</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">職缺</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">新聞</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">聯絡</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">聯絡我們</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">支援</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">隱私政策</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-300">服務條款</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2025 臻至科技 Alpenglow Tek 保留所有權利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 粒子背景
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 滾動動畫
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.slide-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // 行動選單
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // 平滑滾動
+        function initSmoothScroll() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // YouTube 自動播放功能
+        function initYouTubeAutoplay() {
+            const videoContainer = document.getElementById('video-container');
+            const iframe = document.getElementById('youtube-video');
+            let hasPlayed = false;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasPlayed) {
+                        // 當影片進入視窗時，觸發播放
+                        const currentSrc = iframe.src;
+                        // 使用靜音播放，這樣更容易被瀏覽器允許
+                        const newSrc = currentSrc.replace('autoplay=0', 'autoplay=1&mute=1');
+                        iframe.src = newSrc;
+                        hasPlayed = true;
+                        
+                        console.log('YouTube video autoplay triggered');
+                    }
+                });
+            }, {
+                threshold: 0.3, // 降低觸發閾值到 30%
+                rootMargin: '0px 0px -50px 0px' // 減少提前觸發距離
+            });
+            
+            if (videoContainer) {
+                observer.observe(videoContainer);
+            }
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            initMobileMenu();
+            initSmoothScroll();
+            handleScrollAnimation();
+            initYouTubeAutoplay();
+            
+            window.addEventListener('scroll', handleScrollAnimation);
+        });
+    </script>
+</body>
+</html> 
