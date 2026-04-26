@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Custom ASIC Design Services | Alpenglow Tek</title>
+<meta content="Alpenglow Tek provides professional Custom ASIC Design Services, covering one-stop chip development solutions from specification definition, RTL design, back-end implementation to system verification and pre-mass production preparation." name="description"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        /* Hero */
+        .hero-custom {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            background: url('../../../assets/img/9.png') center/cover no-repeat;
+            text-align: left;
+            overflow: hidden;
+        }
+        .hero-custom::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(6, 26, 58, 0.9) 0%, rgba(6, 26, 58, 0.7) 40%, rgba(6, 26, 58, 0.3) 100%);
+            z-index: 1;
+        }
+        .hero-custom .container { position: relative; z-index: 2; width: 100%; }
+
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(47, 232, 250, 0.1);
+            border: 1px solid rgba(47, 232, 250, 0.3);
+            border-radius: 100px;
+            color: var(--cyan);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .hero-chip::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--cyan);
+        }
+
+        .hero-custom h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+        .hero-subtitle {
+            color: var(--cyan);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+        .hero-desc {
+            max-width: 750px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Scroll Hint Modern */
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            z-index: 5;
+            animation: fadeHint 3s infinite;
+        }
+        .scroll-hint .v-arrow {
+            margin-top: 15px;
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+            transform: rotate(45deg);
+            animation: scbounce 2s infinite;
+        }
+        @keyframes scbounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);}
+            40% {transform: translateY(10px) rotate(45deg);}
+            60% {transform: translateY(5px) rotate(45deg);}
+        }
+        @keyframes fadeHint {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, 0); }
+            50% { opacity: 1; transform: translate(-50%, 10px); }
+        }
+
+        /* Flow Cards */
+        .flow-card {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: left;
+            box-shadow: 0 8px 24px rgba(6, 26, 58, 0.06);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .flow-card:hover {
+            box-shadow: 0 12px 40px rgba(6, 26, 58, 0.12);
+            transform: translateY(-5px);
+            border-color: rgba(47, 232, 250, 0.3);
+        }
+        .flow-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px; height: 40px;
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 10px;
+            margin-bottom: 1.25rem;
+        }
+        .flow-card h4 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            min-height: 2.8rem;
+        }
+        .flow-card p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0;
+            flex: 1;
+        }
+
+        /* Service Value */
+        .service-value {
+            position: relative;
+            background: url('../../../assets/img/11.png') center/cover no-repeat;
+            color: var(--white);
+            padding: 6rem 0;
+            overflow: hidden;
+        }
+        .service-value::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.65);
+            z-index: 1;
+        }
+        .service-value .container { position: relative; z-index: 2; }
+        
+        .value-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: left;
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+            height: 100%;
+        }
+        .value-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--cyan);
+            transform: translateY(-5px);
+        }
+        .value-card .v-icon {
+            color: var(--cyan);
+            font-size: 1.8rem;
+            margin-bottom: 1.25rem;
+            display: inline-block;
+        }
+        .value-card h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            min-height: 2.8rem;
+        }
+        .value-card p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* Application Domains Layout */
+        .domains-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (min-width: 900px) {
+            .domains-wrap { flex-direction: row; }
+            .domains-text { flex: 1; }
+            .domains-image { flex: 1; }
+        }
+        .domains-image img {
+            border-radius: 16px;
+            box-shadow: 0 16px 40px rgba(6, 26, 58, 0.12);
+            width: 100%;
+            display: block;
+        }
+        .domain-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 500px) { .domain-grid { grid-template-columns: 1fr 1fr; } }
+        .domain-item {
+            background: var(--off-white);
+            border: 1px solid var(--gray-100);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+        .domain-item:hover {
+            border-color: var(--cyan);
+            background: rgba(47, 232, 250, 0.05);
+            transform: translateX(4px);
+        }
+        .domain-item::before {
+            content: '';
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+        }
+
+        /* Conclusion Box */
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 16px 48px rgba(6, 26, 58, 0.18);
+            position: relative;
+            overflow: hidden;
+            margin-top: 5rem;
+        }
+        .conclusion-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(47, 232, 250, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .conclusion-box h3 {
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 2;
+        }
+        .conclusion-box p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+<!-- Header injected by JS -->
+<div id="site-header"></div>
+<main>
+<!-- Hero Section -->
+<section class="hero-custom">
+<div class="container fade-up">
+<span class="hero-chip">CUSTOM ASIC DESIGN SERVICE</span>
+<h1>Custom ASIC Design Services</h1>
+<div class="hero-subtitle">One-stop chip development solutions from architecture planning to system verification</div>
+<p class="hero-desc">Alpenglow Tek provides professional custom ASIC design services covering specification definition, RTL design, back-end implementation to system verification and pre-production preparation. We combine low-power AI accelerator technology with a complete IC design flow to help customers accelerate product development cycles and reduce overall development risks.</p>
+</div>
+<!-- Scroll Hint -->
+<div class="scroll-hint">
+<span>Scroll</span>
+<div class="v-arrow"></div>
+</div>
+</section>
+<!-- Complete ASIC Design Flow -->
+<section class="section bg-white text-center">
+<div class="container fade-up">
+<div class="section-label mb-4">ASIC DESIGN FLOW</div>
+<h2 class="mb-4">Complete ASIC Design Flow</h2>
+<p class="mx-auto text-gray" style="max-width: 700px; margin-bottom: 3rem;">We provide one-stop ASIC development services from requirements planning to system verification, ensuring design quality and controllable schedules, and assisting customers in successfully completing chip development from concept to mass production.</p>
+<img alt="ASIC design process" src="../../../assets/img/flow.png" style="margin: 0 auto 4rem; max-width: 1000px; width: 100%; border-radius: 8px;"/>
+<div class="grid-4 fade-up fade-up-delay-1">
+<div class="flow-card">
+<div class="flow-num">1</div>
+<h4>Requirement &amp; Planning</h4>
+<p>Define product specifications, system architectures, and IP strategies with customers to establish design goals and development paths.</p>
+</div>
+<div class="flow-card">
+<div class="flow-num">2</div>
+<h4>Design Service: Front-end &amp; Back-end</h4>
+<p>Provide complete RTL design and verification services, perform logic synthesis and physical design implementation, ensuring design quality and schedule control.</p>
+</div>
+<div class="flow-card">
+<div class="flow-num">3</div>
+<h4>SoC Prototyping</h4>
+<p>Conducting functional testing and performance evaluation through FPGA verification and simulation, accelerating design iterations and reducing tape-out risks.</p>
+</div>
+<div class="flow-card">
+<div class="flow-num">4</div>
+<h4>System Prototyping</h4>
+<p>Provide EVB design, system bring-up, and chip verification services to help customers complete productization and pre-production preparation.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="service-value text-center">
+<div class="container fade-up">
+<div class="section-label section-label-dark mb-4">OUR VALUE</div>
+<h2 class="mb-5" style="color:var(--white);">Building Efficient and Reliable Chip Development Workflows for Customers</h2>
+<div class="grid-4 fade-up fade-up-delay-1" style="margin-top: 3rem;">
+<div class="value-card">
+<div class="v-icon">✦</div>
+<h4>One-Stop ASIC Design Services</h4>
+<p>Covering front-end design, back-end implementation, FPGA prototyping, and system development, providing a complete and consistent design flow.</p>
+</div>
+<div class="value-card">
+<div class="v-icon">✦</div>
+<h4>Ultra-Low Power AI Chip Expertise</h4>
+<p>Combine ANIX NPU IP and low-power architecture technology to help customers build competitive edge AI SoCs.</p>
+</div>
+<div class="value-card">
+<div class="v-icon">✦</div>
+<h4>Flexible Cooperation and IP Integration Capabilities</h4>
+<p>Support the integration of customers' own IPs or third-party IPs, providing custom design and technical consulting services.</p>
+</div>
+<div class="value-card">
+<div class="v-icon">✦</div>
+<h4>Reduce Development Risks and Accelerate Time-to-Market</h4>
+<p>Shorten development cycles and improve tape-out success rates through FPGA prototyping and system bring-up.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Custom ASIC Application Domains -->
+<section class="section">
+<div class="container fade-up">
+<div class="domains-wrap">
+<div class="domains-image">
+<img alt="Custom ASIC Application Domains" src="../../../assets/img/10.jpg"/>
+</div>
+<div class="domains-text">
+<div class="section-label mb-4">DOMAINS</div>
+<h2 class="mb-4">Custom ASIC Application Domains</h2>
+<div class="domain-grid">
+<div class="domain-item">Low-power edge AI chip</div>
+<div class="domain-item">Industrial Automation &amp; Smart Manufacturing</div>
+<div class="domain-item">Wearable and consumer electronics</div>
+<div class="domain-item">Intelligent monitoring and visual perception system</div>
+<div class="domain-item">NoneHuman and Autonomous Robots</div>
+<div class="domain-item">Internet of Things and Smart City Applications</div>
+</div>
+</div>
+</div>
+<div class="conclusion-box fade-up fade-up-delay-2">
+<h3>Partner with us to build next-generation smart chips</h3>
+<p>Alpenglow Tek is committed to providing high-quality and competitive ASIC design services, helping customers translate innovative ideas into mass-producible semiconductor products. Whether it is a low-power edge AI SoC or a customized dedicated chip, we provide professional and reliable technical support.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer injected by JS -->
+<div id="site-footer"></div>
+<script src="../../../assets/js/main.js"></script>
+</body>
+</html>

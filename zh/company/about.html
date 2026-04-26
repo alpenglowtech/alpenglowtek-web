@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關於我們 About Us | 臻至科技 Alpenglow Tek</title>
+    <meta name="description" content="臻至科技是一家專注於超低功耗邊緣 AI 的 IC 設計公司，致力於打造能在資源受限環境中穩定運作的智慧運算架構。">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <style>
+        /* ========================================
+           ABOUT US — PAGE-SPECIFIC STYLES
+        ======================================== */
+        :root {
+            --navy: #004aad;
+            --dark-navy: #061A3A;
+            --cyan: #2fe8fa;
+            --light-bg: #f8fafc;
+        }
+
+        /* ── Section 1: Hero ── */
+        .about-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            text-align: left;
+        }
+        .about-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/semi6.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transform: scale(1.05);
+            transition: transform 10s ease-out;
+            z-index: 0;
+        }
+        .about-hero.loaded .about-hero-bg {
+            transform: scale(1);
+        }
+        .about-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.4); /* Subdued overlay for text legibility but keeps the image texture */
+            z-index: 1;
+        }
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .about-hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: aboutReveal 1s 0.3s ease forwards;
+        }
+        .about-hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: aboutReveal 1s 0.5s ease forwards;
+        }
+
+        /* ── Scroll hint ── */
+        .about-scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 3;
+            opacity: 0;
+            animation: aboutReveal 1s 1.2s ease forwards;
+        }
+        .about-scroll-hint span {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+        .about-scroll-arrow {
+            width: 22px; height: 22px;
+            border-right: 2px solid rgba(255,255,255,0.6);
+            border-bottom: 2px solid rgba(255,255,255,0.6);
+            transform: rotate(45deg);
+            animation: aboutBounce 1.8s infinite;
+        }
+
+        @keyframes aboutReveal { to { opacity: 1; transform: translateY(0); } }
+        @keyframes aboutBounce {
+            0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+            50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
+
+        /* ── Section 2: Intro ── */
+        .about-intro {
+            padding: 8rem 0;
+            background: #ffffff;
+        }
+        .about-intro-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .about-intro-img {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(6, 26, 58, 0.08);
+        }
+        .about-intro-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .about-intro-img:hover img {
+            transform: scale(1.03);
+        }
+        .about-intro-text p {
+            font-size: 1.15rem;
+            color: #4a5a7a;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+        .about-intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Section 3: Problem ── */
+        .about-problem {
+            padding: 8rem 0;
+            background: var(--light-bg);
+            position: relative;
+        }
+        .about-problem-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: end; /* Both blocks align to the bottom */
+        }
+        .about-sec-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            background: rgba(47,232,250, 0.1);
+            border: 1px solid rgba(47,232,250, 0.3);
+            padding: 0.4rem 1.2rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+        .about-problem-text h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--dark-navy);
+            margin-bottom: 2rem;
+        }
+        .about-problem-text p {
+            font-size: 1.1rem;
+            color: #4a5a7a;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+        .about-problem-text p:last-child {
+            margin-bottom: 0;
+        }
+        .about-problem-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.06);
+            display: flex;
+        }
+        .about-problem-img img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* ── Section 4: Core Capabilities ── */
+        .about-core {
+            position: relative;
+            padding: 8rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .about-core-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/semi8.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+        .about-core-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.65); /* Darker overlay to make cards pop */
+            z-index: 1;
+        }
+        .about-core-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        .about-core-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .about-core-header h2 {
+            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 1rem;
+        }
+        .about-core-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .about-glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            text-align: left;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, background 0.4s ease;
+        }
+        .about-glass-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border-color: rgba(47,232,250, 0.4);
+        }
+        .about-glass-card .card-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--cyan), #00b8d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(47,232,250,0.3);
+        }
+        .about-glass-card .card-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--dark-navy);
+        }
+        .about-glass-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+        }
+        .about-glass-card p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+        }
+
+        /* ── Section 5: Cooperation ── */
+        .about-coop {
+            padding: 8rem 0;
+            background: #ffffff;
+        }
+        .about-coop-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4rem;
+            align-items: stretch; /* Stretch to fill height */
+        }
+        .about-coop-text h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--dark-navy);
+            margin-bottom: 3rem;
+        }
+        .coop-item {
+            margin-bottom: 2rem;
+        }
+        .coop-item:last-child {
+            margin-bottom: 2.5rem;
+        }
+        .coop-item h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: normal; word-break: keep-all;
+        }
+        .coop-item h4::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--cyan);
+            border-radius: 50%;
+        }
+        .coop-item p {
+            font-size: 1.05rem;
+            color: #5a6a8a;
+            line-height: 1.7;
+            padding-left: 1.25rem;
+            white-space: normal; word-break: keep-all;
+        }
+        .coop-conclusion {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--dark-navy);
+            line-height: 1.8;
+            padding: 1.5rem 2rem;
+            background: var(--light-bg);
+            border-left: 4px solid var(--cyan);
+            border-radius: 0 12px 12px 0;
+        }
+        .about-coop-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            height: 100%;
+            display: flex;
+        }
+        .about-coop-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .about-intro-inner, .about-problem-inner, .about-coop-inner {
+                gap: 3rem;
+            }
+            .about-core-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .about-intro-inner, .about-problem-inner, .about-coop-inner {
+                grid-template-columns: 1fr;
+            }
+            /* Reverse order on mobile so text is above image for problem & coop if needed, 
+               but let's keep natural DOM order: image then text, text then image */
+            .about-problem-inner {
+                display: flex;
+                flex-direction: column;
+            }
+            .about-problem-text { order: -1; }
+            
+            .coop-item h4, .coop-item p {
+                white-space: normal;
+            }
+
+            .about-core-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-glass-card {
+                padding: 2.5rem 2rem;
+            }
+            .about-hero-title {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (injected by main.js) -->
+    <div id="site-header"></div>
+
+    <main>
+        <!-- ========== SECTION 1: HERO ========== -->
+        <section class="about-hero" id="aboutHero">
+            <div class="about-hero-bg"></div>
+            <div class="about-hero-overlay"></div>
+            <div class="about-hero-content">
+                <h1 class="about-hero-title">讓 AI 在最有限的能量<br>發揮最大價值</h1>
+                <p class="about-hero-sub">我們是專注於超低功耗邊緣 AI 的 IC 設計公司，<br>致力於打造能在資源受限環境中穩定運作的智慧運算架構。</p>
+            </div>
+            <div class="about-scroll-hint">
+                <span>Scroll</span>
+                <div class="about-scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 2: INTRO ========== -->
+        <section class="about-intro">
+            <div class="about-intro-inner">
+                <div class="about-intro-img fade-up">
+                    <img src="../../assets/img/semi4.png" alt="臻至科技 Alpenglow Tek">
+                </div>
+                <div class="about-intro-text fade-up fade-up-delay-1">
+                    <p>臻至科技專注於開發新一代超低功耗邊緣 AI 運算技術，打造高效率的 AI 推論解決方案。</p>
+                    <p>我們聚焦於功耗、延遲與系統效率之間的平衡，協助客戶將 AI 能力導入各類終端裝置，使智慧運算能夠真正落地於邊緣場景。</p>
+                    <p>目前，我們提供多元合作形式，包括 AI 處理器 IP、ASIC / SoC 設計整合，以及 FPGA 原型開發與系統驗證服務，加速產品從概念驗證到實際部署的落地進程。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 3: PROBLEM ========== -->
+        <section class="about-problem">
+            <div class="about-problem-inner">
+                <div class="about-problem-text fade-up">
+                    <span class="about-sec-label">OUR CHALLENGE</span>
+                    <h2>我們在解決的問題</h2>
+                    <p>隨著 AI 應用從雲端走向邊緣，越來越多場景需要即時反應、長時間運作與低功耗的智慧處理能力。</p>
+                    <p>然而，傳統運算架構在資料搬移過程中消耗大量能量，導致功耗過高與延遲增加，難以應用於資源受限的裝置與環境。</p>
+                    <p>臻至科技致力於從架構層級優化運算方式，降低不必要的資料傳輸，讓 AI 能在更低功耗、更高效率的條件下穩定運作。</p>
+                </div>
+                <div class="about-problem-img fade-up fade-up-delay-1">
+                    <img src="../../assets/img/semi7.png" alt="解決邊緣 AI 的挑戰">
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 4: CORE CAPABILITIES ========== -->
+        <section class="about-core">
+            <div class="about-core-bg"></div>
+            <div class="about-core-overlay"></div>
+            <div class="about-core-inner">
+                <div class="about-core-header fade-up">
+                    <span class="about-sec-label" style="background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.3);">WHAT WE DO</span>
+                    <h2>我們的核心能力</h2>
+                </div>
+                <div class="about-core-grid">
+                    <!-- Card 1 -->
+                    <div class="about-glass-card fade-up fade-up-delay-1">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zM12 11h6c-.53 4.12-3.28 7.79-6 8.94V11H6V6.3l6-2.25V11z"></path></svg>
+                        </div>
+                        <h3>超低功耗 AI 運算架構</h3>
+                        <p>透過架構層級的優化設計，大幅降低資料搬移帶來的能耗，提升整體運算效率，讓 AI 更適合部署於邊緣裝置。</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="about-glass-card fade-up fade-up-delay-2">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 18V6h16v12H4z"></path><path d="M6 10h2v4H6zm4 0h2v4h-2zm4 0h4v4h-4z"></path></svg>
+                        </div>
+                        <h3>ASIC / SoC 設計整合能力</h3>
+                        <p>具備從架構規劃、IP 整合到晶片實現的能力，協助客戶打造符合應用需求的專用 AI 晶片。</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="about-glass-card fade-up fade-up-delay-3">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"></path></svg>
+                        </div>
+                        <h3>FPGA 原型開發與系統驗證</h3>
+                        <p>透過 FPGA 快速實現 AI 演算法與系統架構，加速 PoC 驗證與產品開發流程。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 5: HOW WE WORK ========== -->
+        <section class="about-coop">
+            <div class="about-coop-inner">
+                <div class="about-coop-text fade-up">
+                    <span class="about-sec-label">COOPERATION</span>
+                    <h2>我們如何與客戶合作</h2>
+                    
+                    <div class="coop-item">
+                        <h4>PoC / Prototype 開發</h4>
+                        <p>針對特定應用場景，快速建構可驗證的系統原型，加速產品決策與導入。</p>
+                    </div>
+                    <div class="coop-item">
+                        <h4>IP 授權與系統整合</h4>
+                        <p>提供 AI 處理器 IP，並協助整合至客戶既有 SoC 或產品架構中。</p>
+                    </div>
+                    <div class="coop-item">
+                        <h4>客製化 ASIC / 系統設計</h4>
+                        <p>根據應用需求進行客製化設計，打造兼具效能與功耗優勢的專用解決方案。</p>
+                    </div>
+                    
+                    <div class="coop-conclusion fade-up fade-up-delay-1">
+                        我們重視與客戶的長期合作關係，從技術評估到產品落地，提供完整且可持續的支援。
+                    </div>
+                </div>
+                <div class="about-coop-img fade-up fade-up-delay-2">
+                    <img src="../../assets/img/semi2.png" alt="我們如何與客戶合作">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (injected by main.js) -->
+    <div id="site-footer"></div>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Ken Burns effect on hero background
+        window.addEventListener('load', () => {
+            document.getElementById('aboutHero')?.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>

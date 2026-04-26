@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPGA PQC 密碼學硬體加速 | 臻至科技 Alpenglow Tek</title>
+    <meta name="description" content="臻至科技提供基於 FPGA 的 PQC 後量子密碼學硬體加速解決方案，為量子時代打造高效能、低延遲與低功耗的資安防護系統。">
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+    <link rel="stylesheet" href="../../../assets/css/footer.css">
+    <style>
+        /* Hero */
+        .hero-pqc {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            background: url('../../../assets/img/pqc1.jpg') center/cover no-repeat;
+            text-align: left;
+            overflow: hidden;
+        }
+        .hero-pqc::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(6, 26, 58, 0.95) 0%, rgba(6, 26, 58, 0.8) 40%, rgba(6, 26, 58, 0.4) 100%);
+            z-index: 1;
+        }
+        .hero-pqc .container { position: relative; z-index: 2; width: 100%; }
+        
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(47, 232, 250, 0.1);
+            border: 1px solid rgba(47, 232, 250, 0.3);
+            border-radius: 100px;
+            color: var(--cyan);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+        }
+        .hero-chip::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--cyan);
+        }
+
+        .hero-pqc h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        .hero-subtitle {
+            color: var(--cyan); /* Updated color to neon cyan */
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+        .hero-desc {
+            max-width: 750px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Scroll Hint Modern */
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            z-index: 5;
+            animation: fadeHint 3s infinite;
+        }
+        .scroll-hint .v-arrow {
+            margin-top: 15px;
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+            transform: rotate(45deg);
+            animation: scbounce 2s infinite;
+        }
+        @keyframes scbounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);}
+            40% {transform: translateY(10px) rotate(45deg);}
+            60% {transform: translateY(5px) rotate(45deg);}
+        }
+        @keyframes fadeHint {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, 0); }
+            50% { opacity: 1; transform: translate(-50%, 10px); }
+        }
+
+        /* Why FPGA section */
+        .why-fpga-row {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            text-align: left;
+            margin: 4.5rem auto 0;
+            max-width: 1100px;
+        }
+        @media (min-width: 1024px) {
+            .why-fpga-row { flex-direction: row; align-items: center; }
+            .why-fpga-left, .why-fpga-right { flex: 1; }
+        }
+        .why-fpga-right {
+            background: var(--off-white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--navy);
+        }
+
+        /* Tech Overlay Sections */
+        .tech-overlay-section {
+            position: relative;
+            padding: 8rem 0;
+            color: var(--white);
+            background-attachment: fixed;
+        }
+        .tech-overlay-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.85); /* Dark mask */
+            z-index: 1;
+        }
+        .tech-overlay-section .container { position: relative; z-index: 2; max-width: 1100px; }
+        
+        .pqc4-bg { background-image: url('../../../assets/img/pqc4.png'); background-position: center; background-size: cover; }
+        .pqc2-bg { background-image: url('../../../assets/img/pqc2.png'); background-position: center; background-size: cover; }
+
+        /* Tech Cards Grid (3+2) */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+        @media (min-width: 600px) { .tech-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 1024px) {
+            .tech-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 2.5rem;
+            }
+            .tech-card { grid-column: auto; }
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            color: var(--navy);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .tech-card:hover {
+            transform: translateY(-8px);
+            background: #ffffff;
+            box-shadow: 0 16px 48px rgba(0, 74, 173, 0.15);
+        }
+        .tech-card h4 {
+            color: #004aad;
+            margin-bottom: 1.25rem;
+            font-size: 1.2rem;
+            font-weight: 800;
+            min-height: 3rem;
+            text-align: center;
+        }
+        .tech-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-700);
+            margin: 0;
+        }
+
+        /* Solution Section with Image */
+        .solution-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .solution-wrap { flex-direction: row; align-items: center; }
+            .solution-text { flex: 1.2; padding-right: 4rem; }
+            .solution-image { flex: 1.8; }
+        }
+        .solution-section {
+            padding: 10rem 0;
+        }
+        .solution-title {
+            white-space: normal; word-break: keep-all;
+            margin-bottom: 3.5rem !important; /* Doulbe spacing */
+        }
+        .solution-image img {
+            border-radius: 20px;
+            box-shadow: 0 32px 80px rgba(6, 26, 58, 0.22);
+            width: 100%;
+        }
+
+        /* App Domains Grid (3+2) */
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+        @media (min-width: 700px) { .app-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1100px) {
+            .app-grid { grid-template-columns: repeat(6, 1fr); }
+            .app-card { grid-column: span 2; }
+            .app-card:nth-child(4) { grid-column: 2 / span 2; }
+            .app-card:nth-child(5) { grid-column: 4 / span 2; }
+        }
+        
+        .app-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+            background: #ffffff;
+        }
+        .app-card h4 {
+            color: #004aad;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+        .app-card p {
+            font-size: 0.95rem;
+            color: #000000;
+            line-height: 1.6;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header injected by JS -->
+    <div id="site-header"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-pqc">
+            <div class="container fade-up">
+                <div class="hero-chip">FPGA / PQC TECHNOLOGY</div>
+                <h1>FPGA PQC 密碼學硬體加速</h1>
+                <div class="hero-subtitle">為量子時代打造高效能、低延遲與低功耗的後量子資安解決方案</div>
+                <p class="hero-desc">隨著量子運算技術的快速發展，傳統的公開金鑰密碼系統面臨潛在威脅。後量子密碼學（PQC）成為全球資安與半導體產業的關鍵技術。臻至科技提供基於 FPGA 的 PQC 硬體加速解決方案，確保資料傳輸的安全性。</p>
+            </div>
+
+            <!-- Scroll Hint -->
+            <div class="scroll-hint">
+                <span>Scroll</span>
+                <div class="v-arrow"></div>
+            </div>
+        </section>
+
+        <!-- 區塊：為何選擇 FPGA 加速 PQC 演算法 -->
+        <section class="section bg-white">
+            <div class="container fade-up text-center">
+                <div class="section-label mb-4">WHY FPGA FOR PQC</div>
+                <h2 class="mb-5">為何選擇 FPGA 加速 PQC 演算法</h2>
+                <div class="why-fpga-row">
+                    <div class="why-fpga-left">
+                        <p class="text-gray lead mb-4">PQC 演算法（如 CRYSTALS-Kyber、CRYSTALS-Dilithium 等）具有高度運算密集與記憶體存取需求，若在傳統 CPU 或 GPU 上執行，往往面臨延遲高、功耗大與效率不足等問題。由於 CPU 與 GPU 的硬體架構固定且通用性高，難以針對特定密碼學運算進行最佳化。</p>
+                    </div>
+                    <div class="why-fpga-right">
+                        <p class="text-navy" style="font-weight: 500;">相較之下，FPGA 具備可重組（Reconfigurable）特性，可依據 PQC 演算法需求客製化硬體架構，透過高度平行化運算與專用資料通道設計，在更低的資源使用下實現更低的延遲與更低的功耗，並兼具靈活性與可升級能力。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 區塊：核心技術優勢 -->
+        <section class="tech-overlay-section pqc4-bg text-center">
+            <div class="container fade-up">
+                <div class="section-label section-label-dark mb-4">CORE ADVANTAGES</div>
+                <h2 style="color:var(--white);">核心技術優勢</h2>
+                
+                <div class="tech-grid">
+                    <!-- Row 1 -->
+                    <div class="tech-card">
+                        <h4>客製化硬體架構設計</h4>
+                        <p>針對 PQC 演算法中的多項式運算、模數運算與 NTT（Number Theoretic Transform）進行專用硬體優化，顯著提升運算效率。</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>低延遲與高吞吐量</h4>
+                        <p>透過平行化資料路徑與管線化設計，大幅降低加解密延遲並提升系統整體吞吐量，適用於即時安全通訊與高效能應用。</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>低功耗與資源效率</h4>
+                        <p>FPGA 能以更低的硬體資源與功耗完成 PQC 運算，特別適合邊緣設備與嵌入式系統。</p>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="tech-card">
+                        <h4>可重組與長期安全性</h4>
+                        <p>支援演算法更新與標準演進，當 PQC 標準持續發展時，可透過重新配置 FPGA 快速升級，降低系統風險與維運成本。</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 區塊：臻至科技的 FPGA PQC 解決方案 -->
+        <section class="section solution-section">
+            <div class="container fade-up" style="max-width: 1600px;">
+                <div class="solution-wrap">
+                    <div class="solution-text">
+                        <div class="section-label mb-4">OUR SOLUTION</div>
+                        <h2 class="mb-4 solution-title">臻至科技的 FPGA PQC 解決方案</h2>
+                        <p class="text-gray lead mb-4" style="line-height: 1.8;">臻至科技結合 FPGA 設計專業與系統整合能力，提供從架構規劃、硬體設計、演算法優化到系統驗證的完整服務。我們的 PQC 硬體加速方案可作為量產前的原型平台，亦可作為高安全性產品的最終解決方案，協助客戶快速導入後量子資安技術。</p>
+                    </div>
+                    <div class="solution-image">
+                        <img src="../../../assets/img/pqc5.png" alt="FPGA PQC 解決方案">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 區塊：應用領域 -->
+        <section class="tech-overlay-section pqc2-bg text-center">
+            <div class="container fade-up">
+                <div class="section-label section-label-dark mb-4">APPLICATIONS</div>
+                <h2 style="color:var(--white);">應用領域</h2>
+                
+                <div class="app-grid">
+                    <div class="app-card">
+                        <h4>安全通訊與網路設備</h4>
+                        <p>VPN、5G/6G 基礎建設、資料中心與高安全網路設備。</p>
+                    </div>
+                    <div class="app-card">
+                        <h4>政府與國防資安系統</h4>
+                        <p>關鍵基礎建設、國防通訊與機密資料保護。</p>
+                    </div>
+                    <div class="app-card">
+                        <h4>物聯網與邊緣裝置安全</h4>
+                        <p>智慧城市、工業物聯網（IIoT）、智慧電網與感測節點。</p>
+                    </div>
+                    <div class="app-card">
+                        <h4>車用電子與智慧運輸</h4>
+                        <p>V2X 通訊、車聯網安全與自駕系統資安防護。</p>
+                    </div>
+                    <div class="app-card">
+                        <h4>金融科技與區塊鏈</h4>
+                        <p>高安全數位簽章、身分驗證與交易保護。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        <!-- ========== VIDEO SECTION ========== -->
+        <section class="section bg-white text-center">
+            <div class="container fade-up">
+                <div style="display: inline-block; text-align: left;">
+                    <div class="section-label" style="margin-bottom: 1.5rem;">DEMONSTRATION</div>
+                    <h2 style="margin-bottom: 0.75rem; color: #004aad;">技術成果與實際展示</h2>
+                    <h3 style="color: var(--gray-500); font-weight: 500; font-size: 1.15rem; margin-bottom: 0.5rem;">探索臻至科技在後量子密碼學硬體加速領域的技術成果與實際系統驗證</h3>
+                    <p class="text-gray" style="white-space: normal; word-break: keep-all; line-height: 1.8; font-size: 1rem; margin-bottom: 3.5rem;">透過實際 FPGA 平台展示，我們呈現後量子密碼學演算法的硬體加速成果與系統整合能力，展現高效能、低延遲與低功耗的技術優勢。</p>
+                </div>
+                
+                <div class="video-container" style="width: 100%; margin: 0 auto;">
+                    <div class="video-wrapper" style="border-radius: 24px; overflow: hidden; box-shadow: 0 32px 80px rgba(6, 26, 58, 0.18);">
+                        <iframe 
+                            src="https://www.youtube.com/embed/PkVioc9UAJM?rel=0" 
+                            title="技術成果與實際展示" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer injected by JS -->
+        <div id="site-footer"></div>
+
+    <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+--- en\index.html ---
+L667: PARTNERS CAROUSEL
+--- en\news\index.html ---
+L616: Navigation Card 1: About Us
+L626: Navigation Card 2: Latest Events
+--- ja\index.html ---
+L667: PARTNERS CAROUSEL
+--- ja\news\index.html ---
+L616: ナビゲーションカード1:プライベートたちについて
+L626: ナビゲーションカード 2: 最新イベント

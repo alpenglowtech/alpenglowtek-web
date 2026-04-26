@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客製化 ASIC 設計服務 | 臻至科技 Alpenglow Tek</title>
+    <meta name="description" content="臻至科技提供專業的客製化 ASIC 設計服務，涵蓋從規格定義、RTL 設計、後端實作到系統驗證與量產前準備的一站式晶片開發解決方案。">
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+    <link rel="stylesheet" href="../../../assets/css/footer.css">
+    <style>
+        /* Hero */
+        .hero-custom {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            background: url('../../../assets/img/9.png') center/cover no-repeat;
+            text-align: left;
+            overflow: hidden;
+        }
+        .hero-custom::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(6, 26, 58, 0.9) 0%, rgba(6, 26, 58, 0.7) 40%, rgba(6, 26, 58, 0.3) 100%);
+            z-index: 1;
+        }
+        .hero-custom .container { position: relative; z-index: 2; width: 100%; }
+
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(47, 232, 250, 0.1);
+            border: 1px solid rgba(47, 232, 250, 0.3);
+            border-radius: 100px;
+            color: var(--cyan);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        .hero-chip::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--cyan);
+        }
+
+        .hero-custom h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+        .hero-subtitle {
+            color: var(--cyan);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            max-width: 900px;
+        }
+        .hero-desc {
+            max-width: 750px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Scroll Hint Modern */
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            z-index: 5;
+            animation: fadeHint 3s infinite;
+        }
+        .scroll-hint .v-arrow {
+            margin-top: 15px;
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+            transform: rotate(45deg);
+            animation: scbounce 2s infinite;
+        }
+        @keyframes scbounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);}
+            40% {transform: translateY(10px) rotate(45deg);}
+            60% {transform: translateY(5px) rotate(45deg);}
+        }
+        @keyframes fadeHint {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, 0); }
+            50% { opacity: 1; transform: translate(-50%, 10px); }
+        }
+
+        /* Flow Cards */
+        .flow-card {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: left;
+            box-shadow: 0 8px 24px rgba(6, 26, 58, 0.06);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .flow-card:hover {
+            box-shadow: 0 12px 40px rgba(6, 26, 58, 0.12);
+            transform: translateY(-5px);
+            border-color: rgba(47, 232, 250, 0.3);
+        }
+        .flow-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px; height: 40px;
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 10px;
+            margin-bottom: 1.25rem;
+        }
+        .flow-card h4 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            min-height: 2.8rem;
+        }
+        .flow-card p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin: 0;
+            flex: 1;
+        }
+
+        /* Service Value */
+        .service-value {
+            position: relative;
+            background: url('../../../assets/img/11.png') center/cover no-repeat;
+            color: var(--white);
+            padding: 6rem 0;
+            overflow: hidden;
+        }
+        .service-value::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.65);
+            z-index: 1;
+        }
+        .service-value .container { position: relative; z-index: 2; }
+        
+        .value-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: left;
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+            height: 100%;
+        }
+        .value-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--cyan);
+            transform: translateY(-5px);
+        }
+        .value-card .v-icon {
+            color: var(--cyan);
+            font-size: 1.8rem;
+            margin-bottom: 1.25rem;
+            display: inline-block;
+        }
+        .value-card h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            min-height: 2.8rem;
+        }
+        .value-card p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* Application Domains Layout */
+        .domains-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+        }
+        @media (min-width: 900px) {
+            .domains-wrap { flex-direction: row; }
+            .domains-text { flex: 1; }
+            .domains-image { flex: 1; }
+        }
+        .domains-image img {
+            border-radius: 16px;
+            box-shadow: 0 16px 40px rgba(6, 26, 58, 0.12);
+            width: 100%;
+            display: block;
+        }
+        .domain-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 500px) { .domain-grid { grid-template-columns: 1fr 1fr; } }
+        .domain-item {
+            background: var(--off-white);
+            border: 1px solid var(--gray-100);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            color: var(--navy);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: var(--transition);
+        }
+        .domain-item:hover {
+            border-color: var(--cyan);
+            background: rgba(47, 232, 250, 0.05);
+            transform: translateX(4px);
+        }
+        .domain-item::before {
+            content: '';
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+        }
+
+        /* Conclusion Box */
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 16px 48px rgba(6, 26, 58, 0.18);
+            position: relative;
+            overflow: hidden;
+            margin-top: 5rem;
+        }
+        .conclusion-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(47, 232, 250, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .conclusion-box h3 {
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 2;
+        }
+        .conclusion-box p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header injected by JS -->
+    <div id="site-header"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-custom">
+            <div class="container fade-up">
+                <span class="hero-chip">CUSTOM ASIC DESIGN SERVICE</span>
+                <h1>客製化 ASIC 設計服務</h1>
+                <div class="hero-subtitle">從架構規劃到系統驗證的一站式晶片開發解決方案</div>
+                <p class="hero-desc">臻至科技提供專業的客製化 ASIC 設計服務，涵蓋從規格定義、RTL 設計、後端實作到系統驗證與量產前準備。我們結合低功耗 AI 加速器技術與完整的 IC 設計流程，協助客戶加速產品開發週期並降低整體開發風險。</p>
+            </div>
+
+            <!-- Scroll Hint -->
+            <div class="scroll-hint">
+                <span>Scroll</span>
+                <div class="v-arrow"></div>
+            </div>
+        </section>
+
+        <!-- 完整 ASIC 設計流程 -->
+        <section class="section bg-white text-center">
+            <div class="container fade-up">
+                <div class="section-label mb-4">ASIC DESIGN FLOW</div>
+                <h2 class="mb-4">完整 ASIC 設計流程</h2>
+                <p class="mx-auto text-gray" style="max-width: 700px; margin-bottom: 3rem;">我們提供從需求規劃到系統驗證的一站式 ASIC 開發服務，確保設計品質與時程可控，並協助客戶順利完成從概念到量產的晶片開發。</p>
+                
+                <img src="../../../assets/img/flow.png" alt="ASIC 設計流程" style="margin: 0 auto 4rem; max-width: 1000px; width: 100%; border-radius: 8px;">
+
+                <div class="grid-4 fade-up fade-up-delay-1">
+                    <div class="flow-card">
+                        <div class="flow-num">1</div>
+                        <h4>Requirement & Planning</h4>
+                        <p>與客戶共同定義產品規格、系統架構與 IP 策略，確立設計目標與開發路徑。</p>
+                    </div>
+                    <div class="flow-card">
+                        <div class="flow-num">2</div>
+                        <h4>Design Service: Front-end & Back-end</h4>
+                        <p>提供完整的 RTL 設計與驗證服務，並進行邏輯合成與實體設計實作，確保設計品質與時程掌控。</p>
+                    </div>
+                    <div class="flow-card">
+                        <div class="flow-num">3</div>
+                        <h4>SoC Prototyping</h4>
+                        <p>透過 FPGA 驗證與模擬進行功能測試與效能評估，加速設計迭代並降低流片風險。</p>
+                    </div>
+                    <div class="flow-card">
+                        <div class="flow-num">4</div>
+                        <h4>System Prototyping</h4>
+                        <p>提供 EVB 設計、System Bring-up 與晶片驗證服務，協助客戶完成產品化與量產前準備。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 服務價值與差異化優勢 -->
+        <section class="service-value text-center">
+            <div class="container fade-up">
+                <div class="section-label section-label-dark mb-4">OUR VALUE</div>
+                <h2 class="mb-5" style="color:var(--white);">為客戶打造高效且可靠的晶片開發流程</h2>
+                
+                <div class="grid-4 fade-up fade-up-delay-1" style="margin-top: 3rem;">
+                    <div class="value-card">
+                        <div class="v-icon">✦</div>
+                        <h4>一站式 ASIC 設計服務</h4>
+                        <p>涵蓋前端設計、後端實作、FPGA 原型驗證與系統開發，提供完整且一致的設計流程。</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="v-icon">✦</div>
+                        <h4>超低功耗 AI 晶片專業能力</h4>
+                        <p>結合 ANIX NPU IP 與低功耗架構技術，協助客戶打造具競爭力的邊緣 AI SoC。</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="v-icon">✦</div>
+                        <h4>彈性合作與 IP 整合能力</h4>
+                        <p>支援客戶自有 IP 或第三方 IP 整合，並提供客製化設計與技術顧問服務。</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="v-icon">✦</div>
+                        <h4>降低開發風險並加速產品上市</h4>
+                        <p>透過 FPGA 原型驗證與系統 Bring-up，縮短開發週期並提升流片成功率。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 客製化 ASIC 應用領域 -->
+        <section class="section">
+            <div class="container fade-up">
+                <div class="domains-wrap">
+                    <div class="domains-image">
+                        <img src="../../../assets/img/10.jpg" alt="客製化 ASIC 應用領域">
+                    </div>
+                    <div class="domains-text">
+                        <div class="section-label mb-4">DOMAINS</div>
+                        <h2 class="mb-4">客製化 ASIC 應用領域</h2>
+                        <div class="domain-grid">
+                            <div class="domain-item">低功耗邊緣 AI 晶片</div>
+                            <div class="domain-item">工業自動化與智慧製造</div>
+                            <div class="domain-item">穿戴式與消費性電子</div>
+                            <div class="domain-item">智慧監控與視覺感知系統</div>
+                            <div class="domain-item">無人機與自主機器人</div>
+                            <div class="domain-item">物聯網與智慧城市應用</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 結尾 CTA 區塊 -->
+                <div class="conclusion-box fade-up fade-up-delay-2">
+                    <h3>與我們合作，打造下一代智慧晶片</h3>
+                    <p>臻至科技致力於提供高品質且具競爭力的 ASIC 設計服務，協助客戶將創新構想轉化為可量產的半導體產品。無論是低功耗邊緣 AI SoC 或客製化專用晶片，我們都能提供專業且可靠的技術支援。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer injected by JS -->
+    <div id="site-footer"></div>
+
+    <script src="../../../assets/js/main.js"></script>
+</body>
+</html>

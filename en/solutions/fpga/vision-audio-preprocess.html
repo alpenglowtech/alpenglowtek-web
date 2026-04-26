@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FPGA – Visual and auditory pre-processing acceleration Solutions | Alpenglow Tek Alpenglow Tek</title>
+<meta content="Alpenglow Tek provides FPGA-based visual and auditory pre-processing solutions that use hardware-level parallel computing and reconfigurable architecture to accelerate the key processing of image and sound data before entering the AI ​​model." name="description"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        /* ============================================================
+           VISION/AUDIO PREPROCESS PAGE — Page-specific styles
+           ============================================================ */
+
+        /* ── Section 1: Hero ── */
+        .hero-vision {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Changed from center to align with left-aligned container */
+            color: var(--white);
+            background: url('../../../assets/img/v1.png') center / cover no-repeat;
+            background-color: #061A3A;
+            text-align: left; /* Changed from center */
+            overflow: hidden;
+        }
+        .hero-vision::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                105deg, /* More angle for side alignment */
+                rgba(6, 26, 58, 0.65) 0%, /* Reduced opacity from 0.85 to 0.65 for clarity */
+                rgba(6, 26, 58, 0.45) 50%, /* Reduced from 0.70 to 0.45 */
+                rgba(6, 26, 58, 0.75) 100% /* Reduced from 0.90 to 0.75 */
+            );
+            z-index: 1;
+        }
+        .hero-vision .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1440px; /* Matching site max-width */
+            margin: 0 auto;
+            padding: 0 3.5rem; /* Aligning with header-inner padding */
+            text-align: left; /* Changed from center */
+        }
+        .hero-vision-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(47, 232, 250, 0.12);
+            border: 1px solid rgba(47, 232, 250, 0.35);
+            border-radius: 100px;
+            color: var(--cyan);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+        }
+        .hero-vision-chip::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan);
+            animation: vision-pulse 2s ease-in-out infinite;
+        }
+        @keyframes vision-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.6); }
+        }
+        .hero-vision h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+            color: var(--white);
+            max-width: 850px;
+        }
+        .hero-vision h2 {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 600;
+            color: var(--cyan);
+            margin-bottom: 2.5rem;
+            border: none;
+            padding: 0;
+            text-transform: none;
+            letter-spacing: 0;
+            max-width: 850px;
+        }
+        .hero-vision .hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.9;
+            max-width: 750px;
+            margin: 0;
+        }
+
+        /* Scroll Hint */
+        .scroll-hint-vision {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            z-index: 5;
+        }
+        .scroll-hint-vision .v-arrow {
+            margin-top: 14px;
+            width: 18px;
+            height: 18px;
+            border-right: 2px solid rgba(255, 255, 255, 0.35);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+            transform: rotate(45deg);
+            animation: scbounce-vision 2s ease-in-out infinite;
+        }
+        @keyframes scbounce-vision {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+            40% { transform: translateY(10px) rotate(45deg); }
+            60% { transform: translateY(5px) rotate(45deg); }
+        }
+
+        /* ── Section 2: Why FPGA ── */
+        .vision-why-section {
+            padding: 7.5rem 0;
+            background: var(--white);
+        }
+        .vision-why-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+        .vision-why-top {
+            max-width: 1000px;
+        }
+        .vision-why-bottom {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            align-items: end; /* Changed from start to bottom-align red and green boxes */
+        }
+        @media (min-width: 1024px) {
+            .vision-why-bottom {
+                grid-template-columns: 1fr 1.2fr;
+            }
+        }
+        .vision-why-intro {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            line-height: 1.95;
+            margin-bottom: 0;
+        }
+
+        /* advantages list */
+        .vision-advantages {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .vision-advantages li {
+            display: flex;
+            align-items: center;
+            gap: 0.95rem;
+            color: var(--navy);
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.85rem 1.2rem;
+            background: var(--off-white);
+            border-left: 4px solid var(--cyan);
+            border-radius: 0 10px 10px 0;
+            transition: var(--transition);
+        }
+        .vision-advantages li:hover {
+            background: #f0f7ff;
+            transform: translateX(5px);
+        }
+        .vision-advantages li::before {
+            content: '✓';
+            color: var(--cyan);
+            font-weight: 800;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .vision-why-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(6, 26, 58, 0.12);
+        }
+        .vision-why-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .vision-why-image:hover img {
+            transform: scale(1.03);
+        }
+
+        /* ── Section 3: Our Solutions (with background) ── */
+        .vision-solution-section {
+            padding: 8rem 0;
+            position: relative;
+            background: url('../../../assets/img/12.png') center / cover no-repeat;
+            background-attachment: fixed;
+            color: var(--white);
+        }
+        .vision-solution-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.55); /* Reduced from 0.82 to make image clearer */
+            z-index: 1;
+        }
+        .vision-solution-section .container {
+            position: relative;
+            z-index: 2;
+        }
+        .vision-solution-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        @media (min-width: 1024px) {
+            .vision-solution-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .vision-sol-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2.75rem 2.25rem;
+            transition: var(--transition);
+        }
+        .vision-sol-card:hover {
+            transform: translateY(-10px);
+            background: rgba(47, 232, 250, 0.08);
+            border-color: var(--cyan);
+        }
+        .vision-sol-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(47, 232, 250, 0.3);
+        }
+        .vision-sol-card ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+        .vision-sol-card li {
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.98rem;
+            line-height: 1.5;
+        }
+        .vision-sol-card li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+            margin-top: 7px;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px var(--cyan);
+        }
+
+        /* ── Section 4: Application Fields ── */
+        .vision-apps-section {
+            padding: 8rem 0;
+            background: #f8fbff;
+        }
+        .vision-app-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        @media (min-width: 1024px) {
+            .vision-app-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        .vision-app-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 10px 30px rgba(6, 26, 58, 0.05);
+            border: 1px solid var(--gray-100);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .vision-app-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(6, 26, 58, 0.12);
+            border-color: rgba(47, 232, 250, 0.3);
+        }
+        .vision-app-card .app-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--off-white);
+            border-radius: 12px;
+            margin-bottom: 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-weight: 800;
+            font-size: 1.1rem;
+            border: 1px solid var(--gray-200);
+        }
+        .vision-app-card h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+        .vision-app-card ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .vision-app-card li {
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--gray-700);
+            font-size: 0.98rem;
+            line-height: 1.55;
+        }
+        .vision-app-card li::before {
+            content: '•';
+            color: var(--cyan);
+            font-size: 1.4rem;
+            margin-top: -3px;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        /* ── Section 5: Summary CTA ── */
+        .vision-cta-section {
+            padding: 8rem 0;
+            background: url('../../../assets/img/29.png') center / cover no-repeat;
+            background-color: #061A3A;
+            position: relative;
+        }
+        .vision-cta-section::before {
+            display: none; /* Mask removed as requested */
+        }
+        .vision-cta-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 30px;
+            padding: 5rem 4rem;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+        }
+        .vision-cta-inner h2 {
+            color: var(--white);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+        .vision-cta-inner p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.15rem;
+            line-height: 1.85;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .vision-cta-inner .cta-bar {
+            width: 80px;
+            height: 4px;
+            background: var(--cyan);
+            border-radius: 10px;
+            margin: 2.5rem auto;
+            box-shadow: 0 0 15px var(--cyan);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 767px) {
+            .vision-why-section, .vision-solution-section, .vision-apps-section, .vision-cta-section {
+                padding: 5rem 0;
+            }
+            .vision-cta-inner { padding: 3rem 2rem; }
+            .vision-why-image { margin-top: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<div id="site-header"></div>
+<main>
+<!-- SECTION 1: HERO -->
+<section class="hero-vision">
+<div class="container fade-up" style="padding-top: var(--header-h);">
+<div class="hero-vision-chip">FPGA Perception Preprocessing</div>
+<h1>Visual and auditory pre-processing acceleration solutions</h1>
+<h2>Building real-time AI perception systems with ultra-low latency hardware acceleration</h2>
+<p class="hero-desc">
+                    Alpenglow Tek provides FPGA-based visual and auditory pre-processing solutions that use hardware-level parallel computing and reconfigurable architecture to accelerate the key processing of image and sound data before entering the AI ​​model. This technology can significantly reduce system latency and improve computing efficiency, and is widely used in robots, autonomous mobile vehicles, smart monitoring, voice interaction devices and edge AI perception systems.
+                </p>
+</div>
+<div class="scroll-hint-vision">
+<span>Scroll</span>
+<div class="v-arrow"></div>
+</div>
+</section>
+<!-- SECTION 2: WHY AI PERCEPTION NEEDS FPGA -->
+<section class="vision-why-section">
+<div class="container">
+<div class="section-label mb-4">WHY FPGA</div>
+<h2 class="fade-up mb-4">Why do AI Perception Systems Need FPGA Preprocessing?</h2>
+<div class="vision-why-layout">
+<div class="vision-why-top fade-up">
+<p class="vision-why-intro">
+                            In AI vision and audio applications, significant time and computing resources are consumed during the data preprocessing stage, such as image conversion, noise reduction, feature extraction, and signal conversion. Relying solely on a CPU or GPU for processing easily creates latency and power bottlenecks, affecting real-time response capabilities. FPGA can complete real-time preprocessing before data enters AI models through hardware parallelism and pipeline design, significantly reducing latency and improving overall system performance.
+                        </p>
+</div>
+<div class="vision-why-bottom">
+<!-- Left: Advantages -->
+<div class="fade-up">
+<h3 style="font-size:1.15rem; font-weight:700; color:var(--navy); margin-bottom:1.75rem;">Core Advantages</h3>
+<ul class="vision-advantages">
+<li>Ultra-Low Latency Preprocessing Capabilities</li>
+<li>Highly parallelized computing architecture</li>
+<li>Reconfigurable and highly elastic</li>
+<li>Reduce Main Processor Load</li>
+<li>Supports multiple sensing interfaces (MIPI CSI, I²S, USB, Ethernet, PCIe)</li>
+</ul>
+</div>
+<!-- Right: Image -->
+<div class="vision-why-image fade-up">
+<img alt="FPGA Perception Preprocessing Advantage" src="../../../assets/img/fpga1.png"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: SOLUTIONS -->
+<section class="vision-solution-section">
+<div class="container">
+<div class="section-label mb-4" style="color:var(--cyan);">OUR SOLUTIONS</div>
+<h2 class="fade-up" style="color:var(--white);">Alpenglow Tek’s FPGA sensing pre-processing Solutions</h2>
+<div class="vision-solution-grid">
+<!-- Card 1 -->
+<div class="vision-sol-card fade-up">
+<h3>Service Offerings</h3>
+<ul>
+<li>Image and sound pre-processing hardware acceleration design</li>
+<li>Sensor Interface Integration (Camera / Microphone)</li>
+<li>AI Preprocessing Pipeline Design &amp; Optimization</li>
+<li>FPGA prototyping platform development and system integration</li>
+<li>SoM and edge AI system verification</li>
+<li>Customized AI Perception Acceleration Modules</li>
+</ul>
+</div>
+<!-- Card 2 -->
+<div class="vision-sol-card fade-up">
+<h3>Visual pre-processing technology</h3>
+<ul>
+<li>Image Capture &amp; Format Conversion (RAW, YUV, RGB)</li>
+<li>Image Scaling &amp; Geometric Correction</li>
+<li>Denoising &amp; Image Enhancement (Denoise, HDR)</li>
+<li>Edge Detection &amp; Feature Extraction</li>
+<li>Optical Flow &amp; Target Tracking</li>
+<li>Event camera data processing</li>
+</ul>
+</div>
+<!-- Card 3 -->
+<div class="vision-sol-card fade-up">
+<h3>Audio Preprocessing Technology</h3>
+<ul>
+<li>Voice Capture &amp; Noise Reduction</li>
+<li>Acoustic Echo Cancellation (AEC) &amp; Beamforming</li>
+<li>Voice Activity Detection (VAD)</li>
+<li>Sound Source Localization</li>
+<li>FFT / Spectrum Analysis &amp; Feature Extraction (MFCC)</li>
+<li>Multi-channel audio synchronization processing</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: APPLICATIONS -->
+<section class="vision-apps-section">
+<div class="container">
+<div class="section-label mb-4">APPLICATION DOMAINS</div>
+<h2 class="fade-up">Application Domains</h2>
+<div class="vision-app-grid">
+<!-- App 1 -->
+<div class="vision-app-card fade-up">
+<div class="app-icon">01</div>
+<h4>Robots and Autonomous Mobility Systems</h4>
+<ul>
+<li>Autonomous Mobile Robots (AMR) &amp; Service Robots</li>
+<li>Visual Navigation &amp; Real-Time Obstacle Avoidance</li>
+<li>Voice Interaction &amp; Human-Machine Collaboration</li>
+<li>Multi-Sensor Fusion &amp; Low-Latency Perception</li>
+</ul>
+</div>
+<!-- App 2 -->
+<div class="vision-app-card fade-up">
+<div class="app-icon">02</div>
+<h4>Smart Surveillance &amp; Security Applications</h4>
+<ul>
+<li>Real-Time Image Analysis &amp; Target Recognition</li>
+<li>Night monitoring and image enhancement</li>
+<li>Sound event detection and abnormal alarm</li>
+<li>Edge AI security system</li>
+</ul>
+</div>
+<!-- App 3 -->
+<div class="vision-app-card fade-up">
+<div class="app-icon">03</div>
+<h4>Smart terminals and consumer electronics</h4>
+<ul>
+<li>AR / VR / smart glasses</li>
+<li>Voice assistants and smart speakers</li>
+<li>Smart cameras and visual perception devices</li>
+<li>Wearable devices and low-power AI systems</li>
+</ul>
+</div>
+<!-- App 4 -->
+<div class="vision-app-card fade-up">
+<div class="app-icon">04</div>
+<h4>Automotive Electronics &amp; Smart Transportation</h4>
+<ul>
+<li>Driving Monitoring System (DMS)</li>
+<li>In-car voice interaction and noise suppression</li>
+<li>ADAS Visual Perception Preprocessing</li>
+<li>V2X and smart transportation systems</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: SUMMARY -->
+<section class="vision-cta-section">
+<div class="container">
+<div class="vision-cta-inner fade-up">
+<div class="section-label mb-4" style="color:var(--cyan); border-color:var(--cyan);">ACCELERATING PERCEPTION</div>
+<h2>Building High-Speed Preprocessing Cores for Real-Time AI Perception Systems</h2>
+<div class="cta-bar"></div>
+<p>
+                        In visual and auditory AI applications, pre-processing efficiency directly affects system response speed and overall performance. Alpenglow Tek uses FPGA reconfigurable computing architecture and high-speed digital signal processing technology to provide Extremely LowLatency, high-throughput and low-power consumption perception pre-processing Solutions to help customers build high-performance edge AI systems to realize new generation smart machines and human-computer interaction applications.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<div id="site-footer"></div>
+<script src="../../../assets/js/main.js"></script>
+</body>
+</html>

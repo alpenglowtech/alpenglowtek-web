@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>イベントカメラ：画像認識ソリューション | FPGA | アルペングロウ・テック</title>
+<meta content="Alpenglow Tek は、イベントカメラ システム統合機能と FPGA ハードウェア アクセラレーション テクノロジを組み合わせ、高速センシングおよびリアルタイム コンピューティング シナリオ向けに、低遅延、高スループット、低消費電力のプロフェッショナル ソフトウェアを提供します。" name="description"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        /* ============================================================
+           EVENT-BASED CAMERA PAGE — Page-specific styles
+           ============================================================ */
+
+        /* ── Section 1: Hero ── */
+        .hero-ec {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            background: url('../../../assets/img/snn2.png') center / cover no-repeat;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-ec::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(6, 26, 58, 0.75) 0%,
+                    rgba(6, 26, 58, 0.60) 50%,
+                    rgba(6, 26, 58, 0.80) 100%);
+            z-index: 1;
+        }
+
+        .hero-ec .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 0 1.5rem;
+        }
+
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(47, 232, 250, 0.12);
+            border: 1px solid rgba(47, 232, 250, 0.35);
+            border-radius: 100px;
+            color: var(--cyan);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-chip::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.6);
+            }
+        }
+
+        .hero-ec h1 {
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+            color: var(--white);
+            white-space: normal; word-break: keep-all;
+        }
+
+        .hero-ec .hero-subtitle {
+            font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+            font-weight: 600;
+            color: var(--cyan);
+            margin-bottom: 2rem;
+        }
+
+        .hero-ec .hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.9;
+            max-width: 700px;
+            margin: 0;
+        }
+
+        /* Scroll Hint */
+        .scroll-hint {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            z-index: 5;
+        }
+
+        .scroll-hint .v-arrow {
+            margin-top: 14px;
+            width: 18px;
+            height: 18px;
+            border-right: 2px solid rgba(255, 255, 255, 0.35);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+            transform: rotate(45deg);
+            animation: scbounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scbounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0) rotate(45deg);
+            }
+
+            40% {
+                transform: translateY(10px) rotate(45deg);
+            }
+
+            60% {
+                transform: translateY(5px) rotate(45deg);
+            }
+        }
+
+        /* ── Section 2: What is Event-based Camera ── */
+        .ec-what-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .ec-what-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+            align-items: start;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 1024px) {
+            .ec-what-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 5rem;
+                align-items: center;
+            }
+        }
+
+        .ec-what-text p {
+            color: var(--gray-700);
+            font-size: 1.05rem;
+            line-height: 1.95;
+            margin-bottom: 1.25rem;
+        }
+
+        .ec-what-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Comparison Table */
+        .ec-compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(6, 26, 58, 0.09);
+        }
+
+        .ec-compare-table caption {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            padding: 0 0 1rem;
+            text-align: left;
+            caption-side: top;
+        }
+
+        .ec-compare-table thead tr {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .ec-compare-table thead th {
+            padding: 0.9rem 1.25rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            text-align: left;
+        }
+
+        .ec-compare-table thead th:first-child {
+            background: var(--navy-mid);
+            color: var(--cyan);
+            width: 28%;
+        }
+
+        .ec-compare-table thead th:nth-child(2) {
+            background: rgba(6, 26, 58, 0.85);
+            width: 36%;
+        }
+
+        .ec-compare-table thead th:nth-child(3) {
+            background: linear-gradient(90deg, #0a3170, #0F3878);
+            color: var(--cyan);
+            width: 36%;
+        }
+
+        .ec-compare-table tbody tr {
+            border-bottom: 1px solid var(--gray-100);
+            transition: background 0.2s;
+        }
+
+        .ec-compare-table tbody tr:hover {
+            background: var(--off-white);
+        }
+
+        .ec-compare-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .ec-compare-table tbody td {
+            padding: 0.85rem 1.25rem;
+            color: var(--gray-700);
+            line-height: 1.55;
+            vertical-align: top;
+        }
+
+        .ec-compare-table tbody td:first-child {
+            font-weight: 700;
+            color: var(--navy);
+            background: rgba(6, 26, 58, 0.035);
+        }
+
+        .ec-compare-table tbody td:nth-child(3) {
+            color: #0F3878;
+            font-weight: 500;
+        }
+
+        /* ── Section 3: Three Key Features (glassmorphism cards) ── */
+        .ec-features-section {
+            position: relative;
+            padding: 7rem 0;
+            background: url('../../../assets/img/snn5.png') center / cover no-repeat;
+            overflow: hidden;
+        }
+
+        .ec-features-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(4, 14, 36, 0.72);
+            z-index: 1;
+        }
+
+        .ec-features-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .ec-features-intro {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .ec-features-intro p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        .ec-glass-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .ec-glass-cards {
+                flex-direction: row;
+                justify-content: center;
+                align-items: stretch;
+            }
+        }
+
+        .ec-glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            color: var(--white);
+            text-align: left;
+            flex: 1;
+            max-width: 340px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .ec-glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.13);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.38), 0 0 40px rgba(47, 232, 250, 0.08);
+            border-color: rgba(47, 232, 250, 0.35);
+        }
+
+        .ec-glass-card .card-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--cyan), rgba(47, 232, 250, 0.5));
+            color: var(--navy);
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .ec-glass-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .ec-glass-card p {
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+
+        /* ── Section 4: Why Event-based Camera Needs FPGA ── */
+        .ec-fpga-section {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, #f0f5ff 0%, #e8f0fe 100%);
+        }
+
+        .ec-fpga-inner {
+            margin: 3rem 0;
+        }
+
+        .ec-fpga-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .ec-fpga-cards {
+                flex-direction: row;
+                align-items: stretch;
+            }
+        }
+
+        .ec-fpga-inner h3 {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 600;
+            color: var(--navy-mid);
+            margin: 2rem 0 1.25rem;
+        }
+
+        .ec-fpga-inner>p {
+            color: var(--gray-700);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .ec-fpga-challenges {
+            background: var(--white);
+            border-radius: 14px;
+            padding: 2.25rem 2.5rem;
+            box-shadow: 0 4px 20px rgba(6, 26, 58, 0.07);
+            border-left: 4px solid #e03e3e;
+            flex: 1;
+        }
+
+        .ec-fpga-challenges ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .ec-fpga-challenges li {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            color: var(--gray-700);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .ec-fpga-challenges li::before {
+            content: '⚠';
+            color: #e03e3e;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        .ec-fpga-solution {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            border-radius: 14px;
+            padding: 2.25rem 2.5rem;
+            color: var(--white);
+            flex: 1.6;
+            display: flex;
+            align-items: center;
+        }
+
+        .ec-fpga-solution p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+
+        .ec-fpga-solution strong {
+            color: var(--cyan);
+        }
+
+        /* ── Section 5: Our FPGA Solution ── */
+        .ec-solution-section {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .ec-solution-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3.5rem;
+            align-items: start;
+        }
+
+        @media (min-width: 1024px) {
+            .ec-solution-grid {
+                grid-template-columns: 1fr 1fr 1.1fr;
+                align-items: stretch;
+            }
+        }
+
+        .ec-sol-card {
+            background: var(--off-white);
+            border-radius: 16px;
+            padding: 2.25rem 2rem;
+            border: 1px solid var(--gray-100);
+            box-shadow: 0 4px 16px rgba(6, 26, 58, 0.06);
+            transition: var(--transition);
+        }
+
+        .ec-sol-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(47, 232, 250, 0.25);
+        }
+
+        .ec-sol-card h3 {
+            font-size: 1.0rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--cyan-dim);
+        }
+
+        .ec-sol-card ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .ec-sol-card li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--gray-700);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .ec-sol-card li::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--cyan);
+            color: var(--navy);
+            font-size: 0.65rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='%23061A3A' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .ec-sol-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(6, 26, 58, 0.18);
+        }
+
+        .ec-sol-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            min-height: 260px;
+            border-radius: 16px;
+        }
+
+        /* ── Section 6: Industry Applications ── */
+        .ec-apps-section {
+            padding: 6rem 0;
+            position: relative;
+            background: url('../../../assets/img/11.png') center / cover no-repeat;
+        }
+
+        .ec-apps-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.65);
+            z-index: 0;
+        }
+
+        .ec-apps-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .ec-app-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            margin-top: 3rem;
+        }
+
+        @media (min-width: 640px) {
+            .ec-app-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .ec-app-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.25rem 2rem;
+            box-shadow: 0 4px 20px rgba(6, 26, 58, 0.07);
+            border: 1px solid var(--gray-100);
+            transition: var(--transition);
+        }
+
+        .ec-app-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(47, 232, 250, 0.3);
+        }
+
+        .ec-app-card .app-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: var(--navy);
+            color: var(--cyan);
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+
+        .ec-app-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--gray-100);
+        }
+
+        .ec-app-card ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .ec-app-card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            color: var(--gray-700);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .ec-app-card li::before {
+            content: '▸';
+            color: var(--cyan);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .ec-app-card .app-note {
+            font-size: 0.82rem;
+            color: var(--gray-500);
+            line-height: 1.65;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--gray-100);
+            margin-top: auto;
+        }
+
+        /* ── Section 7: Video Demo ── */
+        .ec-video-section {
+            padding: 7rem 0;
+            background: linear-gradient(135deg, #061A3A 0%, #0A2550 50%, #0C2D5A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ec-video-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(47, 232, 250, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(47, 232, 250, 0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .ec-video-section .container {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+        }
+
+        .ec-video-section h2 {
+            color: var(--white);
+        }
+
+        .ec-video-section h3 {
+            color: var(--cyan);
+            font-weight: 500;
+            font-size: clamp(1rem, 1.8vw, 1.25rem);
+            margin: 0.75rem 0 1.5rem;
+        }
+
+        .ec-video-section p {
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 1rem;
+            line-height: 1.85;
+            max-width: 100%;
+            margin-left: 0;
+        }
+
+        .ec-video-section .no-wrap-text {
+            white-space: normal; word-break: keep-all;
+        }
+
+        .video-wrapper-ec {
+            margin-top: 3rem;
+            width: 100%;
+            max-width: 1100px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.45), 0 0 60px rgba(47, 232, 250, 0.08);
+            border: 1px solid rgba(47, 232, 250, 0.15);
+        }
+
+        .video-wrapper-ec iframe {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: none;
+        }
+
+        /* ── Responsive tweaks ── */
+        @media (max-width: 767px) {
+            .ec-sol-image {
+                order: -1;
+            }
+
+            .ec-compare-table {
+                font-size: 0.82rem;
+            }
+
+            .ec-compare-table thead th,
+            .ec-compare-table tbody td {
+                padding: 0.7rem 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header injected by JS -->
+<div id="site-header"></div>
+<main>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="hero-ec">
+<div class="container fade-up" style="padding-top: var(--header-h);">
+<div class="hero-chip">FPGA / EVENT-BASED CAMERA SOLUTION</div>
+<h1>イベントカメラ：画像認識ソリューション</h1>
+<div class="hero-subtitle">高速でダイナミックな世界を、真に起こってキャプチャできる</div>
+<p class="hero-desc">
+                    Alpenglow Tek は、イベントカメラ システム統合機能と FPGA ハードウェア アクセラレーション テクノロジを組み合わせ、高速センシングおよびリアルタイム コンピューティング シナリオ向けに、低遅延、高スループット、低消費電力のプロフェッショナル ソフトウェアを提供します。
+                </p>
+</div>
+<div class="scroll-hint">
+<span>Scroll</span>
+<div class="v-arrow"></div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="ec-what-section">
+<div class="container">
+<div class="section-label mb-4">TECHNOLOGY OVERVIEW</div>
+<h2 class="fade-up">イベントカメラとは？</h2>
+<div class="ec-what-grid fade-up">
+<!-- Left: Text -->
+<div class="ec-what-text">
+<p>
+                            イベントベースカメラは、従来のRGBカメラとは異なる新しいセンシング技術です。
+                        </p>
+<p>
+                            従来のカメラは、固定フレームレート（例：30fps、60fps）と完全なフレームを継続にキャプチャし、剉化がない場合でも大量の長文情報を缲り返して記録します。対輝のイベントカメラには「非同期イベント駆動」メカニズムを採用。
+                        </p>
+</div>
+<!-- Right: Comparison Table -->
+<div>
+<table class="ec-compare-table">
+<caption>従来のRGBカメラとの違反</caption>
+<thead>
+<tr>
+<th>プロジェクト</th>
+<th>従来のRGBカメラ</th>
+<th>イベントカメラ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>データの努力</td>
+<td>固定フィルター</td>
+<td>非同期テクノロジー</td>
+</tr>
+<tr>
+<td>スヤン</td>
+<td>フレームレートに制限される</td>
+<td>Malikura セカンドレベルの貢献</td>
+</tr>
+<tr>
+<td>ダイナミックレンジ</td>
+<td>露出が多すぎる、露出が多すぎる、露出が多すぎる、露出が多すぎる、露出が多すぎる。</td>
+<td>エクストリームな照明にも対応可能</td>
+</tr>
+<tr>
+<td>音量</td>
+<td>ポートレートの数々</td>
+<td>変化したイベントのみを貢献します</td>
+</tr>
+<tr>
+<td>やるべきだ</td>
+<td>物静かで普通の視力</td>
+<td>高速トラック、極限環境</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="ec-features-section">
+<div class="container">
+<div class="ec-features-intro fade-up">
+<p>このメカニズムの重要な特徴は3つのものをもたらします:</p>
+</div>
+<div class="ec-glass-cards fade-up">
+<!-- Card 1 -->
+<div class="ec-glass-card">
+<div class="card-num">01</div>
+<h3>超低レベル</h3>
+<p>マイクロセカンドレベルの応答速度は、従来のフレームレートカメラを遥かにオーバーライドし、当面の知識を必要とする高い速度トレイルのアプリケーションに適しています。</p>
+</div>
+<!-- Card 2 -->
+<div class="ec-glass-card">
+<div class="card-num">02</div>
+<h3>極めて高いいいダイナミックレンジ</h3>
+<p>120dB以上の明暗、強い光と極度の暗さの環境下でも、重要なポートレート情報を安定して撮影します。</p>
+</div>
+<!-- Card 3 -->
+<div class="ec-glass-card">
+<div class="card-num">03</div>
+<h3>低くて長い出力</h3>
+<p>ピクセルの明るさが変化した時のみデータを出力し、長時間の情報処理負荷が大幅に軽減され、処理負荷が大幅に軽減されました。</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="ec-fpga-section">
+<div class="container fade-up">
+<div class="section-label mb-4">FPGA INTEGRATION</div>
+<h2 style="margin-bottom: 1rem;">なぜイベントカメラにはFPGAがあるのか​​?</h2>
+<div class="ec-fpga-cards">
+<div class="ec-fpga-challenges fade-up">
+<ul>
+<li>負荷が多すぎる</li>
+<li>ピークスループットの不足</li>
+<li>のボトルネック</li>
+</ul>
+</div>
+<div class="ec-fpga-solution fade-up">
+<p>
+                            FPGAは、 <strong>高度な並列処理</strong> そして <strong>ハンドリング能力</strong>，<br/>
+                            高速なイベントストリームを安定して処理し、低遅延、高スループットのリアルタイム処理を実現します。
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="ec-solution-section">
+<div class="container fade-up">
+<div class="section-label mb-4">OUR SOLUTION</div>
+<h2>Alpenglow Tek の FPGA イベント処理システム</h2>
+<div class="ec-solution-grid">
+<!-- Left Card -->
+<div class="ec-sol-card">
+<h3>専用のハードウェアアクセラレーションアーキテクチャによって実現</h3>
+<ul>
+<li>FPGA並列処理</li>
+<li>超低パフォーマンス</li>
+<li>ハイテク製品の分析</li>
+<li>インスタント＋低消費電力コンピューティング</li>
+</ul>
+</div>
+<!-- Middle Card -->
+<div class="ec-sol-card">
+<h3>私たちのソリューションは次のように利用可能です</h3>
+<ul>
+<li>量産前のFPGAコントロールパネル</li>
+<li>高速スキャナー</li>
+<li>AIアプリケーション処理層</li>
+</ul>
+</div>
+<!-- Right Image -->
+<div class="ec-sol-image">
+<img alt="アルペングロー・テック FPGA" src="../../../assets/img/snn1.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="ec-apps-section">
+<div class="container fade-up">
+<div class="section-label mb-4">APPLICATIONS</div>
+<h2 style="color: var(--white);">イベントカメラの産業応用</h2>
+<h3 style="color: var(--cyan); font-weight: 500; font-size: 1.1rem; margin: 1rem 0 0;">
+                    国際的な技術・技術の発展動向は以下のとおりです。
+                </h3>
+<div class="ec-app-grid">
+<!-- Card 1 -->
+<div class="ec-app-card">
+<div class="app-num">01</div>
+<h4>産業用オートメーションと高速チェック</h4>
+<ul>
+<li>ラインの臨時生産を高速化</li>
+<li>ロボットアームの精密位置制御</li>
+<li>高速復帰部品の振動解析</li>
+<li>チップと基板の外観を確認する</li>
+</ul>
+<p class="app-note">
+                            超低遅全高いダイナミックレンジの集团み合わせにより、生産されます 産業環境は、強い光、影、高速の動きにさらされます。
+                        </p>
+</div>
+<!-- Card 2 -->
+<div class="ec-app-card">
+<div class="app-num">02</div>
+<h4>ロボティクスとなし人车</h4>
+<ul>
+<li>突然の障害物検出と回避</li>
+<li>ハイスピードメーカー</li>
+<li>低電力バッテリー</li>
+</ul>
+<p class="app-note">
+                            1ms 雲満のイベントカメラの応答遅怅により、ロボットは動いている環境で突然の決定を下すことができます。
+                        </p>
+</div>
+<!-- Card 3 -->
+<div class="ec-app-card">
+<div class="app-num">03</div>
+<h4>車での移動</h4>
+<ul>
+<li>高速ロードノズル</li>
+<li>夜間の気象状況の把握をサポート</li>
+<li>リカ・ラナの行動分析</li>
+</ul>
+<p class="app-note">
+                            マイクロセカンドレベルの応答と高いダイナミックレンジの知識により、スマートドライビングとV2Xシステムに信頼性の高い常時の見覚のサポートを提供します。
+                        </p>
+</div>
+<!-- Card 4 -->
+<div class="ec-app-card">
+<div class="app-num">04</div>
+<h4>セキュリティ監視および防御アプリケーション</h4>
+<ul>
+<li>低消費電力で長時間の暗所監視</li>
+<li>高速な追跡と認識</li>
+<li>国境を理解する</li>
+</ul>
+<p class="app-note">
+                            FPGA の処理能力、総合パフォーマンス、全天候型モニタリング、高い信頼性、防御意識が FPGA の主な特徴です。
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="ec-video-section">
+<div class="container fade-up">
+<div class="section-label section-label-dark mb-4">DEMONSTRATION</div>
+<h2>技術的成果</h2>
+<h3>イベントカメラとFPGAシステムの統合動作結果を紹介</h3>
+<p style="margin-bottom: 0.75rem;">
+                    Alpenglow Tek は、イベントカメラと FPGA プラットフォームの統合および当面のプロセス検査を全しました。<br/>
+<span class="no-wrap-text">高速のハードウェアデータパスて、マイクロセカンドレベルの遅滞の答えと高いスループットの設計と処理に専用で使用され、安定した動作能力の実が現れます。</span>
+</p>
+<p>
+                    下のビデオは、実際のシステム動作とイベント処理結果を示しています。
+                </p>
+<div class="video-wrapper-ec fade-up">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" src="https://www.youtube.com/embed/H42pbAkFP2k?rel=0" title="イベントカメラとFPGA連携実演デモ |アルペングロウ・テック">
+</iframe>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer injected by JS -->
+<div id="site-footer"></div>
+<script src="../../../assets/js/main.js"></script>
+</body>
+</html>

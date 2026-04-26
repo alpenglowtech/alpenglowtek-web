@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us About Us | Alpenglow Tek</title>
+<meta content="Alpenglow Tek is an IC design company focused on ultra-low power edge AI, dedicated to building intelligent computing architectures that operate stably in resource-constrained environments." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        /* ========================================
+           ABOUT US — PAGE-SPECIFIC STYLES
+        ======================================== */
+        :root {
+            --navy: #004aad;
+            --dark-navy: #061A3A;
+            --cyan: #2fe8fa;
+            --light-bg: #f8fafc;
+        }
+
+        /* ── Section 1: Hero ── */
+        .about-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            text-align: left;
+        }
+        .about-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/semi6.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transform: scale(1.05);
+            transition: transform 10s ease-out;
+            z-index: 0;
+        }
+        .about-hero.loaded .about-hero-bg {
+            transform: scale(1);
+        }
+        .about-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.4); /* Subdued overlay for text legibility but keeps the image texture */
+            z-index: 1;
+        }
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .about-hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: aboutReveal 1s 0.3s ease forwards;
+        }
+        .about-hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: aboutReveal 1s 0.5s ease forwards;
+        }
+
+        /* ── Scroll hint ── */
+        .about-scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 3;
+            opacity: 0;
+            animation: aboutReveal 1s 1.2s ease forwards;
+        }
+        .about-scroll-hint span {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+        .about-scroll-arrow {
+            width: 22px; height: 22px;
+            border-right: 2px solid rgba(255,255,255,0.6);
+            border-bottom: 2px solid rgba(255,255,255,0.6);
+            transform: rotate(45deg);
+            animation: aboutBounce 1.8s infinite;
+        }
+
+        @keyframes aboutReveal { to { opacity: 1; transform: translateY(0); } }
+        @keyframes aboutBounce {
+            0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+            50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
+
+        /* ── Section 2: Intro ── */
+        .about-intro {
+            padding: 8rem 0;
+            background: #ffffff;
+        }
+        .about-intro-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .about-intro-img {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(6, 26, 58, 0.08);
+        }
+        .about-intro-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .about-intro-img:hover img {
+            transform: scale(1.03);
+        }
+        .about-intro-text p {
+            font-size: 1.15rem;
+            color: #4a5a7a;
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+        .about-intro-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Section 3: Problem ── */
+        .about-problem {
+            padding: 8rem 0;
+            background: var(--light-bg);
+            position: relative;
+        }
+        .about-problem-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: end; /* Both blocks align to the bottom */
+        }
+        .about-sec-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            background: rgba(47,232,250, 0.1);
+            border: 1px solid rgba(47,232,250, 0.3);
+            padding: 0.4rem 1.2rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+        .about-problem-text h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--dark-navy);
+            margin-bottom: 2rem;
+        }
+        .about-problem-text p {
+            font-size: 1.1rem;
+            color: #4a5a7a;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+        .about-problem-text p:last-child {
+            margin-bottom: 0;
+        }
+        .about-problem-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.06);
+            display: flex;
+        }
+        .about-problem-img img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* ── Section 4: Core Capabilities ── */
+        .about-core {
+            position: relative;
+            padding: 8rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .about-core-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/semi8.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+        .about-core-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.65); /* Darker overlay to make cards pop */
+            z-index: 1;
+        }
+        .about-core-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        .about-core-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .about-core-header h2 {
+            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 1rem;
+        }
+        .about-core-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .about-glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            text-align: left;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, background 0.4s ease;
+        }
+        .about-glass-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border-color: rgba(47,232,250, 0.4);
+        }
+        .about-glass-card .card-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--cyan), #00b8d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(47,232,250,0.3);
+        }
+        .about-glass-card .card-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--dark-navy);
+        }
+        .about-glass-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            line-height: 1.4;
+        }
+        .about-glass-card p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.8;
+        }
+
+        /* ── Section 5: Cooperation ── */
+        .about-coop {
+            padding: 8rem 0;
+            background: #ffffff;
+        }
+        .about-coop-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4rem;
+            align-items: stretch; /* Stretch to fill height */
+        }
+        .about-coop-text h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--dark-navy);
+            margin-bottom: 3rem;
+        }
+        .coop-item {
+            margin-bottom: 2rem;
+        }
+        .coop-item:last-child {
+            margin-bottom: 2.5rem;
+        }
+        .coop-item h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: normal; word-break: keep-all;
+        }
+        .coop-item h4::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--cyan);
+            border-radius: 50%;
+        }
+        .coop-item p {
+            font-size: 1.05rem;
+            color: #5a6a8a;
+            line-height: 1.7;
+            padding-left: 1.25rem;
+            white-space: normal; word-break: keep-all;
+        }
+        .coop-conclusion {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--dark-navy);
+            line-height: 1.8;
+            padding: 1.5rem 2rem;
+            background: var(--light-bg);
+            border-left: 4px solid var(--cyan);
+            border-radius: 0 12px 12px 0;
+        }
+        .about-coop-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            height: 100%;
+            display: flex;
+        }
+        .about-coop-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .about-intro-inner, .about-problem-inner, .about-coop-inner {
+                gap: 3rem;
+            }
+            .about-core-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .about-intro-inner, .about-problem-inner, .about-coop-inner {
+                grid-template-columns: 1fr;
+            }
+            /* Reverse order on mobile so text is above image for problem & coop if needed, 
+               but let's keep natural DOM order: image then text, text then image */
+            .about-problem-inner {
+                display: flex;
+                flex-direction: column;
+            }
+            .about-problem-text { order: -1; }
+            
+            .coop-item h4, .coop-item p {
+                white-space: normal;
+            }
+
+            .about-core-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-glass-card {
+                padding: 2.5rem 2rem;
+            }
+            .about-hero-title {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header (injected by main.js) -->
+<div id="site-header"></div>
+<main>
+<!--  -->
+<section class="about-hero" id="aboutHero">
+<div class="about-hero-bg"></div>
+<div class="about-hero-overlay"></div>
+<div class="about-hero-content">
+<h1 class="about-hero-title">Maximizing AI Value<br/>With Limited Energy</h1>
+<p class="about-hero-sub">We are an IC design company focused on ultra-low power edge AI,<br/>dedicated to building intelligent computing architectures that operate stably in resource-constrained environments.</p>
+</div>
+<div class="about-scroll-hint">
+<span>Scroll</span>
+<div class="about-scroll-arrow"></div>
+</div>
+</section>
+<!--  -->
+<section class="about-intro">
+<div class="about-intro-inner">
+<div class="about-intro-img fade-up">
+<img alt="Alpenglow Tek" src="../../assets/img/semi4.png"/>
+</div>
+<div class="about-intro-text fade-up fade-up-delay-1">
+<p>Alpenglow Tek focuses on developing a new generation of Ultra low power consumption edge AI computing technology to create highly efficient AI inference Solutions.</p>
+<p>We focus on the balance between power consumption, latency, and system efficiency, helping customers integrate AI capabilities into various terminal devices, enabling intelligent computing to truly land in edge scenarios.</p>
+<p>Currently, we offer diverse cooperation models, including AI processor IP, ASIC/SoC design integration, and FPGA prototyping and system verification services, accelerating the product implementation process from concept validation to actual deployment.</p>
+</div>
+</div>
+</section>
+<!--  -->
+<section class="about-problem">
+<div class="about-problem-inner">
+<div class="about-problem-text fade-up">
+<span class="about-sec-label">OUR CHALLENGE</span>
+<h2>The Problems We Solve</h2>
+<p>As AI applications move from the cloud to the edge, more scenarios require real-time response, long-term operation, and low-power intelligent processing capabilities.</p>
+<p>However, traditional computing architectures consume massive energy during data movement, resulting in excessive power consumption and increased latency, making them difficult to apply in resource-constrained devices and environments.</p>
+<p>Alpenglow Tek is committed to optimizing computing methods at the architectural level, reducing unnecessary data transmission, and allowing AI to operate stably under lower power and higher efficiency conditions.</p>
+</div>
+<div class="about-problem-img fade-up fade-up-delay-1">
+<img alt="Solving Edge AI Challenges" src="../../assets/img/semi7.png"/>
+</div>
+</div>
+</section>
+<!--  -->
+<section class="about-core">
+<div class="about-core-bg"></div>
+<div class="about-core-overlay"></div>
+<div class="about-core-inner">
+<div class="about-core-header fade-up">
+<span class="about-sec-label" style="background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.3);">WHAT WE DO</span>
+<h2>Our Core Capabilities</h2>
+</div>
+<div class="about-core-grid">
+<!-- Card 1 -->
+<div class="about-glass-card fade-up fade-up-delay-1">
+<div class="card-icon">
+<svg viewbox="0 0 24 24"><path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zM12 11h6c-.53 4.12-3.28 7.79-6 8.94V11H6V6.3l6-2.25V11z"></path></svg>
+</div>
+<h3>Ultra-Low Power AI Architecture</h3>
+<p>Through architecture-level optimization design, significantly reducing energy consumption from data movement, improving overall computing efficiency, and making AI more suitable for deployment on edge devices.</p>
+</div>
+<!-- Card 2 -->
+<div class="about-glass-card fade-up fade-up-delay-2">
+<div class="card-icon">
+<svg viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM4 18V6h16v12H4z"></path><path d="M6 10h2v4H6zm4 0h2v4h-2zm4 0h4v4h-4z"></path></svg>
+</div>
+<h3>ASIC / SoC Design Integration Capability</h3>
+<p>Equipped with capabilities from architectural planning and IP integration to chip realization, helping customers build dedicated AI chips that meet application requirements.</p>
+</div>
+<!-- Card 3 -->
+<div class="about-glass-card fade-up fade-up-delay-3">
+<div class="card-icon">
+<svg viewbox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.06-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.73,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.06,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.49-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"></path></svg>
+</div>
+<h3>FPGA prototype development and system verification</h3>
+<p>Rapidly implementing AI algorithms and system architectures through FPGA, accelerating PoC verification and product development processes.</p>
+</div>
+</div>
+</div>
+</section>
+<!--  -->
+<section class="about-coop">
+<div class="about-coop-inner">
+<div class="about-coop-text fade-up">
+<span class="about-sec-label">COOPERATION</span>
+<h2>How We Work with Customers</h2>
+<div class="coop-item">
+<h4>PoC/Prototype development</h4>
+<p>For specific application scenarios, quickly build verifiable system prototypes to accelerate product decisions and adoption.</p>
+</div>
+<div class="coop-item">
+<h4>IP Licensing &amp; System Integration</h4>
+<p>Providing AI processor IP and assisting in integration into the customer’s existing SoC or product architecture.</p>
+</div>
+<div class="coop-item">
+<h4>Custom ASIC / System Design</h4>
+<p>Customize designs based on application requirements to create dedicated Solutions with both performance and power consumption advantages.</p>
+</div>
+<div class="coop-conclusion fade-up fade-up-delay-1">
+                        We value long-term cooperation with customers, providing complete and sustainable support from technical evaluation to product implementation.
+                    </div>
+</div>
+<div class="about-coop-img fade-up fade-up-delay-2">
+<img alt="How We Work with Customers" src="../../assets/img/semi2.png"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (injected by main.js) -->
+<div id="site-footer"></div>
+<script src="../../assets/js/main.js"></script>
+<script>
+        // Ken Burns effect on hero background
+        window.addEventListener('load', () => {
+            document.getElementById('aboutHero')?.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>

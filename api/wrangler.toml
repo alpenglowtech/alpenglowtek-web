@@ -1,0 +1,19 @@
+name = "apg-contact-api"
+main = "api/contact-worker.js"
+compatibility_date = "2024-01-01"
+
+# Routes: 把 /api/contact 導向此 Worker
+# 請將 alpenglowtek.com 改為您實際的域名
+[[routes]]
+pattern = "alpenglowtek.com/api/contact"
+zone_name = "alpenglowtek.com"
+
+# 環境變數（明文，非敏感）
+[vars]
+RECIPIENT_EMAIL = "phyllis_huang@alpenglowtek.com"
+FROM_EMAIL      = "contact@alpenglowtek.com"
+ALLOWED_ORIGIN  = "https://alpenglowtek.com"
+
+# ⚠️  敏感的 API Keys 請用 wrangler secret put 設定，不要寫在這裡：
+#   wrangler secret put RESEND_API_KEY
+#   wrangler secret put TURNSTILE_SECRET_KEY

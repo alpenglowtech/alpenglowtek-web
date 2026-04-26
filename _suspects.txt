@@ -1,0 +1,274 @@
+--- ja\solutions\asic\custom-asic.html ---
+  L14:         .hero-custom {
+  L15:             position: relative;
+  L16:             min-height: 100vh;
+  L17:             display: flex;
+  L18:             align-items: center;
+  L19:             color: var(--white);
+  L20:             background: url('../../../assets/img/9.png') center/cover no-repeat;
+  L21:             text-align: left;
+  L22:             overflow: hidden;
+  L23:         }
+  L24:         .hero-custom::before {
+  L25:             content: '';
+  L26:             position: absolute;
+  L27:             inset: 0;
+  L28:             background: linear-gradient(90deg, rgba(6, 26, 58, 0.9) 0%, rgba(6, 26, 58, 0.7) 40%, rgba(6, 26, 58, 0.3) 100%);
+  L29:             z-index: 1;
+  L30:         }
+  L31:         .hero-custom .container { position: relative; z-index: 2; width: 100%; }
+  L33:         .hero-chip {
+  L34:             display: inline-flex;
+  L35:             align-items: center;
+  L36:             gap: 8px;
+  L37:             padding: 8px 18px;
+  L38:             background: rgba(47, 232, 250, 0.1);
+  L39:             border: 1px solid rgba(47, 232, 250, 0.3);
+  L40:             border-radius: 100px;
+  L41:             color: var(--cyan);
+  L42:             font-size: 0.8rem;
+  L43:             font-weight: 700;
+  L44:             letter-spacing: 1.5px;
+  L45:             text-transform: uppercase;
+  L46:             margin-bottom: 2rem;
+  L47:         }
+  L48:         .hero-chip::before {
+  L49:             content: '';
+  L50:             width: 6px;
+  L51:             height: 6px;
+  L52:             background: var(--cyan);
+  L53:             border-radius: 50%;
+  L54:             box-shadow: 0 0 10px var(--cyan);
+  L55:         }
+  L57:         .hero-custom h1 {
+  L58:             font-size: clamp(2.5rem, 6vw, 4.5rem);
+  L59:             font-weight: 800;
+  L60:             line-height: 1.2;
+  L61:             margin-bottom: 2rem;
+  L62:             letter-spacing: -1px;
+  L63:         }
+  L64:         .hero-subtitle {
+  L65:             color: var(--cyan);
+  L66:             font-size: clamp(1.1rem, 2vw, 1.4rem);
+  L67:             font-weight: 600;
+  L68:             letter-spacing: 0.05em;
+  L69:             margin-bottom: 1.5rem;
+  L70:             max-width: 900px;
+  L71:         }
+  L72:         .hero-desc {
+  L73:             max-width: 750px;
+  L74:             color: rgba(255, 255, 255, 0.8);
+  L75:             font-size: 1.1rem;
+  L76:             line-height: 1.8;
+  L77:             margin: 0;
+  L78:         }
+  L81:         .scroll-hint {
+  L82:             position: absolute;
+  L83:             bottom: 40px;
+  L84:             left: 50%;
+  L85:             transform: translateX(-50%);
+  L86:             display: flex;
+  L87:             flex-direction: column;
+  L88:             align-items: center;
+  L89:             color: rgba(255, 255, 255, 0.5);
+  L90:             font-size: 0.75rem;
+  L91:             letter-spacing: 4px;
+  L92:             text-transform: uppercase;
+  L93:             z-index: 5;
+  L94:             animation: fadeHint 3s infinite;
+  L95:         }
+  L96:         .scroll-hint .v-arrow {
+  L97:             margin-top: 15px;
+  L98:             width: 20px;
+  L99:             height: 20px;
+  L100:             border-right: 2px solid rgba(255, 255, 255, 0.4);
+  L101:             border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+  L102:             transform: rotate(45deg);
+  L103:             animation: scbounce 2s infinite;
+  L104:         }
+  L105:         @keyframes scbounce {
+  L106:             0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);}
+  L107:             40% {transform: translateY(10px) rotate(45deg);}
+  L108:             60% {transform: translateY(5px) rotate(45deg);}
+  L109:         }
+  L110:         @keyframes fadeHint {
+  L111:             0%, 100% { opacity: 0.3; transform: translate(-50%, 0); }
+  L112:             50% { opacity: 1; transform: translate(-50%, 10px); }
+  L113:         }
+  L116:         .flow-card {
+  L117:             background: var(--white);
+  L118:             border: 1px solid var(--gray-100);
+  L119:             border-radius: 16px;
+  L120:             padding: 2rem 1.5rem;
+  L121:             text-align: left;
+  L122:             box-shadow: 0 8px 24px rgba(6, 26, 58, 0.06);
+  L123:             transition: var(--transition);
+  L124:             display: flex;
+  L125:             flex-direction: column;
+  L126:             height: 100%;
+  L127:         }
+  L128:         .flow-card:hover {
+  L129:             box-shadow: 0 12px 40px rgba(6, 26, 58, 0.12);
+  L130:             transform: translateY(-5px);
+  L131:             border-color: rgba(47, 232, 250, 0.3);
+  L132:         }
+  L133:         .flow-num {
+  L134:             display: inline-flex;
+  L135:             align-items: center;
+  L136:             justify-content: center;
+  L137:             width: 40px; height: 40px;
+  L138:             background: var(--cyan-dim);
+  L139:             color: var(--cyan);
+  L140:             font-size: 1.2rem;
+  L141:             font-weight: 800;
+  L142:             border-radius: 10px;
+  L143:             margin-bottom: 1.25rem;
+  L144:         }
+  L145:         .flow-card h4 {
+  L146:             color: var(--navy);
+  L147:             margin-bottom: 1rem;
+  L148:             font-size: 1.15rem;
+  L149:             min-height: 2.8rem;
+  L150:         }
+  L151:         .flow-card p {
+  L152:             color: var(--gray-500);
+  L153:             font-size: 0.95rem;
+  L154:             line-height: 1.7;
+  L155:             margin: 0;
+  L156:             flex: 1;
+  L157:         }
+  L160:         .service-value {
+  L161:             position: relative;
+  L162:             background: url('../../../assets/img/11.png') center/cover no-repeat;
+  L163:             color: var(--white);
+  L164:             padding: 6rem 0;
+  L165:             overflow: hidden;
+  L166:         }
+  L167:         .service-value::before {
+  L168:             content: '';
+  L169:             position: absolute;
+  L170:             inset: 0;
+  L171:             background: rgba(6, 26, 58, 0.65);
+  L172:             z-index: 1;
+  L173:         }
+  L174:         .service-value .container { position: relative; z-index: 2; }
+  L176:         .value-card {
+  L177:             background: rgba(255, 255, 255, 0.06);
+  L178:             border: 1px solid rgba(255, 255, 255, 0.12);
+  L179:             border-radius: 16px;
+  L180:             padding: 2rem 1.5rem;
+  L181:             text-align: left;
+  L182:             transition: var(--transition);
+  L183:             backdrop-filter: blur(8px);
+  L184:             height: 100%;
+  L185:         }
+  L186:         .value-card:hover {
+  L187:             background: rgba(255, 255, 255, 0.1);
+  L188:             border-color: var(--cyan);
+  L189:             transform: translateY(-5px);
+  L190:         }
+  L191:         .value-card .v-icon {
+  L192:             color: var(--cyan);
+  L193:             font-size: 1.8rem;
+  L194:             margin-bottom: 1.25rem;
+  L195:             display: inline-block;
+  L196:         }
+  L197:         .value-card h4 {
+  L198:             color: var(--white);
+  L199:             font-size: 1.1rem;
+  L200:             margin-bottom: 1rem;
+  L201:             font-weight: 700;
+  L202:             min-height: 2.8rem;
+  L203:         }
+  L204:         .value-card p {
+  L205:             color: rgba(255, 255, 255, 0.75);
+  L206:             font-size: 0.95rem;
+  L207:             line-height: 1.65;
+  L208:             margin: 0;
+  L209:         }
+  L212:         .domains-wrap {
+  L213:             display: flex;
+  L214:             flex-direction: column;
+  L215:             gap: 3rem;
+  L216:             align-items: center;
+  L217:         }
+  L218:         @media (min-width: 900px) {
+  L219:             .domains-wrap { flex-direction: row; }
+  L220:             .domains-text { flex: 1; }
+  L221:             .domains-image { flex: 1; }
+  L222:         }
+  L223:         .domains-image img {
+  L224:             border-radius: 16px;
+  L225:             box-shadow: 0 16px 40px rgba(6, 26, 58, 0.12);
+  L226:             width: 100%;
+  L227:             display: block;
+  L228:         }
+  L229:         .domain-grid {
+  L230:             display: grid;
+  L231:             grid-template-columns: 1fr;
+  L232:             gap: 1rem;
+  L233:         }
+  L234:         @media (min-width: 500px) { .domain-grid { grid-template-columns: 1fr 1fr; } }
+  L235:         .domain-item {
+  L236:             background: var(--off-white);
+  L237:             border: 1px solid var(--gray-100);
+  L238:             border-radius: 12px;
+  L239:             padding: 1.25rem 1.5rem;
+  L240:             font-weight: 600;
+  L241:             color: var(--navy);
+  L242:             display: flex;
+  L243:             align-items: center;
+  L244:             gap: 1rem;
+  L245:             transition: var(--transition);
+  L246:         }
+  L247:         .domain-item:hover {
+  L248:             border-color: var(--cyan);
+  L249:             background: rgba(47, 232, 250, 0.05);
+  L250:             transform: translateX(4px);
+  L251:         }
+  L252:         .domain-item::before {
+  L253:             content: '';
+  L254:             display: inline-block;
+  L255:             width: 8px; height: 8px;
+  L256:             border-radius: 50%;
+  L257:             background: var(--cyan);
+  L258:         }
+  L261:         .conclusion-box {
+  L262:             background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  L263:             color: var(--white);
+  L264:             border-radius: 24px;
+  L265:             padding: 4rem 3rem;
+  L266:             text-align: center;
+  L267:             box-shadow: 0 16px 48px rgba(6, 26, 58, 0.18);
+  L268:             position: relative;
+  L269:             overflow: hidden;
+  L270:             margin-top: 5rem;
+  L271:         }
+  L272:         .conclusion-box::before {
+  L273:             content: '';
+  L274:             position: absolute;
+  L275:             top: -50%; left: -50%;
+  L276:             width: 200%; height: 200%;
+  L277:             background: radial-gradient(circle at center, rgba(47, 232, 250, 0.08) 0%, transparent 60%);
+  L278:             pointer-events: none;
+  L279:         }
+  L280:         .conclusion-box h3 {
+  L281:             color: var(--cyan);
+  L282:             margin-bottom: 1.5rem;
+  L283:             font-size: 1.8rem;
+  L284:             position: relative;
+  L285:             z-index: 2;
+  L286:         }
+  L287:         .conclusion-box p {
+  L288:             color: rgba(255, 255, 255, 0.85);
+  L289:             line-height: 1.8;
+  L290:             font-size: 1.1rem;
+  L291:             max-width: 800px;
+  L292:             margin: 0 auto;
+  L293:             position: relative;
+  L294:             z-index: 2;
+  L295:         }
+  L316:  完全な ASIC 設計
+  L347:  サービス価値と差別化メリット
+  L376:  カスタムASICアプリケーション事業部
+  L396:  CTAブロックの終了

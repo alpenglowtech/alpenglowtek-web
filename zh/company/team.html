@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>核心成員 Team | 臻至科技 Alpenglow Tek</title>
+    <meta name="description" content="深入了解臻至科技的團隊組成與核心優勢。我們致力於打造能在資源受限環境中穩定運作的智慧運算架構。">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <style>
+        :root {
+            --navy: #004aad;
+            --dark-navy: #061A3A;
+            --cyan: #2fe8fa;
+            --light-bg: #f8fafc;
+        }
+
+        /* ── Section 1: Hero ── */
+        .team-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            text-align: left;
+        }
+        .team-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/jo1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transform: scale(1.05);
+            transition: transform 10s ease-out;
+            z-index: 0;
+        }
+        .team-hero.loaded .team-hero-bg {
+            transform: scale(1);
+        }
+        .team-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.4);
+            z-index: 1;
+        }
+        .team-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .team-hero-title {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700; /* 大氣、有力量，但不要過度厚重 */
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: 0.08em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: teamReveal 1s 0.3s ease forwards;
+        }
+        .team-hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            white-space: normal; word-break: keep-all;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: teamReveal 1s 0.5s ease forwards;
+        }
+
+        /* Scroll hint */
+        .team-scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 3;
+            opacity: 0;
+            animation: teamReveal 1s 1.2s ease forwards;
+        }
+        .team-scroll-hint span {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+        .team-scroll-arrow {
+            width: 22px; height: 22px;
+            border-right: 2px solid rgba(255,255,255,0.6);
+            border-bottom: 2px solid rgba(255,255,255,0.6);
+            transform: rotate(45deg);
+            animation: teamBounce 1.8s infinite;
+        }
+
+        @keyframes teamReveal { to { opacity: 1; transform: translateY(0); } }
+        @keyframes teamBounce {
+            0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+            50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
+
+        /* ── Section 2: Team Overview ── */
+        .team-overview {
+            padding: 8rem 0;
+            background-image: url('../../assets/img/jo7.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .team-overview .team-overview-title,
+        .team-overview-text p {
+            color: #000000;
+            text-shadow: none;
+        }
+        .team-overview::before,
+        .team-overview::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 160px;
+            height: 240px;
+            background-image: radial-gradient(var(--cyan) 2px, transparent 2px);
+            background-size: 24px 24px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .team-overview::before {
+            left: 5%;
+        }
+        .team-overview::after {
+            right: 5%;
+        }
+        .team-overview-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .team-overview-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--dark-navy);
+            margin-bottom: 2.5rem;
+        }
+        .team-overview-text p {
+            font-size: 1.15rem;
+            color: #4a5a7a;
+            line-height: 2;
+            margin-bottom: 1.8rem;
+            text-align: justify;
+            text-align-last: center;
+        }
+        .team-overview-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Section 3: Core Advantages ── */
+        .team-core {
+            position: relative;
+            padding: 8rem 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .team-core-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/bs18.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+        .team-core-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.6);
+            z-index: 1;
+        }
+        .team-core-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        .team-core-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .team-core-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .team-core-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .team-glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .team-glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: rgba(47,232,250, 0.4);
+        }
+        .team-glass-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            min-height: 2.8em; /* Force equal title height to keep alignment */
+        }
+        .team-glass-card p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        /* ── Section 4: Core Partners ── */
+        .team-partners {
+            position: relative;
+            padding: 8rem 0;
+            background: #000; /* Fallback */
+            overflow: hidden;
+        }
+        .team-partners-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/jo2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+        .team-partners-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.7); /* Deep overlay for contrast */
+            z-index: 1;
+            display: none; /* Hide the dark mask per request */
+        }
+        .team-partners-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .team-partners-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        .team-partners-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #ffffff;
+        }
+        
+        /* 2 + 2 + 1 Layout Grid System */
+        .partner-row {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .partner-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .partner-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 360px;
+            background: rgba(255, 255, 255, 0.08); /* Semi-transparent background */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(47,232,250, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(47,232,250,0.2); /* Micro-light on hover */
+        }
+        
+        .partner-img-wrapper {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            position: relative;
+            background: rgba(255,255,255,0.05); /* Placeholder if img takes time */
+        }
+        
+        .partner-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.8s ease;
+        }
+        
+        .partner-card:hover .partner-img-wrapper img {
+            transform: scale(1.05);
+        }
+        
+        .partner-info {
+            padding: 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .partner-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .partner-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--cyan);
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .partner-desc {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .team-core-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .team-glass-card h3 {
+                min-height: auto;
+            }
+        }
+        @media (max-width: 768px) {
+            .team-hero-content {
+                padding: 0 2rem;
+            }
+            .partner-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 2.5rem;
+            }
+            .partner-card {
+                max-width: 100%;
+            }
+            .team-hero-sub {
+                white-space: normal;
+                max-width: 100%;
+            }
+            .team-overview-text p {
+                text-align: left;
+                text-align-last: left;
+            }
+        }
+        @media (max-width: 600px) {
+            .team-core-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-hero-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (injected by main.js) -->
+    <div id="site-header"></div>
+
+    <main>
+        <!-- ========== SECTION 1: HERO ========== -->
+        <section class="team-hero" id="teamHero">
+            <div class="team-hero-bg"></div>
+            <div class="team-hero-overlay"></div>
+            <div class="team-hero-content">
+                <h1 class="team-hero-title">攜手攀登，臻至卓越</h1>
+                <p class="team-hero-sub">來自各領域專業的頂尖夥伴，在開放協作與持續突破中，共同打造下一代邊緣 AI 技術。</p>
+            </div>
+            <div class="team-scroll-hint">
+                <span>Scroll</span>
+                <div class="team-scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 2: TEAM OVERVIEW ========== -->
+        <section class="team-overview">
+            <div class="team-overview-inner">
+                <h2 class="team-overview-title fade-up">我們的團隊</h2>
+                <div class="team-overview-text fade-up fade-up-delay-1">
+                    <p>團隊來自頂尖電資與商管系所，並具備 IC 設計、系統架構與 AI 應用領域的實務經驗，涵蓋從演算法理解、硬體架構設計到晶片實現與系統整合的完整能力。</p>
+                    <p>從 FPGA 原型驗證到 ASIC 落地，我們致力於將前瞻技術轉化為可實際部署的產品，在效能、功耗與系統穩定性之間取得最佳平衡。</p>
+                    <p>我們相信，好的技術來自跨領域的協作、開放的討論與彼此信任。在專業分工之外，我們也重視平等交流與共同成長，持續打造一支能面對挑戰、也能一起前進的團隊。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 3: CORE ADVANTAGES ========== -->
+        <section class="team-core">
+            <div class="team-core-bg"></div>
+            <div class="team-core-overlay"></div>
+            <div class="team-core-inner">
+                <div class="team-core-header fade-up">
+                    <h2>核心優勢</h2>
+                </div>
+                <div class="team-core-grid">
+                    <!-- Core 1 -->
+                    <div class="team-glass-card fade-up fade-up-delay-1">
+                        <h3>完整 IC 設計與系統整合能力</h3>
+                        <p>從架構設計到晶片實現，具備全流程經驗，能兼顧技術深度與產品落地需求。</p>
+                    </div>
+                    <!-- Core 2 -->
+                    <div class="team-glass-card fade-up fade-up-delay-2">
+                        <h3>邊緣 AI 與低功耗運算專長</h3>
+                        <p>聚焦於資源受限環境下的運算效率最佳化，提升系統在功耗與效能之間的整體平衡。</p>
+                    </div>
+                    <!-- Core 3 -->
+                    <div class="team-glass-card fade-up fade-up-delay-3">
+                        <h3>FPGA 至 ASIC 的落地能力</h3>
+                        <p>能從快速原型驗證一路延伸到晶片實現，加速技術從概念走向實際部署。</p>
+                    </div>
+                    <!-- Core 4 -->
+                    <div class="team-glass-card fade-up fade-up-delay-4">
+                        <h3>技術與商業並重的團隊組成</h3>
+                        <p>結合工程、系統與市場能力，讓技術開發與應用拓展能同步前進。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTION 4: CORE PARTNERS ========== -->
+        <section class="team-partners">
+            <div class="team-partners-bg"></div>
+            <div class="team-partners-overlay"></div>
+            <div class="team-partners-inner">
+                <div class="team-partners-header fade-up">
+                    <h2>核心夥伴</h2>
+                </div>
+                
+                <div class="partners-grid-layout">
+                    <!-- Row 1: Mark, Doman, Phyllis -->
+                    <div class="partner-row">
+                        <!-- Mark -->
+                        <div class="partner-card fade-up fade-up-delay-1">
+                            <div class="partner-img-wrapper">
+                                <img src="../../image/team/Mark2.png" alt="Mark Chen">
+                            </div>
+                            <div class="partner-info">
+                                <div class="partner-name">Mark Chen</div>
+                                <div class="partner-title">執行長 CEO</div>
+                                <div class="partner-desc">
+                                    擁有深厚業界IC設計專案經驗、多項硬體加速器專利與頂尖論壇發表論文，專注於硬體加速和嵌入式系統設計，領導團隊在硬體加速領域的持續創新與優化
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Doman -->
+                        <div class="partner-card fade-up fade-up-delay-2">
+                            <div class="partner-img-wrapper">
+                                <img src="../../image/team/Doman4.png" alt="Doman Wu">
+                            </div>
+                            <div class="partner-info">
+                                <div class="partner-name">Doman Wu</div>
+                                <div class="partner-title">晶片工程經理 <br> Silicon Engineering Manager</div>
+                                <div class="partner-desc">
+                                    專注於系統性能優化與維護，並協助設計與實現 ASIC 解決方案，確保產品在硬體層面的穩定性、高效能與整體整合品質。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Phyllis -->
+                        <div class="partner-card fade-up fade-up-delay-3">
+                            <div class="partner-img-wrapper">
+                                <img src="../../image/team/Phyllis.png" alt="Phyllis Huang">
+                            </div>
+                            <div class="partner-info">
+                                <div class="partner-name">Phyllis Huang</div>
+                                <div class="partner-title">業務發展經理 BD Manager</div>
+                                <div class="partner-desc">
+                                    專注於客戶關係維護與業務拓展，負責FPGA IP授權、技術服務合約談判，開拓新市場機會，並推動產官學合作與策略夥伴關係發展
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Row 2: Ken, Joey -->
+                    <div class="partner-row">
+                        <!-- Ken -->
+                        <div class="partner-card fade-up fade-up-delay-1">
+                            <div class="partner-img-wrapper">
+                                <img src="../../image/team/Ken.png" alt="Ken Chen">
+                            </div>
+                            <div class="partner-info">
+                                <div class="partner-name">Ken Chen</div>
+                                <div class="partner-title">系統與平台經理 <br> Systems & Platform Manager</div>
+                                <div class="partner-desc">
+                                    擁有 20 年以上業界產品經驗，專注於領導企業在 IC 設計領域的創新發展，並推動公司在高效能計算及自訂硬體加速解決方案方面的佈局
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Joey -->
+                        <div class="partner-card fade-up fade-up-delay-2">
+                            <div class="partner-img-wrapper">
+                                <img src="../../image/team/Joey2.png" alt="Joey Chen">
+                            </div>
+                            <div class="partner-info">
+                                <div class="partner-name">Joey Chen</div>
+                                <div class="partner-title">市場經理 Market Manager</div>
+                                <div class="partner-desc">
+                                    負責分析市場數據、產業趨勢與競品動態，根據研究結果提出策略建議，並參與投資評估、合作洽談、商務開發及相關商業決策。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (injected by main.js) -->
+    <div id="site-footer"></div>
+
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            document.getElementById('teamHero')?.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>

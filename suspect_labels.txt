@@ -1,0 +1,7 @@
+[EN] Suspect in solutions\fpga\pqc.html: FinTech &amp; Blockchain
+[JA] Suspect in solutions\index.html: ウェブサイトのコンテンツブロック
+[JA] Suspect in solutions\asic\anix\index.html: ウェブサイトのコンテンツブロック
+[JA] Suspect in solutions\fpga\pqc.html: フィンテック・ブロックチェーン
+[JA] Suspect in company\index.html: ウェブサイトのコンテンツブロック
+[JA] Suspect in news\events.html: ウェブサイトのコンテンツブロック
+[JA] Suspect in news\awards.html: ウェブサイトのコンテンツブロック

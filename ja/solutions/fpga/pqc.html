@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FPGA PQC コード学習システム |アルペングロウ・テック</title>
+<meta content="Alpenglow Tek は、FPGA ベースの PQC ポスト量子コード ハードウェアアクセラレーションソリューションを量子時代の高性能、低遅延、低消費電力で提供します。" name="description"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        /* Hero */
+        .hero-pqc {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            background: url('../../../assets/img/pqc1.jpg') center/cover no-repeat;
+            text-align: left;
+            overflow: hidden;
+        }
+        .hero-pqc::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(6, 26, 58, 0.95) 0%, rgba(6, 26, 58, 0.8) 40%, rgba(6, 26, 58, 0.4) 100%);
+            z-index: 1;
+        }
+        .hero-pqc .container { position: relative; z-index: 2; width: 100%; }
+        
+        .hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(47, 232, 250, 0.1);
+            border: 1px solid rgba(47, 232, 250, 0.3);
+            border-radius: 100px;
+            color: var(--cyan);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+        }
+        .hero-chip::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--cyan);
+        }
+
+        .hero-pqc h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        .hero-subtitle {
+            color: var(--cyan); /* Updated color to neon cyan */
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+        .hero-desc {
+            max-width: 750px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Scroll Hint Modern */
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            z-index: 5;
+            animation: fadeHint 3s infinite;
+        }
+        .scroll-hint .v-arrow {
+            margin-top: 15px;
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+            transform: rotate(45deg);
+            animation: scbounce 2s infinite;
+        }
+        @keyframes scbounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);}
+            40% {transform: translateY(10px) rotate(45deg);}
+            60% {transform: translateY(5px) rotate(45deg);}
+        }
+        @keyframes fadeHint {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, 0); }
+            50% { opacity: 1; transform: translate(-50%, 10px); }
+        }
+
+        /* Why FPGA section */
+        .why-fpga-row {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            text-align: left;
+            margin: 4.5rem auto 0;
+            max-width: 1100px;
+        }
+        @media (min-width: 1024px) {
+            .why-fpga-row { flex-direction: row; align-items: center; }
+            .why-fpga-left, .why-fpga-right { flex: 1; }
+        }
+        .why-fpga-right {
+            background: var(--off-white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border-left: 4px solid var(--navy);
+        }
+
+        /* Tech Overlay Sections */
+        .tech-overlay-section {
+            position: relative;
+            padding: 8rem 0;
+            color: var(--white);
+            background-attachment: fixed;
+        }
+        .tech-overlay-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.85); /* Dark mask */
+            z-index: 1;
+        }
+        .tech-overlay-section .container { position: relative; z-index: 2; max-width: 1100px; }
+        
+        .pqc4-bg { background-image: url('../../../assets/img/pqc4.png'); background-position: center; background-size: cover; }
+        .pqc2-bg { background-image: url('../../../assets/img/pqc2.png'); background-position: center; background-size: cover; }
+
+        /* Tech Cards Grid (3+2) */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+        @media (min-width: 600px) { .tech-grid { grid-template-columns: 1fr 1fr; } }
+        @media (min-width: 1024px) {
+            .tech-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 2.5rem;
+            }
+            .tech-card { grid-column: auto; }
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            color: var(--navy);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .tech-card:hover {
+            transform: translateY(-8px);
+            background: #ffffff;
+            box-shadow: 0 16px 48px rgba(0, 74, 173, 0.15);
+        }
+        .tech-card h4 {
+            color: #004aad;
+            margin-bottom: 1.25rem;
+            font-size: 1.2rem;
+            font-weight: 800;
+            min-height: 3rem;
+            text-align: center;
+        }
+        .tech-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-700);
+            margin: 0;
+        }
+
+        /* Solution Section with Image */
+        .solution-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .solution-wrap { flex-direction: row; align-items: center; }
+            .solution-text { flex: 1.2; padding-right: 4rem; }
+            .solution-image { flex: 1.8; }
+        }
+        .solution-section {
+            padding: 10rem 0;
+        }
+        .solution-title {
+            white-space: normal; word-break: keep-all;
+            margin-bottom: 3.5rem !important; /* Doulbe spacing */
+        }
+        .solution-image img {
+            border-radius: 20px;
+            box-shadow: 0 32px 80px rgba(6, 26, 58, 0.22);
+            width: 100%;
+        }
+
+        /* App Domains Grid (3+2) */
+        .app-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+        @media (min-width: 700px) { .app-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1100px) {
+            .app-grid { grid-template-columns: repeat(6, 1fr); }
+            .app-card { grid-column: span 2; }
+            .app-card:nth-child(4) { grid-column: 2 / span 2; }
+            .app-card:nth-child(5) { grid-column: 4 / span 2; }
+        }
+        
+        .app-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+            background: #ffffff;
+        }
+        .app-card h4 {
+            color: #004aad;
+            margin-bottom: 1.25rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
+        .app-card p {
+            font-size: 0.95rem;
+            color: #000000;
+            line-height: 1.6;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<!-- Header injected by JS -->
+<div id="site-header"></div>
+<main>
+<!-- Hero Section -->
+<section class="hero-pqc">
+<div class="container fade-up">
+<div class="hero-chip">FPGA / PQC TECHNOLOGY</div>
+<h1>FPGA PQC コード学習コード</h1>
+<div class="hero-subtitle">量子時代は高性能、低性能、低消費電力を目指しています。</div>
+<p class="hero-desc">量子コンピューティングの急速な開発に伴って、従来のオープンキーコードシステムは潜在的な脅威に直面しています。 PQC は、世界の半導体産業において重要な技術です。 Alpenglow Tekは、FPGAベースのPQCハードウェアアクセラレーションソリューションを提供し、データセキュリティを確保します。</p>
+</div>
+<!-- Scroll Hint -->
+<div class="scroll-hint">
+<span>Scroll</span>
+<div class="v-arrow"></div>
+</div>
+</section>
+<section class="section bg-white">
+<div class="container fade-up text-center">
+<div class="section-label mb-4">WHY FPGA FOR PQC</div>
+<h2 class="mb-5">なぜFPGAでPQCアルゴリズムを加速するのか</h2>
+<div class="why-fpga-row">
+<div class="why-fpga-left">
+<p class="text-gray lead mb-4">PQCアルゴリズム（CRYSTALS-Kyber、CRYSTALS-Dilithiumなど）は、計算集中型であり、メモリのアクセス要件が高くなってます。従来のCPUやGPUでこれらを実行すると、遅延延長が高く、電力消費が大きく、効率もあまり良くありません。問題は真正面から直面しています。 CPUおよびGPUのハードウェアアーキテクチャは修正されており、Pan ユーザビリティは高く、特定のパスワード操作が最適化されており、最適化は困難です。</p>
+</div>
+<div class="why-fpga-right">
+<p class="text-navy" style="font-weight: 500;">に、FPGA は再構成可能な機能を備えており、PQC アルゴリズムの要件に基づいてハードウェアアーキテクチャをカスタマイズできます。高度な並列化、計算と設計、および同じ設計と使用の使用。低消費電力、低消費電力、柔らかさを兼ね備えています。</p>
+</div>
+</div>
+</div>
+</section>
+<section class="tech-overlay-section pqc4-bg text-center">
+<div class="container fade-up">
+<div class="section-label section-label-dark mb-4">CORE ADVANTAGES</div>
+<h2 style="color:var(--white);">コアテクノロジーのメリット</h2>
+<div class="tech-grid">
+<!-- Row 1 -->
+<div class="tech-card">
+<h4>カスタムハードウェアアーキテクチャによって設計されました</h4>
+<p>PQC Polynomial Calculus、多項式微積分、NTT (Number Theory Transformation) ) ハードウェアを使用して最適化手法を最適化し、計算効率を大幅に向上させます。</p>
+</div>
+<div class="tech-card">
+<h4>ロー＆ハイスループット</h4>
+<p>システムの設計の並列化、並列設計の設計、コードの暗号化・多重化、コードの大幅な削減、そしてシステムの完全な設計を行っております。</p>
+</div>
+<div class="tech-card">
+<h4>低消費電力と高効率</h4>
+<p>FPGA は、より小さいハードウェア リソースと消費電力で PQC 動作を完了できるため、エッジデバイスや組込みシステムに特に重点を置いています。</p>
+</div>
+<!-- Row 2 -->
+<div class="tech-card">
+<h4>再建と長期経営の可能性</h4>
+<p>アルゴリズムのアップデートと標準進化をサポートし、PQC標準が発开し続けている最中に、FPGAの再構築を素早く簡単なアップグレードが可能であり、システムリスクと控えめなコストを削減します。</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section solution-section">
+<div class="container fade-up" style="max-width: 1600px;">
+<div class="solution-wrap">
+<div class="solution-text">
+<div class="section-label mb-4">OUR SOLUTION</div>
+<h2 class="mb-4 solution-title">Alpenglow TekのFPGA PQCソリューション</h2>
+<p class="text-gray lead mb-4" style="line-height: 1.8;">Alpenglow Tek は、FPGA 設計の専門知識とシステム統合機能を組み合わせて、アーキテクチャ計画、ハードウェア設計、アルゴリズムの最適化からシステム検証までの完全なサービスを提供します。当社の PQC ハードウェア アクセラレーション ソリューションは、量産前のプロトタイプ プラットフォームとして、または高セキュリティ製品の最終製品として使用でき、顧客がポスト量子セキュリティ テクノロジーを迅速に導入できるように支援します。</p>
+</div>
+<div class="solution-image">
+<img alt="FPGA PQC ソリューション" src="../../../assets/img/pqc5.png"/>
+</div>
+</div>
+</div>
+</section>
+<section class="tech-overlay-section pqc2-bg text-center">
+<div class="container fade-up">
+<div class="section-label section-label-dark mb-4">APPLICATIONS</div>
+<h2 style="color:var(--white);">アプリケーションブランチ</h2>
+<div class="app-grid">
+<div class="app-card">
+<h4>セキュア通信・ネットワーク機</h4>
+<p>VPN、5G/6Gインフラ、データセンター、高価なセキュリティネットワークマシン。</p>
+</div>
+<div class="app-card">
+<h4>政府および防衛サービス</h4>
+<p>重要な通信、防衛通信、機密情報の保護。</p>
+</div>
+<div class="app-card">
+<h4>IoT・エッジデバイスセキュリティ</h4>
+<p>スマート、産業モノのインターネット（IIoT）、スマートグリッド、センシングシティノード。</p>
+</div>
+<div class="app-card">
+<h4>車載トラック</h4>
+<p>V2X 通信、車車間通信、自動運転車のインテリジェンスと保護。</p>
+</div>
+<div class="app-card">
+<h4>フィンテック・ブロックチェーン</h4>
+<p>タカシ・カリームの署名、遺体確認、タカヒロが保護。</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ========== VIDEO SECTION ========== -->
+<section class="section bg-white text-center">
+<div class="container fade-up">
+<div style="display: inline-block; text-align: left;">
+<div class="section-label" style="margin-bottom: 1.5rem;">DEMONSTRATION</div>
+<h2 style="margin-bottom: 0.75rem; color: #004aad;">技術的成果</h2>
+<h3 style="color: var(--gray-500); font-weight: 500; font-size: 1.15rem; margin-bottom: 0.5rem;">量子暗号コード Tek の技術の成果は次のとおりです。</h3>
+<p class="text-gray" style="white-space: normal; word-break: keep-all; line-height: 1.8; font-size: 1rem; margin-bottom: 3.5rem;">実记のFPGAプラットフォームのデモンストレーション、ポスト量子コードアルゴリズムのハードウェアアクセ研究開発技術の成果としては、統合機能の導入、高性能、低遅延、低消費電力など技術の優位性が挙げられます。</p>
+</div>
+<div class="video-container" style="width: 100%; margin: 0 auto;">
+<div class="video-wrapper" style="border-radius: 24px; overflow: hidden; box-shadow: 0 32px 80px rgba(6, 26, 58, 0.18);">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" src="https://www.youtube.com/embed/PkVioc9UAJM?rel=0" title="技術的成果">
+</iframe>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer injected by JS -->
+<div id="site-footer"></div>
+<script src="../../../assets/js/main.js"></script>
+</body>
+</html>

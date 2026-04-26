@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ANIX テクノロジー入門 - 超低消費電力 マイクロ AI 推論 | アルペングロウ・テック</title>
+<meta content="ANIXのモバイルコンピューティングシェアリングシステムと低消費電力システムレベルのAIにアーキテクチャレベルのソリューションを提供します。 ANIXの技術とFPGA技術はその実績を証明しています。" name="description"/>
+<link href="../../../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        /* ── Page-level reset for hero ── */
+        body { overflow-x: hidden; }
+
+        /* ====================================================
+           HERO SECTION — Full-viewport image
+        ==================================================== */
+        .anix-hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .anix-hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+
+        /* Deep-navy gradient overlay for legibility */
+        .anix-hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                105deg,
+                rgba(4, 18, 42, 0.72) 0%,
+                rgba(4, 18, 42, 0.38) 55%,
+                rgba(4, 18, 42, 0.12) 100%
+            );
+        }
+
+        .anix-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            padding-top: var(--header-h);
+        }
+
+        /* Section label badge */
+        .anix-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #2fe8fa;
+            background: rgba(47, 232, 250, 0.15);
+            border: 1px solid rgba(47, 232, 250, 0.35);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+            animation: anixFadeUp 0.8s ease both;
+        }
+        .anix-eyebrow::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #2fe8fa;
+            animation: anixPulse 2.2s ease-in-out infinite;
+        }
+
+        .anix-hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1;
+            color: #ffffff;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.1rem;
+            animation: anixFadeUp 0.9s 0.1s ease both;
+            text-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+        }
+
+        .anix-hero h2 {
+            font-size: clamp(1.05rem, 2.4vw, 1.7rem);
+            font-weight: 400;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            color: rgba(255, 255, 255, 0.88);
+            max-width: 600px;
+            margin-bottom: 0;
+            animation: anixFadeUp 0.9s 0.22s ease both;
+        }
+
+        /* Scroll hint */
+        .anix-scroll-hint {
+            position: absolute;
+            bottom: 2.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: anixFadeUp 1s 0.6s ease both;
+        }
+        .anix-scroll-hint span {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .anix-scroll-arrow {
+            width: 24px; height: 24px;
+            border-right: 2px solid rgba(255,255,255,0.4);
+            border-bottom: 2px solid rgba(255,255,255,0.4);
+            transform: rotate(45deg);
+            animation: anixScrollBounce 1.8s infinite;
+        }
+
+        /* ====================================================
+           STATEMENT / HIGHLIGHT BLOCK
+        ==================================================== */
+        .anix-statement-wrap {
+            background: #fff;
+            padding: 5rem 1.5rem 0;
+        }
+        .anix-statement {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            border-left: 4px solid #2fe8fa;
+            border-radius: 8px;
+            padding: 3.5rem 4rem;
+            box-shadow: 0 4px 40px rgba(0, 74, 173, 0.07), 0 1px 8px rgba(0,0,0,0.04);
+        }
+        .anix-statement p {
+            font-size: clamp(1.08rem, 2vw, 1.3rem);
+            font-weight: 500;
+            line-height: 1.85;
+            letter-spacing: 0.03em;
+            color: #061a3a;
+            margin: 0;
+        }
+        .anix-statement p em {
+            font-style: normal;
+            color: #004aad;
+            font-weight: 700;
+        }
+
+        /* ====================================================
+           BODY TEXT SECTION
+        ==================================================== */
+        .anix-body {
+            background: #fff;
+            padding: 5rem 1.5rem 0;
+        }
+        .anix-body-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .anix-body-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .anix-body-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(6, 26, 58, 0.1);
+        }
+
+        /* Section header */
+        .anix-section-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #2fe8fa;
+            background: rgba(47, 232, 250, 0.12);
+            border: 1px solid rgba(47, 232, 250, 0.3);
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+
+        .anix-body-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .anix-para-block {
+            border-left: 2px solid #f0f4ff;
+            padding-left: 1.75rem;
+        }
+        .anix-para-block p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: #3a4a6b;
+            margin: 0;
+            white-space: pre-line;
+        }
+        .anix-para-block p strong {
+            color: #004aad;
+            font-weight: 700;
+        }
+
+        /* ====================================================
+           VIDEO SECTION
+        ==================================================== */
+        .anix-video-wrap {
+            background: #f6f8fb;
+            margin-top: 120px;
+            padding: 5rem 1.5rem 6rem;
+        }
+        .anix-video-inner {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .anix-video-header {
+            margin-bottom: 2.5rem;
+        }
+        .anix-video-header h3 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: #004aad;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+        .anix-video-header p {
+            font-size: 1rem;
+            color: #6b7ba0;
+            line-height: 1.75;
+            max-width: 640px;
+            margin: 0;
+        }
+        .anix-video-container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+        .anix-video-ratio {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow:
+                0 8px 40px rgba(0, 74, 173, 0.14),
+                0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+        .anix-video-ratio iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .anix-video-caption {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .anix-video-caption p {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #6b7ba0;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ====================================================
+           MORE APPLICATIONS SECTION
+        ==================================================== */
+        .anix-more-apps {
+            background: #ffffff;
+            padding: 8rem 0;
+            border-top: 1px solid rgba(0, 74, 173, 0.05); /* Subtle divider */
+            opacity: 0; /* For fade-up */
+        }
+        .anix-more-apps.visible {
+            animation: anixFadeUp 0.8s ease both;
+        }
+        
+        .anix-more-apps-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            text-align: center;
+        }
+        .anix-more-header {
+            margin-bottom: 4.5rem;
+        }
+        .anix-more-header h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: #004aad;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+        .anix-more-header p {
+            font-size: 1.15rem;
+            color: #6b7ba0;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .anix-app-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .anix-card {
+            position: relative;
+            display: block;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            text-decoration: none;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+            background: #000;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+        }
+        .anix-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 50px rgba(0, 74, 173, 0.18);
+        }
+
+        .anix-card-bg {
+            position: absolute;
+            inset: 0;
+            background-position: center;
+            background-size: cover;
+            transition: transform 0.5s ease;
+        }
+        .anix-card:hover .anix-card-bg {
+            transform: scale(1.08); /* Minimal scale on hover */
+        }
+
+        .anix-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(4, 18, 42, 0.45);
+            transition: background 0.35s ease;
+            z-index: 1;
+        }
+        .anix-card:hover .anix-card-overlay {
+            background: rgba(4, 18, 42, 0.62); /* minimal darker on hover */
+        }
+
+        .anix-card-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .anix-card-content h3 {
+            color: #fff;
+            font-size: 2.2rem; /* increased font size */
+            font-weight: 800;
+            margin: 0;
+            text-align: center;
+            letter-spacing: 0.1em;
+            text-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+
+        /* ====================================================
+           ANIMATIONS
+        ==================================================== */
+        @keyframes anixFadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes anixPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.4; transform: scale(1.5); }
+        }
+        @keyframes anixScrollBounce {
+            0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.45; }
+            50%       { transform: rotate(45deg) translateY(7px); opacity: 1; }
+        }
+
+        /* ====================================================
+           RESPONSIVE
+        ==================================================== */
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .anix-hero-content { padding: 0 2rem; padding-top: var(--header-h); }
+            .anix-hero h1 { text-align: center; }
+            .anix-hero h2 { text-align: center; max-width: 100%; }
+            .anix-eyebrow { margin-left: auto; margin-right: auto; display: flex; }
+            .anix-hero-content { display: flex; flex-direction: column; align-items: center; }
+            .anix-statement { max-width: 90%; }
+            .anix-body-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .anix-app-cards { gap: 1.5rem; }
+            .anix-card { height: 320px; }
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+            .anix-hero { height: 70vh; min-height: 480px; }
+            .anix-hero-content { padding: 0 1.5rem; padding-top: var(--header-h); }
+            .anix-statement { max-width: 100%; padding: 2rem 1.5rem; }
+            .anix-statement p { font-size: 1rem; }
+            .anix-statement-wrap { padding: 3rem 1.25rem 0; }
+            .anix-body { padding: 3.5rem 1.25rem 0; }
+            .anix-para-block { padding-left: 1.25rem; }
+            .anix-para-block p { font-size: 0.97rem; }
+            .anix-video-wrap { margin-top: 80px; padding: 3.5rem 1.25rem 4rem; }
+            .anix-video-header h3 { font-size: 1.35rem; }
+            
+            /* More Apps Mobile */
+            .anix-more-apps { padding: 6rem 0; }
+            .anix-app-cards { grid-template-columns: 1fr; gap: 1.5rem; }
+            .anix-card:hover { transform: none; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08); }
+            .anix-card:hover .anix-card-bg { transform: none; }
+            .anix-card-content h3 { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 480px) {
+            .anix-hero h1 { font-size: 3.8rem; }
+        }
+    </style>
+</head>
+<body>
+<!-- Header injected by main.js -->
+<div id="site-header"></div>
+<main>
+<!-- ══════════════════════════════════════
+             HERO — Full-viewport
+        ══════════════════════════════════════ -->
+<section class="anix-hero">
+<img alt="ANIX超低消費電力AI推論コア" class="anix-hero-img" fetchpriority="high" loading="eager" src="../../../../assets/img/8.png"/>
+<div class="anix-hero-overlay"></div>
+<div class="anix-hero-content">
+<span class="anix-eyebrow">ASIC / ANIX Technology</span>
+<h1>ANIX</h1>
+<h2>超低消費電力 即時インテリジェンスを実現<br/>マイクロ AI推論コア</h2>
+</div>
+<div class="anix-scroll-hint">
+<span>Scroll</span>
+<div class="anix-scroll-arrow"></div>
+</div>
+</section>
+<!-- ══════════════════════════════════════
+             STATEMENT — Technical Declaration
+        ══════════════════════════════════════ -->
+<div class="anix-statement-wrap">
+<div class="anix-statement fade-up">
+<p>
+                    データモバイルと計算共有を再検討し、<br/>
+<em>ANIX</em> 低消費電力マイクロ AIにアーキテクチャレベルのソリューションを提供します。
+                </p>
+</div>
+</div>
+<!-- ══════════════════════════════════════
+             BODY TEXT — Technical Content
+        ══════════════════════════════════════ -->
+<section class="anix-body">
+<div class="anix-body-inner">
+<span class="anix-section-tag">Architecture Overview</span>
+<div class="anix-body-grid mt-4">
+<div class="anix-body-image fade-up">
+<img alt="ANIX Architecture" src="../../../../assets/img/ANIX1.png"/>
+</div>
+<div class="anix-body-text">
+<div class="anix-para-block fade-up">
+<p>従来のデジタルAIアーキテクチャでは、<br/>携帯電話の消費電力の頻繁な移動は、携帯電話の消費電力に影響を与えます。</p>
+</div>
+<div class="anix-para-block fade-up">
+<p>特殊機器・産業機器・産業機器製品競争力の核となる、ユールのエネルギーと1ミリ秒の遅延長がな検討です。</p>
+</div>
+<div class="anix-para-block fade-up">
+<p>電力制御と環境保護、環境保護の最適化、<strong>アーキテクチャレベルでデータフローを再定義</strong>。</p>
+</div>
+<div class="anix-para-block fade-up">
+<p>ANIX は Computing-in-Memory (CIM) テクノロジーを採用しており、CIM テクノロジーによって直接処理されます。し、メモリーコンピュートのボトルネックを壊し、データ移動の無駄な電力消費と電力の無駄が基本的に排除されます。</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════════════════════════════════════
+             VIDEO — Product Demo
+        ══════════════════════════════════════ -->
+<div class="anix-video-wrap">
+<div class="anix-video-inner">
+<div class="anix-video-header fade-up">
+<h3>技術認証と製品認証</h3>
+<p>ANIX の FPGA の統合と推論は完了しました。<br/>以下の製品はデモビデオです。</p>
+</div>
+<div class="anix-video-container fade-up">
+<div class="anix-video-ratio">
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/XJFLwEiPcck" title="ANIX 超低消費電力 MAKANA AI 推論シ​​ステム — 製品デモ"></iframe>
+</div>
+</div>
+<div class="anix-video-caption fade-up">
+<p>
+                        ANIX はIPおよび検证プラットフォームとして、<br/>
+                        IC技術導入技術紹介・サポート体制。
+                    </p>
+</div>
+</div>
+</div>
+<!-- ══════════════════════════════════════
+             MORE APPLICATIONS — CTA Section
+        ══════════════════════════════════════ -->
+<section class="anix-more-apps fade-up">
+<div class="anix-more-apps-inner">
+<div class="anix-more-header">
+<h2>ANIXのその応用途部門</h2>
+<p>ANIX の低消費電力を調べる</p>
+</div>
+<div class="anix-app-cards">
+<!-- Industrial Card -->
+<a class="anix-card" href="apps-industrial.html">
+<div class="anix-card-bg" style="background-image: url('../../../../assets/img/i4.jpg');"></div>
+<div class="anix-card-overlay"></div>
+<div class="anix-card-content">
+<h3>産業用低消費電力アトマイザー</h3>
+</div>
+</a>
+<!-- Consumer Card -->
+<a class="anix-card" href="apps-consumer.html">
+<div class="anix-card-bg" style="background-image: url('../../../../assets/img/c4.png');"></div>
+<div class="anix-card-overlay"></div>
+<div class="anix-card-content">
+<h3>コンシューマー低消費電力アプリケーション</h3>
+</div>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer injected by main.js -->
+<div id="site-footer"></div>
+<script src="../../../../assets/js/main.js"></script>
+</body>
+</html>
+>

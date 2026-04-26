@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>發展動態 News | 臻至科技 Alpenglow Tek</title>
+    <meta name="description" content="掌握臻至科技的最新動態與媒體報導，我們致力於超低功耗邊緣 AI 運算技術創新。">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    
+    <style>
+        :root {
+            --brand-blue: #004AAD;
+            --brand-cyan: #2FE8FA;
+            --dark-overlay: rgba(0, 0, 0, 0.45); /* Dark overlay with high transparency */
+        }
+
+        /* ── Hero Section ── */
+        .news-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .news-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../image/semi1.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+        .news-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--dark-overlay);
+            z-index: 1;
+        }
+        .news-hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 2rem;
+            animation: fadeUp 1s ease forwards;
+        }
+        .news-hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .news-hero-content p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 400;
+        }
+
+        /* ── Filter Section ── */
+        .news-filter-container {
+            max-width: 1200px;
+            margin: -30px auto 3rem;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+        }
+        .news-filter {
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 74, 173, 0.1);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            display: inline-flex;
+            gap: 0.5rem;
+        }
+        .filter-btn {
+            border: none;
+            background: transparent;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #555;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover {
+            color: var(--brand-blue);
+            background: rgba(0, 74, 173, 0.05);
+        }
+        .filter-btn.active {
+            background: var(--brand-blue);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 74, 173, 0.3);
+        }
+
+        /* ── News Cards Section ── */
+        .news-section {
+            padding: 2rem 2rem 8rem;
+            background-color: #f8fbff;
+        }
+        .news-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        /* 單張卡片設計 */
+        .news-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(0, 74, 173, 0.05);
+        }
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 74, 173, 0.12), 0 0 20px rgba(47, 232, 250, 0.15);
+            border-color: rgba(47, 232, 250, 0.3);
+        }
+
+        /* 卡片上半部 圖片 */
+        .card-img-wrap {
+            width: 100%;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            position: relative;
+        }
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .news-card:hover .card-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        /* 卡片下半部 內容 */
+        .card-content {
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+        }
+        
+        .card-date {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--brand-blue);
+            display: flex;
+            align-items: center;
+        }
+        .card-date::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--brand-blue);
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .card-source {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #8899a6;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            /* 強制最多兩行 */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+        .news-card:hover .card-title {
+            color: var(--brand-blue);
+        }
+
+        .card-cta {
+            margin-top: auto;
+            color: var(--brand-blue);
+            font-size: 1rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            width: fit-content;
+        }
+        .card-cta span {
+            margin-left: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        .news-card:hover .card-cta span {
+            transform: translateX(5px);
+        }
+        /* 亮起底線動畫 */
+        .card-cta::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--brand-cyan);
+            transition: width 0.3s ease;
+        }
+        .news-card:hover .card-cta::after {
+            width: 100%;
+        }
+
+        /* ── Bottom Section (延伸閱讀) ── */
+        .bottom-nav-section {
+            padding: 8rem 2rem;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .bottom-nav-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 4rem;
+        }
+        .bottom-nav-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .nav-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .nav-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 74, 173, 0.15);
+        }
+        
+        .nav-card-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s ease;
+        }
+        .nav-card:hover .nav-card-bg {
+            transform: scale(1.08);
+        }
+        
+        .nav-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 74, 173, 0.8) 0%, rgba(0, 74, 173, 0.2) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+        
+        .nav-card-title {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+        }
+        .nav-card-title i {
+            opacity: 0;
+            transform: translateX(-10px);
+            color: var(--brand-cyan);
+            transition: all 0.3s ease;
+        }
+        .nav-card:hover .nav-card-title i {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ── Awards Section ── */
+        .awards-section {
+            position: relative;
+            padding: 5rem 2rem 7rem;
+            background: linear-gradient(135deg, #0b1021 0%, #172138 100%);
+            overflow: hidden;
+        }
+        .awards-bg-glow {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(47, 232, 250, 0.05) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .awards-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .awards-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .awards-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+        .awards-header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+            margin: 0;
+        }
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        .award-card {
+            background: rgba(20, 30, 50, 0.6);
+            border: 1px solid rgba(47, 232, 250, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .award-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(47, 232, 250, 0.6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(47, 232, 250, 0.15);
+        }
+        .award-img-wrap {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            position: relative;
+            background: #111;
+        }
+        .award-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: transform 0.6s ease, opacity 0.4s ease;
+        }
+        .award-card:hover .award-img-wrap img {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+        .award-content {
+            padding: 2.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .award-year {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #8cabc5;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+        .award-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .award-desc {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+        .award-badges {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .award-badge {
+            padding: 0.4rem 0.8rem;
+            background: rgba(47, 232, 250, 0.05);
+            border: 1px solid rgba(47, 232, 250, 0.3);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--brand-cyan);
+            transition: all 0.3s ease;
+        }
+        .award-card:hover .award-badge {
+            background: rgba(47, 232, 250, 0.15);
+            box-shadow: 0 0 10px rgba(47, 232, 250, 0.2);
+            border-color: rgba(47, 232, 250, 0.6);
+            color: #fff;
+        }
+
+        /* 動畫 */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            .news-grid { grid-template-columns: 1fr; gap: 2.5rem; max-width: 600px; }
+            .bottom-nav-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .awards-grid { grid-template-columns: 1fr; gap: 2.5rem; max-width: 600px; margin: 0 auto; }
+        }
+        @media (max-width: 600px) {
+            .news-hero h1 { font-size: 2.2rem; }
+            .card-content { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header 注入區 -->
+    <div id="site-header"></div>
+
+    <main>
+        <!-- ========== HERO ========== -->
+        <section class="news-hero">
+            <div class="news-hero-bg"></div>
+            <div class="news-hero-overlay"></div>
+            <div class="news-hero-content">
+                <h1>發展動態</h1>
+                <p>掌握臻至科技的最新動態與媒體報導</p>
+            </div>
+        </section>
+
+        <!-- ========== AWARDS ========== -->
+        <section class="awards-section">
+            <div class="awards-bg-glow"></div>
+            <div class="awards-container">
+                <div class="awards-header fade-up">
+                    <h2>近期榮譽與肯定</h2>
+                    <p>我們的技術與成果，持續獲得產業與官方單位的肯定</p>
+                </div>
+                <div class="awards-grid">
+                    
+                    <!-- 卡片 1 -->
+                    <div class="award-card fade-up">
+                        <div class="award-img-wrap">
+                            <img src="../../image/race1.png" alt="經濟部 AI 智慧創新大賞" onerror="this.onerror=null; this.src='../../image/race1.png'">
+                        </div>
+                        <div class="award-content">
+                            <div class="award-year">2026</div>
+                            <h3 class="award-title">經濟部 AI 智慧創新大賞</h3>
+                            <p class="award-desc">榮獲2026 IC設計類 新創及中小企業組 金牌</p>
+                            <div class="award-badges">
+                                <span class="award-badge">冠軍</span>
+                                <span class="award-badge">技術實力脫穎而出</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 卡片 2 -->
+                    <div class="award-card fade-up delay-1">
+                        <div class="award-img-wrap">
+                            <img src="../../image/race2.png" alt="中華電信創新應用比賽" onerror="this.onerror=null; this.src='../../image/race2.png'">
+                        </div>
+                        <div class="award-content">
+                            <div class="award-year">2025</div>
+                            <h3 class="award-title">中華電信創新應用比賽</h3>
+                            <p class="award-desc">自眾多參賽團隊中脫穎而出，入選決賽前 10 強</p>
+                            <div class="award-badges">
+                                <span class="award-badge">決賽入圍</span>
+                                <span class="award-badge">Top 10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FILTER ========== -->
+        <div class="news-filter-container">
+            <div class="news-filter">
+                <button class="filter-btn active" data-year="all">All</button>
+                <button class="filter-btn" data-year="2026">2026</button>
+                <button class="filter-btn" data-year="2025">2025</button>
+            </div>
+        </div>
+
+        <!-- ========== NEWS GRID ========== -->
+        <section class="news-section">
+            <div class="news-grid">
+                
+                <!-- 卡片 0 (智慧創新大賞) -->
+                <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=122509" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/race3.png" alt="第二屆「智慧創新大賞」百大贏家出爐">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2026/4/25</span>
+                            <span class="card-source">source: 經濟部 產業技術司</span>
+                        </div>
+                        <h3 class="card-title">第二屆「智慧創新大賞」百大贏家出爐</h3>
+                        <div class="card-cta">
+                            Read More <span>→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 卡片 1 (Digitimes) -->
+                <a href="https://www.digitimes.com.tw/tech/dt/n/shwnws.asp?id=740309" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/news1.JPG" alt="FPGA驅動邊緣AI新契機">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2025/12/15</span>
+                            <span class="card-source">source: Digitimes</span>
+                        </div>
+                        <h3 class="card-title">FPGA驅動邊緣AI新契機 臻至科技聚焦硬體加速解決方案</h3>
+                        <div class="card-cta">
+                            Read More <span>→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 卡片 2 (台大創創) -->
+                <a href="https://tec.ntu.edu.tw/2026/02/06/%e6%81%ad%e5%96%9c-2026-%e5%8f%b0%e5%a4%a7%e8%bb%8a%e5%ba%ab%e6%9a%a8%e5%89%b5%e5%89%b5%e5%8a%a0%e9%80%9f%e5%99%a8%e8%a8%88%e7%95%ab%e6%89%80%e6%9c%89%e9%8c%84%e5%8f%96%e5%9c%98%e9%9a%8a" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/news2.jpeg" alt="台大創創加速器計畫">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2026/2/6</span>
+                            <span class="card-source">source: 國立台灣大學 TEC</span>
+                        </div>
+                        <h3 class="card-title">臻至科技入選2026台大車庫暨創創加速器計畫</h3>
+                        <div class="card-cta">
+                            Read More <span>→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 卡片 3 (新北創力坊) -->
+                <a href="https://www.facebook.com/InnoSquare.New.Taipei/posts/pfbid032zXNWmj7dqeZpvTb1jazyDap9Wkbw8jkdmrvgVRzh5JZcD6kgWamL4R1b19fTazPl?rdid=hywIU1Q6TVmvBlt1#" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/news3.jpg" alt="新北創力坊加速器">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2026/1/24</span>
+                            <span class="card-source">source: 新北市青年局-新北創力坊</span>
+                        </div>
+                        <h3 class="card-title">臻至科技入選2026新北市政府旗下新北創力坊加速器</h3>
+                        <div class="card-cta">
+                            Read More <span>→</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 卡片 4 (國網中心) -->
+                <a href="https://youtu.be/OcwGCgN03ok" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/news4.png" alt="半導體產業創新成果">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2025/8/1</span>
+                            <span class="card-source">source: 國家高速網路與計算中心</span>
+                        </div>
+                        <h3 class="card-title">臻至科技半導體產業創新與升級成果</h3>
+                        <div class="card-cta">
+                            Read More <span>→</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ========== BOTTOM NAVIGATION ========== -->
+        <section class="bottom-nav-section">
+            <h2 class="bottom-nav-title fade-up">延伸閱讀</h2>
+            <div class="bottom-nav-grid">
+                
+                <!-- 導覽卡片 1：關於我們 -->
+                <a href="../company/about.html" class="nav-card fade-up">
+                    <div class="nav-card-bg" style="background-image: url('../../image/jo1.jpg');"></div>
+                    <div class="nav-card-overlay">
+                        <div class="nav-card-title">
+                            關於我們
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 導覽卡片 2：最新活動 -->
+                <a href="events.html" class="nav-card fade-up delay-1">
+                    <div class="nav-card-bg" style="background-image: url('../../image/semi6.png'); filter: grayscale(50%) brightness(0.6);"></div>
+                    <div class="nav-card-overlay">
+                        <div class="nav-card-title">
+                            最新活動
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </a>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer 注入區 -->
+    <div id="site-footer"></div>
+
+    <!-- Scripts -->
+    <!-- FontAwesome for arrows/icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Scroll fade-up animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach((el, index) => {
+                if (el.classList.contains('delay-1')) el.style.transitionDelay = '0.15s';
+                if (el.classList.contains('delay-2')) el.style.transitionDelay = '0.3s';
+                observer.observe(el);
+            });
+
+            // 年份 Filter 邏輯 (UI demo)
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    
+                    const year = e.target.getAttribute('data-year');
+                    // 這裡可加入過濾新聞卡片的邏輯
+                    const cards = document.querySelectorAll('.news-card');
+                    cards.forEach(card => {
+                        const dateText = card.querySelector('.card-date').innerText;
+                        const cardYear = dateText.split('/')[0];
+                        if (year === 'all' || cardYear === year) {
+                            card.style.display = 'flex';
+                            setTimeout(() => { card.style.opacity = '1'; }, 50);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => { card.style.display = 'none'; }, 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

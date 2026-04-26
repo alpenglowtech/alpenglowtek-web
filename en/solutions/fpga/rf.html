@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FPGA – RF High Speed ​​Signal Processing Solutions | Alpenglow Tek Alpenglow Tek</title>
+<meta content="Alpenglow Tek provides RF radio frequency signal processing solutions based on FPGA, which can process high-speed, high-bandwidth None line signals in real time, and are widely used in 5G/6G communications, radar systems, satellite communications and electronic warfare equipment." name="description"/>
+<link href="../../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        /* ============================================================
+           RF radio frequency PAGE — Page-specific styles
+           ============================================================ */
+
+        /* ── Section 1: Hero ── */
+        .hero-rf {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            background: url('../../../assets/img/rf1.png') center / cover no-repeat;
+            background-color: #061A3A;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-rf::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(6, 26, 58, 0.80) 0%,
+                rgba(6, 26, 58, 0.65) 50%,
+                rgba(6, 26, 58, 0.85) 100%
+            );
+            z-index: 1;
+        }
+        .hero-rf .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .hero-rf-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(47, 232, 250, 0.12);
+            border: 1px solid rgba(47, 232, 250, 0.35);
+            border-radius: 100px;
+            color: var(--cyan);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+        }
+        .hero-rf-chip::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 12px var(--cyan);
+            animation: rf-pulse 2s ease-in-out infinite;
+        }
+        @keyframes rf-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.6); }
+        }
+        .hero-rf h1 {
+            font-size: clamp(2rem, 4.5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+            color: var(--white);
+            white-space: normal; word-break: keep-all;
+        }
+        .hero-rf .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            font-weight: 600;
+            color: var(--cyan);
+            margin-bottom: 2rem;
+            max-width: 820px;
+        }
+        .hero-rf .hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.9;
+            max-width: 720px;
+            margin: 0;
+        }
+
+        /* Scroll Hint */
+        .scroll-hint-rf {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.72rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            z-index: 5;
+        }
+        .scroll-hint-rf .v-arrow {
+            margin-top: 14px;
+            width: 18px;
+            height: 18px;
+            border-right: 2px solid rgba(255, 255, 255, 0.35);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+            transform: rotate(45deg);
+            animation: scbounce-rf 2s ease-in-out infinite;
+        }
+        @keyframes scbounce-rf {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+            40% { transform: translateY(10px) rotate(45deg); }
+            60% { transform: translateY(5px) rotate(45deg); }
+        }
+
+        /* ── Section 2: Why RF needs FPGA ── */
+        .rf-why-section {
+            padding: 7rem 0;
+            background: var(--white);
+        }
+        .rf-why-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+            align-items: start;
+            margin-top: 3rem;
+        }
+        @media (min-width: 1024px) {
+            .rf-why-grid {
+                grid-template-columns: 1fr 1.8fr;
+                gap: 4rem;
+                align-items: start;
+            }
+        }
+        .rf-why-intro {
+            font-size: 1.05rem;
+            color: var(--gray-700);
+            line-height: 1.9;
+            margin-bottom: 0;
+        }
+        /* advantages list */
+        .rf-advantages {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .rf-advantages li {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            color: var(--navy);
+            font-size: 0.97rem;
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            background: var(--off-white);
+            border-left: 3px solid var(--cyan);
+            border-radius: 0 8px 8px 0;
+        }
+        .rf-advantages li::before {
+            content: '✓';
+            color: var(--cyan);
+            font-weight: 800;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        /* Comparison table */
+        .rf-compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(6, 26, 58, 0.09);
+        }
+        .rf-compare-table caption {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            padding: 0 0 1rem;
+            text-align: left;
+            caption-side: top;
+        }
+        .rf-compare-table thead tr { background: var(--navy); color: var(--white); }
+        .rf-compare-table thead th {
+            padding: 0.9rem 1.25rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            text-align: left;
+        }
+        .rf-compare-table thead th:first-child { background: var(--navy-mid); color: var(--cyan); width: 30%; }
+        .rf-compare-table thead th:nth-child(2) { background: rgba(6, 26, 58, 0.85); width: 35%; }
+        .rf-compare-table thead th:nth-child(3) { background: linear-gradient(90deg, #0a3170, #0F3878); color: var(--cyan); width: 35%; }
+        .rf-compare-table tbody tr {
+            border-bottom: 1px solid var(--gray-100);
+            transition: background 0.2s;
+        }
+        .rf-compare-table tbody tr:hover { background: var(--off-white); }
+        .rf-compare-table tbody tr:last-child { border-bottom: none; }
+        .rf-compare-table tbody td {
+            padding: 0.85rem 1.25rem;
+            color: var(--gray-700);
+            line-height: 1.55;
+            vertical-align: middle;
+        }
+        .rf-compare-table tbody td:first-child {
+            font-weight: 700;
+            color: var(--navy);
+            background: rgba(6, 26, 58, 0.035);
+        }
+        .rf-compare-table tbody td:nth-child(3) {
+            color: #0F3878;
+            font-weight: 600;
+        }
+        .rf-compare-table .highlight-cyan {
+            color: var(--cyan);
+            font-weight: 700;
+        }
+
+        /* ── Section 3: Our RF Solution ── */
+        .rf-solution-section {
+            padding: 7rem 0;
+            background: linear-gradient(180deg, #f0f5ff 0%, #e8f0fe 100%);
+        }
+        .rf-solution-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3.5rem;
+            align-items: start;
+        }
+        @media (min-width: 1024px) {
+            .rf-solution-grid {
+                grid-template-columns: 1fr 1fr 1.15fr;
+                align-items: stretch;
+            }
+        }
+        .rf-sol-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2.25rem 2rem;
+            border: 1px solid var(--gray-100);
+            box-shadow: 0 4px 16px rgba(6, 26, 58, 0.06);
+            transition: var(--transition);
+        }
+        .rf-sol-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(47, 232, 250, 0.25);
+        }
+        .rf-sol-card h3 {
+            font-size: 1.0rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--cyan-dim);
+        }
+        .rf-sol-card ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .rf-sol-card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            color: var(--gray-700);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .rf-sol-card li::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--cyan);
+            flex-shrink: 0;
+            margin-top: 1px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='%23061A3A' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .rf-sol-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(6, 26, 58, 0.18);
+            height: 100%;
+            min-height: 300px;
+        }
+        .rf-sol-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 16px;
+        }
+
+        /* ── Section 4: Applications ── */
+        .rf-apps-section {
+            padding: 7rem 0;
+            position: relative;
+            background: url('../../../assets/img/13.png') center / cover no-repeat;
+            background-color: #061A3A;
+        }
+        .rf-apps-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.72);
+            z-index: 0;
+        }
+        .rf-apps-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        .rf-app-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+            margin-top: 3rem;
+        }
+        @media (min-width: 640px) {
+            .rf-app-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .rf-app-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .rf-app-card {
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 16px;
+            padding: 2.25rem 2rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+        .rf-app-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+            border-color: rgba(47, 232, 250, 0.4);
+        }
+        .rf-app-card .app-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: var(--navy);
+            color: var(--cyan);
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 1.25rem;
+        }
+        .rf-app-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--gray-100);
+        }
+        .rf-app-card ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .rf-app-card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            color: var(--gray-700);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .rf-app-card li::before {
+            content: '▸';
+            color: var(--cyan);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── Section 5: CTA / Summary ── */
+        .rf-cta-section {
+            padding: 7rem 0;
+            background: url('../../../assets/img/snn3.png') center / cover no-repeat;
+            background-color: #061A3A;
+            position: relative;
+            overflow: hidden;
+        }
+        .rf-cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.80);
+            z-index: 0;
+        }
+        .rf-cta-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 860px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(47, 232, 250, 0.18);
+            border-radius: 24px;
+            padding: 4rem 3.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .rf-cta-inner h2 {
+            color: var(--white);
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 800;
+            line-height: 1.35;
+            margin-bottom: 1.75rem;
+        }
+        .rf-cta-inner p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.05rem;
+            line-height: 1.9;
+        }
+        .rf-cta-inner .cta-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--cyan);
+            border-radius: 99px;
+            margin: 2rem auto;
+        }
+
+        /* ── Responsive tweaks ── */
+        @media (max-width: 767px) {
+            .rf-sol-image { min-height: 220px; }
+            .rf-compare-table { font-size: 0.82rem; }
+            .rf-compare-table thead th,
+            .rf-compare-table tbody td { padding: 0.7rem 0.9rem; }
+            .rf-cta-inner { padding: 2.5rem 1.5rem; }
+            .hero-rf h1 { white-space: normal; }
+        }
+    </style>
+</head>
+<body>
+<!-- Header injected by JS -->
+<div id="site-header"></div>
+<main>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="hero-rf">
+<div class="container fade-up" style="padding-top: var(--header-h);">
+<div class="hero-rf-chip">FPGA / RF radio frequency signal processing</div>
+<h1>RF Radio Frequency High Speed ​​Signal Processing Solutions</h1>
+<div class="hero-subtitle">Providing High-Performance, Low-Latency Reconfigurable Computing Platforms for Next-Generation Wireless Communications and Radar Systems</div>
+<p class="hero-desc">
+                    Alpenglow Tek provides RF radio frequency signal processing solutions based on FPGA, which can process high-speed, high-bandwidth None line signals in real time. It is widely used in 5G/6G communications, radar systems, satellite communications and electronic warfare equipment, helping customers achieve high-performance, low-latency and highly flexible system designs.
+                </p>
+</div>
+<div class="scroll-hint-rf">
+<span>Scroll</span>
+<div class="v-arrow"></div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="rf-why-section">
+<div class="container">
+<div class="section-label mb-4">WHY FPGA</div>
+<h2 class="fade-up">Why do RF Systems Need FPGA?</h2>
+<p class="rf-why-intro fade-up" style="margin-top:2rem; margin-bottom: 0.5rem;">
+                    RF systems need to process high-speed, high-bandwidth, and real-time data streams, with extremely high demands on latency, throughput, and computing efficiency.
+                </p>
+<p class="rf-why-intro fade-up" style="margin-bottom:2.5rem;">
+                    Relying on its reconfigurable and highly parallelized architecture, FPGA has become the ideal computing platform for RF and wireless communication systems.
+                </p>
+<div class="rf-why-grid fade-up">
+<!-- Left: Core Advantages -->
+<div>
+<h3 style="font-size:1.05rem; font-weight:700; color:var(--navy); margin-bottom:1.25rem;">Core Advantages</h3>
+<ul class="rf-advantages">
+<li>Real-time high-speed signal processing</li>
+<li>Highly parallelized computing architecture</li>
+<li>Low Latency processing capability</li>
+<li>Reconfigurable and highly elastic</li>
+<li>Supports High-Speed Interfaces (PCIe, JESD204B/C, 100GbE)</li>
+<li>Suitable for SDR (Software-Defined Radio)</li>
+</ul>
+</div>
+<!-- Right: Comparison Table -->
+<div>
+<table class="rf-compare-table">
+<caption>CPU/GPU vs. FPGA: RF Signal Processing Platform Comparison</caption>
+<thead>
+<tr>
+<th>characteristic</th>
+<th>CPU/GPU</th>
+<th>FPGA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real-Time Processing Capability</td>
+<td>middle</td>
+<td class="highlight-cyan">high</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Higher</td>
+<td class="highlight-cyan">Extremely Low</td>
+</tr>
+<tr>
+<td>Parallel Processing Capability</td>
+<td>Limited</td>
+<td class="highlight-cyan">Highly parallel</td>
+</tr>
+<tr>
+<td>Power Efficiency</td>
+<td>Lower</td>
+<td class="highlight-cyan">Higher</td>
+</tr>
+<tr>
+<td>Customizability</td>
+<td>Low</td>
+<td class="highlight-cyan">high</td>
+</tr>
+<tr>
+<td>Reconfigurability</td>
+<td>None</td>
+<td class="highlight-cyan">Yes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="rf-solution-section">
+<div class="container fade-up">
+<div class="section-label mb-4">OUR SOLUTION</div>
+<h2>FPGA RF Solutions by Alpenglow Tek</h2>
+<p style="color:var(--gray-700); font-size:1.05rem; line-height:1.9; margin-top:1rem; max-width:800px;">
+                    Alpenglow Tek has expertise in high-speed digital signal processing and FPGA design, providing complete RF signal processing solutions to help customers quickly implement high-performance None line communication and radar systems.
+                </p>
+<div class="rf-solution-grid">
+<!-- Left: Services -->
+<div class="rf-sol-card fade-up">
+<h3>Service Offerings</h3>
+<ul>
+<li>RF Digital Front-End (DFE) Design</li>
+<li>FPGA Spectrum Analysis &amp; Signal Processing</li>
+<li>Radar Signal Processing Acceleration</li>
+<li>High-speed data acquisition and processing system</li>
+<li>SDR Platform Development &amp; Customization</li>
+<li>SoM and Prototyping Design</li>
+</ul>
+</div>
+<!-- Middle: Technical Capabilities -->
+<div class="rf-sol-card fade-up">
+<h3>technical ability</h3>
+<ul>
+<li>FFT / IFFT Spectrum Analysis</li>
+<li>Digital Down-Conversion (DDC) &amp; Up-Conversion (DUC)</li>
+<li>Digital Filter Design (FIR / CIC)</li>
+<li>Beamforming</li>
+<li>Modulation &amp; Demodulation Technology</li>
+<li>Spectrum monitoring and signal analysis</li>
+<li>Multi-Channel Synchronous Processing</li>
+</ul>
+</div>
+<!-- Right: Image -->
+<div class="rf-sol-image fade-up">
+<img alt="Alpenglow Tek FPGA RF Radio Frequency Signal Processing Solutions" onerror="this.src='../../../assets/img/snn1.png'" src="../../../assets/img/rf2.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="rf-apps-section">
+<div class="container fade-up">
+<div class="section-label mb-4" style="color:var(--cyan);">APPLICATIONS</div>
+<h2 style="color:var(--white);">Application Domains</h2>
+<h3 style="color:var(--cyan); font-weight:500; font-size:1.1rem; margin:1rem 0 0;">
+                    FPGA RF Solutions are widely used in the following high-performance None line communication and sensing systems:
+                </h3>
+<div class="rf-app-grid">
+<!-- Card 1 -->
+<div class="rf-app-card">
+<div class="app-num">01</div>
+<h4>5G/6G &amp; Wireless Communications</h4>
+<ul>
+<li>Base Stations &amp; Small Cells</li>
+<li>Massive MIMO &amp; Beamforming</li>
+<li>Open RAN Architecture</li>
+<li>Wireless Backhaul &amp; Fronthaul</li>
+</ul>
+</div>
+<!-- Card 2 -->
+<div class="rf-app-card">
+<div class="app-num">02</div>
+<h4>Radar &amp; Sensing Systems</h4>
+<ul>
+<li>Automotive mmWave Radar</li>
+<li>Defense Radar &amp; Electronic Warfare</li>
+<li>Drone &amp; Aerospace Sensing</li>
+<li>High-resolution target tracking</li>
+</ul>
+</div>
+<!-- Card 3 -->
+<div class="rf-app-card">
+<div class="app-num">03</div>
+<h4>Satellite &amp; Aerospace Communications</h4>
+<ul>
+<li>Satellite Ground Stations</li>
+<li>Low Earth Orbit (LEO) Satellites</li>
+<li>Deep Space Communications</li>
+<li>aerospace electronic systems</li>
+</ul>
+</div>
+<!-- Card 4 -->
+<div class="rf-app-card">
+<div class="app-num">04</div>
+<h4>Test &amp; Measurement Equipment</h4>
+<ul>
+<li>Spectrum Analyzers</li>
+<li>Signal Generators</li>
+<li>RF Testing Platforms</li>
+<li>EMI/EMC Testing Systems</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ════════════════════════════════════════
+             ════════════════════════════════════════ -->
+<section class="rf-cta-section">
+<div class="container">
+<div class="rf-cta-inner fade-up">
+<div class="section-label section-label-dark mb-4" style="display:inline-block;">NEXT GENERATION RF</div>
+<h2>Building High-Performance RF Signal Processing Cores for Next-Generation Wireless Communications</h2>
+<div class="cta-divider"></div>
+<p>
+                        In None line communication and radar systems, the key to product competition lies not only in bandwidth and computing power, but also in immediacy, reliability and system flexibility. Alpenglow Tek uses FPGA reconfigurable computing architecture and high-speed digital signal processing technology to provide low-latency, high-throughput and high-reliability RF solutions to help customers accelerate product development and realize innovative applications in new-generation communication and sensing systems.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer injected by JS -->
+<div id="site-footer"></div>
+<script src="../../../assets/js/main.js"></script>
+</body>
+</html>

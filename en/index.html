@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Home | Alpenglow Tek</title>
+<meta content="Alpenglow Tek — Innovator of high-efficiency edge AI computing architectures. Designing ultra-low power AI processors, custom ASIC/SoC, and providing FPGA prototyping services." name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* ── Reset & Base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* ── CSS Variables ── */
+        :root {
+            --navy: #004aad;
+            --cyan: #2fe8fa;
+            --white: #ffffff;
+            --header-h: 80px;
+        }
+
+        /* ======================================
+           HEADER
+        ====================================== */
+        .site-header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            height: var(--header-h);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 74, 173, 0.10);
+            transition: box-shadow 0.3s ease;
+        }
+        .site-header.scrolled {
+            box-shadow: 0 4px 24px rgba(0, 74, 173, 0.12);
+        }
+        .header-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        /* Logo */
+        .site-logo { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+        .site-logo img { height: 46px; width: auto; }
+
+        /* Desktop Nav */
+        .site-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-item { position: relative; }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.6rem 1.1rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--navy);
+            border-radius: 8px;
+            transition: all 0.25s ease;
+            white-space: normal;
+            word-break: keep-all;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--cyan);
+            background: rgba(47, 232, 250, 0.12);
+        }
+        .nav-link .chev { font-size: 0.6rem; opacity: 0.7; transition: transform 0.25s; }
+        .nav-item:hover > .nav-link .chev { transform: rotate(180deg); }
+
+        /* Dropdown */
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            min-width: 200px;
+            background: #fff;
+            border: 1px solid rgba(0,74,173,0.1);
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,74,173,0.12);
+            padding: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+            z-index: 200;
+        }
+        .nav-item:hover > .dropdown,
+        .nav-item:focus-within > .dropdown {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .dropdown-item {
+            display: block;
+            padding: 0.6rem 0.9rem;
+            font-size: 0.85rem;
+            color: #1a1a2e;
+            border-radius: 9px;
+            transition: all 0.2s;
+        }
+        .dropdown-item:hover { background: rgba(47,232,250,0.12); color: var(--navy); padding-left: 1.1rem; }
+        .dropdown-sep { height: 1px; background: rgba(0,74,173,0.08); margin: 0.3rem 0.5rem; }
+        .dropdown-cat {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #8899bb;
+            padding: 0.5rem 0.9rem 0.25rem;
+        }
+        /* 2-col mega dropdown */
+        .dropdown-mega {
+            min-width: 460px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem 1.5rem;
+            padding: 1rem;
+        }
+        .dropdown-mega .dd-col { font-weight: inherit; } /* Fixed empty ruleset */
+        .dropdown-mega .dd-col-title {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #8899bb;
+            padding: 0 0.5rem 0.4rem;
+            border-bottom: 1px solid rgba(0,74,173,0.08);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        /* Header Right */
+        .header-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+        .lang-btn {
+            display: flex; align-items: center; gap: 0.35rem;
+            padding: 0.4rem 0.9rem;
+            background: var(--navy);
+            color: #fff;
+            border-radius: 100px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+        .lang-btn:hover { background: var(--cyan); color: var(--navy); }
+        .contact-btn {
+            padding: 0.55rem 1.2rem;
+            background: var(--cyan);
+            color: var(--navy);
+            font-size: 0.85rem;
+            font-weight: 700;
+            border-radius: 10px;
+            transition: 0.25s;
+        }
+        .contact-btn:hover {
+            background: #00d0e6;
+            box-shadow: 0 4px 16px rgba(47,232,250,0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            width: 40px; height: 40px;
+            align-items: center; justify-content: center;
+            background: transparent;
+            border: 1.5px solid rgba(0,74,173,0.15);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .menu-toggle:hover { border-color: var(--cyan); }
+        .menu-toggle span {
+            display: block; width: 20px; height: 2px;
+            background: var(--navy); border-radius: 1px;
+            transition: 0.3s;
+        }
+        .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; }
+        .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Mobile Nav */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: var(--header-h); left: 0; right: 0;
+            background: #fff;
+            border-bottom: 1px solid rgba(0,74,173,0.08);
+            box-shadow: 0 8px 32px rgba(0,74,173,0.1);
+            z-index: 999;
+            padding: 1rem;
+            max-height: calc(100vh - var(--header-h));
+            overflow-y: auto;
+        }
+        .mobile-nav.open { display: block; }
+        .m-nav-link {
+            display: block;
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--navy);
+            border-radius: 10px;
+            transition: 0.2s;
+            margin-bottom: 0.2rem;
+        }
+        .m-nav-link:hover { background: rgba(47,232,250,0.12); }
+        .m-sub { padding-left: 1rem; }
+        .m-sub a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.83rem;
+            color: #556;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+        .m-sub a:hover { color: var(--navy); background: rgba(47,232,250,0.1); }
+
+        @media (max-width: 1023px) {
+            .site-nav { display: none; }
+            .contact-btn { display: none; }
+            .menu-toggle { display: flex; }
+        }
+
+        /* ======================================
+           HERO SECTION (100vh)
+        ====================================== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../assets/img/7.png');
+            background-size: cover;
+            background-position: center;
+            transform: scale(1.04);
+            transition: transform 8s ease;
+        }
+        .hero.loaded .hero-bg { transform: scale(1); }
+        /* Subtle gradient overlay — keeps image visible, adds legibility */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                105deg,
+                rgba(255,255,255,0.82) 0%,
+                rgba(255,255,255,0.55) 45%,
+                rgba(255,255,255,0.08) 100%
+            );
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            transform: translateY(10vh);
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--navy);
+            background: rgba(47,232,250,0.18);
+            border: 1px solid rgba(47,232,250,0.4);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.75rem;
+            animation: fadeUp 0.8s ease both;
+        }
+        .hero-label::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--cyan);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.4); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6.5vw, 6rem);
+            font-weight: 900;
+            line-height: 1.15;
+            color: #0d1b3e;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.25rem;
+            animation: fadeUp 0.9s ease both;
+        }
+        .hero h1 em {
+            font-style: normal;
+            color: var(--navy);
+            background: linear-gradient(90deg, var(--navy), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 500;
+            color: var(--navy);
+            letter-spacing: 0.08em;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 0.9s 0.1s ease both;
+        }
+        .hero-sub span { opacity: 0.5; margin: 0 0.5rem; }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeUp 0.9s 0.3s ease both;
+        }
+        .btn-primary-lg {
+            padding: 0.9rem 2.2rem;
+            background: var(--navy);
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 14px;
+            transition: 0.3s;
+            border: 2px solid var(--navy);
+        }
+        .btn-primary-lg:hover {
+            background: var(--cyan);
+            color: var(--navy);
+            border-color: var(--cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(47,232,250,0.35);
+        }
+        .btn-outline-lg {
+            padding: 0.9rem 2.2rem;
+            background: transparent;
+            color: var(--navy);
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 14px;
+            border: 2px solid rgba(0,74,173,0.35);
+            transition: 0.3s;
+        }
+        .btn-outline-lg:hover {
+            border-color: var(--navy);
+            background: rgba(0,74,173,0.06);
+            transform: translateY(-3px);
+        }
+
+        /* Scroll hint */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: fadeUp 1s 0.8s ease both;
+            z-index: 2;
+        }
+        .scroll-hint span { font-size: 0.7rem; color: rgba(0,74,173,0.55); letter-spacing: 0.15em; text-transform: uppercase; }
+        .scroll-arrow {
+            width: 28px; height: 28px;
+            border-right: 2px solid rgba(0,74,173,0.4);
+            border-bottom: 2px solid rgba(0,74,173,0.4);
+            transform: rotate(45deg);
+            animation: scrollBounce 1.8s infinite;
+        }
+        @keyframes scrollBounce {
+            0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+            50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
+
+        /* ======================================
+           CIRCLES SECTION
+        ====================================== */
+        .circles-section {
+            padding: 5rem 1.5rem 5rem;
+            background: #fff;
+        }
+        .circles-section-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .circles-section-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--navy);
+            background: rgba(47,232,250,0.14);
+            border: 1px solid rgba(47,232,250,0.35);
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1rem;
+        }
+        .circles-section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: #0d1b3e;
+            margin-bottom: 1rem;
+        }
+        .circles-section-desc {
+            font-size: 1.25rem;
+            color: #6677aa;
+            margin-bottom: 4.5rem;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.75;
+        }
+
+        /* The three circles row */
+        .circles-row {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .circle-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            width: 320px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .circle-item.visible { opacity: 1; transform: translateY(0); }
+        .circle-item:nth-child(2) { transition-delay: 0.12s; }
+        .circle-item:nth-child(3) { transition-delay: 0.24s; }
+
+        /* The circle itself */
+        .circle-img-wrap {
+            position: relative;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.95);
+            box-shadow:
+                0 8px 32px rgba(0,74,173,0.14),
+                0 0 0 2px rgba(0,74,173,0.08);
+            transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease;
+            flex-shrink: 0;
+        }
+        .circle-item:hover .circle-img-wrap {
+            transform: scale(1.06);
+            box-shadow:
+                0 16px 48px rgba(0,74,173,0.22),
+                0 0 0 3px rgba(47,232,250,0.5);
+        }
+        .circle-img-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+        .circle-item:hover .circle-img-wrap img { transform: scale(1.08); }
+
+        /* Overlay text on circle */
+        .circle-label-overlay {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(
+                160deg,
+                rgba(0, 74, 173, 0.0) 30%,
+                rgba(0, 74, 173, 0.55) 100%
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.35s;
+        }
+        .circle-item:hover .circle-label-overlay {
+            background: linear-gradient(
+                160deg,
+                rgba(0, 74, 173, 0.1) 0%,
+                rgba(0, 74, 173, 0.7) 100%
+            );
+        }
+        .circle-label-text {
+            color: #fff;
+            font-size: 1.85rem;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.3;
+            letter-spacing: 0.02em;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+            transition: color 0.3s;
+        }
+        .circle-item:hover .circle-label-text { color: var(--cyan); }
+
+        /* Below-circle text */
+        .circle-caption {
+            text-align: center;
+        }
+        .circle-caption-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0d1b3e;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+        .circle-item:hover .circle-caption-title { color: var(--navy); }
+        .circle-caption-desc {
+            font-size: 1.05rem;
+            color: #6677aa;
+            line-height: 1.65;
+        }
+
+        /* ======================================
+           FOOTER
+        ====================================== */
+        .site-footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.75);
+        }
+        .footer-top {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 3.5rem 3.5rem 2.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+        .footer-brand-logo img { height: 44px; margin-bottom: 1rem; }
+        .footer-brand-text {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.75;
+            max-width: 260px;
+        }
+        .footer-col-title {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .footer-links { display: flex; flex-direction: column; gap: 0.55rem; }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            transition: 0.25s;
+        }
+        .footer-links a:hover { color: var(--cyan); transform: translateX(3px); display: inline-block; }
+        .footer-contact-item {
+            display: flex; gap: 0.6rem; align-items: flex-start;
+            font-size: 0.83rem; color: rgba(255,255,255,0.5);
+            margin-bottom: 0.6rem;
+        }
+        .footer-contact-icon { color: var(--cyan); flex-shrink: 0; margin-top: 2px; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem 3.5rem;
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+        .footer-bottom-links { display: flex; gap: 1.5rem; }
+        .footer-bottom-links a { font-size: 0.78rem; color: rgba(255,255,255,0.3); transition: 0.2s; }
+        .footer-bottom-links a:hover { color: var(--cyan); }
+
+        @media (max-width: 900px) {
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .footer-top { grid-template-columns: 1fr; }
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--cyan);
+            font-size: 1.1rem;
+            border: 2px solid rgba(47,232,250,0.3);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,74,173,0.2);
+            transition: 0.25s;
+            opacity: 0; visibility: hidden; z-index: 900;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: var(--cyan); color: var(--navy); transform: translateY(-3px); }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .header-inner, .hero-content, .footer-top, .footer-bottom {
+                padding-left: 2rem; padding-right: 2rem;
+            }
+            .circles-section { padding-left: 2rem; padding-right: 2rem; }
+        }
+        @media (max-width: 767px) {
+            .circles-row { flex-direction: column; align-items: center; gap: 2.5rem; }
+            .circle-img-wrap { width: 180px; height: 180px; }
+            .circle-item { width: 100%; }
+            .header-inner, .hero-content, .footer-top, .footer-bottom {
+                padding-left: 1.5rem; padding-right: 1.5rem;
+            }
+            .circles-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-sub { font-size: 0.95rem; }
+        }
+
+        /* ======================================
+        ====================================== */
+        .partners-section {
+            padding: 6rem 1.5rem;
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .partners-section-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        .partners-title {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #0d1b3e;
+            margin-bottom: 4rem;
+        }
+        .partners-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .partners-track {
+            display: flex;
+            width: calc(360px * 32);
+            animation: partnerScroll 80s linear infinite;
+        }
+        .partners-track:hover {
+            animation-play-state: paused;
+        }
+        .partner-logo {
+            width: 360px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 50px;
+            filter: grayscale(100%);
+            opacity: 0.45;
+            transition: all 0.4s ease;
+        }
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 90px;
+            object-fit: contain;
+        }
+        @keyframes partnerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-360px * 16)); }
+        }
+
+        /* Responsive Partners */
+        @media (max-width: 1024px) {
+            .partner-logo { width: 300px; padding: 0 40px; }
+            .partners-track { width: calc(300px * 32); }
+            @keyframes partnerScroll {
+                100% { transform: translateX(calc(-300px * 16)); }
+            }
+        }
+        @media (max-width: 767px) {
+            .partner-logo { width: 250px; padding: 0 30px; }
+            .partners-track { width: calc(250px * 32); }
+            @keyframes partnerScroll {
+                100% { transform: translateX(calc(-250px * 16)); }
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- ========== HEADER ========== -->
+<header class="site-header" id="siteHeader">
+<div class="header-inner">
+<!-- Logo -->
+<a class="site-logo" href="../zh/index.html">
+<img alt="Alpenglow Tek Alpenglow Tek" src="../assets/img/LOGO_blue.png"/>
+</a>
+<!-- Desktop Navigation -->
+<nav class="site-nav">
+<!-- Solutions -->
+<div class="nav-item">
+<a class="nav-link" href="javascript:void(0);">solution <span class="chev">▾</span></a>
+<div class="dropdown dropdown-mega">
+<div class="dd-col">
+<span class="dd-col-title">ASIC</span>
+<span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">ANIX — ultra-low-power AI processor</span>
+<a class="dropdown-item" href="solutions/asic/anix/tech.html" style="padding-left:1.4rem;font-size:.8rem">↳ Technical introduction</a>
+<a class="dropdown-item" href="solutions/asic/anix/apps-industrial.html" style="padding-left:1.4rem;font-size:.8rem">↳ Industrial low power applications</a>
+<a class="dropdown-item" href="solutions/asic/anix/apps-consumer.html" style="padding-left:1.4rem;font-size:.8rem">↳ Consumer low-power applications</a>
+<a class="dropdown-item" href="solutions/asic/custom-asic.html">Custom ASIC</a>
+</div>
+<div class="dd-col">
+<span class="dd-col-title">FPGA</span>
+<a class="dropdown-item" href="solutions/fpga/pqc.html">PQC cryptography</a>
+<a class="dropdown-item" href="solutions/fpga/event-camera.html">event camera</a>
+<a class="dropdown-item" href="solutions/fpga/rf.html">RF radio frequency</a>
+<a class="dropdown-item" href="solutions/fpga/vision-audio-preprocess.html">Visual/auditory pre-processing</a>
+</div>
+</div>
+</div>
+<!-- Company -->
+<div class="nav-item">
+<a class="nav-link" href="javascript:void(0);">Company Profile <span class="chev">▾</span></a>
+<div class="dropdown">
+<span class="dropdown-cat">about</span>
+<a class="dropdown-item" href="company/about.html">about Us</a>
+<a class="dropdown-item" href="company/team.html">core members</a>
+<a class="dropdown-item" href="company/brand-story.html">Brand story</a>
+</div>
+</div>
+<!-- News -->
+<div class="nav-item">
+<a class="nav-link" href="news/index.html">latest news <span class="chev">▾</span></a>
+<div class="dropdown">
+<a class="dropdown-item" href="news/index.html">recent news</a>
+<a class="dropdown-item" href="news/awards.html">Awarded</a>
+</div>
+</div>
+</nav>
+<!-- Language Switcher -->
+<div class="header-right">
+    <div class="nav-item lang-switcher">
+        <div class="lang-btn">🇺🇸 EN <span style="font-size:.6rem">▾</span></div>
+        <div class="dropdown" style="right:0;left:auto;min-width:160px">
+            <a href="../zh/index.html" class="dropdown-item">🇹🇼 繁體中文</a>
+            <a href="../en/index.html" class="dropdown-item active">🇺🇸 English</a>
+            <a href="../ja/index.html" class="dropdown-item">🇯🇵 日本語</a>
+        </div>
+    </div>
+</div>
+<!-- Mobile Toggle -->
+<button aria-label="選單" class="menu-toggle" id="menuToggle">
+<span></span><span></span><span></span>
+</button>
+</div>
+</header>
+<!-- Mobile Nav -->
+<nav class="mobile-nav" id="mobileNav">
+<a class="m-nav-link" href="javascript:void(0);">solution</a>
+<div class="m-sub">
+<span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">ANIX — ultra-low-power AI processor</span>
+<a href="solutions/asic/anix/tech.html">↳ Technical introduction</a>
+<a href="solutions/asic/anix/apps-industrial.html">↳ Industrial low power applications</a>
+<a href="solutions/asic/anix/apps-consumer.html">↳ Consumer low-power applications</a>
+<a href="solutions/asic/custom-asic.html">Custom ASIC</a>
+<a href="solutions/fpga/pqc.html">FPGA — PQC Cryptography</a>
+<a href="solutions/fpga/event-camera.html">FPGA — Event Camera</a>
+<a href="solutions/fpga/rf.html">FPGA — RF Radio Frequency</a>
+<a href="solutions/fpga/vision-audio-preprocess.html">FPGA — Vision/Audio Preprocessing</a>
+</div>
+<a class="m-nav-link" href="javascript:void(0);">Company Profile</a>
+<div class="m-sub">
+<a href="company/about.html">about Us</a>
+<a href="company/team.html">core members</a>
+<a href="company/brand-story.html">Brand story</a>
+</div>
+<a class="m-nav-link" href="news/index.html">latest news</a>
+</nav>
+<!-- ========== HERO ========== -->
+<section class="hero" id="hero">
+<div class="hero-bg" id="heroBg"></div>
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<h1>Energy-efficient edge AI<br/>Computing architecture<em>innovator</em></h1>
+<p class="hero-sub">
+                Engineering Innovation <span>·</span> Technological Breakthroughs <span>·</span> Industry Collaboration
+            </p>
+<div class="hero-cta">
+<a class="btn-primary-lg" href="solutions/index.html">Explore Solutions</a>
+<a class="btn-outline-lg" href="contact/index.html">Make an appointment for technical exchange</a>
+</div>
+</div>
+<div class="scroll-hint">
+<span>Scroll</span>
+<div class="scroll-arrow"></div>
+</div>
+</section>
+<!-- ========== CIRCLES SECTION ========== -->
+<section class="circles-section">
+<div class="circles-section-inner">
+<span class="circles-section-label">CORE CAPABILITIES</span>
+<h2 class="circles-section-title">Three Core Capabilities</h2>
+<p class="circles-section-desc">
+                From ultra-low power AI chips to fully customized ASICs, and rapid FPGA prototyping,<br/>
+                Alpenglow Tek provides complete hardware solutions from concept to mass production.
+            </p>
+<div class="circles-row">
+<!-- Circle 1 -->
+<div class="circle-item" data-circle="1">
+<div class="circle-img-wrap">
+<img alt="Ultra-low power AI processor" src="../assets/img/1.png"/>
+<div class="circle-label-overlay">
+<p class="circle-label-text">Ultra low power consumption<br/>AI processor</p>
+</div>
+</div>
+<div class="circle-caption">
+<p class="circle-caption-title">Ultra-low power AI processor</p>
+<p class="circle-caption-desc">Built for edge AI computing<br/>Extremely low power consumption and low latency hardware accelerator</p>
+</div>
+</div>
+<!-- Circle 2 -->
+<div class="circle-item" data-circle="2">
+<div class="circle-img-wrap">
+<img alt="ASIC / IP Design Services" src="../assets/img/2.png"/>
+<div class="circle-label-overlay">
+<p class="circle-label-text">ASIC / IP<br/>design services</p>
+</div>
+</div>
+<div class="circle-caption">
+<p class="circle-caption-title">ASIC / IP Design Services</p>
+<p class="circle-caption-desc">Professional ASIC and IP Design Services<br/>Create high-performance, low-power customized chips and modules</p>
+</div>
+</div>
+<!-- Circle 3 -->
+<div class="circle-item" data-circle="3">
+<div class="circle-img-wrap">
+<img alt="FPGA Prototyping" src="../assets/img/3.png"/>
+<div class="circle-label-overlay">
+<p class="circle-label-text">FPGA<br/>Prototype verification</p>
+</div>
+</div>
+<div class="circle-caption">
+<p class="circle-caption-title">FPGA Prototyping</p>
+<p class="circle-caption-desc">Quickly verify chip architecture and performance with FPGA<br/>Shorten Design, Development, and Mass Production Schedules</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========== PARTNERS SECTION ========== -->
+<section class="partners-section">
+<div class="partners-section-inner">
+<h2 class="partners-title">Partners</h2>
+<div class="partners-carousel">
+<div class="partners-track">
+<!-- Original 16 Logos -->
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l1.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l2.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l3.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l4.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l5.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l6.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l7.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l8.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l9.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l10.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l11.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l12.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l13.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l14.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l15.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l16.png"/></div>
+<!-- Duplicated for Infinite Loop -->
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l1.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l2.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l3.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l4.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l5.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l6.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l7.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l8.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l9.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l10.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l11.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l12.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l13.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l14.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l15.png"/></div>
+<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l16.png"/></div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+<div class="footer-top">
+<!-- Brand -->
+<div>
+<div class="footer-brand-logo">
+<img alt="Alpenglow Tek Alpenglow Tek" src="../assets/img/LOGO_white.png"/>
+</div>
+<p class="footer-brand-text">
+                    Reaching the Infinite<br/>
+                    Alpenglow Lights the Impossible.
+                </p>
+</div>
+<!-- Solutions -->
+<div>
+<p class="footer-col-title">solution</p>
+<div class="footer-links">
+<a href="solutions/asic/anix/tech.html">ANIX ultra-low power AI processor</a>
+<a href="solutions/asic/custom-asic.html">Custom ASIC</a>
+<a href="solutions/fpga/pqc.html">FPGA — PQC</a>
+<a href="solutions/fpga/event-camera.html">FPGA — Event Camera</a>
+<a href="solutions/fpga/rf.html">FPGA — RF Radio Frequency</a>
+<a href="solutions/fpga/vision-audio-preprocess.html">FPGA — Vision/Audio Preprocessing</a>
+</div>
+</div>
+<!-- Company -->
+<div>
+<p class="footer-col-title">company</p>
+<div class="footer-links">
+<a href="company/about.html">about Us</a>
+<a href="company/team.html">core members</a>
+<a href="company/brand-story.html">Brand story</a>
+<a href="news/index.html">latest news</a>
+<a href="news/awards.html">Awarded</a>
+<a href="resources/index.html">Resource download</a>
+<a href="careers/index.html">Join Zhenzhi</a>
+</div>
+</div>
+<!-- Contact -->
+<div>
+<p class="footer-col-title">Contact information</p>
+<div class="footer-contact-item">
+<span class="footer-contact-icon">📍</span>
+<span>(241454) Sanchong District, New Taipei City<br/>3rd Floor, No. 108, Section 1, Chongzhong Road</span>
+</div>
+<div class="footer-contact-item">
+<span class="footer-contact-icon">✉️</span>
+<span>phyllis_huang@alpenglowtek.com</span>
+</div>
+<div class="footer-contact-item">
+<span class="footer-contact-icon">💬</span>
+<span>LINE@ @501ytnim</span>
+</div>
+</div>
+</div>
+<div style="max-width:1440px;margin:0 auto;padding:0 3.5rem">
+<div style="height:1px;background:rgba(255,255,255,.08)"></div>
+</div>
+<div class="footer-bottom">
+<p class="footer-copy">© 2026 Alpenglow Tek Alpenglow Tek. All rights reserved.</p>
+<div class="footer-bottom-links">
+<a href="#">privacy policy</a>
+<a href="#">Terms of Service</a>
+<a href="../language.html">Language</a>
+</div>
+</div>
+</footer>
+<!-- Back to top -->
+<button aria-label="回到頂部" class="back-to-top" id="backToTop">↑</button>
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+        // Header scroll shadow
+        const header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 10);
+            document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+
+        // Hero BG Ken Burns
+        window.addEventListener('load', () => {
+            document.getElementById('hero').classList.add('loaded');
+        });
+
+        // Mobile Menu
+        const toggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        toggle.addEventListener('click', () => {
+            const open = mobileNav.classList.toggle('open');
+            toggle.classList.toggle('open', open);
+        });
+
+        // Back to top
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer — circles fade-up
+        const circles = document.querySelectorAll('.circle-item');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.15 });
+        circles.forEach(c => io.observe(c));
+    </script>
+</body>
+</html>

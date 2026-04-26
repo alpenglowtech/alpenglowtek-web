@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ブランドストーリー Brand Story | アルペングロウ・テック</title>
+<meta content="アルペングロウ・テック ブランドストーリー — 山の頂上の光、を写真撮影の大切な瞬間。光を追って、限界が限界。" name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        /* ========================================
+           BRAND STORY — PAGE-SPECIFIC STYLES
+        ======================================== */
+
+        /* ── Section 1: Hero ── */
+        .bs-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .bs-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/bs22.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            transform: scale(1.03);
+            transition: transform 10s ease-out;
+        }
+        .bs-hero.loaded .bs-hero-bg {
+            transform: scale(1);
+        }
+        .bs-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1440px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Centered horizontally */
+            text-align: center; /* Centered text */
+        }
+        .bs-hero-text-wrap {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 2.5rem 4rem;
+            border-radius: 24px; /* Fully rounded corners */
+            border: none; /* No border */
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: fit-content;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: bsReveal 1s 0.3s ease forwards;
+        }
+        .bs-hero-title {
+            font-size: clamp(2.2rem, 5vw, 3.5rem); /* Reduced to fit on one line */
+            font-weight: 800;
+            color: #061A3A;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        .bs-hero-sub {
+            font-size: clamp(1rem, 2vw, 1.45rem);
+            color: #061A3A; /* Darker color */
+            letter-spacing: 0.12em;
+            opacity: 0;
+            transform: translateY(24px);
+            animation: bsReveal 1s 0.55s ease forwards;
+        }
+
+        /* Scroll indicator */
+        .bs-scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 3;
+            opacity: 0;
+            animation: bsReveal 1s 1.2s ease forwards;
+        }
+        .bs-scroll-hint span {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
+        }
+        .bs-scroll-arrow {
+            width: 22px; height: 22px;
+            border-right: 2px solid rgba(255,255,255,0.45);
+            border-bottom: 2px solid rgba(255,255,255,0.45);
+            transform: rotate(45deg);
+            animation: bsBounce 1.8s infinite;
+        }
+
+        @keyframes bsReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bsBounce {
+            0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+            50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
+
+        /* ── Section 2: Brand Name Origin ── */
+        .bs-origin {
+            padding: 7rem 0;
+            background: #ffffff;
+        }
+        .bs-origin-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .bs-origin-img-wrap {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 16px 60px rgba(6, 26, 58, 0.12);
+        }
+        .bs-origin-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .bs-origin-img-wrap:hover img {
+            transform: scale(1.04);
+        }
+        .bs-origin-img-accent {
+            position: absolute;
+            bottom: -6px;
+            left: -6px;
+            width: 100px;
+            height: 100px;
+            border-radius: 0 20px 0 0;
+            background: linear-gradient(135deg, var(--cyan), transparent);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .bs-origin-text .bs-sec-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            background: rgba(47,232,250, 0.12);
+            border: 1px solid rgba(47,232,250, 0.3);
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1rem;
+        }
+        .bs-origin-text h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            color: #061A3A;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+        .bs-origin-text p {
+            font-size: 1.05rem;
+            color: #4a5a7a;
+            line-height: 2;
+            margin-bottom: 1.25rem;
+        }
+        .bs-origin-text .bs-highlight {
+            display: inline;
+            color: var(--navy, #061A3A);
+            font-weight: 600;
+        }
+        .bs-origin-text .bs-keyword-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .bs-keyword-tag {
+            padding: 0.4rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, rgba(6,26,58,0.06), rgba(47,232,250,0.08));
+            color: #061A3A;
+            border: 1px solid rgba(47,232,250, 0.2);
+            letter-spacing: 0.04em;
+        }
+
+        /* ── Section 3: 「臻至（Alpenglow）」の意味 ── */
+        .bs-meaning {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 6rem 2rem;
+        }
+        .bs-meaning-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/bs2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .bs-meaning-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0.18);
+        }
+        .bs-meaning-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+        }
+        .bs-meaning-inner .bs-sec-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.35);
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1rem;
+        }
+        .bs-meaning-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+        }
+        .bs-meaning-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+        .bs-glass-card {
+            background: rgba(255,255,255, 0.14);
+            border: 1px solid rgba(255,255,255, 0.28);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 20px;
+            padding: 2.5rem 2.5rem;
+            text-align: left;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+        }
+        .bs-glass-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255,255,255, 0.22);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .bs-glass-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+        }
+        .bs-glass-card .bs-card-divider {
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), rgba(255,255,255,0.4));
+            border-radius: 2px;
+            margin-bottom: 1.25rem;
+        }
+        .bs-glass-card p {
+            font-size: 1rem;
+            color: rgba(255,255,255, 0.88);
+            line-height: 1.9;
+        }
+
+        /* ── Section 4: 私たちが信じること ── */
+        .bs-believe {
+            padding: 8rem 0;
+            background: #f4f7f9; /* Light grey background */
+            position: relative;
+            overflow: hidden;
+        }
+        .bs-believe::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(47,232,250,0.15), transparent 70%);
+            pointer-events: none;
+        }
+        .bs-believe::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(47,232,250,0.12), transparent 70%);
+            pointer-events: none;
+        }
+        .bs-believe-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .bs-believe-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .bs-believe-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .bs-believe-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .bs-believe-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .bs-believe-inner .bs-sec-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            background: rgba(47,232,250,0.12);
+            border: 1px solid rgba(47,232,250,0.3);
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.25rem;
+        }
+        .bs-believe-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            color: #061A3A; /* Dark color for light background */
+            margin-bottom: 3.5rem;
+        }
+        .bs-believe-statements {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .bs-believe-item {
+            position: relative;
+            padding: 1.75rem 2.25rem;
+            border-left: 3px solid var(--cyan);
+            background: rgba(47,232,250, 0.08);
+            border-radius: 0 16px 16px 0;
+            text-align: left;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .bs-believe-item:hover {
+            background: rgba(47,232,250, 0.12);
+            transform: translateX(6px);
+        }
+        .bs-believe-item p {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #061A3A; /* Dark text */
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+        }
+        .bs-believe-item .bs-em {
+            color: #00b8d4;
+            font-weight: 700;
+        }
+
+        /* ── Section 5: 私たちが実現していること ── */
+        .bs-mission {
+            padding: 7rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .bs-mission-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/bs7.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+            z-index: 0;
+        }
+        .bs-mission-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        .bs-mission-inner .bs-sec-label {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            background: rgba(47,232,250, 0.12);
+            border: 1px solid rgba(47,232,250, 0.3);
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1rem;
+        }
+        .bs-mission-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 800;
+            color: #061A3A;
+            margin-bottom: 3rem;
+        }
+        .bs-mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .bs-mission-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.14); /* Refined glass texture from Section 3 */
+            backdrop-filter: blur(18px); /* Higher blur for better glass effect */
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+        .bs-mission-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+        }
+        .bs-mission-card .bs-mission-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--cyan), #00b8d4);
+            color: #061A3A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+        }
+        .bs-mission-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #061A3A;
+            margin-bottom: 0.75rem;
+        }
+        .bs-mission-card p {
+            font-size: 0.95rem;
+            color: #ffffff; /* Uniformly changed to white per request */
+            line-height: 1.85;
+            font-weight: 500;
+            opacity: 0.9; /* Slight transparency for elegance */
+        }
+
+        /* ── Section 6: 收尾 ── */
+        .bs-closing {
+            padding: 0;
+            height: 100vh; /* Full screen height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .bs-closing-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/bs12.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax-like effect */
+            z-index: 0;
+        }
+        .bs-closing-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45); /* Dark mask */
+            z-index: 1;
+        }
+        .bs-closing-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+        .bs-closing-text {
+            font-size: clamp(1.1rem, 2.5vw, 1.8rem); /* Elegant, centered typography */
+            font-weight: 500;
+            color: #ffffff;
+            line-height: 1.8;
+            letter-spacing: 0.15em;
+            margin: 0;
+        }
+        .bs-closing-text strong {
+            font-weight: 700;
+            color: var(--cyan);
+        }
+        .bs-closing-line {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), rgba(255,255,255,0.4)); /* Matches card divider */
+            margin: 2.5rem auto 0;
+            border-radius: 2px;
+            box-shadow: 0 0 10px rgba(47,232,250,0.2);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .bs-hero-content { padding: 0 2.5rem; }
+            .bs-origin-inner { gap: 3rem; }
+        }
+        @media (max-width: 768px) {
+            .bs-hero-content { padding: 0 1.5rem; }
+            .bs-origin-inner {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .bs-meaning-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .bs-mission-grid {
+                grid-template-columns: 1fr;
+            }
+            .bs-believe-item {
+                padding: 1.25rem 1.5rem;
+            }
+            .bs-glass-card {
+                padding: 2rem 1.75rem;
+            }
+            .bs-meaning {
+                padding: 5rem 1.5rem;
+                background-attachment: scroll;
+            }
+            .bs-meaning-bg {
+                background-attachment: scroll;
+            }
+        }
+        @media (max-width: 480px) {
+            .bs-hero-title { font-size: 1.8rem; }
+            .bs-hero-sub { font-size: 0.9rem; letter-spacing: 0.06em; }
+        }
+    </style>
+</head>
+<body>
+<!-- Header (injected by main.js) -->
+<div id="site-header"></div>
+<main>
+  
+<section class="bs-hero" id="bsHero">
+<div class="bs-hero-bg"></div>
+<div class="bs-hero-content">
+<div class="bs-hero-text-wrap fade-up">
+<h1 class="bs-hero-title">山の頂上の光 大切な瞬間 輝く光</h1>
+<p class="bs-hero-sub">不可能を照らす。不可能を照らす。</p>
+</div>
+</div>
+<div class="bs-scroll-hint">
+<span>Scroll</span>
+<div class="bs-scroll-arrow"></div>
+</div>
+</section>
+  
+<section class="bs-origin" id="bsOrigin">
+<div class="bs-origin-inner">
+<!-- Left: Image -->
+<div class="bs-origin-img-wrap fade-up">
+<img alt="アルペングロー — 山の頂上の光" loading="lazy" src="../../assets/img/bs21.jpg"/>
+<div class="bs-origin-img-accent"></div>
+</div>
+<!-- Right: Text -->
+<div class="bs-origin-text fade-up fade-up-delay-1">
+<span class="bs-sec-label">BRAND ORIGIN</span>
+<h2>ブランド名の由来</h2>
+<p>
+<span class="bs-highlight">Alpenglow（アルペングロー）</span>とは、日の出前や日没後に、高い山の頂が太陽の光を受けて赤く輝く現象を指します。それは短くも、非常に美しく、貴重な瞬間です。
+</p>
+<p>
+この名前は、単に「山（Alpen）」と「輝き（Glow）」を組み合わせたものではありません。それは、テクノロジーを通じて「正しい瞬間」を捉え、真の影響力を生み出すという私たちの情熱を象徴しています。
+</p>
+</div>
+</div>
+</section>
+  
+<section class="bs-meaning" id="bsMeaning">
+<div class="bs-meaning-bg"></div>
+<div class="bs-meaning-overlay"></div>
+<div class="bs-meaning-inner">
+<span class="bs-sec-label fade-up">BRAND PHILOSOPHY</span>
+<h2 class="bs-meaning-title fade-up fade-up-delay-1">「アルペングロー」の意味</h2>
+<div class="bs-meaning-cards">
+<div class="bs-glass-card fade-up fade-up-delay-2">
+<h3>至誠（しせい）</h3>
+<div class="bs-card-divider"></div>
+<p>
+    誠実かつ熱心な技術探究を続け、<br/>
+    パートナーやお客様、そして直面するあらゆる課題に真摯に向き合います。
+</p>
+</div>
+<div class="bs-glass-card fade-up fade-up-delay-3">
+<h3>至高（しこう）</h3>
+<div class="bs-card-divider"></div>
+<p>
+    現状の限界に囚われず、継続的な技術革新を通じて、<br/>
+    効率と精度の最高峰を追求します。
+</p>
+</div>
+</div>
+</div>
+</section>
+  
+<section class="bs-believe" id="bsBelieve">
+<div class="bs-believe-inner">
+<div class="bs-believe-header">
+<span class="bs-sec-label fade-up">WHAT WE BELIEVE</span>
+<h2 class="bs-believe-title fade-up fade-up-delay-1">私信じこと</h2>
+</div>
+<div class="bs-believe-grid">
+<!-- Left: Text -->
+<div class="bs-believe-statements">
+<div class="bs-believe-item fade-up fade-up-delay-1">
+<p>AIは<span class="bs-em">に限定されるべきではない</span>高消費電力電源</p>
+</div>
+<div class="bs-believe-item fade-up fade-up-delay-2">
+<p>本当の主題は<span class="bs-em">リソース制約された環境</span>最高レベルですよ。</p>
+</div>
+<div class="bs-believe-item fade-up fade-up-delay-3">
+<p>電気の消費量<span class="bs-em">インテリジェントな実装の</span>障壁になるべきではない。</p>
+</div>
+</div>
+<!-- Right: Image -->
+<div class="bs-believe-img fade-up fade-up-delay-1">
+<img alt="Our Shared Vision" loading="lazy" src="../../assets/img/30.png"/>
+</div>
+</div>
+</div>
+</section>
+  
+<section class="bs-mission" id="bsMission">
+<div class="bs-mission-bg"></div>
+<div class="bs-mission-inner">
+<span class="bs-sec-label fade-up" style="color: #ffffff; background: #061A3A; border-color: #061A3A;">WHAT WE BUILD</span>
+<h2 class="bs-mission-title fade-up fade-up-delay-1">一般公開</h2>
+<div class="bs-mission-grid">
+<div class="bs-mission-card fade-up fade-up-delay-1">
+<h4>パフォーマンスと消費電力</h4>
+<p>エッジ AI の世界では、消費電力、パフォーマンス、反応の答えが逆になることがよくあります。私的これら３つの最適解決定を见つけてGETり集团しています。</p>
+</div>
+<div class="bs-mission-card fade-up fade-up-delay-2">
+<h4>超低消費電力AIコンピューティング</h4>
+<p>Alpenglow Tek の超低消費電力 AI 技術の構造、サイズの小ささ、制限があるが、よりのカウンター対応が必然的にインテリジェンスをもたらします。</p>
+</div>
+<div class="bs-mission-card fade-up fade-up-delay-3">
+<h4>エッジランディングシーン</h4>
+<p>産業用環境保護製品 クラウドからオンサイトガイドまで、リソースが限られた環境でも正しく機能させます。</p>
+</div>
+<div class="bs-mission-card fade-up fade-up-delay-3">
+<h4>アイデアを製品へ</h4>
+<p>私たちのブランドコンセプトと技術の選択はすべて、「重く信仰の最高の瞬間を実現し、実践することが必要です。</p>
+</div>
+</div>
+</div>
+</section>
+  
+<section class="bs-closing" id="bsClosing">
+<div class="bs-closing-bg"></div>
+<div class="bs-closing-overlay"></div>
+<div class="bs-closing-content fade-up">
+<p class="bs-closing-text">
+                    山の頂上の光のように：<br/>
+                    小さなことと絶対的なことが重要です。
+                </p>
+<div class="bs-closing-line"></div>
+</div>
+</section>
+</main>
+<!-- Footer (injected by main.js) -->
+<div id="site-footer"></div>
+<script src="../../assets/js/main.js"></script>
+<script>
+        // Ken Burns effect on hero background
+        window.addEventListener('load', () => {
+            document.getElementById('bsHero')?.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>

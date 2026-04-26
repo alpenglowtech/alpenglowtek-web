@@ -1,0 +1,7 @@
+[EN] solutions\fpga\pqc.html <h4>: FinTech &amp; Blockchain
+[JA] solutions\index.html <h2>: ウェブサイトのコンテンツブロック
+[JA] solutions\asic\anix\index.html <h2>: ウェブサイトのコンテンツブロック
+[JA] solutions\fpga\pqc.html <h4>: フィンテック・ブロックチェーン
+[JA] company\index.html <h2>: ウェブサイトのコンテンツブロック
+[JA] news\events.html <h2>: ウェブサイトのコンテンツブロック
+[JA] news\awards.html <h2>: ウェブサイトのコンテンツブロック

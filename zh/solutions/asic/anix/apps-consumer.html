@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消費性低功耗邊緣智慧應用 | 臻至科技 Alpenglow Tek</title>
+    <meta name="description" content="ANIX 超低功耗 AI 處理器，在有限能源下，實現即時且自然的智慧體驗。為新一代智慧終端、穿戴式裝置、智慧攝影機與家電打造邊緣 AI。">
+    <link rel="stylesheet" href="../../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../../assets/css/header.css">
+    <link rel="stylesheet" href="../../../../assets/css/footer.css">
+    <style>
+        .hero-consumer {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: #061a3a; /* fallback */
+        }
+        .hero-consumer-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+        .hero-consumer-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                105deg,
+                rgba(4, 18, 42, 0.72) 0%,
+                rgba(4, 18, 42, 0.45) 55%,
+                rgba(4, 18, 42, 0.15) 100%
+            );
+        }
+        .hero-consumer .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            text-align: left;
+        }
+        .anix-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #2fe8fa;
+            background: rgba(47, 232, 250, 0.15);
+            border: 1px solid rgba(47, 232, 250, 0.35);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+        .anix-eyebrow::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #2fe8fa;
+        }
+        .hero-consumer h1 {
+            font-size: clamp(3.5rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+        }
+        .hero-subtitle {
+            color: var(--cyan);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+        .hero-desc {
+            max-width: 700px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Fade Up */
+        .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-up-delay-1 { transition-delay: 0.1s; }
+
+        /* Scroll hint */
+        .hero-scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .scroll-arrow {
+            width: 20px; height: 20px;
+            border-right: 2px solid rgba(255,255,255,0.4);
+            border-bottom: 2px solid rgba(255,255,255,0.4);
+            transform: rotate(45deg);
+            animation: scbounce 2s infinite;
+        }
+        @keyframes scbounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);}
+            40% {transform: translateY(10px) rotate(45deg);}
+            60% {transform: translateY(5px) rotate(45deg);}
+        }
+        
+        /* Two-column layout for features */
+        .feature-row {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+        @media (min-width: 900px) {
+            .feature-row { flex-direction: row; }
+            .feature-row:nth-child(even) { flex-direction: row-reverse; }
+            .feature-text { flex: 1; padding: 0 2rem; }
+            .feature-image { flex: 1; }
+        }
+        .feature-image img {
+            border-radius: 16px;
+            box-shadow: 0 16px 40px rgba(6, 26, 58, 0.12);
+            width: 100%;
+            object-fit: cover;
+        }
+        .feature-text h2 {
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+        }
+        .feature-text p {
+            color: var(--gray-700);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Conclusion Box */
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 16px 48px rgba(6, 26, 58, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+        .conclusion-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(47, 232, 250, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .conclusion-box h3 {
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 2;
+        }
+        .conclusion-box p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ====================================================
+           MORE APPLICATIONS SECTION
+        ==================================================== */
+        .anix-more-apps {
+            background: #ffffff;
+            padding: 8rem 0;
+            border-top: 1px solid rgba(0, 74, 173, 0.05); /* Subtle divider */
+        }
+        .anix-more-apps-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            text-align: center;
+        }
+        .anix-more-header {
+            margin-bottom: 4.5rem;
+        }
+        .anix-more-header h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: #004aad;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+        .anix-more-header p {
+            font-size: 1.15rem;
+            color: #6b7ba0;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .anix-app-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .anix-card {
+            position: relative;
+            display: block;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            text-decoration: none;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+            background: #000;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+        }
+        .anix-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 50px rgba(0, 74, 173, 0.18);
+        }
+
+        .anix-card-bg {
+            position: absolute;
+            inset: 0;
+            background-position: center;
+            background-size: cover;
+            transition: transform 0.5s ease;
+        }
+        .anix-card:hover .anix-card-bg {
+            transform: scale(1.08); /* minimal scale on hover */
+        }
+
+        .anix-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(4, 18, 42, 0.45);
+            transition: background 0.35s ease;
+            z-index: 1;
+        }
+        .anix-card:hover .anix-card-overlay {
+            background: rgba(4, 18, 42, 0.62); /* minimal darker on hover */
+        }
+
+        .anix-card-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .anix-card-content h3 {
+            color: #fff;
+            font-size: 2.2rem; /* increased font size as requested */
+            font-weight: 800;
+            margin: 0;
+            text-align: center;
+            letter-spacing: 0.1em;
+            text-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+
+        /* Hero Responsive */
+        @media (max-width: 1024px) {
+            .hero-consumer .container { padding: 0 2rem; }
+            .hero-consumer h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
+        }
+        @media (max-width: 767px) {
+            .hero-consumer { height: 75vh; min-height: 500px; }
+            .hero-consumer .container { padding: 0 1.5rem; }
+            .hero-scroll-hint { display: none; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .anix-more-apps-inner { padding: 0 2rem; }
+            .anix-app-cards { gap: 1.5rem; }
+            .anix-card { height: 320px; }
+            .anix-card-content h3 { font-size: 1.8rem; }
+        }
+        @media (max-width: 767px) {
+            .anix-more-apps { padding: 6rem 0; }
+            .anix-app-cards { grid-template-columns: 1fr; gap: 1.5rem; }
+            .anix-card:hover { transform: none; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08); }
+            .anix-card:hover .anix-card-bg { transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be dynamically injected here by main.js -->
+    <div id="site-header"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-consumer">
+            <img src="../../../../assets/img/c4.png" alt="消費性低功耗邊緣智慧應用" class="hero-consumer-img">
+            <div class="hero-consumer-overlay"></div>
+            <div class="container fade-up fade-up-delay-1">
+                <span class="anix-eyebrow">ASIC / ANIX TECHNOLOGY</span>
+                <h1>消費性低功耗<br>邊緣智慧應用</h1>
+                <div class="hero-subtitle">在有限能源下，實現即時且自然的智慧體驗</div>
+                <p class="hero-desc">從穿戴式裝置到智慧家電，ANIX 為新一代智慧終端提供高效率邊緣 AI 推論能力，在不犧牲續航的前提下，實現真正即時的智慧體驗。</p>
+            </div>
+            <div class="hero-scroll-hint">
+                <span>Scroll</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- Dynamic Content Section -->
+        <section class="section">
+            <div class="container">
+                
+                <!-- 區塊一：穿戴式裝置與沉浸式設備 -->
+                <div class="feature-row fade-up">
+                    <div class="feature-image">
+                        <img src="../../../../assets/img/c1.png" alt="穿戴式裝置與 AR / VR 智慧終端">
+                    </div>
+                    <div class="feature-text">
+                        <div class="section-label mb-4">WEARABLES & AR / VR</div>
+                        <h2>穿戴式裝置與 AR / VR 智慧終端</h2>
+                        <p>智慧手錶與眼鏡對功耗極為敏感，且多項 AI 功能（如手勢辨識、語音互動）需長時常駐運作。</p>
+                        <p>ANIX 透過極低功耗邊緣推論，讓穿戴設備在維持輕量化與長續航的同時，擁有卓越的即時感知能力。</p>
+                    </div>
+                </div>
+
+                <!-- 區塊二：智慧攝影機與視覺感知設備 -->
+                <div class="feature-row fade-up fade-up-delay-1">
+                    <div class="feature-image">
+                        <img src="../../../../assets/img/c2.jpg" alt="智慧攝影機與城市級視覺感知">
+                    </div>
+                    <div class="feature-text">
+                        <div class="section-label mb-4">SMART CAMERAS & VISION</div>
+                        <h2>智慧攝影機與視覺感知設備</h2>
+                        <p>智慧監控需 24 小時持續運算，高功耗平台將大幅增加能源成本與部署難度。</p>
+                        <p>ANIX 能在攝影機端直接執行邊緣推論，實現即時物件與事件分析，在降低功耗的同時大幅提升反應速度。</p>
+                    </div>
+                </div>
+
+                <!-- 區塊三：智慧音箱與低功耗智慧家電 -->
+                <div class="feature-row fade-up fade-up-delay-2">
+                    <div class="feature-image">
+                        <img src="../../../../assets/img/c3.jpg" alt="智慧音箱與常時待命設備">
+                    </div>
+                    <div class="feature-text">
+                        <div class="section-label mb-4">SMART HOME & AUDIO</div>
+                        <h2>智慧音箱與常時待命設備</h2>
+                        <p>智慧音箱與家電正走向「Always-on」設計，需隨時回應語音喚醒與環境變化。</p>
+                        <p>ANIX 的高效能架構能降低待機能耗，確保裝置在互動狀態間無縫切換，大幅優化即時互動體驗。</p>
+                    </div>
+                </div>
+
+                <!-- 結尾區塊 -->
+                <div class="conclusion-box fade-up fade-up-delay-3 mt-5">
+                    <h3>下一代智慧終端的低功耗 AI 核心</h3>
+                    <p>消費電子的競爭核心在於續航與體驗的平衡。ANIX 透過從架構層級優化運算效率，在有限能源下實現穩定運行，為智慧終端提供高能效的轉型方案。</p>
+                </div>
+
+            </div>
+        </section>
+        <!-- ══════════════════════════════════════
+             MORE APPLICATIONS — CTA Section
+        ══════════════════════════════════════ -->
+        <section class="anix-more-apps fade-up">
+            <div class="anix-more-apps-inner">
+                <div class="anix-more-header">
+                    <h2>延伸探索 ANIX 的更多可能</h2>
+                    <p>從消費場景拓展至工業領域，或深入了解核心架構設計。</p>
+                </div>
+
+                <div class="anix-app-cards">
+                    <!-- Industrial Card -->
+                    <a href="apps-industrial.html" class="anix-card">
+                        <div class="anix-card-bg" style="background-image: url('../../../../assets/img/i4.jpg');"></div>
+                        <div class="anix-card-overlay"></div>
+                        <div class="anix-card-content">
+                            <h3>工業低功耗應用</h3>
+                        </div>
+                    </a>
+
+                    <!-- Tech Card -->
+                    <a href="tech.html" class="anix-card">
+                        <div class="anix-card-bg" style="background-image: url('../../../../assets/img/8.png');"></div>
+                        <div class="anix-card-overlay"></div>
+                        <div class="anix-card-content">
+                            <h3>ANIX 技術核心</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer will be dynamically injected here by main.js -->
+    <div id="site-footer"></div>
+
+    <script src="../../../../assets/js/main.js"></script>
+</body>
+</html>

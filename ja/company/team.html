@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>コアチーム | Alpenglow Tek</title>
+<meta content="Alpenglow Tek's のチームはコア利得をご覧ください。リソース管理された環境と安定したアクションアクションピューティングアーキテクチャの構築に取り組んでいます。" name="description"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        :root {
+            --navy: #004aad;
+            --dark-navy: #061A3A;
+            --cyan: #2fe8fa;
+            --light-bg: #f8fafc;
+        }
+
+        /* ── Section 1: Hero ── */
+        .team-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            text-align: left;
+        }
+        .team-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/jo1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            transform: scale(1.05);
+            transition: transform 10s ease-out;
+            z-index: 0;
+        }
+        .team-hero.loaded .team-hero-bg {
+            transform: scale(1);
+        }
+        .team-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.4);
+            z-index: 1;
+        }
+        .team-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .team-hero-title {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 700; /* 大氣、あり力量，但不要過度厚重 */
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            letter-spacing: 0.08em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: teamReveal 1s 0.3s ease forwards;
+        }
+        .team-hero-sub {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            white-space: normal; word-break: keep-all;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: teamReveal 1s 0.5s ease forwards;
+        }
+
+        /* Scroll hint */
+        .team-scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 3;
+            opacity: 0;
+            animation: teamReveal 1s 1.2s ease forwards;
+        }
+        .team-scroll-hint span {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+        .team-scroll-arrow {
+            width: 22px; height: 22px;
+            border-right: 2px solid rgba(255,255,255,0.6);
+            border-bottom: 2px solid rgba(255,255,255,0.6);
+            transform: rotate(45deg);
+            animation: teamBounce 1.8s infinite;
+        }
+
+        @keyframes teamReveal { to { opacity: 1; transform: translateY(0); } }
+        @keyframes teamBounce {
+            0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
+            50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
+
+        /* ── Section 2: Team Overview ── */
+        .team-overview {
+            padding: 8rem 0;
+            background-image: url('../../assets/img/jo7.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .team-overview .team-overview-title,
+        .team-overview-text p {
+            color: #000000;
+            text-shadow: none;
+        }
+        .team-overview::before,
+        .team-overview::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 160px;
+            height: 240px;
+            background-image: radial-gradient(var(--cyan) 2px, transparent 2px);
+            background-size: 24px 24px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .team-overview::before {
+            left: 5%;
+        }
+        .team-overview::after {
+            right: 5%;
+        }
+        .team-overview-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .team-overview-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--dark-navy);
+            margin-bottom: 2.5rem;
+        }
+        .team-overview-text p {
+            font-size: 1.15rem;
+            color: #4a5a7a;
+            line-height: 2;
+            margin-bottom: 1.8rem;
+            text-align: justify;
+            text-align-last: center;
+        }
+        .team-overview-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── Section 3: Core Advantages ── */
+        .team-core {
+            position: relative;
+            padding: 8rem 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .team-core-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/bs18.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+        .team-core-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.6);
+            z-index: 1;
+        }
+        .team-core-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        .team-core-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .team-core-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .team-core-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .team-glass-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .team-glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-color: rgba(47,232,250, 0.4);
+        }
+        .team-glass-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            min-height: 2.8em; /* Force equal title height to keep alignment */
+        }
+        .team-glass-card p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+
+        /* ── Section 4: Core Partners ── */
+        .team-partners {
+            position: relative;
+            padding: 8rem 0;
+            background: #000; /* Fallback */
+            overflow: hidden;
+        }
+        .team-partners-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('../../assets/img/jo2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: 0;
+        }
+        .team-partners-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(6, 26, 58, 0.7); /* Deep overlay for contrast */
+            z-index: 1;
+            display: none; /* Hide the dark mask per request */
+        }
+        .team-partners-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .team-partners-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        .team-partners-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: #ffffff;
+        }
+        
+        /* 2 + 2 + 1 Layout Grid System */
+        .partner-row {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .partner-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .partner-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 360px;
+            background: rgba(255, 255, 255, 0.08); /* Semi-transparent background */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .partner-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(47,232,250, 0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(47,232,250,0.2); /* Micro-light on hover */
+        }
+        
+        .partner-img-wrapper {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            position: relative;
+            background: rgba(255,255,255,0.05); /* Placeholder if img takes time */
+        }
+        
+        .partner-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.8s ease;
+        }
+        
+        .partner-card:hover .partner-img-wrapper img {
+            transform: scale(1.05);
+        }
+        
+        .partner-info {
+            padding: 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .partner-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .partner-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--cyan);
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.05em;
+        }
+        
+        .partner-desc {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.7;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .team-core-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .team-glass-card h3 {
+                min-height: auto;
+            }
+        }
+        @media (max-width: 768px) {
+            .team-hero-content {
+                padding: 0 2rem;
+            }
+            .partner-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 2.5rem;
+            }
+            .partner-card {
+                max-width: 100%;
+            }
+            .team-hero-sub {
+                white-space: normal;
+                max-width: 100%;
+            }
+            .team-overview-text p {
+                text-align: left;
+                text-align-last: left;
+            }
+        }
+        @media (max-width: 600px) {
+            .team-core-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-hero-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header (injected by main.js) -->
+<div id="site-header"></div>
+<main>
+<!--  -->
+<section class="team-hero" id="teamHero">
+<div class="team-hero-bg"></div>
+<div class="team-hero-overlay"></div>
+<div class="team-hero-content">
+<h1 class="team-hero-title">共通の目標に向かって、<br>卓越性を追求する。</h1>
+<p class="team-hero-sub">トップクラスのパートナーたちが、オープンなコラボレーションと絶え間ないイノベーションを通じて、次世代のエッジAI技術を構築しています。</p>
+</div>
+<div class="team-scroll-hint">
+<span>Scroll</span>
+<div class="team-scroll-arrow"></div>
+</div>
+</section>
+<!--  -->
+<section class="team-overview">
+<div class="team-overview-inner">
+<h2 class="team-overview-title fade-up">コアメンバー</h2>
+<div class="team-overview-text fade-up fade-up-delay-1">
+<p>当チームのメンバーは、トップクラスの研究機関出身であり、IC設計、システムアーキテクチャ、AIアプリケーションの分野で豊富な実務経験を持っています。アルゴリズムの最適化からハードウェアアーキテクチャ設計、システム統合、そしてチップの実装に至るまで、包括的な技術力を有しています。</p>
+<p>FPGAプロトタイピングからASICの実装まで、当社の最先端技術を活用し、性能、消費電力、安定性のすべてにおいて最適なソリューションを提供します。</p>
+<p>私たちは、優れた技術は専門分野を超えた議論と相互の信頼から生まれると信じています。それぞれの専門性を尊重し、共に成長することで、持続的なイノベーションを築き上げていきます。</p>
+
+</div>
+</div>
+</section>
+<!--  -->
+<section class="team-core">
+<div class="team-core-bg"></div>
+<div class="team-core-overlay"></div>
+<div class="team-core-inner">
+<div class="team-core-header fade-up">
+<h2>コアの優位性</h2>
+</div>
+<div class="team-core-grid">
+<!-- Core 1 -->
+<div class="team-glass-card fade-up fade-up-delay-1">
+<h3>完全な IC 設計と統合機能</h3>
+<p>アーキテクチャデザインからチップの実になるまで、フルプロセスの経験をホルダーち、テクノロジーの深いさと製品の開発ニーズのバランスをとることができます。</p>
+</div>
+<!-- Core 2 -->
+<div class="team-glass-card fade-up fade-up-delay-2">
+<h3>エッジAIは低消費電力システムです。</h3>
+<p>環境の制約下での計算効率の最適化に重点を置き、全体として消費電力を向上させています。</p>
+</div>
+<!-- Core 3 -->
+<div class="team-glass-card fade-up fade-up-delay-3">
+<h3>FPGAおよびASICのインストール機能</h3>
+<p>ラピッドプロトタイピングからチップの実装に至るまで拡張でき、コンセプトから実界の开户までテクノロジーを加速します。</p>
+</div>
+<!-- Core 4 -->
+<div class="team-glass-card fade-up fade-up-delay-4">
+<h3>技術技術</h3>
+<p>エンジニアリング、システム、およびMarket Capability Groupがみ合わせることで、社内の技術開発も同時に進められてきました。</p>
+</div>
+</div>
+</div>
+</section>
+<!--  -->
+<section class="team-partners">
+<div class="team-partners-bg"></div>
+<div class="team-partners-overlay"></div>
+<div class="team-partners-inner">
+<div class="team-partners-header fade-up">
+<h2>コアパートナー</h2>
+</div>
+<div class="partners-grid-layout">
+<!-- Row 1: Mark, Doman, Phyllis -->
+<div class="partner-row">
+<!-- Mark -->
+<div class="partner-card fade-up fade-up-delay-1">
+<div class="partner-img-wrapper">
+<img alt="Mark Chen" src="../../image/team/Mark2.png"/>
+</div>
+<div class="partner-info">
+<div class="partner-name">Mark Chen</div>
+<div class="partner-title">最高経営責任者</div>
+<div class="partner-desc">
+                                    ディープな業界をリードするIC設計会社、複数のIC設計会社およびトップフォーラムで発表された論文をホールドちます。ハードウェアアクセラレーションとグループみ込みシステム設計に心力し、ハードウェアアクセラレーション分野におけるチームの継続の革新と最適化をリードしています。
+                                </div>
+</div>
+</div>
+<!-- Doman -->
+<div class="partner-card fade-up fade-up-delay-2">
+<div class="partner-img-wrapper">
+<img alt="Doman Wu" src="../../image/team/Doman4.png"/>
+</div>
+<div class="partner-info">
+<div class="partner-name">Doman Wu</div>
+<div class="partner-title">シリコンエンジニアリングマネージャー <br/> Silicon Engineering Manager</div>
+<div class="partner-desc">
+                                    システム パフォーマンスの最適化とメンテナンスに重点を置き、ASIC システムの設計と実装を支援して、ハードウェア レベルでの製品の安定性、高効率、全体的な統合品質を確保します。
+                                </div>
+</div>
+</div>
+<!-- Phyllis -->
+<div class="partner-card fade-up fade-up-delay-3">
+<div class="partner-img-wrapper">
+<img alt="Phyllis Huang" src="../../image/team/Phyllis.png"/>
+</div>
+<div class="partner-info">
+<div class="partner-name">Phyllis Huang</div>
+<div class="partner-title">事業開発</div>
+<div class="partner-desc">
+                                    顧客関係の維持と事業拡大には、FPGA IP契約、技術契約、新たな市場機会の開発が含まれます。産官学の共同開発と戦略計画を担当し、軍事戦略の開発と推進を担当します。
+                                </div>
+</div>
+</div>
+</div>
+<!-- Row 2: Ken, Joey -->
+<div class="partner-row">
+<!-- Ken -->
+<div class="partner-card fade-up fade-up-delay-1">
+<div class="partner-img-wrapper">
+<img alt="Ken Chen" src="../../image/team/Ken.png"/>
+</div>
+<div class="partner-info">
+<div class="partner-name">Ken Chen</div>
+<div class="partner-title">システム＆プラットフォームマネージャー <br/> Systems &amp; Platform Manager</div>
+<div class="partner-desc">
+                                    20 年以上の業界製品経験を持つ彼は、IC 設計の分野で会社の革新的な開発を主導し、ハイパフォーマンス コンピューティングおよびカスタム ハードウェア アクセラレーション システムにおける会社のレイアウトを推進することに重点を置いています。
+                                </div>
+</div>
+</div>
+<!-- Joey -->
+<div class="partner-card fade-up fade-up-delay-2">
+<div class="partner-img-wrapper">
+<img alt="Joey Chen" src="../../image/team/Joey2.png"/>
+</div>
+<div class="partner-info">
+<div class="partner-name">Joey Chen</div>
+<div class="partner-title">マーケットマネージャー</div>
+<div class="partner-desc">
+                                    市場動向、業界動向、競合動向の分析、調査結果に基づく戦略の提案を担当 ビジネス、投資評価、共同取り組み、事業開発、関係に関する意思決定プロセスへの参加。
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (injected by main.js) -->
+<div id="site-footer"></div>
+<script src="../../assets/js/main.js"></script>
+<script>
+        window.addEventListener('load', () => {
+            document.getElementById('teamHero')?.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
