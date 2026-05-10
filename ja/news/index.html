@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>開発動向ニュース | アルペングロウ・テック</title>
-<meta content="Alpenglow Tek の最新ニュースレポート。民間の超低消費電力AI技術革新技術を推進。" name="description"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
-<link href="../../assets/css/main.css" rel="stylesheet"/>
-<link href="../../assets/css/header.css" rel="stylesheet"/>
-<link href="../../assets/css/footer.css" rel="stylesheet"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最新ニュース News | Alpenglow Tek</title>
+    <meta name="description" content="Alpenglow Tekの最新ニュースとメディア掲載情報をお届けします。私たちは超低消費電力エッジAIコンピューティング技術の革新に注力しています。">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    
+    <style>
         :root {
             --brand-blue: #004AAD;
             --brand-cyan: #2FE8FA;
@@ -238,7 +238,7 @@
             width: 100%;
         }
 
-        /* ── Bottom Section (関連記事) ── */
+        /* ── Bottom Section (延伸閱讀) ── */
         .bottom-nav-section {
             padding: 8rem 2rem;
             background-color: #ffffff;
@@ -453,195 +453,233 @@
         @media (max-width: 900px) {
             .news-grid { grid-template-columns: 1fr; gap: 2.5rem; max-width: 600px; }
             .bottom-nav-grid { grid-template-columns: 1fr; max-width: 500px; }
-            .awards-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
         }
         @media (max-width: 600px) {
             .news-hero h1 { font-size: 2.2rem; }
             .card-content { padding: 2rem 1.5rem; }
-            .awards-grid { grid-template-columns: 1fr; gap: 2rem; max-width: 400px; margin: 0 auto; }
+            .awards-grid { grid-template-columns: 1fr; gap: 2.5rem; max-width: 500px; margin: 0 auto; }
         }
     </style>
 </head>
 <body>
- ヘッダー注入領域 
-<div id="site-header"></div>
-<main>
-<!-- ========== HERO ========== -->
-<section class="news-hero">
-<div class="news-hero-bg"></div>
-<div class="news-hero-overlay"></div>
-<div class="news-hero-content">
-<h1>開発動向</h1>
-<p>Alpenglow Tekの最新の新製品が入荷しました。</p>
-</div>
-</section>
-<!-- ========== AWARDS ========== -->
-<section class="awards-section">
-<div class="awards-bg-glow"></div>
-<div class="awards-container">
-<div class="awards-header fade-up">
-<h2>最近の受賞とコメント</h2>
-<p>民間の技術や成果の評価、業界や公的機関の評価</p>
-</div>
-<div class="awards-grid">
- カード1 
-<div class="award-card fade-up">
-<div class="award-img-wrap">
-<img alt="経済財政省 AI科学技術大賞" onerror="this.onerror=null; this.src='../../image/race1.png'" src="../../image/race1.png"/>
-</div>
-<div class="award-content">
-<div class="award-year">2026</div>
-<h3 class="award-title">経済財政省 AI科学技術大賞</h3>
-<p class="award-desc">2026年度 IC設計技術者 中小企業部門 金賞</p>
-<div class="award-badges">
-<span class="award-badge">チャンピオン</span>
-<span class="award-badge">技術力</span>
-</div>
-</div>
-</div>
- カード2 
-<div class="award-card fade-up delay-1">
-<div class="award-img-wrap">
-<img alt="真中華電信通信株式会社" onerror="this.onerror=null; this.src='../../image/race2.png'" src="../../image/race2.png"/>
-</div>
-<div class="award-content">
-<div class="award-year">2025</div>
-<h3 class="award-title">真中華電信通信株式会社</h3>
-<p class="award-desc">参加者の大多数は「チームから记立ち」と「トップ10のファイナリスト」の選考に参加しました。</p>
-<div class="award-badges">
-<span class="award-badge">ファイナリスト</span>
-<span class="award-badge">Top 10</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ========== FILTER ========== -->
-<div class="news-filter-container">
-<div class="news-filter">
-<button class="filter-btn active" data-year="all">All</button>
-<button class="filter-btn" data-year="2026">2026</button>
-<button class="filter-btn" data-year="2025">2025</button>
-</div>
-</div>
-<!-- ========== NEWS GRID ========== -->
-<section class="news-section">
-<div class="news-grid">
- カード0（スマートイノベーション賞） 
-<a class="news-card fade-up" href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&amp;menu_id=40&amp;news_id=122509" target="_blank">
-<div class="card-img-wrap">
-<img alt="「スマートイノベーションアワード」のトップ100受賞者第2話" src="../../image/race3.png"/>
-</div>
-<div class="card-content">
-<div class="card-meta">
-<span class="card-date">2026/4/25</span>
-<span class="card-source">出典：経済財政省産業技術局</span>
-</div>
-<h3 class="card-title">「スマートイノベーションアワード」のトップ100受賞者第2話</h3>
-<div class="card-cta">
+
+    <!-- Header 注入區 -->
+    <div id="site-header"></div>
+
+    <main>
+        <!-- ========== HERO ========== -->
+        <section class="news-hero">
+            <div class="news-hero-bg"></div>
+            <div class="news-hero-overlay"></div>
+            <div class="news-hero-content">
+                <h1>最新ニュース</h1>
+                <p>Alpenglow Tekの最新ニュースとメディア掲載情報をお届けします</p>
+            </div>
+        </section>
+
+        <!-- ========== AWARDS ========== -->
+        <section class="awards-section">
+            <div class="awards-bg-glow"></div>
+            <div class="awards-container">
+                <div class="awards-header fade-up">
+                    <h2>最近の栄誉と実績</h2>
+                    <p>私たちの技術と成果は、業界や公的機関から継続的に高く評価されています</p>
+                </div>
+                <div class="awards-grid">
+                    
+                    <!-- カード 1 -->
+                    <div class="award-card fade-up">
+                        <div class="award-img-wrap">
+                            <img src="../../image/race1.png" alt="経済部 AI 智慧創新大賞" onerror="this.onerror=null; this.src='../../image/race1.png'">
+                        </div>
+                        <div class="award-content">
+                            <div class="award-year">2026</div>
+                            <h3 class="award-title">経済部 AI 智慧創新大賞</h3>
+                            <p class="award-desc">2026年度 IC設計類 スタートアップ・中小企業部門 金賞受賞</p>
+                            <div class="award-badges">
+                                <span class="award-badge">優勝</span>
+                                <span class="award-badge">圧倒的な技術力</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- カード 2 -->
+                    <div class="award-card fade-up delay-1">
+                        <div class="award-img-wrap">
+                            <img src="../../image/race2.png" alt="中華電信 創新應用比賽" onerror="this.onerror=null; this.src='../../image/race2.png'">
+                        </div>
+                        <div class="award-content">
+                            <div class="award-year">2025</div>
+                            <h3 class="award-title">中華電信 創新應用比賽</h3>
+                            <p class="award-desc">多数の参加チームの中から選出され、決勝トップ10入りを果たしました</p>
+                            <div class="award-badges">
+                                <span class="award-badge">ファイナリスト</span>
+                                <span class="award-badge">Top 10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FILTER ========== -->
+        <div class="news-filter-container">
+            <div class="news-filter">
+                <button class="filter-btn active" data-year="all">All</button>
+                <button class="filter-btn" data-year="2026">2026</button>
+                <button class="filter-btn" data-year="2025">2025</button>
+            </div>
+        </div>
+
+        <!-- ========== NEWS GRID ========== -->
+        <section class="news-section">
+            <div class="news-grid">
+                
+                <!-- カード (SusHi Tech Tokyo) -->
+                <a href="https://www.ntpc.gov.tw/mobile/home.jsp?id=e8ca970cde5c00e1&dataserno=1f9abd5d4d12d07ed56955b8a9de59f6#image-3" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/news6.png" alt="Alpenglow Tek が 2026 SusHi Tech Tokyo に登場">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2026/4/29</span>
+                            <span class="card-source">出典：新北市政府青年局</span>
+                        </div>
+                        <h3 class="card-title">Alpenglow Tek が 2026 SusHi Tech Tokyo に登場</h3>
+                        <div class="card-cta">
                             Read More <span>→</span>
-</div>
-</div>
-</a>
- カード 1 (デジタイムズ) 
-<a class="news-card fade-up" href="https://www.digitimes.com.tw/tech/dt/n/shwnws.asp?id=740309" target="_blank">
-<div class="card-img-wrap">
-<img alt="FPGAがエッジAIの新たな機会を推進" src="../../image/news1.JPG"/>
-</div>
-<div class="card-content">
-<div class="card-meta">
-<span class="card-date">2025/12/15</span>
-<span class="card-source">source: Digitimes</span>
-</div>
-<h3 class="card-title">FPGAがエッジAI新たなチャンスを推進 Alpenglow Tekはハードウェアアクセラレーションソリューションに注力</h3>
-<div class="card-cta">
+                        </div>
+                    </div>
+                </a>
+
+                <!-- カード 0 (智慧創新大賞) -->
+                <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=122509" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/race3.png" alt="第2回「智慧創新大賞」トップ100受賞者発表">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2026/4/25</span>
+                            <span class="card-source">出典：経済部 産業技術司</span>
+                        </div>
+                        <h3 class="card-title">第2回「智慧創新大賞」トップ100受賞者発表</h3>
+                        <div class="card-cta">
                             Read More <span>→</span>
-</div>
-</div>
-</a>
- カード 2 (NTU 荘荘) 
-<a class="news-card fade-up" href="https://tec.ntu.edu.tw/2026/02/06/%e6%81%ad%e5%96%9c-2026-%e5%8f%b0%e5%a4%a7%e8%bb%8a%e5%ba%ab%e6%9a%a8%e5%89%b5%e5%89%b5%e5%8a%a0%e9%80%9f%e5%99%a8%e8%a8%88%e7%95%ab%e6%89%80%e6%9c%89%e9%8c%84%e5%8f%96%e5%9c%98%e9%9a%8a" target="_blank">
-<div class="card-img-wrap">
-<img alt="国立台湾大学理工院" src="../../image/news2.jpeg"/>
-</div>
-<div class="card-content">
-<div class="card-meta">
-<span class="card-date">2026/2/6</span>
-<span class="card-source">出典: 国立台湾大学 TEC</span>
-</div>
-<h3 class="card-title">Alpenglow Tek、2026年国立台湾大学ガレージ&amp;アクセラレータープログラムに選出</h3>
-<div class="card-cta">
+                        </div>
+                    </div>
+                </a>
+
+                <!-- カード 1 (Digitimes) -->
+                <a href="https://www.digitimes.com.tw/tech/dt/n/shwnws.asp?id=740309" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/news1.JPG" alt="FPGAがエッジAIの新たな可能性を切り拓く">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2025/12/15</span>
+                            <span class="card-source">出典：Digitimes</span>
+                        </div>
+                        <h3 class="card-title">FPGAがエッジAIの新たな可能性を切り拓く Alpenglow Tekはハードウェアアクセラレーションソリューションに注力</h3>
+                        <div class="card-cta">
                             Read More <span>→</span>
-</div>
-</div>
-</a>
- カード 3 (新北長黎広場) 
-<a class="news-card fade-up" href="https://www.facebook.com/InnoSquare.New.Taipei/posts/pfbid032zXNWmj7dqeZpvTb1jazyDap9Wkbw8jkdmrvgVRzh5JZcD6kgWamL4R1b19fTazPl?rdid=hywIU1Q6TVmvBlt1#" target="_blank">
-<div class="card-img-wrap">
-<img alt="新北市InnoSquareアクセラレーター" src="../../image/news3.jpg"/>
-</div>
-<div class="card-content">
-<div class="card-meta">
-<span class="card-date">2026/1/24</span>
-<span class="card-source">出典: 新北市青少年局 - InnoSquare</span>
-</div>
-<h3 class="card-title">Alpenglow Tek、2026 年に新北市政府 InnoSquare に選定</h3>
-<div class="card-cta">
+                        </div>
+                    </div>
+                </a>
+
+                <!-- カード 2 (NTU 創創) -->
+                <a href="https://tec.ntu.edu.tw/2026/02/06/%e6%81%ad%e5%96%9c-2026-%e5%8f%b0%e5%a4%a7%e8%bb%8a%e5%ba%ab%e6%9a%a8%e5%89%b5%e5%89%b5%e5%8a%a0%e9%80%9f%e5%99%a8%e8%a8%88%e7%95%ab%e6%89%80%e6%9c%89%e9%8c%84%e5%8f%96%e5%9c%98%e9%9a%8a" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/news2.jpeg" alt="台大創創アクセラレータープログラム">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2026/2/6</span>
+                            <span class="card-source">出典：国立台湾大学 TEC</span>
+                        </div>
+                        <h3 class="card-title">Alpenglow Tekが2026年台大ガレージ＆創創アクセラレータープログラムに選出</h3>
+                        <div class="card-cta">
                             Read More <span>→</span>
-</div>
-</div>
-</a>
- カード 4 (ステート グリッド リアリティ センター) 
-<a class="news-card fade-up" href="https://youtu.be/OcwGCgN03ok" target="_blank">
-<div class="card-img-wrap">
-<img alt="半導体業界の実績" src="../../image/news4.png"/>
-</div>
-<div class="card-content">
-<div class="card-meta">
-<span class="card-date">2025/8/1</span>
-<span class="card-source">出典：国家高速技術計算システム</span>
-</div>
-<h3 class="card-title">Alpenglow Tek の半導体業界における革新的な成果</h3>
-<div class="card-cta">
+                        </div>
+                    </div>
+                </a>
+
+                <!-- カード 3 (新北創力坊) -->
+                <a href="https://www.facebook.com/InnoSquare.New.Taipei/posts/pfbid032zXNWmj7dqeZpvTb1jazyDap9Wkbw8jkdmrvgVRzh5JZcD6kgWamL4R1b19fTazPl?rdid=hywIU1Q6TVmvBlt1#" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/news3.jpg" alt="新北創力坊アクセラレーター">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2026/1/24</span>
+                            <span class="card-source">出典：新北市政府青年局 - 新北創力坊</span>
+                        </div>
+                        <h3 class="card-title">Alpenglow Tekが2026年新北市政府傘下の新北創力坊アクセラレーターに選出</h3>
+                        <div class="card-cta">
                             Read More <span>→</span>
-</div>
-</div>
-</a>
-</div>
-</section>
-<!-- ========== BOTTOM NAVIGATION ========== -->
-<section class="bottom-nav-section">
-<h2 class="bottom-nav-title fade-up">関連メモ</h2>
-<div class="bottom-nav-grid">
-<a class="nav-card fade-up" href="../company/about.html">
-<div class="nav-card-bg" style="background-image: url('../../image/jo1.jpg');"></div>
-<div class="nav-card-overlay">
-<div class="nav-card-title">
-                            秘密の
+                        </div>
+                    </div>
+                </a>
+
+                <!-- カード 4 (國網中心) -->
+                <a href="https://youtu.be/OcwGCgN03ok" target="_blank" class="news-card fade-up">
+                    <div class="card-img-wrap">
+                        <img src="../../image/news4.png" alt="半導体産業のイノベーション成果">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">2025/8/1</span>
+                            <span class="card-source">出典：国家高速網路與計算中心</span>
+                        </div>
+                        <h3 class="card-title">Alpenglow Tek 半導体産業のイノベーションとアップグレードにおける成果</h3>
+                        <div class="card-cta">
+                            Read More <span>→</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ========== BOTTOM NAVIGATION ========== -->
+        <section class="bottom-nav-section">
+            <h2 class="bottom-nav-title fade-up">関連情報</h2>
+            <div class="bottom-nav-grid">
+                
+                <!-- 導覽卡片 1：關於我們 -->
+                <a href="../company/about.html" class="nav-card fade-up">
+                    <div class="nav-card-bg" style="background-image: url('../../image/jo1.jpg');"></div>
+                    <div class="nav-card-overlay">
+                        <div class="nav-card-title">
+                            私たちについて
                             <i class="fas fa-arrow-right"></i>
-</div>
-</div>
-</a>
-<a class="nav-card fade-up delay-1" href="events.html">
-<div class="nav-card-bg" style="background-image: url('../../image/semi6.png'); filter: grayscale(50%) brightness(0.6);"></div>
-<div class="nav-card-overlay">
-<div class="nav-card-title">
-                            最新のイベント
+                        </div>
+                    </div>
+                </a>
+
+                <!-- 導覽卡片 2：客製化 ASIC -->
+                <a href="../solutions/asic/custom-asic.html" class="nav-card fade-up delay-1">
+                    <div class="nav-card-bg" style="background-image: url('../../image/semi6.png'); filter: grayscale(50%) brightness(0.6);"></div>
+                    <div class="nav-card-overlay">
+                        <div class="nav-card-title">
+                            カスタム ASIC
                             <i class="fas fa-arrow-right"></i>
-</div>
-</div>
-</a>
-</div>
-</section>
-</main>
- フッター挿入領域 
-<div id="site-footer"></div>
-<!-- Scripts -->
-<!-- FontAwesome for arrows/icons -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-<script src="../../assets/js/main.js"></script>
-<script>
+                        </div>
+                    </div>
+                </a>
+                
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer 注入區 -->
+    <div id="site-footer"></div>
+
+    <!-- Scripts -->
+    <!-- FontAwesome for arrows/icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Scroll fade-up animations
             const observer = new IntersectionObserver((entries) => {
