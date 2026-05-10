@@ -453,11 +453,12 @@
         @media (max-width: 900px) {
             .news-grid { grid-template-columns: 1fr; gap: 2.5rem; max-width: 600px; }
             .bottom-nav-grid { grid-template-columns: 1fr; max-width: 500px; }
-            .awards-grid { grid-template-columns: 1fr; gap: 2.5rem; max-width: 600px; margin: 0 auto; }
+            .awards-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
         }
         @media (max-width: 600px) {
             .news-hero h1 { font-size: 2.2rem; }
             .card-content { padding: 2rem 1.5rem; }
+            .awards-grid { grid-template-columns: 1fr; gap: 2rem; max-width: 400px; margin: 0 auto; }
         }
     </style>
 </head>
