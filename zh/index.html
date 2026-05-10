@@ -735,6 +735,98 @@
                 100% { transform: translateX(calc(-250px * 16)); }
             }
         }
+        /* ======================================
+           CONTACT MODAL
+        ====================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(13, 27, 62, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #fff;
+            width: 90%;
+            max-width: 480px;
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 24px 64px rgba(0, 74, 173, 0.15);
+            border: 1px solid rgba(47, 232, 250, 0.2);
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            color: #6677aa;
+            cursor: pointer;
+            transition: 0.2s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: var(--navy);
+            transform: scale(1.1);
+        }
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .modal-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--cyan);
+            border-radius: 2px;
+        }
+        .modal-info {
+            font-size: 1.05rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+        .modal-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .modal-info a {
+            color: var(--navy);
+            font-weight: 600;
+            transition: 0.2s;
+            word-break: break-all;
+        }
+        .modal-info a:hover {
+            color: var(--cyan);
+        }
+        .modal-info .emoji-icon {
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
     </style>
 </head>
 <body>
@@ -786,8 +878,7 @@
                 <div class="nav-item">
                     <a href="news/index.html" class="nav-link">最新消息 <span class="chev">▾</span></a>
                     <div class="dropdown">
-                        <a href="news/index.html" class="dropdown-item">近期新聞</a>
-                        <a href="news/awards.html" class="dropdown-item">榮獲獎項</a>
+                        <a href="news/index.html" class="dropdown-item">發展動態</a>
                     </div>
                 </div>
             </nav>
@@ -795,11 +886,11 @@
             <!-- Language Switcher -->
             <div class="header-right">
                 <div class="nav-item lang-switcher">
-                    <div class="lang-btn">🇹🇼 繁中 <span style="font-size:.6rem">▾</span></div>
+                    <div class="lang-btn">繁中 <span style="font-size:.6rem">▾</span></div>
                     <div class="dropdown" style="right:0;left:auto;min-width:160px">
-                        <a href="../zh/index.html" class="dropdown-item active">🇹🇼 繁體中文</a>
-                        <a href="../en/index.html" class="dropdown-item">🇺🇸 English</a>
-                        <a href="../ja/index.html" class="dropdown-item">🇯🇵 日本語</a>
+                        <a href="../zh/index.html" class="dropdown-item active">繁體中文</a>
+                        <a href="../en/index.html" class="dropdown-item">English</a>
+                        <a href="../ja/index.html" class="dropdown-item">日本語</a>
                     </div>
                 </div>
             </div>
@@ -845,8 +936,8 @@
                 工程創新 <span>·</span> 技術突破 <span>·</span> 產業合作
             </p>
             <div class="hero-cta">
-                <a href="solutions/index.html" class="btn-primary-lg">探索解決方案</a>
-                <a href="contact/index.html" class="btn-outline-lg">預約技術交流</a>
+                <a href="solutions/asic/anix/tech.html" class="btn-primary-lg">探索解決方案</a>
+                <a href="javascript:void(0);" onclick="document.getElementById('contactModal').classList.add('active')" class="btn-outline-lg">預約技術交流</a>
             </div>
         </div>
 
@@ -1072,5 +1163,17 @@
         }, { threshold: 0.15 });
         circles.forEach(c => io.observe(c));
     </script>
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contactModal" onclick="this.classList.remove('active')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="document.getElementById('contactModal').classList.remove('active')" aria-label="Close modal">&times;</button>
+            <h3 class="modal-title">聯絡資訊</h3>
+            <div class="modal-info">
+                <p><span class="emoji-icon">📍</span> <span>Address：(241454) 新北市三重區<br>重新路一段108號3樓</span></p>
+                <p><span class="emoji-icon">✉️</span> <span>Email：<a href="mailto:phyllis_huang@alpenglowtek.com">phyllis_huang@alpenglowtek.com</a></span></p>
+                <p><span class="emoji-icon">💬</span> <span>LINE@：@501ytnim</span></p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

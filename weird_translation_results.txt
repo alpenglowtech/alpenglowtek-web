@@ -1,5 +1,0 @@
-ja\solutions\asic\anix\tech.html: MAKANA
-ja\solutions\asic\anix\tech.html: MAKORA
-ja\solutions\asic\anix\tech.html: Mashiko
-ja\solutions\asic\anix\tech.html: 突然インテリジェンス
-ja\solutions\asic\anix\tech.html: システムロAI

@@ -106,9 +106,9 @@
       <div class="nav-item lang-switcher">
         <div class="lang-btn">${t.langCode} <span style="font-size:.6rem">▾</span></div>
         <div class="dropdown" style="right:0;left:auto;min-width:160px">
-          <a href="${root}zh${currentPage}" class="dropdown-item${lang === 'zh' ? ' active' : ''}">🇹🇼 繁體中文</a>
-          <a href="${root}en${currentPage}" class="dropdown-item${lang === 'en' ? ' active' : ''}">🇺🇸 English</a>
-          <a href="${root}ja${currentPage}" class="dropdown-item${lang === 'ja' ? ' active' : ''}">🇯🇵 日本語</a>
+          <a href="${root}zh${currentPage}" class="dropdown-item${lang === 'zh' ? ' active' : ''}">繁體中文</a>
+          <a href="${root}en${currentPage}" class="dropdown-item${lang === 'en' ? ' active' : ''}">English</a>
+          <a href="${root}ja${currentPage}" class="dropdown-item${lang === 'ja' ? ' active' : ''}">日本語</a>
         </div>
       </div>
     </div>
@@ -181,9 +181,9 @@
       </div>
 
       <div style="border-top:1px solid rgba(0,74,173,.1);margin-top:.75rem;padding-top:.75rem">
-        <a href="${root}zh${currentPage}" class="mobile-nav-link" style="font-size:0.9rem;${lang === 'zh' ? 'color:var(--navy);font-weight:700' : ''}">🇹🇼 繁體中文</a>
-        <a href="${root}en${currentPage}" class="mobile-nav-link" style="font-size:0.9rem;${lang === 'en' ? 'color:var(--navy);font-weight:700' : ''}">🇺🇸 English</a>
-        <a href="${root}ja${currentPage}" class="mobile-nav-link" style="font-size:0.9rem;${lang === 'ja' ? 'color:var(--navy);font-weight:700' : ''}">🇯🇵 日本語</a>
+        <a href="${root}zh${currentPage}" class="mobile-nav-link" style="font-size:0.9rem;${lang === 'zh' ? 'color:var(--navy);font-weight:700' : ''}">繁體中文</a>
+        <a href="${root}en${currentPage}" class="mobile-nav-link" style="font-size:0.9rem;${lang === 'en' ? 'color:var(--navy);font-weight:700' : ''}">English</a>
+        <a href="${root}ja${currentPage}" class="mobile-nav-link" style="font-size:0.9rem;${lang === 'ja' ? 'color:var(--navy);font-weight:700' : ''}">日本語</a>
       </div>
     `;
   }
@@ -196,7 +196,7 @@
       about: '關於', aboutUs: '關於我們', team: '核心成員', brandStory: '品牌故事',
       devNews: '發展動態', events: '最新活動', resources: '資源下載',
       anixTitle: 'ANIX — 超低功耗 AI 處理器',
-      langCode: '🇹🇼 繁中', home: '首頁',
+      langCode: '繁中', home: '首頁',
       footerSlogan1: '追光而行·臻至無限', footerSlogan2: 'Alpenglow Lights the Impossible.',
       contactTitle: '聯絡資訊', address: '(241454) 新北市三重區<br>重新路一段108號3樓',
       rights: '© 2026 臻至科技 Alpenglow Tek. All rights reserved.',
@@ -209,7 +209,7 @@
       about: 'About', aboutUs: 'About Us', team: 'Our Team', brandStory: 'Brand Story',
       devNews: 'Development Updates', events: 'Latest Events', resources: 'Resources',
       anixTitle: 'ANIX — Ultra-Low Power AI Processor',
-      langCode: '🇺🇸 EN', home: 'Home',
+      langCode: 'EN', home: 'Home',
       footerSlogan1: 'Chasing the light, reaching the infinite.', footerSlogan2: 'Alpenglow Lights the Impossible.',
       contactTitle: 'Contact Us', address: '3F, No.108, Sec. 1, Chongxin Rd.,<br>Sanchong Dist., New Taipei City 241454',
       rights: '© 2026 Alpenglow Tek. All rights reserved.',
@@ -222,7 +222,7 @@
       about: 'アバウト', aboutUs: '私たちについて', team: 'コアメンバー', brandStory: 'ブランドストーリー',
       devNews: '発展動向', events: '最新イベント', resources: 'リソース',
       anixTitle: 'ANIX — 超低消費電力 AI プロセッサ',
-      langCode: '🇯🇵 JP', home: 'ホーム',
+      langCode: 'JP', home: 'ホーム',
       footerSlogan1: '光を追い、無限へと至る。', footerSlogan2: 'Alpenglow Lights the Impossible.',
       contactTitle: 'お問い合わせ', address: '(241454) 新北市三重区<br>重新路一段108号3階',
       rights: '© 2026 Alpenglow Tek. All rights reserved.',
@@ -501,9 +501,9 @@
           <label class="cform-label" for="cm_country">國家 <span class="req">*</span></label>
           <select class="cform-select" id="cm_country" name="country" required>
             <option value="" disabled selected>請選擇國家</option>
-            <option value="TW">🇹🇼 台灣</option>
-            <option value="JP">🇯🇵 日本</option>
-            <option value="US">🇺🇸 美國</option>
+            <option value="TW">台灣</option>
+            <option value="JP">日本</option>
+            <option value="US">美國</option>
             <option value="KR">🇰🇷 韓國</option>
             <option value="CN">🇨🇳 中國大陸</option>
             <option value="DE">🇩🇪 德國</option>
