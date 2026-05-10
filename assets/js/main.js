@@ -276,8 +276,6 @@
                 <a href="${root}${lang}/company/team.html" class="footer-link">${t.team}</a>
                 <a href="${root}${lang}/company/brand-story.html" class="footer-link">${t.brandStory}</a>
                 <a href="${root}${lang}/news/index.html" class="footer-link">${t.devNews}</a>
-                <a href="${root}${lang}/resources/index.html" class="footer-link">${t.resources}</a>
-                <a href="${root}${lang}/careers/index.html" class="footer-link">${t.careers}</a>
             </div>
         </div>
 
