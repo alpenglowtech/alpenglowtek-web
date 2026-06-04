@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra-Low Power Edge AI SoC Platform | Alpenglow Tek</title>
+    <meta name="description"
+        content="Alpenglow Tek provides a complete modular low-power edge AI SoC platform, integrating CIM AI IP, Tensor Engine, memory subsystem, and software toolchain to help customers quickly build customized Edge AI SoCs and smart terminal products.">
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../../assets/css/header.css">
+    <link rel="stylesheet" href="../../../assets/css/footer.css">
+    <style>
+        /* ── Body ── */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* ══════════════════════════════════
+           HERO SECTION
+        ══════════════════════════════════ */
+        .plat-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Circuit-grid animated background */
+        .plat-hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, #061a3a 0%, #0a2d6b 40%, #061a3a 100%);
+            z-index: 0;
+        }
+
+        .plat-hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(47, 232, 250, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(47, 232, 250, 0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            animation: gridShift 20s linear infinite;
+        }
+
+        .plat-hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 80% 50%, rgba(47, 232, 250, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 80% at 10% 80%, rgba(0, 74, 173, 0.2) 0%, transparent 55%);
+        }
+
+        @keyframes gridShift {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 48px 48px;
+            }
+        }
+
+        .plat-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            padding-top: var(--header-h);
+        }
+
+        .plat-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #2fe8fa;
+            background: rgba(47, 232, 250, 0.12);
+            border: 1px solid rgba(47, 232, 250, 0.3);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.8rem;
+            animation: platFadeUp 0.7s ease both;
+        }
+
+        .plat-eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #2fe8fa;
+            box-shadow: 0 0 8px #2fe8fa;
+            animation: platPulse 2s ease-in-out infinite;
+        }
+
+        .plat-hero h1 {
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.2;
+            color: #fff;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.2rem;
+            animation: platFadeUp 0.8s 0.1s ease both;
+            max-width: 820px;
+        }
+
+        .plat-hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            font-weight: 500;
+            color: #2fe8fa;
+            letter-spacing: 0.03em;
+            margin-bottom: 1.5rem;
+            max-width: 780px;
+            animation: platFadeUp 0.8s 0.2s ease both;
+        }
+
+        .plat-hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.82);
+            line-height: 1.85;
+            max-width: 720px;
+            margin: 0;
+            animation: platFadeUp 0.8s 0.3s ease both;
+        }
+
+        /* Scroll hint */
+        .plat-scroll-hint {
+            position: absolute;
+            bottom: 2.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: platFadeUp 1s 0.7s ease both;
+        }
+
+        .plat-scroll-hint span {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .plat-scroll-arrow {
+            width: 22px;
+            height: 22px;
+            border-right: 2px solid rgba(255, 255, 255, 0.35);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.35);
+            transform: rotate(45deg);
+            animation: platScrollBounce 1.8s infinite;
+        }
+
+        /* ══════════════════════════════════
+           SECTION LABEL (shared)
+        ══════════════════════════════════ */
+        .plat-section-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #2fe8fa;
+            background: rgba(47, 232, 250, 0.12);
+            border: 1px solid rgba(47, 232, 250, 0.28);
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ══════════════════════════════════
+           PLATFORM ARCHITECTURE SECTION
+        ══════════════════════════════════ */
+        .plat-arch {
+            background: #fff;
+            padding: 6rem 1.5rem;
+        }
+
+        .plat-arch-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .plat-arch h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 800;
+            color: #004aad;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .plat-arch-lead {
+            font-size: 1.05rem;
+            color: #6b7ba0;
+            max-width: 680px;
+            margin: 0 auto 3.5rem;
+            line-height: 1.75;
+        }
+
+        /* Diagram image with tech-border */
+        .plat-diagram-wrap {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 960px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(47, 232, 250, 0.25),
+                0 0 0 4px rgba(47, 232, 250, 0.06),
+                0 24px 60px rgba(6, 26, 58, 0.18);
+        }
+
+        .plat-diagram-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+
+        /* Corner accent lines */
+        .plat-diagram-wrap::before,
+        .plat-diagram-wrap::after {
+            content: '';
+            position: absolute;
+            width: 36px;
+            height: 36px;
+            border-color: #2fe8fa;
+            border-style: solid;
+            z-index: 3;
+        }
+
+        .plat-diagram-wrap::before {
+            top: 12px;
+            left: 12px;
+            border-width: 2px 0 0 2px;
+            border-radius: 4px 0 0 0;
+        }
+
+        .plat-diagram-wrap::after {
+            bottom: 12px;
+            right: 12px;
+            border-width: 0 2px 2px 0;
+            border-radius: 0 0 4px 0;
+        }
+
+        .plat-diagram-caption {
+            margin-top: 2.5rem;
+            background: #f6f8fc;
+            border-left: 4px solid #2fe8fa;
+            border-radius: 8px;
+            padding: 1.75rem 2.25rem;
+            text-align: left;
+            max-width: 960px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .plat-diagram-caption p {
+            font-size: 0.97rem;
+            color: #3a4a6b;
+            line-height: 1.85;
+            margin: 0;
+        }
+
+        .plat-diagram-caption p+p {
+            margin-top: 0.75rem;
+        }
+
+        /* ══════════════════════════════════
+           CORE VALUE CARDS (3 horizontal)
+        ══════════════════════════════════ */
+        .plat-values {
+            background: linear-gradient(180deg, #f6f8fc 0%, #eef2fa 100%);
+            padding: 6rem 1.5rem;
+        }
+
+        .plat-values-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .plat-values h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: #004aad;
+            margin-bottom: 1rem;
+        }
+
+        .plat-values-lead {
+            font-size: 1rem;
+            color: #6b7ba0;
+            max-width: 620px;
+            margin: 0 auto 3.5rem;
+            line-height: 1.7;
+        }
+
+        .plat-value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+
+        @media (max-width: 900px) {
+            .plat-value-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 600px) and (max-width: 900px) {
+            .plat-value-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .plat-vcard {
+            background: #fff;
+            border: 1px solid #e4eaf5;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plat-vcard::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2fe8fa, #004aad);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+
+        .plat-vcard:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 48px rgba(6, 26, 58, 0.1);
+            border-color: rgba(47, 232, 250, 0.35);
+        }
+
+        .plat-vcard:hover::after {
+            transform: scaleX(1);
+        }
+
+        .plat-vcard-icon {
+            width: 52px;
+            height: 52px;
+            background: rgba(47, 232, 250, 0.12);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .plat-vcard h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #004aad;
+            margin-bottom: 1rem;
+            line-height: 1.35;
+        }
+
+        .plat-vcard ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .plat-vcard ul li {
+            font-size: 0.93rem;
+            color: #4a5a7a;
+            line-height: 1.6;
+            padding-left: 1.1rem;
+            position: relative;
+        }
+
+        .plat-vcard ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #2fe8fa;
+        }
+
+        /* ══════════════════════════════════
+           PLATFORM EXTENSIONS (3 link cards)
+        ══════════════════════════════════ */
+        .plat-ext {
+            background: #fff;
+            padding: 6rem 1.5rem;
+            border-top: 1px solid rgba(0, 74, 173, 0.06);
+        }
+
+        .plat-ext-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .plat-ext h2 {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 800;
+            color: #004aad;
+            margin-bottom: 1rem;
+        }
+
+        .plat-ext-lead {
+            font-size: 1rem;
+            color: #6b7ba0;
+            max-width: 600px;
+            margin: 0 auto 3.5rem;
+            line-height: 1.7;
+        }
+
+        .plat-ext-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+
+        @media (max-width: 900px) {
+            .plat-ext-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 560px) and (max-width: 900px) {
+            .plat-ext-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .plat-ext-card {
+            display: block;
+            background: linear-gradient(135deg, #061a3a 0%, #0c2a5c 100%);
+            border: 1px solid rgba(47, 232, 250, 0.15);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plat-ext-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(47, 232, 250, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .plat-ext-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 56px rgba(6, 26, 58, 0.28);
+            border-color: rgba(47, 232, 250, 0.4);
+        }
+
+        .plat-ext-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(47, 232, 250, 0.15);
+            border: 1px solid rgba(47, 232, 250, 0.3);
+            color: #2fe8fa;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .plat-ext-card h3 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .plat-ext-card p {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.65;
+            margin: 0 0 1.25rem;
+        }
+
+        .plat-ext-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.82rem;
+            color: #2fe8fa;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: gap 0.25s ease;
+        }
+
+        .plat-ext-card:hover .plat-ext-arrow {
+            gap: 10px;
+        }
+
+        /* ══════════════════════════════════
+           CONCLUSION (deep navy rounded box)
+        ══════════════════════════════════ */
+        .plat-conclusion {
+            padding: 6rem 1.5rem 7rem;
+            background: #f6f8fc;
+        }
+
+        .plat-conclusion-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .plat-conclusion-box {
+            background: linear-gradient(135deg, #061a3a 0%, #0a2d6b 100%);
+            border-radius: 28px;
+            padding: 5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(6, 26, 58, 0.22);
+        }
+
+        .plat-conclusion-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(47, 232, 250, 0.1) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 20% 100%, rgba(0, 74, 173, 0.15) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .plat-conclusion-box::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(47, 232, 250, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(47, 232, 250, 0.025) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .plat-conclusion-box>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        .plat-conclusion-box h2 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: #2fe8fa;
+            margin-bottom: 1.75rem;
+            line-height: 1.4;
+        }
+
+        .plat-conclusion-box p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.82);
+            line-height: 1.9;
+            max-width: 760px;
+            margin: 0 auto 1rem;
+        }
+
+        .plat-conclusion-box p+p {
+            margin-top: 0.5rem;
+        }
+
+        .plat-conclusion-cta {
+            margin-top: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(47, 232, 250, 0.15);
+            border: 1px solid rgba(47, 232, 250, 0.35);
+            color: #2fe8fa;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-decoration: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 100px;
+            transition: background 0.25s, box-shadow 0.25s;
+        }
+
+        .plat-conclusion-cta:hover {
+            background: rgba(47, 232, 250, 0.25);
+            box-shadow: 0 0 20px rgba(47, 232, 250, 0.2);
+        }
+
+        /* ══════════════════════════════════
+           ANIMATIONS
+        ══════════════════════════════════ */
+        @keyframes platFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes platPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(1.5);
+            }
+        }
+
+        @keyframes platScrollBounce {
+
+            0%,
+            100% {
+                transform: rotate(45deg) translateY(0);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: rotate(45deg) translateY(6px);
+                opacity: 1;
+            }
+        }
+
+        /* ══════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .plat-hero-content {
+                padding: 0 2rem;
+                padding-top: var(--header-h);
+            }
+
+            .plat-conclusion-box {
+                padding: 3.5rem 2.5rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .plat-hero-content {
+                padding: 0 1.5rem;
+                padding-top: var(--header-h);
+            }
+
+            .plat-arch {
+                padding: 4rem 1.25rem;
+            }
+
+            .plat-values {
+                padding: 4rem 1.25rem;
+            }
+
+            .plat-ext {
+                padding: 4rem 1.25rem;
+            }
+
+            .plat-conclusion {
+                padding: 4rem 1.25rem 5rem;
+            }
+
+            .plat-conclusion-box {
+                padding: 2.5rem 1.5rem;
+                border-radius: 20px;
+            }
+
+            .plat-diagram-caption {
+                padding: 1.25rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header injected by main.js -->
+    <div id="site-header"></div>
+
+    <main>
+
+        <!-- ══════════════════════════════════
+             HERO SECTION
+        ══════════════════════════════════ -->
+        <section class="plat-hero">
+            <div class="plat-hero-bg"></div>
+
+            <div class="plat-hero-content">
+                <span class="plat-eyebrow">ASIC / Edge AI SoC Platform</span>
+                <h1>Ultra-Low Power Edge AI<br>SoC Platform</h1>
+                <div class="plat-hero-subtitle">From AI IP to System Integration: Building a Modular and Configurable Edge Intelligence Core</div>
+                <p class="plat-hero-desc">
+                    Alpenglow Tek offers a comprehensive modular low-power edge AI SoC platform,<br>
+                    integrating CIM AI IP, Tensor Engine, memory subsystem, and software toolchain,<br>
+                    assisting customers in quickly building customized Edge AI SoCs and smart terminal products.
+                </p>
+            </div>
+
+            <div class="plat-scroll-hint">
+                <span>Scroll</span>
+                <div class="plat-scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════
+             PLATFORM ARCHITECTURE DIAGRAM
+        ══════════════════════════════════ -->
+        <section class="plat-arch">
+            <div class="plat-arch-inner fade-up">
+                <span class="plat-section-tag">PLATFORM ARCHITECTURE</span>
+                <h2>Platform Architecture</h2>
+                <p class="plat-arch-lead">Modular design, hardware-software co-optimization, and a flexible, configurable edge AI core architecture</p>
+
+                <div class="plat-diagram-wrap fade-up">
+                    <img src="../../../image/SoC設計平台(ENG) v2.png" alt="Ultra-Low Power Edge AI SoC Platform Architecture">
+                </div>
+
+                <div class="plat-diagram-caption fade-up">
+                    <p>This platform adopts a modular architecture design, divided into <strong>Software Layer</strong> and <strong>Hardware Layer</strong>:</p>
+                    <p>
+                        <strong>Software Layer</strong> includes the model compiler, SDK, and Runtime environment;
+                        <strong>Hardware Layer</strong> integrates CIM AI IP, Tensor Engine, Memory Subsystem, Control / NoC, and Peripheral IPs.
+                    </p>
+                    <p>Through standardized interfaces and flexible module configurations, it can be freely customized according to application requirements.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════
+             CORE VALUE CARDS
+        ══════════════════════════════════ -->
+        <section class="plat-values">
+            <div class="plat-values-inner fade-up">
+                <span class="plat-section-tag">PLATFORM VALUE</span>
+                <h2>Platform Core Value</h2>
+                <p class="plat-values-lead">Three key capabilities accelerating the complete edge AI development journey from design to mass production</p>
+
+                <div class="plat-value-grid fade-up fade-up-delay-1">
+                    <!-- Card 1 -->
+                    <div class="plat-vcard">
+                        <div class="plat-vcard-icon">⬡</div>
+                        <h3>Modular Architecture Design</h3>
+                        <ul>
+                            <li>Flexible selection of IP modules based on application needs</li>
+                            <li>Supports different computing density and power consumption targets</li>
+                            <li>Accelerates SoC development and verification processes</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="plat-vcard">
+                        <div class="plat-vcard-icon">◈</div>
+                        <h3>Hardware-Software Co-optimization</h3>
+                        <ul>
+                            <li>Integrated design of model compilation and hardware architecture</li>
+                            <li>Optimized data movement and energy efficiency</li>
+                            <li>Provides complete SDK and Runtime support</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="plat-vcard">
+                        <div class="plat-vcard-icon">▣</div>
+                        <h3>Rapid Deployment & Mass Production Support</h3>
+                        <ul>
+                            <li>FPGA prototyping platform</li>
+                            <li>ASIC custom design services</li>
+                            <li>Supports the complete flow from PoC to mass production</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════
+             PLATFORM EXTENSIONS (3 link cards)
+        ══════════════════════════════════ -->
+        <section class="plat-ext">
+            <div class="plat-ext-inner fade-up">
+                <span class="plat-section-tag">PLATFORM APPLICATIONS</span>
+                <h2>Platform Applications</h2>
+                <p class="plat-ext-lead">Extending from the SoC platform to diverse solutions, covering edge intelligence needs across different fields</p>
+
+                <div class="plat-ext-grid fade-up fade-up-delay-1">
+                    <!-- Card 1: ANIX -->
+                    <a href="anix/tech.html" class="plat-ext-card">
+                        <div class="plat-ext-num">01</div>
+                        <h3>ANIX — Ultra-Low Power AI Processor</h3>
+                        <p>A miniature AI inference core based on CIM technology, breaking through the traditional memory wall bottleneck to achieve extreme low-power inference capabilities.</p>
+                        <span class="plat-ext-arrow">Learn more about the technology →</span>
+                    </a>
+
+                    <!-- Card 2: Custom ASIC -->
+                    <a href="custom-asic.html" class="plat-ext-card">
+                        <div class="plat-ext-num">02</div>
+                        <h3>Custom ASIC</h3>
+                        <p>From specification definition, RTL design to backend implementation and pre-mass production preparation, providing a one-stop chip development solution.</p>
+                        <span class="plat-ext-arrow">Learn more about design services →</span>
+                    </a>
+
+                    <!-- Card 3: Apps -->
+                    <a href="anix/apps-consumer.html" class="plat-ext-card">
+                        <div class="plat-ext-num">03</div>
+                        <h3>Edge AI Terminal Devices</h3>
+                        <p>Covering consumer and industrial application scenarios such as wearable devices, smart sensors, and custom AI SoCs.</p>
+                        <span class="plat-ext-arrow">Explore application scenarios →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════
+             CONCLUSION
+        ══════════════════════════════════ -->
+        <section class="plat-conclusion">
+            <div class="plat-conclusion-inner fade-up">
+                <div class="plat-conclusion-box">
+                    <h2>Building a Scalable Low-Power AI Core<br>for Next-Generation Smart Terminals</h2>
+                    <p>In edge AI applications, the key to competitiveness lies not only in computing performance,<br>but also in power control, system integration capabilities, and development efficiency.</p>
+                    <p>With the modular SoC platform architecture at its core,<br>Alpenglow Tek provides a one-stop solution from IP to system integration,<br>helping customers quickly build differentiated low-power edge AI products.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer injected by main.js -->
+    <div id="site-footer"></div>
+
+    <script src="../../../assets/js/main.js"></script>
+</body>
+
+</html>
