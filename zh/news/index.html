@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>發展動態 News | 臻至科技 Alpenglow Tek</title>
     <meta name="description" content="掌握臻至科技的最新動態與媒體報導，我們致力於超低功耗邊緣 AI 運算技術創新。">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/header.css">
     <link rel="stylesheet" href="../../assets/css/footer.css">
-    
+
     <style>
         :root {
             --brand-blue: #004AAD;
             --brand-cyan: #2FE8FA;
-            --dark-overlay: rgba(0, 0, 0, 0.45); /* Dark overlay with high transparency */
+            --dark-overlay: rgba(0, 0, 0, 0.45);
+            /* Dark overlay with high transparency */
         }
 
         /* ── Hero Section ── */
@@ -28,6 +32,7 @@
             text-align: center;
             overflow: hidden;
         }
+
         .news-hero-bg {
             position: absolute;
             inset: 0;
@@ -37,26 +42,30 @@
             background-attachment: fixed;
             z-index: 0;
         }
+
         .news-hero-overlay {
             position: absolute;
             inset: 0;
             background: var(--dark-overlay);
             z-index: 1;
         }
+
         .news-hero-content {
             position: relative;
             z-index: 2;
             padding: 0 2rem;
             animation: fadeUp 1s ease forwards;
         }
+
         .news-hero-content h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
             color: #ffffff;
             margin-bottom: 1rem;
             letter-spacing: 0.05em;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
+
         .news-hero-content p {
             font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: rgba(255, 255, 255, 0.95);
@@ -72,6 +81,7 @@
             display: flex;
             justify-content: center;
         }
+
         .news-filter {
             background: #ffffff;
             box-shadow: 0 10px 30px rgba(0, 74, 173, 0.1);
@@ -80,6 +90,7 @@
             display: inline-flex;
             gap: 0.5rem;
         }
+
         .filter-btn {
             border: none;
             background: transparent;
@@ -91,10 +102,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
+
         .filter-btn:hover {
             color: var(--brand-blue);
             background: rgba(0, 74, 173, 0.05);
         }
+
         .filter-btn.active {
             background: var(--brand-blue);
             color: #ffffff;
@@ -106,6 +119,7 @@
             padding: 2rem 2rem 8rem;
             background-color: #f8fbff;
         }
+
         .news-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -126,6 +140,7 @@
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             border: 1px solid rgba(0, 74, 173, 0.05);
         }
+
         .news-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 74, 173, 0.12), 0 0 20px rgba(47, 232, 250, 0.15);
@@ -139,12 +154,14 @@
             overflow: hidden;
             position: relative;
         }
+
         .card-img-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
         }
+
         .news-card:hover .card-img-wrap img {
             transform: scale(1.05);
         }
@@ -156,14 +173,14 @@
             flex-direction: column;
             flex-grow: 1;
         }
-        
+
         .card-meta {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 1.2rem;
         }
-        
+
         .card-date {
             font-size: 0.9rem;
             font-weight: 600;
@@ -171,6 +188,7 @@
             display: flex;
             align-items: center;
         }
+
         .card-date::before {
             content: '';
             display: inline-block;
@@ -180,7 +198,7 @@
             border-radius: 50%;
             margin-right: 8px;
         }
-        
+
         .card-source {
             font-size: 0.8rem;
             font-weight: 500;
@@ -202,6 +220,7 @@
             overflow: hidden;
             transition: color 0.3s ease;
         }
+
         .news-card:hover .card-title {
             color: var(--brand-blue);
         }
@@ -216,13 +235,16 @@
             position: relative;
             width: fit-content;
         }
+
         .card-cta span {
             margin-left: 0.5rem;
             transition: transform 0.3s ease;
         }
+
         .news-card:hover .card-cta span {
             transform: translateX(5px);
         }
+
         /* 亮起底線動畫 */
         .card-cta::after {
             content: '';
@@ -234,6 +256,7 @@
             background-color: var(--brand-cyan);
             transition: width 0.3s ease;
         }
+
         .news-card:hover .card-cta::after {
             width: 100%;
         }
@@ -244,6 +267,7 @@
             background-color: #ffffff;
             position: relative;
         }
+
         .bottom-nav-title {
             text-align: center;
             font-size: 2.2rem;
@@ -251,6 +275,7 @@
             color: #1a1a2e;
             margin-bottom: 4rem;
         }
+
         .bottom-nav-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -258,21 +283,22 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
-        
+
         .nav-card {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
             aspect-ratio: 4/3;
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
+
         .nav-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 74, 173, 0.15);
         }
-        
+
         .nav-card-bg {
             position: absolute;
             inset: 0;
@@ -280,10 +306,11 @@
             background-position: center;
             transition: transform 0.8s ease;
         }
+
         .nav-card:hover .nav-card-bg {
             transform: scale(1.08);
         }
-        
+
         .nav-card-overlay {
             position: absolute;
             inset: 0;
@@ -292,7 +319,7 @@
             align-items: flex-end;
             padding: 2rem;
         }
-        
+
         .nav-card-title {
             color: #ffffff;
             font-size: 1.5rem;
@@ -303,12 +330,14 @@
             width: 100%;
             justify-content: space-between;
         }
+
         .nav-card-title i {
             opacity: 0;
             transform: translateX(-10px);
             color: var(--brand-cyan);
             transition: all 0.3s ease;
         }
+
         .nav-card:hover .nav-card-title i {
             opacity: 1;
             transform: translateX(0);
@@ -321,6 +350,7 @@
             background: linear-gradient(135deg, #0b1021 0%, #172138 100%);
             overflow: hidden;
         }
+
         .awards-bg-glow {
             position: absolute;
             top: -20%;
@@ -331,16 +361,19 @@
             z-index: 0;
             pointer-events: none;
         }
+
         .awards-container {
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
             z-index: 1;
         }
+
         .awards-header {
             text-align: center;
             margin-bottom: 4rem;
         }
+
         .awards-header h2 {
             font-size: clamp(2rem, 4vw, 2.8rem);
             font-weight: 800;
@@ -348,17 +381,20 @@
             margin-bottom: 1rem;
             letter-spacing: 0.05em;
         }
+
         .awards-header p {
             font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.8);
             font-weight: 400;
             margin: 0;
         }
+
         .awards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 3rem;
         }
+
         .award-card {
             background: rgba(20, 30, 50, 0.6);
             border: 1px solid rgba(47, 232, 250, 0.15);
@@ -369,11 +405,13 @@
             display: flex;
             flex-direction: column;
         }
+
         .award-card:hover {
             transform: translateY(-8px);
             border-color: rgba(47, 232, 250, 0.6);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(47, 232, 250, 0.15);
         }
+
         .award-img-wrap {
             width: 100%;
             aspect-ratio: 16/9;
@@ -381,6 +419,7 @@
             position: relative;
             background: #111;
         }
+
         .award-img-wrap img {
             width: 100%;
             height: 100%;
@@ -388,16 +427,19 @@
             opacity: 0.85;
             transition: transform 0.6s ease, opacity 0.4s ease;
         }
+
         .award-card:hover .award-img-wrap img {
             transform: scale(1.05);
             opacity: 1;
         }
+
         .award-content {
             padding: 2.5rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
+
         .award-year {
             font-size: 0.95rem;
             font-weight: 600;
@@ -405,6 +447,7 @@
             margin-bottom: 0.8rem;
             letter-spacing: 0.05em;
         }
+
         .award-title {
             font-size: 1.6rem;
             font-weight: 700;
@@ -412,6 +455,7 @@
             margin-bottom: 1rem;
             line-height: 1.4;
         }
+
         .award-desc {
             font-size: 1rem;
             color: rgba(255, 255, 255, 0.75);
@@ -419,12 +463,14 @@
             line-height: 1.6;
             flex-grow: 1;
         }
+
         .award-badges {
             display: flex;
             gap: 0.6rem;
             flex-wrap: wrap;
             align-items: center;
         }
+
         .award-badge {
             padding: 0.4rem 0.8rem;
             background: rgba(47, 232, 250, 0.05);
@@ -435,6 +481,7 @@
             color: var(--brand-cyan);
             transition: all 0.3s ease;
         }
+
         .award-card:hover .award-badge {
             background: rgba(47, 232, 250, 0.15);
             box-shadow: 0 0 10px rgba(47, 232, 250, 0.2);
@@ -444,23 +491,60 @@
 
         /* 動畫 */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         @media (max-width: 900px) {
-            .news-grid { grid-template-columns: 1fr; gap: 2.5rem; max-width: 600px; }
-            .bottom-nav-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .news-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                max-width: 600px;
+            }
+
+            .bottom-nav-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .awards-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                max-width: 600px;
+                margin: 0 auto;
+            }
         }
+
         @media (max-width: 600px) {
-            .news-hero h1 { font-size: 2.2rem; }
-            .card-content { padding: 2rem 1.5rem; }
-            .awards-grid { grid-template-columns: 1fr; gap: 2.5rem; max-width: 500px; margin: 0 auto; }
+            .news-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .card-content {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Header 注入區 -->
@@ -486,11 +570,12 @@
                     <p>我們的技術與成果，持續獲得產業與官方單位的肯定</p>
                 </div>
                 <div class="awards-grid">
-                    
+
                     <!-- 卡片 1 -->
                     <div class="award-card fade-up">
                         <div class="award-img-wrap">
-                            <img src="../../image/race1.png" alt="經濟部 AI 智慧創新大賞" onerror="this.onerror=null; this.src='../../image/race1.png'">
+                            <img src="../../image/race1.png" alt="經濟部 AI 智慧創新大賞"
+                                onerror="this.onerror=null; this.src='../../image/race1.png'">
                         </div>
                         <div class="award-content">
                             <div class="award-year">2026</div>
@@ -506,7 +591,8 @@
                     <!-- 卡片 2 -->
                     <div class="award-card fade-up delay-1">
                         <div class="award-img-wrap">
-                            <img src="../../image/race2.png" alt="中華電信創新應用比賽" onerror="this.onerror=null; this.src='../../image/race2.png'">
+                            <img src="../../image/race2.png" alt="中華電信創新應用比賽"
+                                onerror="this.onerror=null; this.src='../../image/race2.png'">
                         </div>
                         <div class="award-content">
                             <div class="award-year">2025</div>
@@ -535,26 +621,27 @@
         <!-- ========== NEWS GRID ========== -->
         <section class="news-section">
             <div class="news-grid">
-                
-                <!-- 卡片 (SusHi Tech Tokyo) -->
-                <a href="https://www.ntpc.gov.tw/mobile/home.jsp?id=e8ca970cde5c00e1&dataserno=1f9abd5d4d12d07ed56955b8a9de59f6#image-3" target="_blank" class="news-card fade-up">
+
+                <!-- 卡片：INNOVEX 2026 參展 -->
+                <a href="#" class="news-card fade-up" style="cursor:default;">
                     <div class="card-img-wrap">
-                        <img src="../../image/news6.png" alt="臻至科技 登上 2026 SusHi Tech Tokyo">
+                        <img src="../../image/INNOVEX.jpg" alt="臻至科技參展 2026 INNOVEX">
                     </div>
                     <div class="card-content">
                         <div class="card-meta">
-                            <span class="card-date">2026/4/29</span>
-                            <span class="card-source">source: 新北市政府青年局</span>
+                            <span class="card-date">2026/5/28</span>
+                            <span class="card-source">source: 2026 INNOVEX</span>
                         </div>
-                        <h3 class="card-title">臻至科技 登上 2026 SusHi Tech Tokyo</h3>
+                        <h3 class="card-title">臻至科技參展 2026 INNOVEX，展示 ANIX 超低功耗 AI 推論核心</h3>
                         <div class="card-cta">
-                            Read More <span>→</span>
+
                         </div>
                     </div>
                 </a>
 
                 <!-- 卡片 0 (智慧創新大賞) -->
-                <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=122509" target="_blank" class="news-card fade-up">
+                <a href="https://www.moea.gov.tw/MNS/populace/news/News.aspx?kind=1&menu_id=40&news_id=122509"
+                    target="_blank" class="news-card fade-up">
                     <div class="card-img-wrap">
                         <img src="../../image/race3.png" alt="第二屆「智慧創新大賞」百大贏家出爐">
                     </div>
@@ -571,7 +658,8 @@
                 </a>
 
                 <!-- 卡片 1 (Digitimes) -->
-                <a href="https://www.digitimes.com.tw/tech/dt/n/shwnws.asp?id=740309" target="_blank" class="news-card fade-up">
+                <a href="https://www.digitimes.com.tw/tech/dt/n/shwnws.asp?id=740309" target="_blank"
+                    class="news-card fade-up">
                     <div class="card-img-wrap">
                         <img src="../../image/news1.JPG" alt="FPGA驅動邊緣AI新契機">
                     </div>
@@ -588,7 +676,8 @@
                 </a>
 
                 <!-- 卡片 2 (台大創創) -->
-                <a href="https://tec.ntu.edu.tw/2026/02/06/%e6%81%ad%e5%96%9c-2026-%e5%8f%b0%e5%a4%a7%e8%bb%8a%e5%ba%ab%e6%9a%a8%e5%89%b5%e5%89%b5%e5%8a%a0%e9%80%9f%e5%99%a8%e8%a8%88%e7%95%ab%e6%89%80%e6%9c%89%e9%8c%84%e5%8f%96%e5%9c%98%e9%9a%8a" target="_blank" class="news-card fade-up">
+                <a href="https://tec.ntu.edu.tw/2026/02/06/%e6%81%ad%e5%96%9c-2026-%e5%8f%b0%e5%a4%a7%e8%bb%8a%e5%ba%ab%e6%9a%a8%e5%89%b5%e5%89%b5%e5%8a%a0%e9%80%9f%e5%99%a8%e8%a8%88%e7%95%ab%e6%89%80%e6%9c%89%e9%8c%84%e5%8f%96%e5%9c%98%e9%9a%8a"
+                    target="_blank" class="news-card fade-up">
                     <div class="card-img-wrap">
                         <img src="../../image/news2.jpeg" alt="台大創創加速器計畫">
                     </div>
@@ -605,7 +694,8 @@
                 </a>
 
                 <!-- 卡片 3 (新北創力坊) -->
-                <a href="https://www.facebook.com/InnoSquare.New.Taipei/posts/pfbid032zXNWmj7dqeZpvTb1jazyDap9Wkbw8jkdmrvgVRzh5JZcD6kgWamL4R1b19fTazPl?rdid=hywIU1Q6TVmvBlt1#" target="_blank" class="news-card fade-up">
+                <a href="https://www.facebook.com/InnoSquare.New.Taipei/posts/pfbid032zXNWmj7dqeZpvTb1jazyDap9Wkbw8jkdmrvgVRzh5JZcD6kgWamL4R1b19fTazPl?rdid=hywIU1Q6TVmvBlt1#"
+                    target="_blank" class="news-card fade-up">
                     <div class="card-img-wrap">
                         <img src="../../image/news3.jpg" alt="新北創力坊加速器">
                     </div>
@@ -645,7 +735,7 @@
         <section class="bottom-nav-section">
             <h2 class="bottom-nav-title fade-up">延伸閱讀</h2>
             <div class="bottom-nav-grid">
-                
+
                 <!-- 導覽卡片 1：關於我們 -->
                 <a href="../company/about.html" class="nav-card fade-up">
                     <div class="nav-card-bg" style="background-image: url('../../image/jo1.jpg');"></div>
@@ -657,17 +747,19 @@
                     </div>
                 </a>
 
-                <!-- 導覽卡片 2：客製化 ASIC -->
-                <a href="../solutions/asic/custom-asic.html" class="nav-card fade-up delay-1">
-                    <div class="nav-card-bg" style="background-image: url('../../image/semi6.png'); filter: grayscale(50%) brightness(0.6);"></div>
+                <!-- 導覽卡片 2：最新活動 -->
+                <a href="events.html" class="nav-card fade-up delay-1">
+                    <div class="nav-card-bg"
+                        style="background-image: url('../../image/semi6.png'); filter: grayscale(50%) brightness(0.6);">
+                    </div>
                     <div class="nav-card-overlay">
                         <div class="nav-card-title">
-                            客製化 ASIC
+                            最新活動
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </div>
                 </a>
-                
+
             </div>
         </section>
     </main>
@@ -702,7 +794,7 @@
                 btn.addEventListener('click', (e) => {
                     filterBtns.forEach(b => b.classList.remove('active'));
                     e.target.classList.add('active');
-                    
+
                     const year = e.target.getAttribute('data-year');
                     // 這裡可加入過濾新聞卡片的邏輯
                     const cards = document.querySelectorAll('.news-card');
@@ -722,4 +814,5 @@
         });
     </script>
 </body>
+
 </html>

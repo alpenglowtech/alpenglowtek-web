@@ -64,6 +64,7 @@
         <div class="dropdown dropdown-mega">
           <div class="dd-col">
             <span class="dropdown-col-title">ASIC</span>
+            <a href="${root}${lang}/solutions/asic/edge-ai-soc-platform.html" class="dropdown-item" style="font-weight:700;color:#004aad">${t.edgeAiPlatform}</a>
             <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">${t.anixTitle}</span>
             <a href="${root}${lang}/solutions/asic/anix/tech.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">${t.anixTech}</a>
             <a href="${root}${lang}/solutions/asic/anix/apps-industrial.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">${t.anixInd}</a>
@@ -157,6 +158,7 @@
       <a href="javascript:void(0);" class="mobile-nav-link">${t.solutions}</a>
       <div class="mobile-sub">
         <span class="mobile-sub-cat">ASIC</span>
+        <a href="${root}${lang}/solutions/asic/edge-ai-soc-platform.html" class="mobile-sub-item" style="font-weight:700">✦ ${t.edgeAiPlatform}</a>
         <a href="${root}${lang}/solutions/asic/anix/tech.html" class="mobile-sub-item">${t.anixTech}</a>
         <a href="${root}${lang}/solutions/asic/anix/apps-industrial.html" class="mobile-sub-item">${t.anixInd}</a>
         <a href="${root}${lang}/solutions/asic/anix/apps-consumer.html" class="mobile-sub-item">${t.anixCon}</a>
@@ -196,6 +198,7 @@
       about: '關於', aboutUs: '關於我們', team: '核心成員', brandStory: '品牌故事',
       devNews: '發展動態', events: '最新活動', resources: '資源下載',
       anixTitle: 'ANIX — 超低功耗 AI 處理器',
+      edgeAiPlatform: '超低功耗邊緣 AI SoC 整合平台',
       langCode: '繁中', home: '首頁',
       footerSlogan1: '追光而行·臻至無限', footerSlogan2: 'Alpenglow Lights the Impossible.',
       contactTitle: '聯絡資訊', address: '(241454) 新北市三重區<br>重新路一段108號3樓',
@@ -209,6 +212,7 @@
       about: 'About', aboutUs: 'About Us', team: 'Our Team', brandStory: 'Brand Story',
       devNews: 'Development Updates', events: 'Latest Events', resources: 'Resources',
       anixTitle: 'ANIX — Ultra-Low Power AI Processor',
+      edgeAiPlatform: 'Ultra-Low Power Edge AI SoC Platform',
       langCode: 'EN', home: 'Home',
       footerSlogan1: 'Chasing the light, reaching the infinite.', footerSlogan2: 'Alpenglow Lights the Impossible.',
       contactTitle: 'Contact Us', address: '3F, No.108, Sec. 1, Chongxin Rd.,<br>Sanchong Dist., New Taipei City 241454',
@@ -222,6 +226,7 @@
       about: 'アバウト', aboutUs: '私たちについて', team: 'コアメンバー', brandStory: 'ブランドストーリー',
       devNews: '発展動向', events: '最新イベント', resources: 'リソース',
       anixTitle: 'ANIX — 超低消費電力 AI プロセッサ',
+      edgeAiPlatform: '超低消費電力エッジ AI SoC 統合プラットフォーム',
       langCode: 'JP', home: 'ホーム',
       footerSlogan1: '光を追い、無限へと至る。', footerSlogan2: 'Alpenglow Lights the Impossible.',
       contactTitle: 'お問い合わせ', address: '(241454) 新北市三重区<br>重新路一段108号3階',
@@ -259,6 +264,7 @@
         <div>
             <p class="footer-col-title">${t.solutions}</p>
             <div class="footer-links">
+                <a href="${root}${lang}/solutions/asic/edge-ai-soc-platform.html" class="footer-link">${t.edgeAiPlatform}</a>
                 <a href="${root}${lang}/solutions/asic/anix/tech.html" class="footer-link">${t.anixTitle}</a>
                 <a href="${root}${lang}/solutions/asic/custom-asic.html" class="footer-link">${t.customAsic}</a>
                 <a href="${root}${lang}/solutions/fpga/pqc.html" class="footer-link">FPGA — ${t.pqc}</a>
