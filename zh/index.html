@@ -688,8 +688,8 @@
         }
         .partners-track {
             display: flex;
-            width: calc(360px * 32);
-            animation: partnerScroll 80s linear infinite;
+            width: calc(360px * 34);
+            animation: partnerScroll 85s linear infinite;
         }
         .partners-track:hover {
             animation-play-state: paused;
@@ -717,22 +717,22 @@
         }
         @keyframes partnerScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-360px * 16)); }
+            100% { transform: translateX(calc(-360px * 17)); }
         }
 
         /* Responsive Partners */
         @media (max-width: 1024px) {
             .partner-logo { width: 300px; padding: 0 40px; }
-            .partners-track { width: calc(300px * 32); }
+            .partners-track { width: calc(300px * 34); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-300px * 16)); }
+                100% { transform: translateX(calc(-300px * 17)); }
             }
         }
         @media (max-width: 767px) {
             .partner-logo { width: 250px; padding: 0 30px; }
-            .partners-track { width: calc(250px * 32); }
+            .partners-track { width: calc(250px * 34); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-250px * 16)); }
+                100% { transform: translateX(calc(-250px * 17)); }
             }
         }
     </style>
@@ -755,9 +755,9 @@
                     <div class="dropdown dropdown-mega">
                         <div class="dd-col">
                             <span class="dd-col-title">ASIC</span>
-                            <a href="solutions/asic/edge-ai-soc-platform.html" class="dropdown-item" style="font-weight:700;color:#004aad">超低功耗邊緣 AI SoC 整合平台</a>
                             <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">ANIX — 超低功耗 AI 處理器</span>
                             <a href="solutions/asic/anix/tech.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 技術介紹</a>
+                            <a href="solutions/asic/edge-ai-soc-platform.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 超低功耗邊緣 AI SoC 整合平台</a>
                             <a href="solutions/asic/anix/apps-industrial.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 工業低功耗應用</a>
                             <a href="solutions/asic/anix/apps-consumer.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 消費性低功耗應用</a>
                             <a href="solutions/asic/custom-asic.html" class="dropdown-item">客製化 ASIC</a>
@@ -788,7 +788,6 @@
                     <a href="news/index.html" class="nav-link">最新消息 <span class="chev">▾</span></a>
                     <div class="dropdown">
                         <a href="news/index.html" class="dropdown-item">近期新聞</a>
-                        <a href="news/awards.html" class="dropdown-item">榮獲獎項</a>
                     </div>
                 </div>
             </nav>
@@ -816,9 +815,9 @@
     <nav class="mobile-nav" id="mobileNav">
         <a href="javascript:void(0);" class="m-nav-link">解決方案</a>
         <div class="m-sub">
-            <a href="solutions/asic/edge-ai-soc-platform.html" style="display:block;padding:0.5rem 0.75rem;font-size:0.83rem;color:#004aad;font-weight:700;border-radius:8px;transition:0.2s;">✦ 超低功耗邊緣 AI SoC 整合平台</a>
             <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">ANIX — 超低功耗 AI 處理器</span>
             <a href="solutions/asic/anix/tech.html">↳ 技術介紹</a>
+            <a href="solutions/asic/edge-ai-soc-platform.html">↳ 超低功耗邊緣 AI SoC 整合平台</a>
             <a href="solutions/asic/anix/apps-industrial.html">↳ 工業低功耗應用</a>
             <a href="solutions/asic/anix/apps-consumer.html">↳ 消費性低功耗應用</a>
             <a href="solutions/asic/custom-asic.html">客製化 ASIC</a>
@@ -847,8 +846,6 @@
                 工程創新 <span>·</span> 技術突破 <span>·</span> 產業合作
             </p>
             <div class="hero-cta">
-                <a href="solutions/index.html" class="btn-primary-lg">探索解決方案</a>
-                <a href="contact/index.html" class="btn-outline-lg">預約技術交流</a>
             </div>
         </div>
 
@@ -997,7 +994,6 @@
                     <a href="company/team.html">核心成員</a>
                     <a href="company/brand-story.html">品牌故事</a>
                     <a href="news/index.html">最新消息</a>
-                    <a href="news/awards.html">榮獲獎項</a>
                     <a href="resources/index.html">資源下載</a>
                     <a href="careers/index.html">加入臻至</a>
                 </div>

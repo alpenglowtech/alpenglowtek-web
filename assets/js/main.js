@@ -64,9 +64,9 @@
         <div class="dropdown dropdown-mega">
           <div class="dd-col">
             <span class="dropdown-col-title">ASIC</span>
-            <a href="${root}${lang}/solutions/asic/edge-ai-soc-platform.html" class="dropdown-item" style="font-weight:700;color:#004aad">${t.edgeAiPlatform}</a>
             <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">${t.anixTitle}</span>
             <a href="${root}${lang}/solutions/asic/anix/tech.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">${t.anixTech}</a>
+            <a href="${root}${lang}/solutions/asic/edge-ai-soc-platform.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ ${t.edgeAiPlatform}</a>
             <a href="${root}${lang}/solutions/asic/anix/apps-industrial.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">${t.anixInd}</a>
             <a href="${root}${lang}/solutions/asic/anix/apps-consumer.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">${t.anixCon}</a>
             <a href="${root}${lang}/solutions/asic/custom-asic.html" class="dropdown-item">${t.customAsic}</a>
@@ -158,11 +158,12 @@
       <a href="javascript:void(0);" class="mobile-nav-link">${t.solutions}</a>
       <div class="mobile-sub">
         <span class="mobile-sub-cat">ASIC</span>
-        <a href="${root}${lang}/solutions/asic/edge-ai-soc-platform.html" class="mobile-sub-item" style="font-weight:700">✦ ${t.edgeAiPlatform}</a>
+        <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">${t.anixTitle}</span>
         <a href="${root}${lang}/solutions/asic/anix/tech.html" class="mobile-sub-item">${t.anixTech}</a>
+        <a href="${root}${lang}/solutions/asic/edge-ai-soc-platform.html" class="mobile-sub-item">↳ ${t.edgeAiPlatform}</a>
         <a href="${root}${lang}/solutions/asic/anix/apps-industrial.html" class="mobile-sub-item">${t.anixInd}</a>
         <a href="${root}${lang}/solutions/asic/anix/apps-consumer.html" class="mobile-sub-item">${t.anixCon}</a>
-        <a href="${root}${lang}/solutions/asic/custom-asic.html" class="mobile-sub-item">↳ ${t.customAsic}</a>
+        <a href="${root}${lang}/solutions/asic/custom-asic.html" class="mobile-sub-item">${t.customAsic}</a>
         <span class="mobile-sub-cat">FPGA</span>
         <a href="${root}${lang}/solutions/fpga/pqc.html" class="mobile-sub-item">↳ ${t.pqc}</a>
         <a href="${root}${lang}/solutions/fpga/event-camera.html" class="mobile-sub-item">↳ ${t.eventCamera}</a>
