@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-
-<html lang="zh-TW">
+<html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../favicon.png" type="image/png">
-<title>ホーム | Alpenglow Tek</title>
-<meta content="Alpenglow Tek — 高効率エッジAIコンピューティングアーキテクチャのイノベーター。超低消費電力AIプロセッサ、カスタムASIC/SoC、FPGAプロトタイピングサービスの設計。" name="description"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
-<style>
+    <title>ホーム | Alpenglow Tek</title>
+    <meta name="description" content="Alpenglow Tek — エッジインテリジェンスの物理的限界を再定義する。超低消費電力AIプロセッサ、カスタムASIC/SoCを設計し、FPGAプロトタイピングでコンセプトから量産までを加速します。">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
         /* ── Reset & Base ── */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
@@ -253,6 +252,7 @@
             display: flex;
             align-items: center;
             overflow: hidden;
+            scroll-snap-align: start;
         }
         .hero-bg {
             position: absolute;
@@ -405,6 +405,248 @@
         @keyframes scrollBounce {
             0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
             50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
+
+        /* ======================================
+           ANIX INTRO — scroll-snap pages
+           (each section is a discrete full screen;
+            scrolling snaps cleanly from one to the next)
+        ====================================== */
+        html { scroll-snap-type: y proximity; }
+        .anix-statement-page,
+        .anix-cards-page {
+            min-height: calc(100vh - var(--header-h));
+            scroll-snap-align: start;
+            scroll-margin-top: var(--header-h);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+        }
+        .anix-statement-page {
+            background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 100%);
+        }
+        .anix-cards-page {
+            background: linear-gradient(180deg, #fbfcff 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .anix-cards-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -8%;
+            width: 55%;
+            height: 100%;
+            background-image: url('../assets/img/hero_cim.png');
+            background-size: cover;
+            background-position: left center;
+            opacity: 0.07;
+            mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .anix-cards-page .anix-intro-inner {
+            position: relative;
+            z-index: 1;
+        }
+        .anix-statement-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .anix-lead-statement {
+            font-size: clamp(2rem, 3.6vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.5;
+            color: #0d1b3e;
+            margin: 0;
+        }
+        .anix-lead-statement .accent { color: #009bab; }
+
+        .anix-intro-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .anix-intro-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+            margin-bottom: 3rem;
+        }
+        .anix-intro-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            border-left: 3px solid var(--cyan);
+            box-shadow: 0 8px 28px rgba(0, 74, 173, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .anix-intro-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0, 74, 173, 0.12);
+        }
+        .anix-intro-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(47,232,250,0.14);
+            color: #009bab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.1rem;
+        }
+        .anix-intro-icon svg { width: 24px; height: 24px; }
+        .anix-intro-card h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #061a3a;
+            margin-bottom: 0.6rem;
+        }
+        .anix-intro-card p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #5a6a90;
+            margin: 0;
+        }
+        .anix-intro-cta-wrap { text-align: center; }
+        .anix-intro-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2.2rem;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+        .anix-intro-cta:hover {
+            background: var(--cyan);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(47,232,250,0.35);
+        }
+
+        /* ======================================
+           APPLICATIONS
+        ====================================== */
+        .app-section {
+            background: #ffffff;
+            padding: 6rem 1.5rem;
+            min-height: calc(100vh - var(--header-h));
+            display: flex;
+            align-items: center;
+            scroll-snap-align: start;
+            scroll-margin-top: var(--header-h);
+        }
+        .app-inner {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .app-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
+        }
+        .app-eyebrow {
+            display: block;
+            font-size: 0.85rem;
+            color: #8899bb;
+            margin-bottom: 0.5rem;
+        }
+        .app-title {
+            font-size: clamp(2rem, 3.6vw, 2.75rem);
+            font-weight: 800;
+            color: #0d1b3e;
+            margin: 0;
+        }
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy);
+            white-space: nowrap;
+            padding-bottom: 0.4rem;
+        }
+        .app-link:hover { color: #009bab; }
+        .app-divider {
+            border: none;
+            border-top: 1px solid rgba(0,74,173,0.12);
+            margin-bottom: 3rem;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+        .app-card {
+            background: #f6f8fb;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+        .app-card:hover {
+            background: #eef2f9;
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0, 74, 173, 0.1);
+        }
+        .app-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(47,232,250,0.16);
+            color: #009bab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .app-card-icon svg { width: 26px; height: 26px; }
+        .app-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #061a3a;
+            margin-bottom: 0.75rem;
+        }
+        .app-card p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #5a6a90;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .app-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .app-card-link:hover { color: #009bab; }
+        @media (max-width: 900px) {
+            .anix-intro-grid { grid-template-columns: 1fr; }
+            .app-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 767px) {
+            .app-section { padding: 4rem 1.25rem; }
+            .app-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+        }
+        @media (max-width: 767px) {
+            html { scroll-snap-type: none; }
+            .anix-statement-page, .anix-cards-page { min-height: auto; padding: 3rem 1.25rem; }
+            .app-section { min-height: auto; }
+            .anix-intro-card { padding: 1.5rem; }
         }
 
         /* ======================================
@@ -666,6 +908,7 @@
         }
 
         /* ======================================
+           PARTNERS CAROUSEL
         ====================================== */
         .partners-section {
             padding: 6rem 1.5rem;
@@ -690,8 +933,8 @@
         }
         .partners-track {
             display: flex;
-            width: calc(360px * 32);
-            animation: partnerScroll 80s linear infinite;
+            width: calc(360px * 38);
+            animation: partnerScroll 85s linear infinite;
         }
         .partners-track:hover {
             animation-play-state: paused;
@@ -719,297 +962,573 @@
         }
         @keyframes partnerScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-360px * 16)); }
+            100% { transform: translateX(calc(-360px * 19)); }
         }
 
         /* Responsive Partners */
         @media (max-width: 1024px) {
             .partner-logo { width: 300px; padding: 0 40px; }
-            .partners-track { width: calc(300px * 32); }
+            .partners-track { width: calc(300px * 38); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-300px * 16)); }
+                100% { transform: translateX(calc(-300px * 19)); }
             }
         }
         @media (max-width: 767px) {
             .partner-logo { width: 250px; padding: 0 30px; }
-            .partners-track { width: calc(250px * 32); }
+            .partners-track { width: calc(250px * 38); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-250px * 16)); }
+                100% { transform: translateX(calc(-250px * 19)); }
             }
+        }
+
+        /* ======================================
+           CONTACT
+        ====================================== */
+        .contact-section {
+            background: #f6f8fb;
+            padding: 6rem 1.5rem;
+        }
+        .contact-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: stretch;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(47,232,250,0.16);
+            color: #009bab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .contact-item-text { font-size: 1rem; color: #3a4a6b; line-height: 1.7; padding-top: 0.4rem; }
+        .contact-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2.2rem;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 14px;
+            transition: 0.3s;
+            margin-top: 1rem;
+            align-self: flex-start;
+        }
+        .contact-cta:hover {
+            background: var(--cyan);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(47,232,250,0.35);
+        }
+        .contact-map {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,74,173,0.1);
+            min-height: 320px;
+        }
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            border: 0;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 767px) {
+            .contact-section { padding: 4rem 1.25rem; }
         }
     </style>
 </head>
 <body>
-<!-- ========== HEADER ========== -->
-<header class="site-header" id="siteHeader">
-<div class="header-inner">
-<!-- Logo -->
-<a class="site-logo" href="../zh/index.html">
-<img alt="アルペングロウ・テック" src="../assets/img/LOGO_blue.png"/>
-</a>
-<!-- Desktop Navigation -->
-<nav class="site-nav">
-<!-- Solutions -->
-<div class="nav-item">
-<a class="nav-link" href="javascript:void(0);">ソリューション <span class="chev">▾</span></a>
-<div class="dropdown dropdown-mega">
-<div class="dd-col">
-<span class="dd-col-title">ASIC</span>
-<span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">ANIX — 超低消費電力 AI プロセッサ</span>
-<a class="dropdown-item" href="solutions/asic/anix/tech.html" style="padding-left:1.4rem;font-size:.8rem">↳ 技術紹介</a>
-<a class="dropdown-item" href="solutions/asic/edge-ai-soc-platform.html" style="padding-left:1.4rem;font-size:.8rem">↳ 超低消費電力エッジ AI SoC 統合プラットフォーム</a>
-<a class="dropdown-item" href="solutions/asic/anix/apps-industrial.html" style="padding-left:1.4rem;font-size:.8rem">↳ 産業用低電力アプリケーション</a>
-<a class="dropdown-item" href="solutions/asic/anix/apps-consumer.html" style="padding-left:1.4rem;font-size:.8rem">↳ 消費者は低電力の電力供給を求める</a>
-<a class="dropdown-item" href="solutions/asic/custom-asic.html">カスタムASIC</a>
-</div>
-<div class="dd-col">
-<span class="dd-col-title">FPGA</span>
-<a class="dropdown-item" href="solutions/fpga/pqc.html">PQC コード化</a>
-<a class="dropdown-item" href="solutions/fpga/event-camera.html">イベントカメラ</a>
-<a class="dropdown-item" href="solutions/fpga/rf.html">RFなしライン周波数</a>
-<a class="dropdown-item" href="solutions/fpga/vision-audio-preprocess.html">前処理</a>
-</div>
-</div>
-</div>
-<!-- Company -->
-<div class="nav-item">
-<a class="nav-link" href="javascript:void(0);">会社概要 <span class="chev">▾</span></a>
-<div class="dropdown">
-<span class="dropdown-cat">について</span>
-<a class="dropdown-item" href="company/about.html">私たちについて</a>
-<a class="dropdown-item" href="company/team.html">コアメンバー</a>
-<a class="dropdown-item" href="company/brand-story.html">ブランドストーリー</a>
-</div>
-</div>
-<!-- News -->
-<div class="nav-item">
-<a class="nav-link" href="news/index.html">ニュース <span class="chev">▾</span></a>
-<div class="dropdown">
-<a class="dropdown-item" href="news/index.html">発展動向</a>
-</div>
-</div>
-</nav>
-<!-- Language Switcher -->
-<div class="header-right">
-    <div class="nav-item lang-switcher">
-        <div class="lang-btn">JP <span style="font-size:.6rem">▾</span></div>
-        <div class="dropdown" style="right:0;left:auto;min-width:160px">
-            <a href="../zh/index.html" class="dropdown-item">繁體中文</a>
-            <a href="../en/index.html" class="dropdown-item">English</a>
-            <a href="../ja/index.html" class="dropdown-item active">日本語</a>
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="../ja/index.html" class="site-logo">
+                <img src="../assets/img/LOGO_blue.png" alt="アルペングロウ・テック">
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="site-nav">
+                <!-- Solutions -->
+                <div class="nav-item">
+                    <a href="javascript:void(0);" class="nav-link">ソリューション <span class="chev">▾</span></a>
+                    <div class="dropdown dropdown-mega">
+                        <div class="dd-col">
+                            <span class="dd-col-title">ANIX</span>
+                            <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">ANIX — 超低消費電力 AI プロセッサ</span>
+                            <a href="solutions/asic/anix/tech.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 技術紹介</a>
+                        </div>
+                        <div class="dd-col">
+                            <span class="dd-col-title">アプリケーション</span>
+                            <a href="solutions/asic/anix/apps-medical.html" class="dropdown-item">↳ 医療センシング応用</a>
+                            <a href="solutions/asic/anix/apps-industrial.html" class="dropdown-item">↳ 産業向けアプリケーション</a>
+                            <a href="solutions/asic/anix/apps-consumer.html" class="dropdown-item">↳ コンシューマ向けアプリケーション</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="nav-item">
+                    <a href="javascript:void(0);" class="nav-link">サービス <span class="chev">▾</span></a>
+                    <div class="dropdown dropdown-mega">
+                        <div class="dd-col">
+                            <span class="dd-col-title">SoC</span>
+                            <a href="solutions/asic/anix/tech.html#ip-licensing" class="dropdown-item">ANIX IPライセンス</a>
+                            <a href="solutions/asic/custom-asic.html" class="dropdown-item">カスタム ASIC</a>
+                        </div>
+                        <div class="dd-col">
+                            <span class="dd-col-title">FPGA</span>
+                            <a href="solutions/fpga/pqc.html" class="dropdown-item">PQC 暗号学</a>
+                            <a href="solutions/fpga/event-camera.html" class="dropdown-item">イベントカメラ</a>
+                            <a href="solutions/fpga/rf.html" class="dropdown-item">RF</a>
+                            <a href="solutions/fpga/vision-audio-preprocess.html" class="dropdown-item">視覚/聴覚前処理</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company -->
+                <div class="nav-item">
+                    <a href="javascript:void(0);" class="nav-link">会社概要 <span class="chev">▾</span></a>
+                    <div class="dropdown">
+                        <span class="dropdown-cat">アバウト</span>
+                        <a href="company/about.html" class="dropdown-item">私たちについて</a>
+                        <a href="company/team.html" class="dropdown-item">コアメンバー</a>
+                        <a href="company/brand-story.html" class="dropdown-item">ブランドストーリー</a>
+                    </div>
+                </div>
+
+                <!-- News -->
+                <div class="nav-item">
+                    <a href="news/index.html" class="nav-link">ニュース <span class="chev">▾</span></a>
+                    <div class="dropdown">
+                        <a href="news/index.html" class="dropdown-item">発展動向</a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Language Switcher -->
+            <div class="header-right">
+                <div class="nav-item lang-switcher">
+                    <div class="lang-btn">🇯🇵 JP <span style="font-size:.6rem">▾</span></div>
+                    <div class="dropdown" style="right:0;left:auto;min-width:160px">
+                        <a href="../zh/index.html" class="dropdown-item">🇹🇼 繁體中文</a>
+                        <a href="../en/index.html" class="dropdown-item">🇺🇸 English</a>
+                        <a href="../ja/index.html" class="dropdown-item active">🇯🇵 日本語</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button class="menu-toggle" id="menuToggle" aria-label="メニュー">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </div>
-</div>
-<!-- Mobile Toggle -->
-<button aria-label="選單" class="menu-toggle" id="menuToggle">
-<span></span><span></span><span></span>
-</button>
-</div>
-</header>
-<!-- Mobile Nav -->
-<nav class="mobile-nav" id="mobileNav">
-<a class="m-nav-link" href="javascript:void(0);">ソリューション</a>
-<div class="m-sub">
-<span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">ANIX — 超低消費電力 AI プロセッサ</span>
-<a href="solutions/asic/anix/tech.html">↳ 技術紹介</a>
-<a href="solutions/asic/edge-ai-soc-platform.html">↳ 超低消費電力エッジ AI SoC 統合プラットフォーム</a>
-<a href="solutions/asic/anix/apps-industrial.html">↳ 産業用低電力アプリケーション</a>
-<a href="solutions/asic/anix/apps-consumer.html">↳ 消費者は低電力の電力供給を求める</a>
-<a href="solutions/asic/custom-asic.html">カスタムASIC</a>
-<a href="solutions/fpga/pqc.html">FPGA — PQC 未確認動物学</a>
-<a href="solutions/fpga/event-camera.html">FPGA — イベントカメラ</a>
-<a href="solutions/fpga/rf.html">FPGA — RFなしライン周波数</a>
-<a href="solutions/fpga/vision-audio-preprocess.html">FPGA - ビジュアル/ビデオ前処理</a>
-</div>
-<a class="m-nav-link" href="javascript:void(0);">会社概要</a>
-<div class="m-sub">
-<a href="company/about.html">秘密の</a>
-<a href="company/team.html">コアメンバー</a>
-<a href="company/brand-story.html">ブランドストーリー</a>
-</div>
-<a class="m-nav-link" href="news/index.html">ニュース</a>
-</nav>
-<!-- ========== HERO ========== -->
-<section class="hero" id="hero">
-<div class="hero-bg" id="heroBg"></div>
-<div class="hero-overlay"></div>
-<div class="hero-content">
-<h1>高効率なエッジAI<br/>演算アーキテクチャの<em>革新者</em></h1>
-<p class="hero-sub">
-                技術革新 <span>·</span> 開発のブレークスルー <span>·</span> 業界連携
+    </header>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="javascript:void(0);" class="m-nav-link">ソリューション</a>
+        <div class="m-sub">
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">ANIX — 超低消費電力 AI プロセッサ</span>
+            <a href="solutions/asic/anix/tech.html">↳ 技術紹介</a>
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">アプリケーション</span>
+            <a href="solutions/asic/anix/apps-medical.html">↳ 医療センシング応用</a>
+            <a href="solutions/asic/anix/apps-industrial.html">↳ 産業向けアプリケーション</a>
+            <a href="solutions/asic/anix/apps-consumer.html">↳ コンシューマ向けアプリケーション</a>
+        </div>
+        <a href="javascript:void(0);" class="m-nav-link">サービス</a>
+        <div class="m-sub">
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">SoC</span>
+            <a href="solutions/asic/anix/tech.html#ip-licensing">↳ ANIX IPライセンス</a>
+            <a href="solutions/asic/custom-asic.html">↳ カスタム ASIC</a>
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">FPGA</span>
+            <a href="solutions/fpga/pqc.html">↳ PQC 暗号学</a>
+            <a href="solutions/fpga/event-camera.html">↳ イベントカメラ</a>
+            <a href="solutions/fpga/rf.html">↳ RF</a>
+            <a href="solutions/fpga/vision-audio-preprocess.html">↳ 視覚/聴覚前処理</a>
+        </div>
+        <a href="javascript:void(0);" class="m-nav-link">会社概要</a>
+        <div class="m-sub">
+            <a href="company/about.html">私たちについて</a>
+            <a href="company/team.html">コアメンバー</a>
+            <a href="company/brand-story.html">ブランドストーリー</a>
+        </div>
+        <a href="news/index.html" class="m-nav-link">ニュース</a>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1><em>ANIX</em></h1>
+            <p class="hero-sub">
+                超低消費電力AI推論コアが、次世代AIアプリケーションの境界を再定義する
             </p>
-<div class="hero-cta">
-</div>
-</div>
-<div class="scroll-hint">
-<span>Scroll</span>
-<div class="scroll-arrow"></div>
-</div>
-</section>
-<!-- ========== CIRCLES SECTION ========== -->
-<section class="circles-section">
-<div class="circles-section-inner">
-<span class="circles-section-label">CORE CAPABILITIES</span>
-<h2 class="circles-section-title">3つのコアテクノロジー</h2>
-<p class="circles-section-desc">
-                超低消費電力AIテクノロジーASIC、高速FPGAテクノロジー、<br/>
-                Alpenglow Tek のコンセプトと量産が完全に可能です。
-            </p>
-<div class="circles-row">
-<!-- Circle 1 -->
-<div class="circle-item" data-circle="1">
-<div class="circle-img-wrap">
-<img alt="超低消費電力AIプロセッサ" src="../assets/img/1.png"/>
-<div class="circle-label-overlay">
-<p class="circle-label-text">超低消費電力<br/>AIプロセッサ</p>
-</div>
-</div>
-<div class="circle-caption">
-<p class="circle-caption-title">超低消費電力AIプロセッサ</p>
-<p class="circle-caption-desc">エッジAIコンピューティングけに構築<br/>極めて低い消費電力と低遅延のハードウェア アクセラレータ</p>
-</div>
-</div>
-<!-- Circle 2 -->
-<div class="circle-item" data-circle="2">
-<div class="circle-img-wrap">
-<img alt="ASIC/IPデザイナー" src="../assets/img/2.png"/>
-<div class="circle-label-overlay">
-<p class="circle-label-text">ASIC / IP<br/>デザインサービス</p>
-</div>
-</div>
-<div class="circle-caption">
-<p class="circle-caption-title">ASIC/IPデザイナー</p>
-<p class="circle-caption-desc">特化した NAASIC IP 設計システム<br/>高性能、低消費電力で作られたカスタマイズされたチップとモジュールを</p>
-</div>
-</div>
-<!-- Circle 3 -->
-<div class="circle-item" data-circle="3">
-<div class="circle-img-wrap">
-<img alt="FPGAプロトタイピング" src="../assets/img/3.png"/>
-<div class="circle-label-overlay">
-<p class="circle-label-text">FPGA<br/>裁判の証拠</p>
-</div>
-</div>
-<div class="circle-caption">
-<p class="circle-caption-title">FPGAプロトタイピング</p>
-<p class="circle-caption-desc">FPGAは迅速な認証に使用されます<br/>短縮品の設計・開発・量産</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- ========== PARTNERS SECTION ========== -->
-<section class="partners-section">
-<div class="partners-section-inner">
-<h2 class="partners-title">パートナー</h2>
-<div class="partners-carousel">
-<div class="partners-track">
-<!-- Original 16 Logos -->
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l1.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l2.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l3.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l4.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l5.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l6.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l7.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l8.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l9.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l10.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l11.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l12.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l13.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l14.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l15.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l16.png"/></div>
-<!-- Duplicated for Infinite Loop -->
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l1.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l2.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l3.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l4.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l5.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l6.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l7.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l8.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l9.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l10.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l11.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l12.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l13.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l14.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l15.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l16.png"/></div>
-</div>
-</div>
-</div>
-</section>
-<!-- ========== FOOTER ========== -->
-<footer class="site-footer">
-<div class="footer-top">
-<!-- Brand -->
-<div>
-<div class="footer-brand-logo">
-<img alt="アルペングロウ・テック" src="../assets/img/LOGO_white.png"/>
-</div>
-<p class="footer-brand-text">
-                    光を追いかけて・なしの限界まで到達する<br/>
+            <div class="hero-cta">
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- ========== ANIX INTRO (scroll-snap pages) ========== -->
+    <section class="anix-statement-page">
+        <div class="anix-statement-inner">
+            <p class="anix-lead-statement"><span class="accent">ANIX</span>は超低消費電力のAI推論コアであり、これまでインテリジェント演算を搭載できなかったデバイスにもAIを届けます</p>
+        </div>
+    </section>
+
+
+    <section class="anix-cards-page">
+        <div class="anix-intro-inner">
+            <div class="app-header">
+
+
+                <div>
+                    <span class="app-eyebrow">Technology</span>
+                    <h2 class="app-title">コア技術</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
+
+            <div class="anix-intro-grid">
+                <div class="anix-intro-card">
+                    <div class="anix-intro-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <rect x="7" y="7" width="4" height="4"/>
+                            <rect x="13" y="7" width="4" height="4"/>
+                            <rect x="7" y="13" width="4" height="4"/>
+                            <rect x="13" y="13" width="4" height="4"/>
+                        </svg>
+                    </div>
+                    <h3>アナログ・メモリ内演算アーキテクチャ</h3>
+                    <p>演算ユニットとメモリアレイ（Memory Array）を一体化し、アナログ演算によって乗算累算（MAC）を実行。画期的なエネルギー効率と面積効率を実現します。</p>
+                </div>
+                <div class="anix-intro-card">
+                    <div class="anix-intro-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12h4l2-6 4 12 3-9 2 3h5"/>
+                        </svg>
+                    </div>
+                    <h3>常時センシング、低消費電力動作</h3>
+                    <p>ミリワット（mW）級の電力予算で常時センシング（Always-on Sensing）とリアルタイム推論に対応し、厳しい電力制約下でも長時間の駆動を実現します。</p>
+                </div>
+                <div class="anix-intro-card">
+                    <div class="anix-intro-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="6" x2="20" y2="6"/>
+                            <circle cx="9" cy="6" r="2" fill="currentColor" stroke="none"/>
+                            <line x1="4" y1="12" x2="20" y2="12"/>
+                            <circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"/>
+                            <line x1="4" y1="18" x2="20" y2="18"/>
+                            <circle cx="11" cy="18" r="2" fill="currentColor" stroke="none"/>
+                        </svg>
+                    </div>
+                    <h3>多様なAIモデル展開に柔軟対応</h3>
+                    <p>4-bit／8-bit など多様な演算精度に対応し、さまざまなニューラルネットワーク演算子の展開要件に柔軟に応えます。</p>
+                </div>
+            </div>
+
+            <div class="anix-intro-cta-wrap">
+                <a href="solutions/asic/anix/tech.html" class="anix-intro-cta">ANIX の技術詳細を見る →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== APPLICATIONS ========== -->
+    <section class="app-section">
+        <div class="app-inner">
+            <div class="app-header">
+                <div>
+                    <span class="app-eyebrow">Applications</span>
+                    <h2 class="app-title">アプリケーション</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
+
+            <div class="app-grid">
+                <a class="app-card" href="solutions/asic/anix/apps-medical.html">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z"/>
+                            <path d="M4 12h3l1.5-3 2 5 1.5-3h4"/>
+                        </svg>
+                    </div>
+                    <h3>医療センシング</h3>
+                    <p>ウェアラブル型の生体モニタリングから植込み型医療機器まで、ANIX はバッテリー駆動下でも長時間の常時センシングを維持し、生体信号のリアルタイム分析を可能にします。</p>
+                </a>
+                <a class="app-card" href="solutions/asic/anix/apps-industrial.html">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>
+                        </svg>
+                    </div>
+                    <h3>産業センシング</h3>
+                    <p>予知保全や異常検知の現場において、ANIX はエッジでのリアルタイム推論能力を提供し、ダウンタイムのリスクを低減しながらセンサーノードの稼働寿命を延ばします。</p>
+                </a>
+                <a class="app-card" href="solutions/asic/anix/apps-consumer.html">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="7" y="4" width="10" height="16" rx="3"/>
+                            <line x1="10" y1="8" x2="14" y2="8"/>
+                        </svg>
+                    </div>
+                    <h3>コンシューマ電子機器</h3>
+                    <p>完全ワイヤレスイヤホンからウェアラブル機器まで、ANIX は限られたバッテリーと省スペースの中で常時インテリジェンスとリアルタイム応答を実現します。</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COOPERATION MODELS ========== -->
+    <section class="circles-section">
+        <div class="circles-section-inner">
+            <div class="app-header" style="text-align:left">
+                <div>
+                    <span class="app-eyebrow">Cooperation</span>
+                    <h2 class="app-title">協業モデル</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
+
+            <div class="circles-row">
+                <!-- Circle 1 -->
+                <div class="circle-item" data-circle="1">
+                    <div class="circle-img-wrap">
+                        <img src="../assets/img/1.png" alt="IPライセンス提携">
+                        <div class="circle-label-overlay">
+                            <p class="circle-label-text">IP<br>ライセンス提携</p>
+                        </div>
+                    </div>
+                    <div class="circle-caption">
+                        <p class="circle-caption-title">IPライセンス提携</p>
+                        <p class="circle-caption-desc">ANIX コア IP をライセンス供与<br>IC 設計チームが超低消費電力AI演算能力を迅速に統合</p>
+                    </div>
+                </div>
+
+                <!-- Circle 2 -->
+                <div class="circle-item" data-circle="2">
+                    <div class="circle-img-wrap">
+                        <img src="../assets/img/2.png" alt="カスタム設計サービス">
+                        <div class="circle-label-overlay">
+                            <p class="circle-label-text">カスタム<br>設計サービス</p>
+                        </div>
+                    </div>
+                    <div class="circle-caption">
+                        <p class="circle-caption-title">カスタム設計サービス</p>
+                        <p class="circle-caption-desc">アーキテクチャ設計から量産まで<br>エンドツーエンドのカスタム ASIC / IP 設計協業を提供</p>
+                    </div>
+                </div>
+
+                <!-- Circle 3 -->
+                <div class="circle-item" data-circle="3">
+                    <div class="circle-img-wrap">
+                        <img src="../assets/img/3.png" alt="プロトタイプ検証と導入">
+                        <div class="circle-label-overlay">
+                            <p class="circle-label-text">プロトタイプ検証<br>と導入</p>
+                        </div>
+                    </div>
+                    <div class="circle-caption">
+                        <p class="circle-caption-title">プロトタイプ検証と導入</p>
+                        <p class="circle-caption-desc">FPGA でシステムアーキテクチャを迅速に検証<br>新技術導入のリスクと期間を低減</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PARTNERS SECTION ========== -->
+    <section class="partners-section">
+        <div class="partners-section-inner">
+            <h2 class="partners-title">パートナー</h2>
+
+            <div class="partners-carousel">
+                <div class="partners-track">
+                    <!-- Original 16 Logos -->
+                    <div class="partner-logo"><img src="../assets/img/partners/l1.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l2.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l3.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l4.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l6.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l8.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l9.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l10.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l11.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l12.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l13.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l14.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l16.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_appworks.png" alt="AppWorks"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_pnp.png" alt="Plug and Play"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_aita.png" alt="AITA 台湾人工知能チップ連盟"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_jetro.png" alt="JETRO"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_ntu.png" alt="国立台湾大学"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_nycu.png" alt="国立陽明交通大学"></div>
+
+                    <!-- Duplicated for Infinite Loop -->
+                    <div class="partner-logo"><img src="../assets/img/partners/l1.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l2.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l3.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l4.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l6.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l8.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l9.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l10.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l11.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l12.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l13.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l14.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l16.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_appworks.png" alt="AppWorks"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_pnp.png" alt="Plug and Play"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_aita.png" alt="AITA 台湾人工知能チップ連盟"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_jetro.png" alt="JETRO"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_ntu.png" alt="国立台湾大学"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_nycu.png" alt="国立陽明交通大学"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="contact-section" id="contact" style="scroll-margin-top: var(--header-h);">
+        <div class="contact-inner">
+            <div class="app-header" style="text-align:left">
+                <div>
+                    <span class="app-eyebrow">Contact</span>
+                    <h2 class="app-title">お問い合わせ</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-item-icon">📍</span>
+                        <span class="contact-item-text">(241454) 新北市三重区<br>重新路一段108号3階</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-item-icon">✉️</span>
+                        <span class="contact-item-text">phyllis_huang@alpenglowtek.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-item-icon">💬</span>
+                        <span class="contact-item-text">LINE@ @501ytnim</span>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <iframe src="https://maps.google.com/maps?q=新北市三重區重新路一段108號&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="アルペングロウ・テック所在地図"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <!-- Brand -->
+            <div>
+                <div class="footer-brand-logo">
+                    <img src="../assets/img/LOGO_white.png" alt="アルペングロウ・テック">
+                </div>
+                <p class="footer-brand-text">
+                    光を追い、無限へと至る。<br>
                     Alpenglow Lights the Impossible.
                 </p>
-</div>
-<!-- Solutions -->
-<div>
-<p class="footer-col-title">ソリューション</p>
-<div class="footer-links">
-<a href="solutions/asic/anix/tech.html">ANIX超低消費電力AIプロセッサ</a>
-<a href="solutions/asic/custom-asic.html">カスタムASIC</a>
-<a href="solutions/fpga/pqc.html">FPGA — PQC</a>
-<a href="solutions/fpga/event-camera.html">FPGA — イベントカメラ</a>
-<a href="solutions/fpga/rf.html">FPGA — RFなしライン周波数</a>
-<a href="solutions/fpga/vision-audio-preprocess.html">FPGA - ビジュアル/ビデオ前処理</a>
-</div>
-</div>
-<!-- Company -->
-<div>
-<p class="footer-col-title">会社概要</p>
-<div class="footer-links">
-<a href="company/about.html">私たちについて</a>
-<a href="company/team.html">コアメンバー</a>
-<a href="company/brand-story.html">ブランドストーリー</a>
-<a href="news/index.html">発展動向</a>
-</div>
-</div>
-<!-- Contact -->
-<div>
-<p class="footer-col-title">まずはお問い合わせください</p>
-<div class="footer-contact-item">
-<span class="footer-contact-icon">📍</span>
-<span>(241454) 新北市三重区<br/>鎮一中正中路1段108号3階</span>
-</div>
-<div class="footer-contact-item">
-<span class="footer-contact-icon">✉️</span>
-<span>phyllis_huang@alpenglowtek.com</span>
-</div>
-<div class="footer-contact-item">
-<span class="footer-contact-icon">💬</span>
-<span>LINE@ @501ytnim</span>
-</div>
-</div>
-</div>
-<div style="max-width:1440px;margin:0 auto;padding:0 3.5rem">
-<div style="height:1px;background:rgba(255,255,255,.08)"></div>
-</div>
-<div class="footer-bottom">
-<p class="footer-copy">© 2026 Alpenglow Tek.</p>
-<div class="footer-bottom-links">
-<a href="#">プライバシーポリシー</a>
-<a href="#">利用プロトコル</a>
-<a href="../language.html">Language</a>
-</div>
-</div>
-</footer>
-<!-- Back to top -->
-<button aria-label="回到頂部" class="back-to-top" id="backToTop">↑</button>
-<!-- ========== JAVASCRIPT ========== -->
-<script>
+            </div>
+
+            <!-- Solutions -->
+            <div>
+                <p class="footer-col-title">ソリューション</p>
+                <div class="footer-links">
+                    <a href="solutions/asic/anix/tech.html">ANIX超低消費電力AIプロセッサ</a>
+                    <a href="solutions/asic/custom-asic.html">カスタム ASIC</a>
+                    <a href="solutions/fpga/pqc.html">FPGA — PQC 暗号学</a>
+                    <a href="solutions/fpga/event-camera.html">FPGA — イベントカメラ</a>
+                    <a href="solutions/fpga/rf.html">FPGA — RF</a>
+                    <a href="solutions/fpga/vision-audio-preprocess.html">FPGA — 視覚/聴覚前処理</a>
+                </div>
+            </div>
+
+            <!-- Company -->
+            <div>
+                <p class="footer-col-title">会社概要</p>
+                <div class="footer-links">
+                    <a href="company/about.html">私たちについて</a>
+                    <a href="company/team.html">コアメンバー</a>
+                    <a href="company/brand-story.html">ブランドストーリー</a>
+                    <a href="news/index.html">発展動向</a>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <p class="footer-col-title">お問い合わせ</p>
+                <div class="footer-contact-item">
+                    <span class="footer-contact-icon">📍</span>
+                    <span>(241454) 新北市三重区<br>重新路一段108号3階</span>
+                </div>
+
+                <div class="footer-contact-item">
+                    <span class="footer-contact-icon">✉️</span>
+                    <span>phyllis_huang@alpenglowtek.com</span>
+                </div>
+                <div class="footer-contact-item">
+                    <span class="footer-contact-icon">💬</span>
+                    <span>LINE@ @501ytnim</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="max-width:1440px;margin:0 auto;padding:0 3.5rem">
+            <div style="height:1px;background:rgba(255,255,255,.08)"></div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2026 Alpenglow Tek. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">プライバシーポリシー</a>
+                <a href="#">利用規約</a>
+                <a href="../language.html">Language</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop" aria-label="トップへ戻る">↑</button>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
         // Header scroll shadow
         const header = document.getElementById('siteHeader');
         window.addEventListener('scroll', () => {

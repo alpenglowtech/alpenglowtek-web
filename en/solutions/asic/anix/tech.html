@@ -191,6 +191,17 @@
             box-shadow: 0 8px 32px rgba(6, 26, 58, 0.1);
         }
 
+        .anix-ip-diagram {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .anix-ip-diagram img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(6, 26, 58, 0.1);
+        }
+
         /* Section header */
         .anix-section-tag {
             display: inline-block;
@@ -204,6 +215,40 @@
             padding: 0.3rem 1rem;
             border-radius: 100px;
             margin-bottom: 2rem;
+        }
+        .anix-section-heading {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: #004aad;
+            line-height: 1.3;
+            margin: 0 0 1rem;
+        }
+        .anix-section-desc {
+            font-size: 1rem;
+            color: #6b7ba0;
+            line-height: 1.8;
+            max-width: 640px;
+            margin: 0 0 2.5rem;
+        }
+        .anix-cta-row {
+            margin-top: 2.5rem;
+        }
+        .anix-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            background: #004aad;
+            padding: 0.85rem 1.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+        .anix-cta-btn:hover {
+            background: #003a8a;
+            transform: translateY(-2px);
         }
 
         .anix-body-text {
@@ -497,6 +542,8 @@
         <section class="anix-body">
             <div class="anix-body-inner">
                 <span class="anix-section-tag">Architecture Overview</span>
+                <h3 class="anix-section-heading">Redefining Data Flow at the Architecture Level</h3>
+                <p class="anix-section-desc">In wearables, sensor nodes, and industrial edge devices, every joule of energy and every millisecond of latency is a core factor in product competitiveness.</p>
 
                 <div class="anix-body-grid mt-4">
                     <div class="anix-body-image fade-up">
@@ -505,19 +552,11 @@
 
                     <div class="anix-body-text">
                         <div class="anix-para-block fade-up">
-                            <p>In traditional digital AI architectures,<br>frequent data movement often becomes the biggest bottleneck affecting performance and power consumption.</p>
+                            <p>In traditional digital AI architectures, frequent data movement is often the single biggest barrier to performance and power efficiency — in power-constrained environments, the solution can't stop at parameter tuning; it requires <strong>redefining data flow at the architecture level</strong>.</p>
                         </div>
 
                         <div class="anix-para-block fade-up">
-                            <p>Especially in wearables, sensor nodes, and industrial edge devices, every joule of energy and every millisecond of latency is a core competitive consideration.</p>
-                        </div>
-
-                        <div class="anix-para-block fade-up">
-                            <p>In power-constrained environments, solutions should go beyond parameter optimization and <strong>redefine data flow at the architecture level</strong>.</p>
-                        </div>
-
-                        <div class="anix-para-block fade-up">
-                            <p>ANIX employs Computing-in-Memory (CIM) technology, enabling data to be processed directly within storage units, breaking through the memory-compute bottleneck and fundamentally eliminating redundant power consumption from data movement.</p>
+                            <p>ANIX's compute-in-memory (CIM) technology processes data directly within the storage unit, breaking through the memory-compute bottleneck and fundamentally eliminating the redundant power and energy waste caused by data movement.</p>
                         </div>
                     </div>
                 </div>
@@ -556,33 +595,29 @@
         </div>
 
         <!-- ══════════════════════════════════════
-             MORE APPLICATIONS — CTA Section
+             IP LICENSING
         ══════════════════════════════════════ -->
-        <section class="anix-more-apps fade-up">
-            <div class="anix-more-apps-inner">
-                <div class="anix-more-header">
-                    <h2>More ANIX Applications</h2>
-                    <p>Explore ANIX low-power intelligent application scenarios across various domains</p>
+        <section class="anix-body" id="ip-licensing" style="padding-bottom: 6rem; scroll-margin-top: var(--header-h);">
+            <div class="anix-body-inner">
+                <span class="anix-section-tag">IP Licensing</span>
+                <h3 class="anix-section-heading">Accelerate Your Chip Integration with IP Licensing</h3>
+                <p class="anix-section-desc">ANIX is currently available exclusively as IP, letting IC design teams integrate the core compute architecture directly into their own chip designs.</p>
+
+                <div class="anix-ip-diagram fade-up">
+                    <img src="../../../../assets/img/soc-platform-diagram.png" alt="Alpenglow Modular Edge AI SoC Platform architecture diagram">
                 </div>
 
-                <div class="anix-app-cards">
-                    <!-- Industrial Card -->
-                    <a href="apps-industrial.html" class="anix-card">
-                        <div class="anix-card-bg" style="background-image: url('../../../../assets/img/i4.jpg');"></div>
-                        <div class="anix-card-overlay"></div>
-                        <div class="anix-card-content">
-                            <h3>Industrial Low-Power Applications</h3>
-                        </div>
-                    </a>
+                <div class="anix-body-text" style="max-width: 780px; margin: 3rem auto 0;">
+                    <div class="anix-para-block fade-up">
+                        <p>ANIX is a <strong>modular IP platform</strong> — software- and hardware-layer modules can be freely combined as needed, so IC design teams can select the IP modules that fit their own chip architecture.</p>
+                    </div>
+                    <div class="anix-para-block fade-up">
+                        <p>Beyond <strong>IP licensing</strong>, we also offer <strong>SoC integration design services</strong>, helping customers complete the full process from IP adoption to chip integration without building everything from scratch.</p>
+                    </div>
+                </div>
 
-                    <!-- Consumer Card -->
-                    <a href="apps-consumer.html" class="anix-card">
-                        <div class="anix-card-bg" style="background-image: url('../../../../assets/img/c4.png');"></div>
-                        <div class="anix-card-overlay"></div>
-                        <div class="anix-card-content">
-                            <h3>Consumer Low-Power Applications</h3>
-                        </div>
-                    </a>
+                <div class="anix-cta-row fade-up">
+                    <a href="../../../index.html#contact" class="anix-cta-btn">Inquire About Licensing Terms &amp; Technical Specs →</a>
                 </div>
             </div>
         </section>

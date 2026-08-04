@@ -6,7 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <link rel="icon" href="../../../../favicon.png" type="image/png">
 <title>ANIX テクノロジー入門 - 超低消費電力 マイクロ AI 推論 | アルペングロウ・テック</title>
-<meta content="ANIXのモバイルコンピューティングシェアリングシステムと低消費電力システムレベルのAIにアーキテクチャレベルのソリューションを提供します。 ANIXの技術とFPGA技術はその実績を証明しています。" name="description"/>
+<meta content="ANIX はデータ移動と演算の分担を見直し、低消費電力マイクロAIにアーキテクチャレベルのソリューションを提供します。ANIX のコア技術とFPGAプロトタイプ実証の成果をご紹介します。" name="description"/>
 <link href="../../../../assets/css/main.css" rel="stylesheet"/>
 <link href="../../../../assets/css/header.css" rel="stylesheet"/>
 <link href="../../../../assets/css/footer.css" rel="stylesheet"/>
@@ -191,6 +191,17 @@
             box-shadow: 0 8px 32px rgba(6, 26, 58, 0.1);
         }
 
+        .anix-ip-diagram {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .anix-ip-diagram img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(6, 26, 58, 0.1);
+        }
+
         /* Section header */
         .anix-section-tag {
             display: inline-block;
@@ -204,6 +215,40 @@
             padding: 0.3rem 1rem;
             border-radius: 100px;
             margin-bottom: 2rem;
+        }
+        .anix-section-heading {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: #004aad;
+            line-height: 1.3;
+            margin: 0 0 1rem;
+        }
+        .anix-section-desc {
+            font-size: 1rem;
+            color: #6b7ba0;
+            line-height: 1.8;
+            max-width: 640px;
+            margin: 0 0 2.5rem;
+        }
+        .anix-cta-row {
+            margin-top: 2.5rem;
+        }
+        .anix-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            background: #004aad;
+            padding: 0.85rem 1.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+        .anix-cta-btn:hover {
+            background: #003a8a;
+            transform: translateY(-2px);
         }
 
         .anix-body-text {
@@ -485,22 +530,18 @@
 <section class="anix-body">
 <div class="anix-body-inner">
 <span class="anix-section-tag">Architecture Overview</span>
+<h3 class="anix-section-heading">アーキテクチャレベルで、データフローを再定義する</h3>
+<p class="anix-section-desc">ウェアラブルデバイス、センサーノード、産業用エッジ機器において、消費電力1ジュール、遅延1ミリ秒の差が製品競争力を左右します。</p>
 <div class="anix-body-grid mt-4">
 <div class="anix-body-image fade-up">
 <img alt="ANIX Architecture" src="../../../../assets/img/ANIX1.png"/>
 </div>
 <div class="anix-body-text">
 <div class="anix-para-block fade-up">
-<p>従来のデジタルAIアーキテクチャでは、<br/>頻繁なデータ移動が膨大な電力消費の原因となっていました。</p>
+<p>従来のデジタルAIアーキテクチャでは、演算処理における頻繁なデータ移動が性能と消費電力を左右する最大のボトルネックとなってきました。電力に制約のある環境では、パラメータの最適化だけでは不十分であり、<strong>アーキテクチャレベルでデータフローそのものを再定義する</strong>必要があります。</p>
 </div>
 <div class="anix-para-block fade-up">
-<p>特殊な用途や産業機器において、製品競争力の核となるのは、ミリワット級の超低消費電力と1ミリ秒以下の低遅延の実現です。</p>
-</div>
-<div class="anix-para-block fade-up">
-<p>電力制御と環境保護、環境保護の最適化、<strong>アーキテクチャレベルでデータフローを再定義</strong>。</p>
-</div>
-<div class="anix-para-block fade-up">
-<p>ANIX は、メモリ内演算（CIM: Computing-in-Memory）技術を採用しており、メモリ内で直接データを処理します。これにより、従来のメモリと演算ユニット間のボトルネックを解消し、データ移動による無駄な電力消費を根本から排除します。</p>
+<p>ANIX が採用するメモリ内演算（Computing-in-Memory, CIM）技術は、ストレージセル内でデータをそのまま処理することで、メモリと演算ユニット間のボトルネックを打破し、データ移動に伴う冗長な電力消費とエネルギーロスを根本から排除します。</p>
 </div>
 </div>
 </div>
@@ -512,48 +553,46 @@
 <div class="anix-video-wrap">
 <div class="anix-video-inner">
 <div class="anix-video-header fade-up">
-<h3>技術認証と製品認証</h3>
-<p>ANIX の FPGA の統合と推論は完了しました。<br/>以下の製品はデモビデオです。</p>
+<h3>技術検証と製品デモンストレーション</h3>
+<p>ANIX は FPGA プロトタイプの統合と実推論フローの検証を完了しています。<br/>以下は製品デモ動画です。</p>
 </div>
 <div class="anix-video-container fade-up">
 <div class="anix-video-ratio">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/XJFLwEiPcck" title="ANIX 超低消費電力 MAKANA AI 推論シ​​ステム — 製品デモ"></iframe>
+<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/XJFLwEiPcck" title="ANIX 超低消費電力マイクロAI推論コア — 製品デモ"></iframe>
 </div>
 </div>
 <div class="anix-video-caption fade-up">
 <p>
-                        ANIX はIPおよび検证プラットフォームとして、<br/>
-                        IC技術導入技術紹介・サポート体制。
+                        ANIX は IP および検証プラットフォームとして、<br/>
+                        IC デザインハウスやシステムインテグレーターの技術導入とアプリケーション評価を支援します。
                     </p>
 </div>
 </div>
 </div>
 <!-- ══════════════════════════════════════
-             MORE APPLICATIONS — CTA Section
+             IP LICENSING
         ══════════════════════════════════════ -->
-<section class="anix-more-apps fade-up">
-<div class="anix-more-apps-inner">
-<div class="anix-more-header">
-<h2>ANIXのその応用途部門</h2>
-<p>ANIX の低消費電力を調べる</p>
+<section class="anix-body" id="ip-licensing" style="padding-bottom: 6rem; scroll-margin-top: var(--header-h);">
+<div class="anix-body-inner">
+<span class="anix-section-tag">IP Licensing</span>
+<h3 class="anix-section-heading">IP ライセンスで、チップ統合を加速する</h3>
+<p class="anix-section-desc">ANIX は現在 IP 形式でのみ提供しており、IC 設計チームが自社のチップ設計にコア演算アーキテクチャを直接統合できます。</p>
+
+<div class="anix-ip-diagram fade-up">
+<img src="../../../../assets/img/soc-platform-diagram.png" alt="Alpenglow Modular Edge AI SoC Platform モジュール化された低消費電力エッジ AI SoC プラットフォームアーキテクチャ図"/>
 </div>
-<div class="anix-app-cards">
-<!-- Industrial Card -->
-<a class="anix-card" href="apps-industrial.html">
-<div class="anix-card-bg" style="background-image: url('../../../../assets/img/i4.jpg');"></div>
-<div class="anix-card-overlay"></div>
-<div class="anix-card-content">
-<h3>産業用低消費電力アトマイザー</h3>
+
+<div class="anix-body-text" style="max-width: 780px; margin: 3rem auto 0;">
+<div class="anix-para-block fade-up">
+<p>ANIX は<strong>モジュール化された IP プラットフォーム</strong>であり、ソフトウェア層とハードウェア層の各モジュールを必要に応じて自由に組み合わせることができます。IC 設計チームは自社のチップアーキテクチャに応じて、必要な IP モジュールを選択して統合できます。</p>
 </div>
-</a>
-<!-- Consumer Card -->
-<a class="anix-card" href="apps-consumer.html">
-<div class="anix-card-bg" style="background-image: url('../../../../assets/img/c4.png');"></div>
-<div class="anix-card-overlay"></div>
-<div class="anix-card-content">
-<h3>コンシューマー低消費電力アプリケーション</h3>
+<div class="anix-para-block fade-up">
+<p><strong>IP ライセンス</strong>に加えて、<strong>SoC 統合設計サービス</strong>もご提供しており、IP の導入からチップ統合までの一連のプロセスをお客様に代わって完遂します。ゼロから自社で構築する必要はありません。</p>
 </div>
-</a>
+</div>
+
+<div class="anix-cta-row fade-up">
+<a href="../../../index.html#contact" class="anix-cta-btn">ライセンス条件と技術仕様のお問い合わせ →</a>
 </div>
 </div>
 </section>

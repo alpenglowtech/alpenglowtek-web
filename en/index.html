@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="zh-TW">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -933,8 +933,8 @@
         }
         .partners-track {
             display: flex;
-            width: calc(360px * 36);
-            animation: partnerScroll 80s linear infinite;
+            width: calc(360px * 38);
+            animation: partnerScroll 85s linear infinite;
         }
         .partners-track:hover {
             animation-play-state: paused;
@@ -962,22 +962,22 @@
         }
         @keyframes partnerScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-360px * 18)); }
+            100% { transform: translateX(calc(-360px * 19)); }
         }
 
         /* Responsive Partners */
         @media (max-width: 1024px) {
             .partner-logo { width: 300px; padding: 0 40px; }
-            .partners-track { width: calc(300px * 36); }
+            .partners-track { width: calc(300px * 38); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-300px * 18)); }
+                100% { transform: translateX(calc(-300px * 19)); }
             }
         }
         @media (max-width: 767px) {
             .partner-logo { width: 250px; padding: 0 30px; }
-            .partners-track { width: calc(250px * 36); }
+            .partners-track { width: calc(250px * 38); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-250px * 18)); }
+                100% { transform: translateX(calc(-250px * 19)); }
             }
         }
 
@@ -1067,29 +1067,43 @@
 <div class="header-inner">
 <!-- Logo -->
 <a class="site-logo" href="../zh/index.html">
-<img alt="Alpenglow Tek Alpenglow Tek" src="../assets/img/LOGO_blue.png"/>
+<img alt="Alpenglow Tek" src="../assets/img/LOGO_blue.png"/>
 </a>
 <!-- Desktop Navigation -->
 <nav class="site-nav">
 <!-- Solutions -->
 <div class="nav-item">
-<a class="nav-link" href="javascript:void(0);">solution <span class="chev">▾</span></a>
+<a class="nav-link" href="javascript:void(0);">Solutions <span class="chev">▾</span></a>
 <div class="dropdown dropdown-mega">
 <div class="dd-col">
-                            <span class="dd-col-title">ASIC</span>
-                            <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">ANIX — ultra-low-power AI processor</span>
-                            <a class="dropdown-item" href="solutions/asic/anix/tech.html" style="padding-left:1.4rem;font-size:.8rem">↳ Technical introduction</a>
-                            <a class="dropdown-item" href="solutions/asic/edge-ai-soc-platform.html" style="padding-left:1.4rem;font-size:.8rem">↳ Ultra-Low Power Edge AI SoC Platform</a>
-                            <a class="dropdown-item" href="solutions/asic/anix/apps-industrial.html" style="padding-left:1.4rem;font-size:.8rem">↳ Industrial low power applications</a>
-                            <a class="dropdown-item" href="solutions/asic/anix/apps-consumer.html" style="padding-left:1.4rem;font-size:.8rem">↳ Consumer low-power applications</a>
+                            <span class="dd-col-title">ANIX</span>
+                            <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">ANIX — Ultra-Low Power AI Processor</span>
+                            <a class="dropdown-item" href="solutions/asic/anix/tech.html" style="padding-left:1.4rem;font-size:.8rem">↳ Tech Overview</a>
+                        </div>
+                        <div class="dd-col">
+                            <span class="dd-col-title">Applications</span>
+                            <a class="dropdown-item" href="solutions/asic/anix/apps-medical.html">↳ Medical Apps</a>
+                            <a class="dropdown-item" href="solutions/asic/anix/apps-industrial.html">↳ Industrial Apps</a>
+                            <a class="dropdown-item" href="solutions/asic/anix/apps-consumer.html">↳ Consumer Apps</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="nav-item">
+                    <a class="nav-link" href="javascript:void(0);">Services <span class="chev">▾</span></a>
+                    <div class="dropdown dropdown-mega">
+                        <div class="dd-col">
+                            <span class="dd-col-title">SoC</span>
+                            <a class="dropdown-item" href="solutions/asic/anix/tech.html#ip-licensing">ANIX IP Licensing</a>
                             <a class="dropdown-item" href="solutions/asic/custom-asic.html">Custom ASIC</a>
                         </div>
                         <div class="dd-col">
                             <span class="dd-col-title">FPGA</span>
-                            <a class="dropdown-item" href="solutions/fpga/pqc.html">PQC cryptography</a>
-                            <a class="dropdown-item" href="solutions/fpga/event-camera.html">event camera</a>
-                            <a class="dropdown-item" href="solutions/fpga/rf.html">RF radio frequency</a>
-                            <a class="dropdown-item" href="solutions/fpga/vision-audio-preprocess.html">Visual/auditory pre-processing</a>
+                            <a class="dropdown-item" href="solutions/fpga/pqc.html">PQC Cryptography</a>
+                            <a class="dropdown-item" href="solutions/fpga/event-camera.html">Event Camera</a>
+                            <a class="dropdown-item" href="solutions/fpga/rf.html">RF</a>
+                            <a class="dropdown-item" href="solutions/fpga/vision-audio-preprocess.html">Vision/Audio Preprocess</a>
                         </div>
                     </div>
                 </div>
@@ -1127,7 +1141,7 @@
             </div>
 
             <!-- Mobile Toggle -->
-            <button aria-label="選單" class="menu-toggle" id="menuToggle">
+            <button aria-label="Menu" class="menu-toggle" id="menuToggle">
                 <span></span><span></span><span></span>
             </button>
         </div>
@@ -1135,26 +1149,33 @@
 
     <!-- Mobile Nav -->
     <nav class="mobile-nav" id="mobileNav">
-        <a class="m-nav-link" href="javascript:void(0);">solution</a>
+        <a class="m-nav-link" href="javascript:void(0);">Solutions</a>
         <div class="m-sub">
-            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">ANIX — ultra-low-power AI processor</span>
-            <a href="solutions/asic/anix/tech.html">↳ Technical introduction</a>
-            <a href="solutions/asic/edge-ai-soc-platform.html">↳ Ultra-Low Power Edge AI SoC Platform</a>
-            <a href="solutions/asic/anix/apps-industrial.html">↳ Industrial low power applications</a>
-            <a href="solutions/asic/anix/apps-consumer.html">↳ Consumer low-power applications</a>
-            <a href="solutions/asic/custom-asic.html">Custom ASIC</a>
-<a href="solutions/fpga/pqc.html">FPGA — PQC Cryptography</a>
-<a href="solutions/fpga/event-camera.html">FPGA — Event Camera</a>
-<a href="solutions/fpga/rf.html">FPGA — RF Radio Frequency</a>
-<a href="solutions/fpga/vision-audio-preprocess.html">FPGA — Vision/Audio Preprocessing</a>
-</div>
-<a class="m-nav-link" href="javascript:void(0);">Company Profile</a>
-<div class="m-sub">
-<a href="company/about.html">about Us</a>
-<a href="company/team.html">core members</a>
-<a href="company/brand-story.html">Brand story</a>
-</div>
-<a class="m-nav-link" href="news/index.html">latest news</a>
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">ANIX — Ultra-Low Power AI Processor</span>
+            <a href="solutions/asic/anix/tech.html">↳ Tech Overview</a>
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">Applications</span>
+            <a href="solutions/asic/anix/apps-medical.html">↳ Medical Apps</a>
+            <a href="solutions/asic/anix/apps-industrial.html">↳ Industrial Apps</a>
+            <a href="solutions/asic/anix/apps-consumer.html">↳ Consumer Apps</a>
+        </div>
+        <a class="m-nav-link" href="javascript:void(0);">Services</a>
+        <div class="m-sub">
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">SoC</span>
+            <a href="solutions/asic/anix/tech.html#ip-licensing">↳ ANIX IP Licensing</a>
+            <a href="solutions/asic/custom-asic.html">↳ Custom ASIC</a>
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">FPGA</span>
+            <a href="solutions/fpga/pqc.html">↳ PQC Cryptography</a>
+            <a href="solutions/fpga/event-camera.html">↳ Event Camera</a>
+            <a href="solutions/fpga/rf.html">↳ RF</a>
+            <a href="solutions/fpga/vision-audio-preprocess.html">↳ Vision/Audio Preprocess</a>
+        </div>
+        <a class="m-nav-link" href="javascript:void(0);">Company</a>
+        <div class="m-sub">
+            <a href="company/about.html">About Us</a>
+            <a href="company/team.html">Core Members</a>
+            <a href="company/brand-story.html">Brand Story</a>
+        </div>
+        <a class="m-nav-link" href="news/index.html">News</a>
 </nav>
 <!-- ========== HERO ========== -->
 <section class="hero" id="hero">
@@ -1176,7 +1197,7 @@
 <!-- ========== ANIX INTRO (scroll-snap pages) ========== -->
 <section class="anix-statement-page">
 <div class="anix-statement-inner">
-<p class="anix-lead-statement"><span class="accent">ANIX</span> is an ultra-low-power AI inference core, built for always-on intelligence in harsh power-constrained environments, bringing AI into devices where intelligent compute was previously impossible to deploy.</p>
+<p class="anix-lead-statement"><span class="accent">ANIX</span> is an ultra-low-power AI inference core that brings AI into devices where intelligent compute was previously impossible to deploy.</p>
 </div>
 </section>
 
@@ -1202,7 +1223,7 @@
 </svg>
 </div>
 <h3>Analog Compute-in-Memory Architecture</h3>
-<p>Compute units are fused with the memory array — multiply-accumulate (MAC) operations execute in place using analog circuitry, eliminating the data-movement overhead inherent to von Neumann architectures. Compared to digital implementations, analog compute achieves lower power within a smaller circuit area.</p>
+<p>Compute units are unified with the memory array, performing multiply-accumulate (MAC) operations directly in analog circuitry — delivering breakthrough energy and area efficiency.</p>
 </div>
 <div class="anix-intro-card">
 <div class="anix-intro-icon">
@@ -1224,8 +1245,8 @@
 <circle cx="11" cy="18" r="2" fill="currentColor" stroke="none"/>
 </svg>
 </div>
-<h3>Multi-Precision Programmable Compute</h3>
-<p>Supports multiple compute precisions including 4-bit and 8-bit, covering common operators such as convolution (Conv) and fully-connected (FC) layers — flexibly accommodating diverse neural network model deployments.</p>
+<h3>Flexible Support for Diverse AI Model Deployment</h3>
+<p>Supports multiple compute precisions, including 4-bit and 8-bit, and flexibly accommodates the deployment needs of diverse neural network operators.</p>
 </div>
 </div>
 <div class="anix-intro-cta-wrap">
@@ -1242,7 +1263,6 @@
 <span class="app-eyebrow">Applications</span>
 <h2 class="app-title">Our Applications</h2>
 </div>
-<a class="app-link" href="solutions/asic/anix/tech.html">Explore Applications →</a>
 </div>
 <hr class="app-divider">
 
@@ -1301,12 +1321,13 @@
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l12.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l13.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l14.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l15.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l16.png"/></div>
 <div class="partner-logo"><img alt="AppWorks" src="../assets/img/partners/l_appworks.png"/></div>
 <div class="partner-logo"><img alt="Plug and Play" src="../assets/img/partners/l_pnp.png"/></div>
-<div class="partner-logo"><img alt="AITA" src="../assets/img/partners/l_aita.png"/></div>
+<div class="partner-logo"><img alt="AITA Taiwan AI Chip Alliance" src="../assets/img/partners/l_aita.png"/></div>
 <div class="partner-logo"><img alt="JETRO" src="../assets/img/partners/l_jetro.png"/></div>
+<div class="partner-logo"><img alt="National Taiwan University" src="../assets/img/partners/l_ntu.png"/></div>
+<div class="partner-logo"><img alt="National Yang Ming Chiao Tung University" src="../assets/img/partners/l_nycu.png"/></div>
 <!-- Duplicated for Infinite Loop -->
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l1.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l2.png"/></div>
@@ -1320,12 +1341,13 @@
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l12.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l13.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l14.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l15.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l16.png"/></div>
 <div class="partner-logo"><img alt="AppWorks" src="../assets/img/partners/l_appworks.png"/></div>
 <div class="partner-logo"><img alt="Plug and Play" src="../assets/img/partners/l_pnp.png"/></div>
-<div class="partner-logo"><img alt="AITA" src="../assets/img/partners/l_aita.png"/></div>
+<div class="partner-logo"><img alt="AITA Taiwan AI Chip Alliance" src="../assets/img/partners/l_aita.png"/></div>
 <div class="partner-logo"><img alt="JETRO" src="../assets/img/partners/l_jetro.png"/></div>
+<div class="partner-logo"><img alt="National Taiwan University" src="../assets/img/partners/l_ntu.png"/></div>
+<div class="partner-logo"><img alt="National Yang Ming Chiao Tung University" src="../assets/img/partners/l_nycu.png"/></div>
 </div>
 </div>
 </div>
@@ -1386,22 +1408,55 @@
 </div>
 </section>
 
+<!-- ========== CONTACT ========== -->
+<section class="contact-section" id="contact" style="scroll-margin-top: var(--header-h);">
+<div class="contact-inner">
+<div class="app-header" style="text-align:left">
+<div>
+<span class="app-eyebrow">Contact</span>
+<h2 class="app-title">Contact Us</h2>
+</div>
+</div>
+<hr class="app-divider">
+
+<div class="contact-grid">
+<div class="contact-info">
+<div class="contact-item">
+<span class="contact-item-icon">📍</span>
+<span class="contact-item-text">(241454) Sanchong District, New Taipei City<br>3F, No. 108, Sec. 1, Chongxin Rd.</span>
+</div>
+<div class="contact-item">
+<span class="contact-item-icon">✉️</span>
+<span class="contact-item-text">phyllis_huang@alpenglowtek.com</span>
+</div>
+<div class="contact-item">
+<span class="contact-item-icon">💬</span>
+<span class="contact-item-text">LINE@ @501ytnim</span>
+</div>
+</div>
+<div class="contact-map">
+<iframe src="https://maps.google.com/maps?q=新北市三重區重新路一段108號&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Alpenglow Tek location map"></iframe>
+</div>
+</div>
+</div>
+</section>
+
 <!-- ========== FOOTER ========== -->
 <footer class="site-footer">
 <div class="footer-top">
 <!-- Brand -->
 <div>
 <div class="footer-brand-logo">
-<img alt="Alpenglow Tek Alpenglow Tek" src="../assets/img/LOGO_white.png"/>
+<img alt="Alpenglow Tek" src="../assets/img/LOGO_white.png"/>
 </div>
 <p class="footer-brand-text">
-                    Reaching the Infinite<br/>
+                    Chasing the light, reaching the infinite.<br/>
                     Alpenglow Lights the Impossible.
                 </p>
 </div>
 <!-- Solutions -->
 <div>
-<p class="footer-col-title">solution</p>
+<p class="footer-col-title">Solutions</p>
 <div class="footer-links">
 <a href="solutions/asic/anix/tech.html">ANIX ultra-low power AI processor</a>
 <a href="solutions/asic/custom-asic.html">Custom ASIC</a>
@@ -1426,7 +1481,7 @@
 <p class="footer-col-title">Contact information</p>
 <div class="footer-contact-item">
 <span class="footer-contact-icon">📍</span>
-<span>(241454) Sanchong District, New Taipei City<br/>3rd Floor, No. 108, Section 1, Chongzhong Road</span>
+<span>(241454) Sanchong District, New Taipei City<br/>3F, No. 108, Sec. 1, Chongxin Rd.</span>
 </div>
 <div class="footer-contact-item">
 <span class="footer-contact-icon">✉️</span>
@@ -1442,16 +1497,16 @@
 <div style="height:1px;background:rgba(255,255,255,.08)"></div>
 </div>
 <div class="footer-bottom">
-<p class="footer-copy">© 2026 Alpenglow Tek Alpenglow Tek. All rights reserved.</p>
+<p class="footer-copy">© 2026 Alpenglow Tek. All rights reserved.</p>
 <div class="footer-bottom-links">
-<a href="#">privacy policy</a>
+<a href="#">Privacy Policy</a>
 <a href="#">Terms of Service</a>
 <a href="../language.html">Language</a>
 </div>
 </div>
 </footer>
 <!-- Back to top -->
-<button aria-label="回到頂部" class="back-to-top" id="backToTop">↑</button>
+<button aria-label="Back to top" class="back-to-top" id="backToTop">↑</button>
 <!-- ========== JAVASCRIPT ========== -->
 <script>
         // Header scroll shadow
