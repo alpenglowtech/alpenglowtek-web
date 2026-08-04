@@ -4,6 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" href="../favicon.png" type="image/png">
 <title>ホーム | Alpenglow Tek</title>
 <meta content="Alpenglow Tek — 高効率エッジAIコンピューティングアーキテクチャのイノベーター。超低消費電力AIプロセッサ、カスタムASIC/SoC、FPGAプロトタイピングサービスの設計。" name="description"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
@@ -256,22 +257,22 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('../assets/img/7.png');
+            background-image: url('../assets/img/hero_cim.png');
             background-size: cover;
             background-position: center;
             transform: scale(1.04);
             transition: transform 8s ease;
         }
         .hero.loaded .hero-bg { transform: scale(1); }
-        /* Subtle gradient overlay — keeps image visible, adds legibility */
+        /* Dark gradient overlay — keeps image visible, adds legibility for light text */
         .hero-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(
                 105deg,
-                rgba(255,255,255,0.82) 0%,
-                rgba(255,255,255,0.55) 45%,
-                rgba(255,255,255,0.08) 100%
+                rgba(4,18,42,0.88) 0%,
+                rgba(4,18,42,0.62) 45%,
+                rgba(4,18,42,0.15) 100%
             );
         }
         .hero-content {
@@ -313,27 +314,28 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6.5vw, 6rem);
+            font-size: clamp(3rem, 7vw, 6.5rem);
             font-weight: 900;
             line-height: 1.15;
-            color: #0d1b3e;
+            color: #ffffff;
             letter-spacing: 0.05em;
             margin-bottom: 1.25rem;
             animation: fadeUp 0.9s ease both;
+            text-shadow: 0 4px 32px rgba(0,0,0,0.35);
         }
         .hero h1 em {
             font-style: normal;
-            color: var(--navy);
-            background: linear-gradient(90deg, var(--navy), var(--cyan));
+            color: var(--cyan);
+            background: linear-gradient(90deg, #ffffff, var(--cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero-sub {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
             font-weight: 500;
-            color: var(--navy);
+            color: rgba(255,255,255,0.88);
             letter-spacing: 0.08em;
             margin-bottom: 2.5rem;
             animation: fadeUp 0.9s 0.1s ease both;
@@ -392,11 +394,11 @@
             animation: fadeUp 1s 0.8s ease both;
             z-index: 2;
         }
-        .scroll-hint span { font-size: 0.7rem; color: rgba(0,74,173,0.55); letter-spacing: 0.15em; text-transform: uppercase; }
+        .scroll-hint span { font-size: 0.7rem; color: rgba(255,255,255,0.55); letter-spacing: 0.15em; text-transform: uppercase; }
         .scroll-arrow {
             width: 28px; height: 28px;
-            border-right: 2px solid rgba(0,74,173,0.4);
-            border-bottom: 2px solid rgba(0,74,173,0.4);
+            border-right: 2px solid rgba(255,255,255,0.45);
+            border-bottom: 2px solid rgba(255,255,255,0.45);
             transform: rotate(45deg);
             animation: scrollBounce 1.8s infinite;
         }
@@ -659,7 +661,7 @@
             .circles-section { padding-left: 1.5rem; padding-right: 1.5rem; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.6rem; }
             .hero-sub { font-size: 0.95rem; }
         }
 

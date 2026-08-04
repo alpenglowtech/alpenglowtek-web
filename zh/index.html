@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../favicon.png" type="image/png">
     <title>首頁 | 臻至科技 Alpenglow Tek</title>
-    <meta name="description" content="臻至科技 Alpenglow Tek — 高能效邊緣 AI 運算架構創新者。設計超低功耗 AI 處理器、客製化 ASIC/SoC 及 FPGA 原型開發服務。">
+    <meta name="description" content="臻至科技 Alpenglow Tek — 重新定義邊緣智慧的物理極限。設計超低功耗 AI 處理器、客製化 ASIC/SoC，以 FPGA 原型加速從概念到量產。">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         /* ── Reset & Base ── */
@@ -251,26 +252,27 @@
             display: flex;
             align-items: center;
             overflow: hidden;
+            scroll-snap-align: start;
         }
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('../assets/img/7.png');
+            background-image: url('../assets/img/hero_cim.png');
             background-size: cover;
             background-position: center;
             transform: scale(1.04);
             transition: transform 8s ease;
         }
         .hero.loaded .hero-bg { transform: scale(1); }
-        /* Subtle gradient overlay — keeps image visible, adds legibility */
+        /* Dark gradient overlay — keeps image visible, adds legibility for light text */
         .hero-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(
                 105deg,
-                rgba(255,255,255,0.82) 0%,
-                rgba(255,255,255,0.55) 45%,
-                rgba(255,255,255,0.08) 100%
+                rgba(4,18,42,0.88) 0%,
+                rgba(4,18,42,0.62) 45%,
+                rgba(4,18,42,0.15) 100%
             );
         }
         .hero-content {
@@ -312,27 +314,28 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6.5vw, 6rem);
+            font-size: clamp(3rem, 7vw, 6.5rem);
             font-weight: 900;
             line-height: 1.15;
-            color: #0d1b3e;
+            color: #ffffff;
             letter-spacing: 0.05em;
             margin-bottom: 1.25rem;
             animation: fadeUp 0.9s ease both;
+            text-shadow: 0 4px 32px rgba(0,0,0,0.35);
         }
         .hero h1 em {
             font-style: normal;
-            color: var(--navy);
-            background: linear-gradient(90deg, var(--navy), var(--cyan));
+            color: var(--cyan);
+            background: linear-gradient(90deg, #ffffff, var(--cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero-sub {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
             font-weight: 500;
-            color: var(--navy);
+            color: rgba(255,255,255,0.88);
             letter-spacing: 0.08em;
             margin-bottom: 2.5rem;
             animation: fadeUp 0.9s 0.1s ease both;
@@ -391,17 +394,259 @@
             animation: fadeUp 1s 0.8s ease both;
             z-index: 2;
         }
-        .scroll-hint span { font-size: 0.7rem; color: rgba(0,74,173,0.55); letter-spacing: 0.15em; text-transform: uppercase; }
+        .scroll-hint span { font-size: 0.7rem; color: rgba(255,255,255,0.55); letter-spacing: 0.15em; text-transform: uppercase; }
         .scroll-arrow {
             width: 28px; height: 28px;
-            border-right: 2px solid rgba(0,74,173,0.4);
-            border-bottom: 2px solid rgba(0,74,173,0.4);
+            border-right: 2px solid rgba(255,255,255,0.45);
+            border-bottom: 2px solid rgba(255,255,255,0.45);
             transform: rotate(45deg);
             animation: scrollBounce 1.8s infinite;
         }
         @keyframes scrollBounce {
             0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
             50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
+
+        /* ======================================
+           ANIX INTRO — scroll-snap pages
+           (each section is a discrete full screen;
+            scrolling snaps cleanly from one to the next)
+        ====================================== */
+        html { scroll-snap-type: y proximity; }
+        .anix-statement-page,
+        .anix-cards-page {
+            min-height: calc(100vh - var(--header-h));
+            scroll-snap-align: start;
+            scroll-margin-top: var(--header-h);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+        }
+        .anix-statement-page {
+            background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 100%);
+        }
+        .anix-cards-page {
+            background: linear-gradient(180deg, #fbfcff 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .anix-cards-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -8%;
+            width: 55%;
+            height: 100%;
+            background-image: url('../assets/img/hero_cim.png');
+            background-size: cover;
+            background-position: left center;
+            opacity: 0.07;
+            mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .anix-cards-page .anix-intro-inner {
+            position: relative;
+            z-index: 1;
+        }
+        .anix-statement-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .anix-lead-statement {
+            font-size: clamp(2rem, 3.6vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.5;
+            color: #0d1b3e;
+            margin: 0;
+        }
+        .anix-lead-statement .accent { color: #009bab; }
+
+        .anix-intro-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .anix-intro-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+            margin-bottom: 3rem;
+        }
+        .anix-intro-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            border-left: 3px solid var(--cyan);
+            box-shadow: 0 8px 28px rgba(0, 74, 173, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .anix-intro-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0, 74, 173, 0.12);
+        }
+        .anix-intro-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(47,232,250,0.14);
+            color: #009bab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.1rem;
+        }
+        .anix-intro-icon svg { width: 24px; height: 24px; }
+        .anix-intro-card h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #061a3a;
+            margin-bottom: 0.6rem;
+        }
+        .anix-intro-card p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #5a6a90;
+            margin: 0;
+        }
+        .anix-intro-cta-wrap { text-align: center; }
+        .anix-intro-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2.2rem;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+        .anix-intro-cta:hover {
+            background: var(--cyan);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(47,232,250,0.35);
+        }
+
+        /* ======================================
+           APPLICATIONS
+        ====================================== */
+        .app-section {
+            background: #ffffff;
+            padding: 6rem 1.5rem;
+            min-height: calc(100vh - var(--header-h));
+            display: flex;
+            align-items: center;
+            scroll-snap-align: start;
+            scroll-margin-top: var(--header-h);
+        }
+        .app-inner {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .app-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
+        }
+        .app-eyebrow {
+            display: block;
+            font-size: 0.85rem;
+            color: #8899bb;
+            margin-bottom: 0.5rem;
+        }
+        .app-title {
+            font-size: clamp(2rem, 3.6vw, 2.75rem);
+            font-weight: 800;
+            color: #0d1b3e;
+            margin: 0;
+        }
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy);
+            white-space: nowrap;
+            padding-bottom: 0.4rem;
+        }
+        .app-link:hover { color: #009bab; }
+        .app-divider {
+            border: none;
+            border-top: 1px solid rgba(0,74,173,0.12);
+            margin-bottom: 3rem;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+        .app-card {
+            background: #f6f8fb;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+        .app-card:hover {
+            background: #eef2f9;
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0, 74, 173, 0.1);
+        }
+        .app-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(47,232,250,0.16);
+            color: #009bab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .app-card-icon svg { width: 26px; height: 26px; }
+        .app-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #061a3a;
+            margin-bottom: 0.75rem;
+        }
+        .app-card p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #5a6a90;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .app-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .app-card-link:hover { color: #009bab; }
+        @media (max-width: 900px) {
+            .anix-intro-grid { grid-template-columns: 1fr; }
+            .app-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 767px) {
+            .app-section { padding: 4rem 1.25rem; }
+            .app-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+        }
+        @media (max-width: 767px) {
+            html { scroll-snap-type: none; }
+            .anix-statement-page, .anix-cards-page { min-height: auto; padding: 3rem 1.25rem; }
+            .app-section { min-height: auto; }
+            .anix-intro-card { padding: 1.5rem; }
         }
 
         /* ======================================
@@ -658,7 +903,7 @@
             .circles-section { padding-left: 1.5rem; padding-right: 1.5rem; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.6rem; }
             .hero-sub { font-size: 0.95rem; }
         }
 
@@ -688,7 +933,7 @@
         }
         .partners-track {
             display: flex;
-            width: calc(360px * 34);
+            width: calc(360px * 38);
             animation: partnerScroll 85s linear infinite;
         }
         .partners-track:hover {
@@ -717,23 +962,102 @@
         }
         @keyframes partnerScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-360px * 17)); }
+            100% { transform: translateX(calc(-360px * 19)); }
         }
 
         /* Responsive Partners */
         @media (max-width: 1024px) {
             .partner-logo { width: 300px; padding: 0 40px; }
-            .partners-track { width: calc(300px * 34); }
+            .partners-track { width: calc(300px * 38); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-300px * 17)); }
+                100% { transform: translateX(calc(-300px * 19)); }
             }
         }
         @media (max-width: 767px) {
             .partner-logo { width: 250px; padding: 0 30px; }
-            .partners-track { width: calc(250px * 34); }
+            .partners-track { width: calc(250px * 38); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-250px * 17)); }
+                100% { transform: translateX(calc(-250px * 19)); }
             }
+        }
+
+        /* ======================================
+           CONTACT
+        ====================================== */
+        .contact-section {
+            background: #f6f8fb;
+            padding: 6rem 1.5rem;
+        }
+        .contact-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: stretch;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(47,232,250,0.16);
+            color: #009bab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .contact-item-text { font-size: 1rem; color: #3a4a6b; line-height: 1.7; padding-top: 0.4rem; }
+        .contact-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2.2rem;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 14px;
+            transition: 0.3s;
+            margin-top: 1rem;
+            align-self: flex-start;
+        }
+        .contact-cta:hover {
+            background: var(--cyan);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(47,232,250,0.35);
+        }
+        .contact-map {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,74,173,0.1);
+            min-height: 320px;
+        }
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            border: 0;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 767px) {
+            .contact-section { padding: 4rem 1.25rem; }
         }
     </style>
 </head>
@@ -751,15 +1075,29 @@
             <nav class="site-nav">
                 <!-- Solutions -->
                 <div class="nav-item">
-                    <a href="javascript:void(0);" class="nav-link">解決方案 <span class="chev">▾</span></a>
+                    <a href="javascript:void(0);" class="nav-link">技術突破 <span class="chev">▾</span></a>
                     <div class="dropdown dropdown-mega">
                         <div class="dd-col">
-                            <span class="dd-col-title">ASIC</span>
+                            <span class="dd-col-title">ANIX</span>
                             <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">ANIX — 超低功耗 AI 處理器</span>
                             <a href="solutions/asic/anix/tech.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 技術介紹</a>
-                            <a href="solutions/asic/edge-ai-soc-platform.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 超低功耗邊緣 AI SoC 整合平台</a>
-                            <a href="solutions/asic/anix/apps-industrial.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 工業低功耗應用</a>
-                            <a href="solutions/asic/anix/apps-consumer.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 消費性低功耗應用</a>
+                        </div>
+                        <div class="dd-col">
+                            <span class="dd-col-title">應用場景</span>
+                            <a href="solutions/asic/anix/apps-medical.html" class="dropdown-item">↳ 醫療感測應用</a>
+                            <a href="solutions/asic/anix/apps-industrial.html" class="dropdown-item">↳ 工業低功耗應用</a>
+                            <a href="solutions/asic/anix/apps-consumer.html" class="dropdown-item">↳ 消費性低功耗應用</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="nav-item">
+                    <a href="javascript:void(0);" class="nav-link">服務項目 <span class="chev">▾</span></a>
+                    <div class="dropdown dropdown-mega">
+                        <div class="dd-col">
+                            <span class="dd-col-title">SoC</span>
+                            <a href="solutions/asic/anix/tech.html" class="dropdown-item">ANIX IP 授權</a>
                             <a href="solutions/asic/custom-asic.html" class="dropdown-item">客製化 ASIC</a>
                         </div>
                         <div class="dd-col">
@@ -813,18 +1151,25 @@
 
     <!-- Mobile Nav -->
     <nav class="mobile-nav" id="mobileNav">
-        <a href="javascript:void(0);" class="m-nav-link">解決方案</a>
+        <a href="javascript:void(0);" class="m-nav-link">技術突破</a>
         <div class="m-sub">
             <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">ANIX — 超低功耗 AI 處理器</span>
             <a href="solutions/asic/anix/tech.html">↳ 技術介紹</a>
-            <a href="solutions/asic/edge-ai-soc-platform.html">↳ 超低功耗邊緣 AI SoC 整合平台</a>
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">應用場景</span>
+            <a href="solutions/asic/anix/apps-medical.html">↳ 醫療感測應用</a>
             <a href="solutions/asic/anix/apps-industrial.html">↳ 工業低功耗應用</a>
             <a href="solutions/asic/anix/apps-consumer.html">↳ 消費性低功耗應用</a>
-            <a href="solutions/asic/custom-asic.html">客製化 ASIC</a>
-            <a href="solutions/fpga/pqc.html">FPGA — PQC 密碼學</a>
-            <a href="solutions/fpga/event-camera.html">FPGA — 事件相機</a>
-            <a href="solutions/fpga/rf.html">FPGA — RF 射頻</a>
-            <a href="solutions/fpga/vision-audio-preprocess.html">FPGA — 視覺/聽覺前處理</a>
+        </div>
+        <a href="javascript:void(0);" class="m-nav-link">服務項目</a>
+        <div class="m-sub">
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">SoC</span>
+            <a href="solutions/asic/anix/tech.html">↳ ANIX IP 授權</a>
+            <a href="solutions/asic/custom-asic.html">↳ 客製化 ASIC</a>
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">FPGA</span>
+            <a href="solutions/fpga/pqc.html">↳ PQC 密碼學</a>
+            <a href="solutions/fpga/event-camera.html">↳ 事件相機</a>
+            <a href="solutions/fpga/rf.html">↳ RF 射頻</a>
+            <a href="solutions/fpga/vision-audio-preprocess.html">↳ 視覺/聽覺前處理</a>
         </div>
         <a href="javascript:void(0);" class="m-nav-link">公司簡介</a>
         <div class="m-sub">
@@ -841,9 +1186,9 @@
         <div class="hero-overlay"></div>
 
         <div class="hero-content">
-            <h1>高能效邊緣 AI<br>運算架構<em>創新者</em></h1>
+            <h1><em>ANIX</em></h1>
             <p class="hero-sub">
-                工程創新 <span>·</span> 技術突破 <span>·</span> 產業合作
+                超低功耗 AI 推論核心，重新定義新世代的 AI 應用邊界
             </p>
             <div class="hero-cta">
             </div>
@@ -855,68 +1200,179 @@
         </div>
     </section>
 
-    <!-- ========== CIRCLES SECTION ========== -->
+    <!-- ========== ANIX INTRO (scroll-snap pages) ========== -->
+    <section class="anix-statement-page">
+        <div class="anix-statement-inner">
+            <p class="anix-lead-statement"><span class="accent">ANIX</span>是一款超低功耗AI推論核心，將AI帶進過去無法部署智慧運算的裝置</p>
+        </div>
+    </section>
+
+
+    <section class="anix-cards-page">
+        <div class="anix-intro-inner">
+            <div class="app-header">
+
+                
+                <div>
+                    <span class="app-eyebrow">Technology</span>
+                    <h2 class="app-title">核心技術</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
+
+            <div class="anix-intro-grid">
+                <div class="anix-intro-card">
+                    <div class="anix-intro-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <rect x="7" y="7" width="4" height="4"/>
+                            <rect x="13" y="7" width="4" height="4"/>
+                            <rect x="7" y="13" width="4" height="4"/>
+                            <rect x="13" y="13" width="4" height="4"/>
+                        </svg>
+                    </div>
+                    <h3>類比記憶體內運算架構</h3>
+                    <p>運算單元與記憶體陣列（Memory Array）合一，並以類比運算完成乘積累加（MAC），突破性的能源效率與面積效率。</p>
+                </div>
+                <div class="anix-intro-card">
+                    <div class="anix-intro-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12h4l2-6 4 12 3-9 2 3h5"/>
+                        </svg>
+                    </div>
+                    <h3>常時感知，低功耗運作</h3>
+                    <p>以毫瓦（mW）等級功耗預算，支援常時感知（Always-on Sensing）與即時推論，滿足嚴苛電力環境的續航需求。</p>
+                </div>
+                <div class="anix-intro-card">
+                    <div class="anix-intro-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" y1="6" x2="20" y2="6"/>
+                            <circle cx="9" cy="6" r="2" fill="currentColor" stroke="none"/>
+                            <line x1="4" y1="12" x2="20" y2="12"/>
+                            <circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"/>
+                            <line x1="4" y1="18" x2="20" y2="18"/>
+                            <circle cx="11" cy="18" r="2" fill="currentColor" stroke="none"/>
+                        </svg>
+                    </div>
+                    <h3>彈性支援各式AI模型部署</h3>
+                    <p>支援 4-bit／8-bit 等多種運算精度，並彈性因應不同神經網路運算子的部署需求。</p>
+                </div>
+            </div>
+
+            <div class="anix-intro-cta-wrap">
+                <a href="solutions/asic/anix/tech.html" class="anix-intro-cta">深入了解 ANIX 技術 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== APPLICATIONS ========== -->
+    <section class="app-section">
+        <div class="app-inner">
+            <div class="app-header">
+                <div>
+                    <span class="app-eyebrow">Applications</span>
+                    <h2 class="app-title">應用場景</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
+
+            <div class="app-grid">
+                <a class="app-card" href="solutions/asic/anix/apps-medical.html">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z"/>
+                            <path d="M4 12h3l1.5-3 2 5 1.5-3h4"/>
+                        </svg>
+                    </div>
+                    <h3>醫療感測</h3>
+                    <p>從穿戴式生理監測到植入式醫療裝置，ANIX 在電池供電下維持長時間常時感知，讓生理訊號的即時分析成為可能。</p>
+                </a>
+                <a class="app-card" href="solutions/asic/anix/apps-industrial.html">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>
+                        </svg>
+                    </div>
+                    <h3>工業感測</h3>
+                    <p>在預測性維護與異常偵測場域，ANIX 提供邊緣端即時推論能力，降低停機風險並延長感測節點的部署壽命。</p>
+                </a>
+                <a class="app-card" href="solutions/asic/anix/apps-consumer.html">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="7" y="4" width="10" height="16" rx="3"/>
+                            <line x1="10" y1="8" x2="14" y2="8"/>
+                        </svg>
+                    </div>
+                    <h3>消費型電子</h3>
+                    <p>從真無線耳機到穿戴裝置，ANIX 讓消費性產品在有限的電池與空間裡，實現常時智慧與即時反應。</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COOPERATION MODELS ========== -->
     <section class="circles-section">
         <div class="circles-section-inner">
-            <span class="circles-section-label">CORE CAPABILITIES</span>
-            <h2 class="circles-section-title">三大核心技術能力</h2>
-            <p class="circles-section-desc">
-                從超低功耗 AI 晶片到全客製化 ASIC，再到 FPGA 快速原型驗證，<br>
-                臻至科技提供從概念到量產的完整硬體解決方案。
-            </p>
+            <div class="app-header" style="text-align:left">
+                <div>
+                    <span class="app-eyebrow">Cooperation</span>
+                    <h2 class="app-title">合作模式</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
 
             <div class="circles-row">
                 <!-- Circle 1 -->
                 <div class="circle-item" data-circle="1">
                     <div class="circle-img-wrap">
-                        <img src="../assets/img/1.png" alt="超低功耗 AI 處理器">
+                        <img src="../assets/img/1.png" alt="IP 授權合作">
                         <div class="circle-label-overlay">
-                            <p class="circle-label-text">超低功耗<br>AI 處理器</p>
+                            <p class="circle-label-text">IP<br>授權合作</p>
                         </div>
                     </div>
                     <div class="circle-caption">
-                        <p class="circle-caption-title">超低功耗 AI 處理器</p>
-                        <p class="circle-caption-desc">專為邊緣 AI 運算打造<br>極低功耗、低延遲的硬體加速器</p>
+                        <p class="circle-caption-title">IP 授權合作</p>
+                        <p class="circle-caption-desc">授權 ANIX 核心 IP<br>讓 IC 設計團隊快速整合超低功耗 AI 運算能力</p>
                     </div>
                 </div>
 
                 <!-- Circle 2 -->
                 <div class="circle-item" data-circle="2">
                     <div class="circle-img-wrap">
-                        <img src="../assets/img/2.png" alt="ASIC / IP 設計服務">
+                        <img src="../assets/img/2.png" alt="客製化設計服務">
                         <div class="circle-label-overlay">
-                            <p class="circle-label-text">ASIC / IP<br>設計服務</p>
+                            <p class="circle-label-text">客製化<br>設計服務</p>
                         </div>
                     </div>
                     <div class="circle-caption">
-                        <p class="circle-caption-title">ASIC / IP 設計服務</p>
-                        <p class="circle-caption-desc">專業的 ASIC 與矽智財 (IP) 設計服務<br>打造高效能、低功耗的客製晶片與模組</p>
+                        <p class="circle-caption-title">客製化設計服務</p>
+                        <p class="circle-caption-desc">從架構規劃到量產<br>提供端到端的客製化 ASIC / IP 設計合作</p>
                     </div>
                 </div>
 
                 <!-- Circle 3 -->
                 <div class="circle-item" data-circle="3">
                     <div class="circle-img-wrap">
-                        <img src="../assets/img/3.png" alt="FPGA 原型驗證">
+                        <img src="../assets/img/3.png" alt="原型驗證與導入">
                         <div class="circle-label-overlay">
-                            <p class="circle-label-text">FPGA<br>原型驗證</p>
+                            <p class="circle-label-text">原型驗證<br>與導入</p>
                         </div>
                     </div>
                     <div class="circle-caption">
-                        <p class="circle-caption-title">FPGA 原型驗證</p>
-                        <p class="circle-caption-desc">以 FPGA 快速驗證晶片架構與效能<br>縮短設計開發與量產時程</p>
+                        <p class="circle-caption-title">原型驗證與導入</p>
+                        <p class="circle-caption-desc">以 FPGA 快速驗證系統架構<br>降低導入新技術的風險與時程</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
     <!-- ========== PARTNERS SECTION ========== -->
     <section class="partners-section">
         <div class="partners-section-inner">
             <h2 class="partners-title">合作夥伴</h2>
-            
+
             <div class="partners-carousel">
                 <div class="partners-track">
                     <!-- Original 16 Logos -->
@@ -924,9 +1380,7 @@
                     <div class="partner-logo"><img src="../assets/img/partners/l2.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l3.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l4.png" alt="Partner"></div>
-                    <div class="partner-logo"><img src="../assets/img/partners/l5.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l6.png" alt="Partner"></div>
-                    <div class="partner-logo"><img src="../assets/img/partners/l7.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l8.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l9.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l10.png" alt="Partner"></div>
@@ -934,17 +1388,20 @@
                     <div class="partner-logo"><img src="../assets/img/partners/l12.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l13.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l14.png" alt="Partner"></div>
-                    <div class="partner-logo"><img src="../assets/img/partners/l15.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l16.png" alt="Partner"></div>
-                    
+                    <div class="partner-logo"><img src="../assets/img/partners/l_appworks.png" alt="AppWorks"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_pnp.png" alt="Plug and Play"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_aita.png" alt="AITA 台灣人工智慧晶片聯盟"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_jetro.png" alt="JETRO"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_ntu.png" alt="國立臺灣大學"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_nycu.png" alt="國立陽明交通大學"></div>
+
                     <!-- Duplicated for Infinite Loop -->
                     <div class="partner-logo"><img src="../assets/img/partners/l1.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l2.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l3.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l4.png" alt="Partner"></div>
-                    <div class="partner-logo"><img src="../assets/img/partners/l5.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l6.png" alt="Partner"></div>
-                    <div class="partner-logo"><img src="../assets/img/partners/l7.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l8.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l9.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l10.png" alt="Partner"></div>
@@ -952,8 +1409,46 @@
                     <div class="partner-logo"><img src="../assets/img/partners/l12.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l13.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l14.png" alt="Partner"></div>
-                    <div class="partner-logo"><img src="../assets/img/partners/l15.png" alt="Partner"></div>
                     <div class="partner-logo"><img src="../assets/img/partners/l16.png" alt="Partner"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_appworks.png" alt="AppWorks"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_pnp.png" alt="Plug and Play"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_aita.png" alt="AITA 台灣人工智慧晶片聯盟"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_jetro.png" alt="JETRO"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_ntu.png" alt="國立臺灣大學"></div>
+                    <div class="partner-logo"><img src="../assets/img/partners/l_nycu.png" alt="國立陽明交通大學"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="contact-section" id="contact" style="scroll-margin-top: var(--header-h);">
+        <div class="contact-inner">
+            <div class="app-header" style="text-align:left">
+                <div>
+                    <span class="app-eyebrow">Contact</span>
+                    <h2 class="app-title">聯絡我們</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-item-icon">📍</span>
+                        <span class="contact-item-text">(241454) 新北市三重區<br>重新路一段108號3樓</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-item-icon">✉️</span>
+                        <span class="contact-item-text">phyllis_huang@alpenglowtek.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-item-icon">💬</span>
+                        <span class="contact-item-text">LINE@ @501ytnim</span>
+                    </div>
+                </div>
+                <div class="contact-map">
+                    <iframe src="https://maps.google.com/maps?q=新北市三重區重新路一段108號&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="臻至科技位置地圖"></iframe>
                 </div>
             </div>
         </div>
@@ -975,7 +1470,7 @@
 
             <!-- Solutions -->
             <div>
-                <p class="footer-col-title">解決方案</p>
+                <p class="footer-col-title">技術突破</p>
                 <div class="footer-links">
                     <a href="solutions/asic/anix/tech.html">ANIX超低功耗AI處理器</a>
                     <a href="solutions/asic/custom-asic.html">客製化 ASIC</a>
@@ -994,8 +1489,6 @@
                     <a href="company/team.html">核心成員</a>
                     <a href="company/brand-story.html">品牌故事</a>
                     <a href="news/index.html">最新消息</a>
-                    <a href="resources/index.html">資源下載</a>
-                    <a href="careers/index.html">加入臻至</a>
                 </div>
             </div>
 

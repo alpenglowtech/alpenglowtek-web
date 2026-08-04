@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../../../../favicon.png" type="image/png">
     <title>ANIX 技術介紹 — 超低功耗微型 AI 推論核心 | 臻至科技 Alpenglow Tek</title>
     <meta name="description" content="ANIX 重新思考資料搬移與運算分工，為低功耗微型 AI 提供架構級解決方案。了解 ANIX 的核心技術與 FPGA 原型驗證成果。">
     <link rel="stylesheet" href="../../../../assets/css/main.css">
@@ -139,6 +140,7 @@
         .anix-statement-wrap {
             background: #fff;
             padding: 5rem 1.5rem 0;
+            scroll-margin-top: var(--header-h);
         }
         .anix-statement {
             max-width: 1100px;
@@ -161,6 +163,81 @@
             font-style: normal;
             color: #004aad;
             font-weight: 700;
+        }
+
+        /* ====================================================
+           PRODUCT HIGHLIGHTS — Why ANIX (4-pillar grid)
+        ==================================================== */
+        .anix-pillars-wrap {
+            background: #f6f8fb;
+            padding: 6rem 1.5rem;
+        }
+        .anix-pillars-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+        .anix-pillars-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .anix-pillars-header h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 800;
+            color: #004aad;
+            margin: 1rem 0;
+            line-height: 1.4;
+        }
+        .anix-pillars-header p {
+            font-size: 1.05rem;
+            color: #6b7ba0;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        .anix-pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        .anix-pillar-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border-left: 3px solid #2fe8fa;
+            box-shadow: 0 8px 32px rgba(6, 26, 58, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .anix-pillar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 74, 173, 0.12);
+        }
+        .anix-pillar-index {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #009bab;
+            margin-bottom: 1rem;
+        }
+        .anix-pillar-card h3 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #061a3a;
+            margin-bottom: 0.9rem;
+        }
+        .anix-pillar-card p {
+            font-size: 0.98rem;
+            line-height: 1.85;
+            color: #4a5a80;
+            margin: 0;
+        }
+        @media (max-width: 900px) {
+            .anix-pillars-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 767px) {
+            .anix-pillars-wrap { padding: 4rem 1.25rem; }
+            .anix-pillar-card { padding: 2rem; }
+            .anix-pillars-header { margin-bottom: 2.5rem; }
         }
 
         /* ====================================================
@@ -190,6 +267,17 @@
             box-shadow: 0 8px 32px rgba(6, 26, 58, 0.1);
         }
 
+        .anix-ip-diagram {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .anix-ip-diagram img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(6, 26, 58, 0.1);
+        }
+
         /* Section header */
         .anix-section-tag {
             display: inline-block;
@@ -203,6 +291,40 @@
             padding: 0.3rem 1rem;
             border-radius: 100px;
             margin-bottom: 2rem;
+        }
+        .anix-section-heading {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: #004aad;
+            line-height: 1.3;
+            margin: 0 0 1rem;
+        }
+        .anix-section-desc {
+            font-size: 1rem;
+            color: #6b7ba0;
+            line-height: 1.8;
+            max-width: 640px;
+            margin: 0 0 2.5rem;
+        }
+        .anix-cta-row {
+            margin-top: 2.5rem;
+        }
+        .anix-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            background: #004aad;
+            padding: 0.85rem 1.75rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: background 0.25s ease, transform 0.25s ease;
+        }
+        .anix-cta-btn:hover {
+            background: #003a8a;
+            transform: translateY(-2px);
         }
 
         .anix-body-text {
@@ -496,6 +618,8 @@
         <section class="anix-body">
             <div class="anix-body-inner">
                 <span class="anix-section-tag">Architecture Overview</span>
+                <h3 class="anix-section-heading">從架構層級，重新定義資料流動</h3>
+                <p class="anix-section-desc">在穿戴式裝置、感測節點與工業邊緣設備中，每一焦耳能耗、每一毫秒延遲，都是產品競爭力的核心考量。</p>
 
                 <div class="anix-body-grid mt-4">
                     <div class="anix-body-image fade-up">
@@ -504,19 +628,11 @@
 
                     <div class="anix-body-text">
                         <div class="anix-para-block fade-up">
-                            <p>傳統數位 AI 架構在處理運算時，<br>頻繁的資料搬移往往成為影響效能與功耗的最大障礙。</p>
+                            <p>傳統數位 AI 架構在處理運算時，頻繁的資料搬移往往是影響效能與功耗的最大障礙——在電力受限的環境下，解決方案不應僅止於參數優化，而需<strong>從架構層級重新定義數據流動</strong>。</p>
                         </div>
 
                         <div class="anix-para-block fade-up">
-                            <p>尤其在穿戴式裝置、感測節點與工業邊緣設備中，每一焦耳能耗與每一毫秒延遲，都是產品競爭力的核心考量。</p>
-                        </div>
-
-                        <div class="anix-para-block fade-up">
-                            <p>在電力受限的嚴苛環境下，解決方案不應僅止於參數優化，而需從<strong>架構層級重新定義數據流動</strong>。</p>
-                        </div>
-
-                        <div class="anix-para-block fade-up">
-                            <p>ANIX 採用的記憶體內運算 (CIM) 技術，使數據直接在存儲單元中原地處理，打破存算瓶頸，從根本上消除了搬移數據帶來的冗餘功耗與能量浪費。</p>
+                            <p>ANIX 採用的記憶體內運算 (CIM) 技術，使數據直接在存儲單元中原地處理，打破存算瓶頸，從根本上消除搬移數據帶來的冗餘功耗與能量浪費。</p>
                         </div>
                     </div>
                 </div>
@@ -555,33 +671,29 @@
         </div>
 
         <!-- ══════════════════════════════════════
-             MORE APPLICATIONS — CTA Section
+             IP LICENSING
         ══════════════════════════════════════ -->
-        <section class="anix-more-apps fade-up">
-            <div class="anix-more-apps-inner">
-                <div class="anix-more-header">
-                    <h2>更多 ANIX 專業應用</h2>
-                    <p>探索 ANIX 在不同場域中的低功耗智慧應用場景</p>
+        <section class="anix-body" id="ip-licensing" style="padding-bottom: 6rem; scroll-margin-top: var(--header-h);">
+            <div class="anix-body-inner">
+                <span class="anix-section-tag">IP Licensing</span>
+                <h3 class="anix-section-heading">以 IP 授權，加速你的晶片整合</h3>
+                <p class="anix-section-desc">ANIX 目前僅以 IP 形式提供，讓 IC 設計團隊直接將核心運算架構，整合進自己的晶片設計。</p>
+
+                <div class="anix-ip-diagram fade-up">
+                    <img src="../../../../assets/img/soc-platform-diagram.png" alt="Alpenglow Modular Edge AI SoC Platform 模組化低功耗邊緣 AI SoC 平台架構圖">
                 </div>
 
-                <div class="anix-app-cards">
-                    <!-- Industrial Card -->
-                    <a href="apps-industrial.html" class="anix-card">
-                        <div class="anix-card-bg" style="background-image: url('../../../../assets/img/i4.jpg');"></div>
-                        <div class="anix-card-overlay"></div>
-                        <div class="anix-card-content">
-                            <h3>工業低功耗應用</h3>
-                        </div>
-                    </a>
+                <div class="anix-body-text" style="max-width: 780px; margin: 3rem auto 0;">
+                    <div class="anix-para-block fade-up">
+                        <p>ANIX 是一套<strong>模組化 IP 平台</strong>，軟體層與硬體層各模組皆可依需求自由搭配，IC 設計團隊可依自身晶片架構，選擇所需的 IP 模組進行整合。</p>
+                    </div>
+                    <div class="anix-para-block fade-up">
+                        <p>除了 <strong>IP 授權</strong>，我們也提供 <strong>SoC 整合設計服務</strong>，協助客戶完成從 IP 導入到晶片整合的完整流程，不必自行從零建置。</p>
+                    </div>
+                </div>
 
-                    <!-- Consumer Card -->
-                    <a href="apps-consumer.html" class="anix-card">
-                        <div class="anix-card-bg" style="background-image: url('../../../../assets/img/c4.png');"></div>
-                        <div class="anix-card-overlay"></div>
-                        <div class="anix-card-content">
-                            <h3>消費性低功耗應用</h3>
-                        </div>
-                    </a>
+                <div class="anix-cta-row fade-up">
+                    <a href="../../../index.html#contact" class="anix-cta-btn">洽詢授權條件與技術規格 →</a>
                 </div>
             </div>
         </section>

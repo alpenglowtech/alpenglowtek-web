@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="../../../../favicon.png" type="image/png">
-    <title>工業低功耗邊緣智慧應用 | 臻至科技 Alpenglow Tek</title>
-    <meta name="description" content="ANIX 超低功耗 AI 處理器，為能源受限與關鍵任務場域而設計，適用於預測性維護、環境異常監控與工業穿戴警示等邊緣 AI 應用。">
+    <title>醫療感測低功耗邊緣智慧應用 | 臻至科技 Alpenglow Tek</title>
+    <meta name="description" content="ANIX 超低功耗 AI 處理器，為穿戴式生理監測、植入式醫療裝置與居家照護場域而設計，在有限電池與嚴苛法規要求下實現常時智慧感知。">
     <link rel="stylesheet" href="../../../../assets/css/main.css">
     <link rel="stylesheet" href="../../../../assets/css/header.css">
     <link rel="stylesheet" href="../../../../assets/css/footer.css">
     <style>
-        .hero-industrial {
+        .hero-medical {
             position: relative;
             width: 100%;
             height: 100vh;
@@ -20,7 +20,7 @@
             align-items: center;
             background: #061a3a; /* fallback */
         }
-        .hero-industrial-img {
+        .hero-medical-img {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -29,7 +29,7 @@
             object-position: center;
             z-index: 0;
         }
-        .hero-industrial-overlay {
+        .hero-medical-overlay {
             position: absolute;
             inset: 0;
             z-index: 1;
@@ -40,7 +40,7 @@
                 rgba(4, 18, 42, 0.15) 100%
             );
         }
-        .hero-industrial .container {
+        .hero-medical .container {
             position: relative;
             z-index: 2;
             width: 100%;
@@ -70,7 +70,7 @@
             border-radius: 50%;
             background: #2fe8fa;
         }
-        .hero-industrial h1 {
+        .hero-medical h1 {
             font-size: clamp(3.5rem, 8vw, 6rem);
             font-weight: 900;
             line-height: 1.1;
@@ -92,6 +92,11 @@
             line-height: 1.8;
             margin: 0;
         }
+
+        /* Fade Up */
+        .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-up-delay-1 { transition-delay: 0.1s; }
 
         /* Scroll hint */
         .hero-scroll-hint {
@@ -121,7 +126,7 @@
             40% {transform: translateY(10px) rotate(45deg);}
             60% {transform: translateY(5px) rotate(45deg);}
         }
-        
+
         /* Two-column layout for features */
         .feature-row {
             display: flex;
@@ -136,11 +141,20 @@
             .feature-text { flex: 1; padding: 0 2rem; }
             .feature-image { flex: 1; }
         }
-        .feature-image img {
-            border-radius: 16px;
-            box-shadow: 0 16px 40px rgba(6, 26, 58, 0.12);
+        .feature-icon-box {
             width: 100%;
-            object-fit: cover;
+            aspect-ratio: 4 / 3;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(0,74,173,0.07), rgba(47,232,250,0.16));
+            box-shadow: 0 16px 40px rgba(6, 26, 58, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .feature-icon-box svg {
+            width: 30%;
+            height: 30%;
+            color: var(--navy);
         }
         .feature-text h2 {
             color: var(--navy);
@@ -153,7 +167,7 @@
             margin-bottom: 1rem;
             font-size: 1.1rem;
         }
-        
+
         /* Conclusion Box */
         .conclusion-box {
             background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
@@ -190,18 +204,13 @@
             z-index: 2;
         }
 
-        /* Fade Up */
-        .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
-        .fade-up.visible { opacity: 1; transform: translateY(0); }
-        .fade-up-delay-1 { transition-delay: 0.1s; }
-
         /* ====================================================
            MORE APPLICATIONS SECTION
         ==================================================== */
         .anix-more-apps {
             background: #ffffff;
             padding: 8rem 0;
-            border-top: 1px solid rgba(0, 74, 173, 0.05); /* Subtle divider */
+            border-top: 1px solid rgba(0, 74, 173, 0.05);
         }
         .anix-more-apps-inner {
             max-width: 1240px;
@@ -256,7 +265,7 @@
             transition: transform 0.5s ease;
         }
         .anix-card:hover .anix-card-bg {
-            transform: scale(1.08); /* minimal scale on hover */
+            transform: scale(1.08);
         }
 
         .anix-card-overlay {
@@ -267,7 +276,7 @@
             z-index: 1;
         }
         .anix-card:hover .anix-card-overlay {
-            background: rgba(4, 18, 42, 0.62); /* minimal darker on hover */
+            background: rgba(4, 18, 42, 0.62);
         }
 
         .anix-card-content {
@@ -281,7 +290,7 @@
         }
         .anix-card-content h3 {
             color: #fff;
-            font-size: 2.2rem; /* increased font size as requested */
+            font-size: 2.2rem;
             font-weight: 800;
             margin: 0;
             text-align: center;
@@ -291,12 +300,12 @@
 
         /* Hero Responsive */
         @media (max-width: 1024px) {
-            .hero-industrial .container { padding: 0 2rem; }
-            .hero-industrial h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
+            .hero-medical .container { padding: 0 2rem; }
+            .hero-medical h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
         }
         @media (max-width: 767px) {
-            .hero-industrial { height: 75vh; min-height: 500px; }
-            .hero-industrial .container { padding: 0 1.5rem; }
+            .hero-medical { height: 75vh; min-height: 500px; }
+            .hero-medical .container { padding: 0 1.5rem; }
             .hero-scroll-hint { display: none; }
         }
 
@@ -321,14 +330,14 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-industrial">
-            <img src="../../../../assets/img/i4.jpg" alt="工業低功耗邊緣智慧應用" class="hero-industrial-img">
-            <div class="hero-industrial-overlay"></div>
+        <section class="hero-medical">
+            <img src="../../../../assets/img/8.png" alt="醫療感測低功耗邊緣智慧應用" class="hero-medical-img">
+            <div class="hero-medical-overlay"></div>
             <div class="container fade-up fade-up-delay-1">
                 <span class="anix-eyebrow">ASIC / ANIX TECHNOLOGY</span>
-                <h1>工業低功耗<br>邊緣智慧應用</h1>
-                <div class="hero-subtitle">為能源受限與關鍵任務場域而設計</div>
-                <p class="hero-desc">在工業與基礎建設環境中，智慧化需求正快速成長。透過從架構層級優化資料搬移與運算分工，ANIX 為工業低功耗邊緣 AI 提供可規模化部署的關鍵技術基礎。</p>
+                <h1>醫療感測<br>低功耗邊緣智慧應用</h1>
+                <div class="hero-subtitle">在嚴苛的生理感測場域，實現常時智慧與極致續航</div>
+                <p class="hero-desc">從穿戴式生理監測到居家照護裝置，ANIX 為新一代醫療感測終端提供超低功耗邊緣 AI 推論能力，在有限電池與嚴格法規要求下，實現穩定可靠的即時分析。</p>
             </div>
             <div class="hero-scroll-hint">
                 <span>Scroll</span>
@@ -339,50 +348,65 @@
         <!-- Dynamic Content Section -->
         <section class="section">
             <div class="container">
-                
-                <!-- 區塊一：智慧製造與預測性維護 -->
+
+                <!-- 區塊一：穿戴式生理監測 -->
                 <div class="feature-row fade-up">
                     <div class="feature-image">
-                        <img src="../../../../assets/img/i1.jpg" alt="智慧製造與預測性維護">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z"/>
+                                <path d="M4 12h3l1.5-3 2 5 1.5-3h4"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="feature-text">
-                        <div class="section-label mb-4">SMART MANUFACTURING</div>
-                        <h2>智慧製造與預測性維護</h2>
-                        <p>在自動化生產中，全時監測是確保穩定的關鍵，但傳統方案常受限於高功耗與延遲。</p>
-                        <p>ANIX 透過邊緣端即時推理，實現極低功耗的預測性維護，有效降低停機風險並顯著提升運作能效。</p>
+                        <div class="section-label mb-4">WEARABLE VITAL MONITORING</div>
+                        <h2>穿戴式生理監測</h2>
+                        <p>穿戴式心率、血氧、心電（ECG / PPG）裝置需長時間貼身配戴，功耗與體積都受到嚴格限制。</p>
+                        <p>ANIX 讓生理訊號分析在裝置端即時完成，於毫瓦等級功耗下維持常時感知，兼顧配戴舒適度與電池續航。</p>
                     </div>
                 </div>
 
-                <!-- 區塊二：分散式邊緣監測與智能過濾 -->
+                <!-- 區塊二：植入式與貼身醫療裝置 -->
                 <div class="feature-row fade-up fade-up-delay-1">
                     <div class="feature-image">
-                        <img src="../../../../assets/img/i2.jpg" alt="分散式邊緣監測">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="8" y="8" width="8" height="8" rx="2"/>
+                                <path d="M12 8V4M12 20v-4M8 12H4M20 12h-4"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="feature-text">
-                        <div class="section-label mb-4">EDGE MONITORING</div>
-                        <h2>分散式邊緣監測與智能過濾</h2>
-                        <p>廣域分佈的感測節點常部署於電力受限場域，全量數據上傳將快速耗盡電池壽命。</p>
-                        <p>ANIX 在本地執行智能篩選，僅提取並傳輸關鍵事件模式。這種機制大幅延長了設備巡檢壽命，並實現更即時的異常警報。</p>
+                        <div class="section-label mb-4">IMPLANTABLE & ON-BODY DEVICES</div>
+                        <h2>植入式與貼身醫療裝置</h2>
+                        <p>植入式與長期貼身醫療裝置對功耗極為敏感，電池更換往往意味著手術風險與照護成本。</p>
+                        <p>ANIX 的類比記憶體內運算架構，讓裝置能以更小的能耗預算持續運作，延長裝置使用壽命並降低維護負擔。</p>
                     </div>
                 </div>
 
-                <!-- 區塊三：微型終端與常時感知應用 -->
+                <!-- 區塊三：遠距照護與居家健康監測 -->
                 <div class="feature-row fade-up fade-up-delay-2">
                     <div class="feature-image">
-                        <img src="../../../../assets/img/i3.jpg" alt="微型終端與常時感知">
+                        <div class="feature-icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 11l9-7 9 7"/>
+                                <path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/>
+                            </svg>
+                        </div>
                     </div>
                     <div class="feature-text">
-                        <div class="section-label mb-4">ALWAY-ON SENSING</div>
-                        <h2>微型終端與常時感知應用</h2>
-                        <p>微型設備需在極小能耗預算下維持智慧功能，「常時待命」通常是最大的電力負擔。</p>
-                        <p>ANIX 提供超低功耗的「常時感知 (Always-on)」能力，在邊緣端快速完成模式匹配，在不影響續航的前提下大幅提升設備的自主性。</p>
+                        <div class="section-label mb-4">REMOTE & HOME MONITORING</div>
+                        <h2>遠距照護與居家健康監測</h2>
+                        <p>居家照護裝置需長時間獨立運作，且必須在無人看護的狀態下準確偵測異常狀況。</p>
+                        <p>ANIX 提供邊緣端即時推論能力，讓裝置能在本地完成初步判讀，加速異常事件的偵測與通報。</p>
                     </div>
                 </div>
 
                 <!-- 結尾區塊 -->
                 <div class="conclusion-box fade-up fade-up-delay-3 mt-5">
-                    <h3>工業邊緣 AI 的可規模化低功耗基礎</h3>
-                    <p>工業智慧化的核心不僅是算力競賽，更是能源效率、系統穩定性與即時回應能力的平衡。透過從架構層級優化資料搬移與運算分工，ANIX 為工業低功耗邊緣 AI 提供可規模化部署的關鍵技術基礎。</p>
+                    <h3>為長時間可靠運作而生的低功耗架構</h3>
+                    <p>醫療感測裝置的核心挑戰，是在有限電力與嚴苛法規要求下，維持長時間穩定運作。ANIX 從架構層級優化能源效率，為醫療感測終端提供兼顧續航與即時反應的技術基礎。</p>
                 </div>
 
             </div>
@@ -394,16 +418,16 @@
             <div class="anix-more-apps-inner">
                 <div class="anix-more-header">
                     <h2>延伸探索 ANIX 的更多可能</h2>
-                    <p>從工業感測拓展至醫療與消費場景，探索 ANIX 的其他應用可能。</p>
+                    <p>從醫療感測拓展至工業與消費場景，或深入了解核心架構設計。</p>
                 </div>
 
                 <div class="anix-app-cards">
-                    <!-- Medical Card -->
-                    <a href="apps-medical.html" class="anix-card">
-                        <div class="anix-card-bg" style="background-image: url('../../../../assets/img/8.png');"></div>
+                    <!-- Industrial Card -->
+                    <a href="apps-industrial.html" class="anix-card">
+                        <div class="anix-card-bg" style="background-image: url('../../../../assets/img/i4.jpg');"></div>
                         <div class="anix-card-overlay"></div>
                         <div class="anix-card-content">
-                            <h3>醫療感測應用</h3>
+                            <h3>工業低功耗應用</h3>
                         </div>
                     </a>
 
@@ -421,7 +445,6 @@
     </main>
 
     <!-- Footer will be dynamically injected here by main.js -->
-    <div id="site-header-dummy" style="display:none"></div><!-- dummy to keep the original template structural logic if any -->
     <div id="site-footer"></div>
 
     <script src="../../../../assets/js/main.js"></script>

@@ -63,12 +63,26 @@
         <a href="javascript:void(0);" class="nav-link">${t.solutions} <span class="chev">▾</span></a>
         <div class="dropdown dropdown-mega">
           <div class="dd-col">
-            <span class="dropdown-col-title">ASIC</span>
+            <span class="dropdown-col-title">ANIX</span>
             <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">${t.anixTitle}</span>
             <a href="${root}${lang}/solutions/asic/anix/tech.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">${t.anixTech}</a>
-            <a href="${root}${lang}/solutions/asic/edge-ai-soc-platform.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ ${t.edgeAiPlatform}</a>
-            <a href="${root}${lang}/solutions/asic/anix/apps-industrial.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">${t.anixInd}</a>
-            <a href="${root}${lang}/solutions/asic/anix/apps-consumer.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">${t.anixCon}</a>
+          </div>
+          <div class="dd-col">
+            <span class="dropdown-col-title">${t.appsTitle}</span>
+            <a href="${root}${lang}/solutions/asic/anix/apps-medical.html" class="dropdown-item">${t.anixMed}</a>
+            <a href="${root}${lang}/solutions/asic/anix/apps-industrial.html" class="dropdown-item">${t.anixInd}</a>
+            <a href="${root}${lang}/solutions/asic/anix/apps-consumer.html" class="dropdown-item">${t.anixCon}</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services Dropdown -->
+      <div class="nav-item">
+        <a href="javascript:void(0);" class="nav-link">${t.services} <span class="chev">▾</span></a>
+        <div class="dropdown dropdown-mega">
+          <div class="dd-col">
+            <span class="dropdown-col-title">SoC</span>
+            <a href="${root}${lang}/solutions/asic/anix/tech.html#ip-licensing" class="dropdown-item">${t.anixIpLicense}</a>
             <a href="${root}${lang}/solutions/asic/custom-asic.html" class="dropdown-item">${t.customAsic}</a>
           </div>
           <div class="dd-col">
@@ -157,13 +171,20 @@
     return `
       <a href="javascript:void(0);" class="mobile-nav-link">${t.solutions}</a>
       <div class="mobile-sub">
-        <span class="mobile-sub-cat">ASIC</span>
+        <span class="mobile-sub-cat">ANIX</span>
         <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">${t.anixTitle}</span>
         <a href="${root}${lang}/solutions/asic/anix/tech.html" class="mobile-sub-item">${t.anixTech}</a>
-        <a href="${root}${lang}/solutions/asic/edge-ai-soc-platform.html" class="mobile-sub-item">↳ ${t.edgeAiPlatform}</a>
+        <span class="mobile-sub-cat">${t.appsTitle}</span>
+        <a href="${root}${lang}/solutions/asic/anix/apps-medical.html" class="mobile-sub-item">${t.anixMed}</a>
         <a href="${root}${lang}/solutions/asic/anix/apps-industrial.html" class="mobile-sub-item">${t.anixInd}</a>
         <a href="${root}${lang}/solutions/asic/anix/apps-consumer.html" class="mobile-sub-item">${t.anixCon}</a>
-        <a href="${root}${lang}/solutions/asic/custom-asic.html" class="mobile-sub-item">${t.customAsic}</a>
+      </div>
+
+      <a href="javascript:void(0);" class="mobile-nav-link">${t.services}</a>
+      <div class="mobile-sub">
+        <span class="mobile-sub-cat">SoC</span>
+        <a href="${root}${lang}/solutions/asic/anix/tech.html#ip-licensing" class="mobile-sub-item">↳ ${t.anixIpLicense}</a>
+        <a href="${root}${lang}/solutions/asic/custom-asic.html" class="mobile-sub-item">↳ ${t.customAsic}</a>
         <span class="mobile-sub-cat">FPGA</span>
         <a href="${root}${lang}/solutions/fpga/pqc.html" class="mobile-sub-item">↳ ${t.pqc}</a>
         <a href="${root}${lang}/solutions/fpga/event-camera.html" class="mobile-sub-item">↳ ${t.eventCamera}</a>
@@ -193,8 +214,9 @@
 
   const TRANSLATIONS = {
     zh: { 
-      solutions: '解決方案', company: '公司簡介', news: '最新消息', careers: '加入臻至', contact: '聯絡我們',
-      anixTech: '↳ 技術介紹', anixInd: '↳ 工業低功耗應用', anixCon: '↳ 消費性低功耗應用',
+      solutions: '技術突破', services: '服務項目', company: '公司簡介', news: '最新消息', careers: '加入臻至', contact: '聯絡我們',
+      anixTech: '↳ 技術介紹', anixInd: '↳ 工業低功耗應用', anixCon: '↳ 消費性低功耗應用', anixMed: '↳ 醫療感測應用',
+      appsTitle: '應用場景', anixIpLicense: 'ANIX IP 授權',
       customAsic: '客製化 ASIC', pqc: 'PQC 密碼學', eventCamera: '事件相機', rf: 'RF 射頻', preprocess: '視覺/聽覺前處理',
       about: '關於', aboutUs: '關於我們', team: '核心成員', brandStory: '品牌故事',
       devNews: '發展動態', events: '最新活動', resources: '資源下載',
@@ -207,8 +229,9 @@
       privacy: '隱私權政策', terms: '服務條款'
     },
     en: { 
-      solutions: 'Solutions', company: 'Company', news: 'News', careers: 'Careers', contact: 'Contact',
-      anixTech: '↳ Tech Overview', anixInd: '↳ Industrial Apps', anixCon: '↳ Consumer Apps',
+      solutions: 'Solutions', services: 'Services', company: 'Company', news: 'News', careers: 'Careers', contact: 'Contact',
+      anixTech: '↳ Tech Overview', anixInd: '↳ Industrial Apps', anixCon: '↳ Consumer Apps', anixMed: '↳ Medical Apps',
+      appsTitle: 'Applications', anixIpLicense: 'ANIX IP Licensing',
       customAsic: 'Custom ASIC', pqc: 'PQC Cryptography', eventCamera: 'Event Camera', rf: 'RF', preprocess: 'Vision/Audio Preprocess',
       about: 'About', aboutUs: 'About Us', team: 'Our Team', brandStory: 'Brand Story',
       devNews: 'Development Updates', events: 'Latest Events', resources: 'Resources',
@@ -221,8 +244,9 @@
       privacy: 'Privacy Policy', terms: 'Terms of Service'
     },
     ja: { 
-      solutions: 'ソリューション', company: '会社概要', news: 'ニュース', careers: '採用情報', contact: 'お問い合わせ',
-      anixTech: '↳ 技術紹介', anixInd: '↳ 産業向けアプリケーション', anixCon: '↳ コンシューマ向けアプリケーション',
+      solutions: 'ソリューション', services: 'サービス', company: '会社概要', news: 'ニュース', careers: '採用情報', contact: 'お問い合わせ',
+      anixTech: '↳ 技術紹介', anixInd: '↳ 産業向けアプリケーション', anixCon: '↳ コンシューマ向けアプリケーション', anixMed: '↳ 医療センシング応用', anixIpLicense: 'ANIX IPライセンス',
+      appsTitle: 'アプリケーション',
       customAsic: 'カスタム ASIC', pqc: 'PQC 暗号学', eventCamera: 'イベントカメラ', rf: 'RF', preprocess: '視覚/聴覚前処理',
       about: 'アバウト', aboutUs: '私たちについて', team: 'コアメンバー', brandStory: 'ブランドストーリー',
       devNews: '発展動向', events: '最新イベント', resources: 'リソース',

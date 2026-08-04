@@ -4,8 +4,9 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" href="../favicon.png" type="image/png">
 <title>Home | Alpenglow Tek</title>
-<meta content="Alpenglow Tek — Innovator of high-efficiency edge AI computing architectures. Designing ultra-low power AI processors, custom ASIC/SoC, and providing FPGA prototyping services." name="description"/>
+<meta content="Alpenglow Tek — Reimagining the physical limits of edge intelligence. Designing ultra-low-power AI processors, custom ASIC/SoC, and FPGA prototyping to accelerate from concept to mass production." name="description"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
 <style>
         /* ── Reset & Base ── */
@@ -252,26 +253,27 @@
             display: flex;
             align-items: center;
             overflow: hidden;
+            scroll-snap-align: start;
         }
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('../assets/img/7.png');
+            background-image: url('../assets/img/hero_cim.png');
             background-size: cover;
             background-position: center;
             transform: scale(1.04);
             transition: transform 8s ease;
         }
         .hero.loaded .hero-bg { transform: scale(1); }
-        /* Subtle gradient overlay — keeps image visible, adds legibility */
+        /* Dark gradient overlay — keeps image visible, adds legibility for light text */
         .hero-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(
                 105deg,
-                rgba(255,255,255,0.82) 0%,
-                rgba(255,255,255,0.55) 45%,
-                rgba(255,255,255,0.08) 100%
+                rgba(4,18,42,0.88) 0%,
+                rgba(4,18,42,0.62) 45%,
+                rgba(4,18,42,0.15) 100%
             );
         }
         .hero-content {
@@ -313,27 +315,28 @@
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6.5vw, 6rem);
+            font-size: clamp(3rem, 7vw, 6.5rem);
             font-weight: 900;
             line-height: 1.15;
-            color: #0d1b3e;
+            color: #ffffff;
             letter-spacing: 0.05em;
             margin-bottom: 1.25rem;
             animation: fadeUp 0.9s ease both;
+            text-shadow: 0 4px 32px rgba(0,0,0,0.35);
         }
         .hero h1 em {
             font-style: normal;
-            color: var(--navy);
-            background: linear-gradient(90deg, var(--navy), var(--cyan));
+            color: var(--cyan);
+            background: linear-gradient(90deg, #ffffff, var(--cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero-sub {
-            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
             font-weight: 500;
-            color: var(--navy);
+            color: rgba(255,255,255,0.88);
             letter-spacing: 0.08em;
             margin-bottom: 2.5rem;
             animation: fadeUp 0.9s 0.1s ease both;
@@ -392,17 +395,259 @@
             animation: fadeUp 1s 0.8s ease both;
             z-index: 2;
         }
-        .scroll-hint span { font-size: 0.7rem; color: rgba(0,74,173,0.55); letter-spacing: 0.15em; text-transform: uppercase; }
+        .scroll-hint span { font-size: 0.7rem; color: rgba(255,255,255,0.55); letter-spacing: 0.15em; text-transform: uppercase; }
         .scroll-arrow {
             width: 28px; height: 28px;
-            border-right: 2px solid rgba(0,74,173,0.4);
-            border-bottom: 2px solid rgba(0,74,173,0.4);
+            border-right: 2px solid rgba(255,255,255,0.45);
+            border-bottom: 2px solid rgba(255,255,255,0.45);
             transform: rotate(45deg);
             animation: scrollBounce 1.8s infinite;
         }
         @keyframes scrollBounce {
             0%,100% { transform: rotate(45deg) translateY(0); opacity: 0.4; }
             50% { transform: rotate(45deg) translateY(6px); opacity: 1; }
+        }
+
+        /* ======================================
+           ANIX INTRO — scroll-snap pages
+           (each section is a discrete full screen;
+            scrolling snaps cleanly from one to the next)
+        ====================================== */
+        html { scroll-snap-type: y proximity; }
+        .anix-statement-page,
+        .anix-cards-page {
+            min-height: calc(100vh - var(--header-h));
+            scroll-snap-align: start;
+            scroll-margin-top: var(--header-h);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+        }
+        .anix-statement-page {
+            background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 100%);
+        }
+        .anix-cards-page {
+            background: linear-gradient(180deg, #fbfcff 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .anix-cards-page::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -8%;
+            width: 55%;
+            height: 100%;
+            background-image: url('../assets/img/hero_cim.png');
+            background-size: cover;
+            background-position: left center;
+            opacity: 0.07;
+            mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .anix-cards-page .anix-intro-inner {
+            position: relative;
+            z-index: 1;
+        }
+        .anix-statement-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .anix-lead-statement {
+            font-size: clamp(2rem, 3.6vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.5;
+            color: #0d1b3e;
+            margin: 0;
+        }
+        .anix-lead-statement .accent { color: #009bab; }
+
+        .anix-intro-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .anix-intro-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+            margin-bottom: 3rem;
+        }
+        .anix-intro-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            border-left: 3px solid var(--cyan);
+            box-shadow: 0 8px 28px rgba(0, 74, 173, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .anix-intro-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0, 74, 173, 0.12);
+        }
+        .anix-intro-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(47,232,250,0.14);
+            color: #009bab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.1rem;
+        }
+        .anix-intro-icon svg { width: 24px; height: 24px; }
+        .anix-intro-card h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #061a3a;
+            margin-bottom: 0.6rem;
+        }
+        .anix-intro-card p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #5a6a90;
+            margin: 0;
+        }
+        .anix-intro-cta-wrap { text-align: center; }
+        .anix-intro-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2.2rem;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+        .anix-intro-cta:hover {
+            background: var(--cyan);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(47,232,250,0.35);
+        }
+
+        /* ======================================
+           APPLICATIONS
+        ====================================== */
+        .app-section {
+            background: #ffffff;
+            padding: 6rem 1.5rem;
+            min-height: calc(100vh - var(--header-h));
+            display: flex;
+            align-items: center;
+            scroll-snap-align: start;
+            scroll-margin-top: var(--header-h);
+        }
+        .app-inner {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .app-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.75rem;
+        }
+        .app-eyebrow {
+            display: block;
+            font-size: 0.85rem;
+            color: #8899bb;
+            margin-bottom: 0.5rem;
+        }
+        .app-title {
+            font-size: clamp(2rem, 3.6vw, 2.75rem);
+            font-weight: 800;
+            color: #0d1b3e;
+            margin: 0;
+        }
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy);
+            white-space: nowrap;
+            padding-bottom: 0.4rem;
+        }
+        .app-link:hover { color: #009bab; }
+        .app-divider {
+            border: none;
+            border-top: 1px solid rgba(0,74,173,0.12);
+            margin-bottom: 3rem;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.75rem;
+        }
+        .app-card {
+            background: #f6f8fb;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+        .app-card:hover {
+            background: #eef2f9;
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0, 74, 173, 0.1);
+        }
+        .app-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(47,232,250,0.16);
+            color: #009bab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .app-card-icon svg { width: 26px; height: 26px; }
+        .app-card h3 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #061a3a;
+            margin-bottom: 0.75rem;
+        }
+        .app-card p {
+            font-size: 0.95rem;
+            line-height: 1.75;
+            color: #5a6a90;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .app-card-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .app-card-link:hover { color: #009bab; }
+        @media (max-width: 900px) {
+            .anix-intro-grid { grid-template-columns: 1fr; }
+            .app-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 767px) {
+            .app-section { padding: 4rem 1.25rem; }
+            .app-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+        }
+        @media (max-width: 767px) {
+            html { scroll-snap-type: none; }
+            .anix-statement-page, .anix-cards-page { min-height: auto; padding: 3rem 1.25rem; }
+            .app-section { min-height: auto; }
+            .anix-intro-card { padding: 1.5rem; }
         }
 
         /* ======================================
@@ -659,7 +904,7 @@
             .circles-section { padding-left: 1.5rem; padding-right: 1.5rem; }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2.6rem; }
             .hero-sub { font-size: 0.95rem; }
         }
 
@@ -688,7 +933,7 @@
         }
         .partners-track {
             display: flex;
-            width: calc(360px * 32);
+            width: calc(360px * 36);
             animation: partnerScroll 80s linear infinite;
         }
         .partners-track:hover {
@@ -717,23 +962,102 @@
         }
         @keyframes partnerScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-360px * 16)); }
+            100% { transform: translateX(calc(-360px * 18)); }
         }
 
         /* Responsive Partners */
         @media (max-width: 1024px) {
             .partner-logo { width: 300px; padding: 0 40px; }
-            .partners-track { width: calc(300px * 32); }
+            .partners-track { width: calc(300px * 36); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-300px * 16)); }
+                100% { transform: translateX(calc(-300px * 18)); }
             }
         }
         @media (max-width: 767px) {
             .partner-logo { width: 250px; padding: 0 30px; }
-            .partners-track { width: calc(250px * 32); }
+            .partners-track { width: calc(250px * 36); }
             @keyframes partnerScroll {
-                100% { transform: translateX(calc(-250px * 16)); }
+                100% { transform: translateX(calc(-250px * 18)); }
             }
+        }
+
+        /* ======================================
+           CONTACT
+        ====================================== */
+        .contact-section {
+            background: #f6f8fb;
+            padding: 6rem 1.5rem;
+        }
+        .contact-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: stretch;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .contact-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(47,232,250,0.16);
+            color: #009bab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .contact-item-text { font-size: 1rem; color: #3a4a6b; line-height: 1.7; padding-top: 0.4rem; }
+        .contact-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2.2rem;
+            background: var(--navy);
+            color: #fff;
+            font-weight: 700;
+            border-radius: 14px;
+            transition: 0.3s;
+            margin-top: 1rem;
+            align-self: flex-start;
+        }
+        .contact-cta:hover {
+            background: var(--cyan);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(47,232,250,0.35);
+        }
+        .contact-map {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,74,173,0.1);
+            min-height: 320px;
+        }
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 320px;
+            border: 0;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 767px) {
+            .contact-section { padding: 4rem 1.25rem; }
         }
     </style>
 </head>
@@ -837,9 +1161,9 @@
 <div class="hero-bg" id="heroBg"></div>
 <div class="hero-overlay"></div>
 <div class="hero-content">
-<h1>Energy-efficient edge AI<br/>Computing architecture<em>innovator</em></h1>
+<h1><em>ANIX</em></h1>
 <p class="hero-sub">
-                Engineering Innovation <span>·</span> Technological Breakthroughs <span>·</span> Industry Collaboration
+                Ultra-Low-Power AI Inference Core, Opening the Frontier of Next-Generation AI Applications
             </p>
 <div class="hero-cta">
 </div>
@@ -849,58 +1173,115 @@
 <div class="scroll-arrow"></div>
 </div>
 </section>
-<!-- ========== CIRCLES SECTION ========== -->
-<section class="circles-section">
-<div class="circles-section-inner">
-<span class="circles-section-label">CORE CAPABILITIES</span>
-<h2 class="circles-section-title">Three Core Capabilities</h2>
-<p class="circles-section-desc">
-                From ultra-low power AI chips to fully customized ASICs, and rapid FPGA prototyping,<br/>
-                Alpenglow Tek provides complete hardware solutions from concept to mass production.
-            </p>
-<div class="circles-row">
-<!-- Circle 1 -->
-<div class="circle-item" data-circle="1">
-<div class="circle-img-wrap">
-<img alt="Ultra-low power AI processor" src="../assets/img/1.png"/>
-<div class="circle-label-overlay">
-<p class="circle-label-text">Ultra low power consumption<br/>AI processor</p>
+<!-- ========== ANIX INTRO (scroll-snap pages) ========== -->
+<section class="anix-statement-page">
+<div class="anix-statement-inner">
+<p class="anix-lead-statement"><span class="accent">ANIX</span> is an ultra-low-power AI inference core, built for always-on intelligence in harsh power-constrained environments, bringing AI into devices where intelligent compute was previously impossible to deploy.</p>
+</div>
+</section>
+
+<section class="anix-cards-page">
+<div class="anix-intro-inner">
+<div class="app-header">
+<div>
+<span class="app-eyebrow">Technology</span>
+<h2 class="app-title">Core Technology</h2>
 </div>
 </div>
-<div class="circle-caption">
-<p class="circle-caption-title">Ultra-low power AI processor</p>
-<p class="circle-caption-desc">Built for edge AI computing<br/>Extremely low power consumption and low latency hardware accelerator</p>
+<hr class="app-divider">
+
+<div class="anix-intro-grid">
+<div class="anix-intro-card">
+<div class="anix-intro-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<rect x="3" y="3" width="18" height="18" rx="2"/>
+<rect x="7" y="7" width="4" height="4"/>
+<rect x="13" y="7" width="4" height="4"/>
+<rect x="7" y="13" width="4" height="4"/>
+<rect x="13" y="13" width="4" height="4"/>
+</svg>
+</div>
+<h3>Analog Compute-in-Memory Architecture</h3>
+<p>Compute units are fused with the memory array — multiply-accumulate (MAC) operations execute in place using analog circuitry, eliminating the data-movement overhead inherent to von Neumann architectures. Compared to digital implementations, analog compute achieves lower power within a smaller circuit area.</p>
+</div>
+<div class="anix-intro-card">
+<div class="anix-intro-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M2 12h4l2-6 4 12 3-9 2 3h5"/>
+</svg>
+</div>
+<h3>Always-On Sensing, Low-Power Operation</h3>
+<p>Supports always-on sensing and real-time inference within milliwatt (mW)-class power budgets, meeting the endurance demands of battery-powered endpoints.</p>
+</div>
+<div class="anix-intro-card">
+<div class="anix-intro-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<line x1="4" y1="6" x2="20" y2="6"/>
+<circle cx="9" cy="6" r="2" fill="currentColor" stroke="none"/>
+<line x1="4" y1="12" x2="20" y2="12"/>
+<circle cx="15" cy="12" r="2" fill="currentColor" stroke="none"/>
+<line x1="4" y1="18" x2="20" y2="18"/>
+<circle cx="11" cy="18" r="2" fill="currentColor" stroke="none"/>
+</svg>
+</div>
+<h3>Multi-Precision Programmable Compute</h3>
+<p>Supports multiple compute precisions including 4-bit and 8-bit, covering common operators such as convolution (Conv) and fully-connected (FC) layers — flexibly accommodating diverse neural network model deployments.</p>
 </div>
 </div>
-<!-- Circle 2 -->
-<div class="circle-item" data-circle="2">
-<div class="circle-img-wrap">
-<img alt="ASIC / IP Design Services" src="../assets/img/2.png"/>
-<div class="circle-label-overlay">
-<p class="circle-label-text">ASIC / IP<br/>design services</p>
+<div class="anix-intro-cta-wrap">
+<a class="anix-intro-cta" href="solutions/asic/anix/tech.html">Explore ANIX Technology →</a>
 </div>
 </div>
-<div class="circle-caption">
-<p class="circle-caption-title">ASIC / IP Design Services</p>
-<p class="circle-caption-desc">Professional ASIC and IP Design Services<br/>Create high-performance, low-power customized chips and modules</p>
+</section>
+
+<!-- ========== APPLICATIONS ========== -->
+<section class="app-section">
+<div class="app-inner">
+<div class="app-header">
+<div>
+<span class="app-eyebrow">Applications</span>
+<h2 class="app-title">Our Applications</h2>
 </div>
+<a class="app-link" href="solutions/asic/anix/tech.html">Explore Applications →</a>
 </div>
-<!-- Circle 3 -->
-<div class="circle-item" data-circle="3">
-<div class="circle-img-wrap">
-<img alt="FPGA Prototyping" src="../assets/img/3.png"/>
-<div class="circle-label-overlay">
-<p class="circle-label-text">FPGA<br/>Prototype verification</p>
+<hr class="app-divider">
+
+<div class="app-grid">
+<a class="app-card" href="solutions/asic/anix/apps-medical.html">
+<div class="app-card-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z"/>
+<path d="M4 12h3l1.5-3 2 5 1.5-3h4"/>
+</svg>
 </div>
+<h3>Medical Sensing</h3>
+<p>From wearable vital-sign monitors to implantable medical devices, ANIX sustains always-on sensing on battery power, making real-time analysis of physiological signals possible.</p>
+</a>
+<a class="app-card" href="solutions/asic/anix/apps-industrial.html">
+<div class="app-card-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="3"/>
+<path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>
+</svg>
 </div>
-<div class="circle-caption">
-<p class="circle-caption-title">FPGA Prototyping</p>
-<p class="circle-caption-desc">Quickly verify chip architecture and performance with FPGA<br/>Shorten Design, Development, and Mass Production Schedules</p>
+<h3>Industrial Sensing</h3>
+<p>For predictive maintenance and anomaly detection, ANIX brings real-time inference to the edge — reducing downtime risk and extending the deployment life of sensor nodes.</p>
+</a>
+<a class="app-card" href="solutions/asic/anix/apps-consumer.html">
+<div class="app-card-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<rect x="7" y="4" width="10" height="16" rx="3"/>
+<line x1="10" y1="8" x2="14" y2="8"/>
+</svg>
 </div>
+<h3>Consumer Electronics</h3>
+<p>From true wireless earbuds to wearables, ANIX brings always-on intelligence and real-time response to consumer products within tight battery and space constraints.</p>
+</a>
 </div>
 </div>
 </div>
 </section>
+
 <!-- ========== PARTNERS SECTION ========== -->
 <section class="partners-section">
 <div class="partners-section-inner">
@@ -912,9 +1293,7 @@
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l2.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l3.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l4.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l5.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l6.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l7.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l8.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l9.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l10.png"/></div>
@@ -924,14 +1303,16 @@
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l14.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l15.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l16.png"/></div>
+<div class="partner-logo"><img alt="AppWorks" src="../assets/img/partners/l_appworks.png"/></div>
+<div class="partner-logo"><img alt="Plug and Play" src="../assets/img/partners/l_pnp.png"/></div>
+<div class="partner-logo"><img alt="AITA" src="../assets/img/partners/l_aita.png"/></div>
+<div class="partner-logo"><img alt="JETRO" src="../assets/img/partners/l_jetro.png"/></div>
 <!-- Duplicated for Infinite Loop -->
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l1.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l2.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l3.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l4.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l5.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l6.png"/></div>
-<div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l7.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l8.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l9.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l10.png"/></div>
@@ -941,10 +1322,70 @@
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l14.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l15.png"/></div>
 <div class="partner-logo"><img alt="Partner" src="../assets/img/partners/l16.png"/></div>
+<div class="partner-logo"><img alt="AppWorks" src="../assets/img/partners/l_appworks.png"/></div>
+<div class="partner-logo"><img alt="Plug and Play" src="../assets/img/partners/l_pnp.png"/></div>
+<div class="partner-logo"><img alt="AITA" src="../assets/img/partners/l_aita.png"/></div>
+<div class="partner-logo"><img alt="JETRO" src="../assets/img/partners/l_jetro.png"/></div>
 </div>
 </div>
 </div>
 </section>
+
+<!-- ========== COOPERATION MODELS ========== -->
+<section class="circles-section">
+<div class="circles-section-inner">
+<div class="app-header" style="text-align:left">
+<div>
+<span class="app-eyebrow">Cooperation</span>
+<h2 class="app-title">Three Ways to Work With Us</h2>
+</div>
+</div>
+<hr class="app-divider">
+
+<div class="circles-row">
+<!-- Circle 1 -->
+<div class="circle-item" data-circle="1">
+<div class="circle-img-wrap">
+<img alt="IP Licensing" src="../assets/img/1.png"/>
+<div class="circle-label-overlay">
+<p class="circle-label-text">IP<br/>Licensing</p>
+</div>
+</div>
+<div class="circle-caption">
+<p class="circle-caption-title">IP Licensing</p>
+<p class="circle-caption-desc">License the ANIX core IP<br/>so IC design teams can quickly integrate ultra-low-power AI compute</p>
+</div>
+</div>
+<!-- Circle 2 -->
+<div class="circle-item" data-circle="2">
+<div class="circle-img-wrap">
+<img alt="Custom Design Services" src="../assets/img/2.png"/>
+<div class="circle-label-overlay">
+<p class="circle-label-text">Custom Design<br/>Services</p>
+</div>
+</div>
+<div class="circle-caption">
+<p class="circle-caption-title">Custom Design Services</p>
+<p class="circle-caption-desc">From architecture planning to mass production<br/>end-to-end custom ASIC / IP design partnership</p>
+</div>
+</div>
+<!-- Circle 3 -->
+<div class="circle-item" data-circle="3">
+<div class="circle-img-wrap">
+<img alt="Prototyping & Deployment" src="../assets/img/3.png"/>
+<div class="circle-label-overlay">
+<p class="circle-label-text">Prototyping &amp;<br/>Deployment</p>
+</div>
+</div>
+<div class="circle-caption">
+<p class="circle-caption-title">Prototyping &amp; Deployment</p>
+<p class="circle-caption-desc">Validate system architecture quickly with FPGA<br/>reducing the risk and timeline of adopting new technology</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 <!-- ========== FOOTER ========== -->
 <footer class="site-footer">
 <div class="footer-top">
