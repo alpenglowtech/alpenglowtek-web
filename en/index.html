@@ -258,13 +258,35 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background-image: url('../assets/img/hero_cim.png');
-            background-size: cover;
-            background-position: center;
             transform: scale(1.04);
             transition: transform 8s ease;
         }
         .hero.loaded .hero-bg { transform: scale(1); }
+        .hero-bg-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.6s ease;
+        }
+        .hero-bg-slide.active { opacity: 1; }
+        .hero-bg-slide.hero-bg-semicon {
+            background-image:
+                linear-gradient(135deg, rgba(4,18,42,0.4) 0%, rgba(4,18,42,0.05) 55%, rgba(4,18,42,0.3) 100%),
+                url('../assets/img/semicon-taiwan-2026-bg.jpg');
+        }
+        .hero-bg-slide.hero-bg-ifa {
+            background-image:
+                linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
+                url('../assets/img/ifa-berlin-2026-bg.jpg');
+        }
+        .hero-bg-slide.hero-bg-india {
+            background-image:
+                radial-gradient(circle at 80% 25%, rgba(255,163,64,0.26) 0%, rgba(255,163,64,0) 45%),
+                repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 64px),
+                linear-gradient(135deg, #04122a 0%, #071c3f 55%, #0a2d5c 100%);
+        }
         /* Dark gradient overlay — keeps image visible, adds legibility for light text */
         .hero-overlay {
             position: absolute;
@@ -286,6 +308,20 @@
             transform: translateY(10vh);
         }
 
+        .hero-slide-text {
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease;
+        }
+        .hero-slide-text.active {
+            position: relative;
+            opacity: 1;
+            visibility: visible;
+        }
+
         .hero-label {
             display: inline-flex;
             align-items: center;
@@ -302,6 +338,30 @@
             margin-bottom: 1.75rem;
             animation: fadeUp 0.8s ease both;
         }
+        .hero-slide-text .hero-label {
+            color: #eafcff;
+            background: rgba(47,232,250,0.15);
+            border-color: rgba(47,232,250,0.5);
+        }
+        .hero-meta {
+            font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 0.03em;
+            margin-top: -1rem;
+            margin-bottom: 2rem;
+            animation: fadeUp 0.9s 0.2s ease both;
+        }
+        .hero-meta span { opacity: 0.5; margin: 0 0.6rem; }
+        .hero-partner-badge {
+            display: inline-block;
+            background: #fff;
+            border-radius: 12px;
+            padding: 0.6rem 1.1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            animation: fadeUp 0.8s ease both;
+        }
+        .hero-partner-badge img { display: block; height: 34px; width: auto; }
         .hero-label::before {
             content: '';
             width: 6px; height: 6px;
@@ -380,6 +440,38 @@
             border-color: var(--navy);
             background: rgba(0,74,173,0.06);
             transform: translateY(-3px);
+        }
+
+        /* Hero slideshow nav arrows */
+        .hero-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.35);
+            background: rgba(4,18,42,0.35);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+        .hero-nav:hover {
+            background: rgba(47,232,250,0.25);
+            border-color: var(--cyan);
+            transform: translateY(-50%) scale(1.08);
+        }
+        .hero-nav svg { width: 20px; height: 20px; }
+        .hero-nav.hero-prev { left: 1.5rem; }
+        .hero-nav.hero-next { right: 1.5rem; }
+        @media (max-width: 768px) {
+            .hero-nav { width: 40px; height: 40px; }
+            .hero-nav.hero-prev { left: 0.75rem; }
+            .hero-nav.hero-next { right: 0.75rem; }
         }
 
         /* Scroll hint */
@@ -1179,16 +1271,64 @@
 </nav>
 <!-- ========== HERO ========== -->
 <section class="hero" id="hero">
-<div class="hero-bg" id="heroBg"></div>
+<div class="hero-bg" id="heroBg">
+<div class="hero-bg-slide active" style="background-image:url('../assets/img/hero_cim.png');"></div>
+<div class="hero-bg-slide hero-bg-semicon"></div>
+<div class="hero-bg-slide hero-bg-ifa"></div>
+<div class="hero-bg-slide hero-bg-india"></div>
+</div>
 <div class="hero-overlay"></div>
-<div class="hero-content">
+<div class="hero-content" id="heroContent">
+<div class="hero-slide-text active">
 <h1><em>ANIX</em></h1>
 <p class="hero-sub">
                 Ultra-Low-Power AI Inference Core, Opening the Frontier of Next-Generation AI Applications
             </p>
-<div class="hero-cta">
+<div class="hero-cta"></div>
+</div>
+<div class="hero-slide-text">
+<div class="hero-label">SEMICON Taiwan 2026 — Invited Talk</div>
+<h1>SEMICON Taiwan <em>2026</em></h1>
+<p class="hero-sub">
+                Building an Ultra-Low-Power AI SoC Platform for Micro AI
+            </p>
+<p class="hero-meta">
+                Session 5 · AI Computing &amp; Next-Generation Semiconductor Architecture
+                <span>|</span>Sep 3 (Wed) 15:10–15:20<span>|</span>Taipei Nangang Exhibition Center
+            </p>
+<div class="hero-cta"></div>
+</div>
+<div class="hero-slide-text">
+<div class="hero-label">IFA Berlin 2026 — Exhibiting</div>
+<div class="hero-partner-badge"><img src="../assets/img/ifa-berlin-2026-logo.png" alt="IFA Berlin 2026"></div>
+<h1>IFA <em>Berlin</em> 2026</h1>
+<p class="hero-sub">
+                Alpenglow Tek is exhibiting ANIX, our ultra-low-power AI inference technology
+            </p>
+<p class="hero-meta">
+                Sep 4–8<span>|</span>Berlin ExpoCenter City, Germany
+            </p>
+<div class="hero-cta"></div>
+</div>
+<div class="hero-slide-text">
+<div class="hero-label">electronica India 2026 — Exhibiting</div>
+<div class="hero-partner-badge"><img src="../assets/img/electronica-india-2026-logo.png" alt="electronica India &amp; productronica India 2026"></div>
+<h1>electronica <em>India</em> 2026</h1>
+<p class="hero-sub">
+                Alpenglow Tek is exhibiting ANIX, our ultra-low-power AI inference technology
+            </p>
+<p class="hero-meta">
+                Sep 16–18<span>|</span>BIEC, Bengaluru, India
+            </p>
+<div class="hero-cta"></div>
 </div>
 </div>
+<button class="hero-nav hero-prev" id="heroPrev" aria-label="Previous slide">
+<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+</button>
+<button class="hero-nav hero-next" id="heroNext" aria-label="Next slide">
+<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</button>
 <div class="scroll-hint">
 <span>Scroll</span>
 <div class="scroll-arrow"></div>
@@ -1520,6 +1660,38 @@
         window.addEventListener('load', () => {
             document.getElementById('hero').classList.add('loaded');
         });
+
+        // Hero slideshow — auto-rotate background + text every 6s, with manual prev/next
+        (function () {
+            const bgSlides = document.querySelectorAll('#heroBg .hero-bg-slide');
+            const textSlides = document.querySelectorAll('#heroContent .hero-slide-text');
+            const prevBtn = document.getElementById('heroPrev');
+            const nextBtn = document.getElementById('heroNext');
+            if (bgSlides.length < 2) return;
+            let heroSlideIndex = 0;
+            let heroTimer;
+
+            function showSlide(newIndex) {
+                bgSlides[heroSlideIndex].classList.remove('active');
+                textSlides[heroSlideIndex].classList.remove('active');
+                heroSlideIndex = (newIndex + bgSlides.length) % bgSlides.length;
+                bgSlides[heroSlideIndex].classList.add('active');
+                textSlides[heroSlideIndex].classList.add('active');
+            }
+
+            function startAutoplay() {
+                heroTimer = setInterval(() => showSlide(heroSlideIndex + 1), 6000);
+            }
+            function restartAutoplay() {
+                clearInterval(heroTimer);
+                startAutoplay();
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', () => { showSlide(heroSlideIndex - 1); restartAutoplay(); });
+            if (nextBtn) nextBtn.addEventListener('click', () => { showSlide(heroSlideIndex + 1); restartAutoplay(); });
+
+            startAutoplay();
+        })();
 
         // Mobile Menu
         const toggle = document.getElementById('menuToggle');
