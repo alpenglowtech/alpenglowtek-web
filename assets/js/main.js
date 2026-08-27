@@ -101,7 +101,6 @@
         <div class="dropdown">
           <span class="dropdown-cat">${t.about}</span>
           <a href="${root}${lang}/company/about.html" class="dropdown-item">${t.aboutUs}</a>
-          <a href="${root}${lang}/company/team.html" class="dropdown-item">${t.team}</a>
           <a href="${root}${lang}/company/brand-story.html" class="dropdown-item">${t.brandStory}</a>
         </div>
       </div>
@@ -195,7 +194,6 @@
       <a href="javascript:void(0);" class="mobile-nav-link">${t.company}</a>
       <div class="mobile-sub">
         <a href="${root}${lang}/company/about.html" class="mobile-sub-item">↳ ${t.aboutUs}</a>
-        <a href="${root}${lang}/company/team.html" class="mobile-sub-item">↳ ${t.team}</a>
         <a href="${root}${lang}/company/brand-story.html" class="mobile-sub-item">↳ ${t.brandStory}</a>
       </div>
 
@@ -304,7 +302,6 @@
             <p class="footer-col-title">${t.company}</p>
             <div class="footer-links">
                 <a href="${root}${lang}/company/about.html" class="footer-link">${t.aboutUs}</a>
-                <a href="${root}${lang}/company/team.html" class="footer-link">${t.team}</a>
                 <a href="${root}${lang}/company/brand-story.html" class="footer-link">${t.brandStory}</a>
                 <a href="${root}${lang}/news/index.html" class="footer-link">${t.devNews}</a>
             </div>
