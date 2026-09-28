@@ -270,11 +270,25 @@
             transition: opacity 1.6s ease;
         }
         .hero-bg-slide.active { opacity: 1; }
-        .hero-bg-slide.hero-bg-india {
+        .hero-bg-slide.hero-bg-gse {
             background-image:
-                radial-gradient(circle at 80% 25%, rgba(255,163,64,0.26) 0%, rgba(255,163,64,0) 45%),
-                repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 64px),
-                linear-gradient(135deg, #04122a 0%, #071c3f 55%, #0a2d5c 100%);
+                linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
+                url('../assets/img/gse-2026-bg.jpg');
+        }
+        .hero-bg-slide.hero-bg-ramen {
+            background-image:
+                linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
+                url('../assets/img/ramentech-2026-bg.jpg');
+        }
+        .hero-bg-slide.hero-bg-switch {
+            background-image:
+                linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
+                url('../assets/img/switch-2026-bg.jpg');
+        }
+        .hero-bg-slide.hero-bg-meettaipei {
+            background-image:
+                linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
+                url('../assets/img/meettaipei-2026-bg.jpg');
         }
         /* Dark gradient overlay — keeps image visible, adds legibility for light text */
         .hero-overlay {
@@ -1264,7 +1278,10 @@
     <section class="hero" id="hero">
         <div class="hero-bg" id="heroBg">
             <div class="hero-bg-slide active" style="background-image:url('../assets/img/hero_cim.png');"></div>
-            <div class="hero-bg-slide hero-bg-india"></div>
+            <div class="hero-bg-slide hero-bg-gse"></div>
+            <div class="hero-bg-slide hero-bg-ramen"></div>
+            <div class="hero-bg-slide hero-bg-switch"></div>
+            <div class="hero-bg-slide hero-bg-meettaipei"></div>
         </div>
         <div class="hero-overlay"></div>
 
@@ -1277,14 +1294,50 @@
                 <div class="hero-cta"></div>
             </div>
             <div class="hero-slide-text">
-                <div class="hero-label">electronica India 2026・參展</div>
-                <div class="hero-partner-badge"><img src="../assets/img/electronica-india-2026-logo.png" alt="electronica India &amp; productronica India 2026"></div>
-                <h1>electronica <em>India</em> 2026</h1>
+                <div class="hero-label">Global Startup EXPO 2026・參展</div>
+                <div class="hero-partner-badge"><img src="../assets/img/gse-2026-logo.png" alt="Global Startup EXPO 2026" style="height:64px;"></div>
+                <h1>GSE <em>Osaka</em> 2026</h1>
                 <p class="hero-sub">
-                    臻至科技受邀參展，展出 ANIX 超低功耗 AI 推論技術
+                    臻至科技將參展大阪 Global Startup EXPO，展出 ANIX 超低功耗 AI 推論技術
                 </p>
                 <p class="hero-meta">
-                    9/16–9/18<span>|</span>BIEC 展覽中心，印度邦加羅爾
+                    10/5–10/7<span>|</span>Grand Front Osaka・Grand Green Osaka，日本大阪
+                </p>
+                <div class="hero-cta"></div>
+            </div>
+            <div class="hero-slide-text">
+                <div class="hero-label">RAMEN TECH 2026・參展</div>
+                <div class="hero-partner-badge"><img src="../assets/img/ramentech-2026-logo.png" alt="RAMEN TECH" style="height:48px;"></div>
+                <h1>RAMEN <em>TECH</em> 2026</h1>
+                <p class="hero-sub">
+                    臻至科技將參與福岡 RAMEN TECH，展出 ANIX 超低功耗 AI 推論技術
+                </p>
+                <p class="hero-meta">
+                    10/7–10/11<span>|</span>日本福岡
+                </p>
+                <div class="hero-cta"></div>
+            </div>
+            <div class="hero-slide-text">
+                <div class="hero-label">SWITCH 2026・參展</div>
+                <div class="hero-partner-badge"><img src="../assets/img/switch-2026-logo.png" alt="SWITCH — Singapore Week of Innovation &amp; Technology" style="height:40px;"></div>
+                <h1>SWITCH <em>Singapore</em> 2026</h1>
+                <p class="hero-sub">
+                    臻至科技將參展新加坡 SWITCH 科技創新週，展出 ANIX 超低功耗 AI 推論技術
+                </p>
+                <p class="hero-meta">
+                    10/27–10/29<span>|</span>Sands Expo &amp; Convention Centre，新加坡
+                </p>
+                <div class="hero-cta"></div>
+            </div>
+            <div class="hero-slide-text">
+                <div class="hero-label">2026 Meet Taipei・參展</div>
+                <div class="hero-partner-badge"><img src="../assets/img/meettaipei-2026-logo.svg" alt="Meet Startups" style="height:40px;"></div>
+                <h1>Meet <em>Taipei</em> 2026</h1>
+                <p class="hero-sub">
+                    臻至科技將參展 Meet Taipei 創新創業嘉年華，展出 ANIX 超低功耗 AI 推論技術
+                </p>
+                <p class="hero-meta">
+                    11/19–11/21<span>|</span>台北花博爭艷館
                 </p>
                 <div class="hero-cta"></div>
             </div>
@@ -1551,7 +1604,7 @@
                     </div>
                 </div>
                 <div class="contact-map">
-                    <iframe src="https://maps.google.com/maps?q=新北市三重區重新路一段108號&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="臻至科技位置地圖"></iframe>
+                    <iframe src="https://maps.google.com/maps?q=%E8%87%BB%E8%87%B3%E7%A7%91%E6%8A%80%20Alpenglow%20Tek&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="臻至科技位置地圖"></iframe>
                 </div>
             </div>
         </div>
