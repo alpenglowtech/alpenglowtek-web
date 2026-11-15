@@ -271,16 +271,6 @@
             transition: opacity 1.6s ease;
         }
         .hero-bg-slide.active { opacity: 1; }
-        .hero-bg-slide.hero-bg-edgeai {
-            background-image:
-                linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
-                url('../assets/img/edgeai-taipei-2026-bg.jpg');
-        }
-        .hero-bg-slide.hero-bg-switch {
-            background-image:
-                linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
-                url('../assets/img/switch-2026-bg.jpg');
-        }
         .hero-bg-slide.hero-bg-meettaipei {
             background-image:
                 linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
@@ -292,9 +282,9 @@
             inset: 0;
             background: linear-gradient(
                 105deg,
-                rgba(4,18,42,0.88) 0%,
-                rgba(4,18,42,0.62) 45%,
-                rgba(4,18,42,0.15) 100%
+                rgba(4,18,42,0.70) 0%,
+                rgba(4,18,42,0.38) 45%,
+                rgba(4,18,42,0.04) 100%
             );
         }
         .hero-content {
@@ -530,7 +520,7 @@
             right: -8%;
             width: 55%;
             height: 100%;
-            background-image: url('../assets/img/hero_cim.png');
+            background-image: url('../assets/img/hero_anix_chip.jpg');
             background-size: cover;
             background-position: left center;
             opacity: 0.07;
@@ -675,10 +665,56 @@
             border-top: 1px solid rgba(0,74,173,0.12);
             margin-bottom: 3rem;
         }
+        .app-lead {
+            font-size: 1.08rem;
+            line-height: 1.9;
+            color: #5a6a90;
+            max-width: 760px;
+            margin: -1.5rem 0 2.5rem;
+        }
         .app-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.75rem;
+        }
+        /* Beachhead market */
+        .focus-section {
+            background: #f6f8fb;
+            padding: 6rem 1.5rem;
+        }
+        .focus-inner { max-width: 1200px; margin: 0 auto; }
+        .focus-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.75rem;
+        }
+        .focus-item {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            padding: 1.6rem 1.75rem;
+            background: #fff;
+            border-radius: 16px;
+            border-left: 3px solid var(--cyan);
+            box-shadow: 0 8px 28px rgba(0, 74, 173, 0.06);
+        }
+        .focus-icon {
+            width: 48px; height: 48px; flex-shrink: 0;
+            border-radius: 12px;
+            background: rgba(47,232,250,0.16);
+            color: #009bab;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .focus-icon svg { width: 24px; height: 24px; }
+        .focus-item h3 { font-size: 1.1rem; font-weight: 800; color: #061a3a; margin: 0 0 0.2rem; }
+        .focus-item p { font-size: 0.85rem; color: #5a6a90; margin: 0; letter-spacing: 0.03em; }
+        @media (max-width: 1100px) {
+            .app-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .app-grid { grid-template-columns: 1fr; }
+            .focus-grid { grid-template-columns: 1fr; }
+            .focus-section { padding: 4rem 1.25rem; }
         }
         .app-card {
             background: #f6f8fb;
@@ -728,7 +764,6 @@
         .app-card-link:hover { color: #009bab; }
         @media (max-width: 900px) {
             .anix-intro-grid { grid-template-columns: 1fr; }
-            .app-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 767px) {
             .app-section { padding: 4rem 1.25rem; }
@@ -1171,12 +1206,6 @@
                             <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">ANIX — Ultra-Low Power AI Processor</span>
                             <a class="dropdown-item" href="solutions/asic/anix/tech.html" style="padding-left:1.4rem;font-size:.8rem">↳ Tech Overview</a>
                         </div>
-                        <div class="dd-col">
-                            <span class="dd-col-title">Applications</span>
-                            <a class="dropdown-item" href="solutions/asic/anix/apps-medical.html">↳ Medical Apps</a>
-                            <a class="dropdown-item" href="solutions/asic/anix/apps-industrial.html">↳ Industrial Apps</a>
-                            <a class="dropdown-item" href="solutions/asic/anix/apps-consumer.html">↳ Consumer Apps</a>
-                        </div>
                     </div>
                 </div>
 
@@ -1185,16 +1214,13 @@
                     <a class="nav-link" href="javascript:void(0);">Services <span class="chev">▾</span></a>
                     <div class="dropdown dropdown-mega">
                         <div class="dd-col">
-                            <span class="dd-col-title">SoC</span>
-                            <a class="dropdown-item" href="solutions/asic/anix/tech.html#ip-licensing">ANIX IP Licensing</a>
-                            <a class="dropdown-item" href="solutions/asic/custom-asic.html">Custom ASIC</a>
+                            <span class="dd-col-title">AI Silicon</span>
+                            <a href="solutions/asic/custom-asic.html" class="dropdown-item">Ultra-Low-Power AI Chip Services</a>
+                            <a href="solutions/asic/anix/tech.html#model-services" class="dropdown-item">AI Model Services</a>
                         </div>
                         <div class="dd-col">
                             <span class="dd-col-title">FPGA</span>
-                            <a class="dropdown-item" href="solutions/fpga/pqc.html">PQC Cryptography</a>
-                            <a class="dropdown-item" href="solutions/fpga/event-camera.html">Event Camera</a>
-                            <a class="dropdown-item" href="solutions/fpga/rf.html">RF</a>
-                            <a class="dropdown-item" href="solutions/fpga/vision-audio-preprocess.html">Vision/Audio Preprocess</a>
+                            <a href="solutions/fpga/design-service.html" class="dropdown-item">FPGA Design Services</a>
                         </div>
                     </div>
                 </div>
@@ -1243,21 +1269,14 @@
         <div class="m-sub">
             <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">ANIX — Ultra-Low Power AI Processor</span>
             <a href="solutions/asic/anix/tech.html">↳ Tech Overview</a>
-            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">Applications</span>
-            <a href="solutions/asic/anix/apps-medical.html">↳ Medical Apps</a>
-            <a href="solutions/asic/anix/apps-industrial.html">↳ Industrial Apps</a>
-            <a href="solutions/asic/anix/apps-consumer.html">↳ Consumer Apps</a>
         </div>
         <a class="m-nav-link" href="javascript:void(0);">Services</a>
         <div class="m-sub">
-            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">SoC</span>
-            <a href="solutions/asic/anix/tech.html#ip-licensing">↳ ANIX IP Licensing</a>
-            <a href="solutions/asic/custom-asic.html">↳ Custom ASIC</a>
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">AI Silicon</span>
+            <a href="solutions/asic/custom-asic.html">↳ Ultra-Low-Power AI Chip Services</a>
+            <a href="solutions/asic/anix/tech.html#model-services">↳ AI Model Services</a>
             <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">FPGA</span>
-            <a href="solutions/fpga/pqc.html">↳ PQC Cryptography</a>
-            <a href="solutions/fpga/event-camera.html">↳ Event Camera</a>
-            <a href="solutions/fpga/rf.html">↳ RF</a>
-            <a href="solutions/fpga/vision-audio-preprocess.html">↳ Vision/Audio Preprocess</a>
+            <a href="solutions/fpga/design-service.html">↳ FPGA Design Services</a>
         </div>
         <a class="m-nav-link" href="javascript:void(0);">Company</a>
         <div class="m-sub">
@@ -1269,44 +1288,18 @@
 <!-- ========== HERO ========== -->
 <section class="hero" id="hero">
 <div class="hero-bg" id="heroBg">
-<div class="hero-bg-slide active" style="background-image:url('../assets/img/hero_cim.png');"></div>
-<div class="hero-bg-slide hero-bg-edgeai"></div>
-            <div class="hero-bg-slide hero-bg-switch"></div>
+<div class="hero-bg-slide active" style="background-image:url('../assets/img/hero_anix_chip.jpg');"></div>
             <div class="hero-bg-slide hero-bg-meettaipei"></div>
 </div>
 <div class="hero-overlay"></div>
 <div class="hero-content" id="heroContent">
 <div class="hero-slide-text active">
 <h1><em>ANIX</em></h1>
-<p class="hero-sub">
-                Ultra-Low-Power AI Inference Core, Opening the Frontier of Next-Generation AI Applications
-            </p>
+                <p class="hero-sub">
+                    Ultra-Low-Power, Ultra-Low-Latency Inference Core, Opening the Frontier of Next-Generation AI Applications
+                </p>
 <div class="hero-cta"></div>
 </div>
-<div class="hero-slide-text">
-                <div class="hero-label">EDGE AI Taipei 2026 — Startup Pitch Finalist</div>
-                <div class="hero-partner-badge"><img src="../assets/img/edgeai-2026-logo.png" alt="EDGE AI Foundation" style="height:64px;"></div>
-                <h1>EDGE AI <em>Taipei</em> 2026</h1>
-                <p class="hero-sub">
-                    COO Phyllis Huang will pitch ANIX, our ultra-low-power AI inference technology, as a Startup Pitch finalist
-                </p>
-                <p class="hero-meta">
-                    Oct 22–23<span>|</span>Taipei International Convention Center (TICC)
-                </p>
-                <div class="hero-cta"></div>
-            </div>
-            <div class="hero-slide-text">
-                <div class="hero-label">SWITCH 2026 — Exhibiting</div>
-                <div class="hero-partner-badge"><img src="../assets/img/switch-2026-logo.png" alt="SWITCH — Singapore Week of Innovation &amp; Technology" style="height:40px;"></div>
-                <h1>SWITCH <em>Singapore</em> 2026</h1>
-                <p class="hero-sub">
-                    Alpenglow Tek will exhibit ANIX, our ultra-low-power AI inference technology, in Singapore
-                </p>
-                <p class="hero-meta">
-                    Oct 27–29<span>|</span>Sands Expo &amp; Convention Centre, Singapore
-                </p>
-                <div class="hero-cta"></div>
-            </div>
             <div class="hero-slide-text">
                 <div class="hero-label">Meet Taipei 2026 — Exhibiting</div>
                 <div class="hero-partner-badge"><img src="../assets/img/meettaipei-2026-logo.svg" alt="Meet Startups" style="height:40px;"></div>
@@ -1360,7 +1353,7 @@
 </svg>
 </div>
 <h3>Analog Compute-in-Memory Architecture</h3>
-<p>Compute units are unified with the memory array, performing multiply-accumulate (MAC) operations directly in analog circuitry — delivering breakthrough energy and area efficiency.</p>
+<p>Compute units are unified with the memory array, performing multiply-accumulate (MAC) operations directly in analog circuitry — delivering breakthrough energy and area efficiency. Up to 100× the energy efficiency of conventional digital AI chips.</p>
 </div>
 <div class="anix-intro-card">
 <div class="anix-intro-icon">
@@ -1392,8 +1385,45 @@
 </div>
 </section>
 
+    <!-- ========== BEACHHEAD MARKET ========== -->
+    <section class="focus-section">
+        <div class="focus-inner">
+            <div class="app-header">
+                <div>
+                    <span class="app-eyebrow">Beachhead Market</span>
+                    <h2 class="app-title">Advanced Voice AI</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
+            <p class="app-lead">ANIX targets advanced voice AI first: speech recognition, real-time translation and voice interaction running on-device at milliwatt-level power, with no dependence on the cloud.</p>
+            <div class="focus-grid">
+                <div class="focus-item">
+                    <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+                    <div>
+                        <h3>Speech-to-Text</h3>
+                        <p>On-device transcription</p>
+                    </div>
+                </div>
+                <div class="focus-item">
+                    <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h9M7.5 3v2M5.5 5c0 4 3 7 6 8M10.5 5c0 3-3 7-7 9"/><path d="M12 21l4-9 4 9M13.5 18h5"/></svg></div>
+                    <div>
+                        <h3>Real-Time Translation</h3>
+                        <p>Low latency, no cloud round-trip</p>
+                    </div>
+                </div>
+                <div class="focus-item">
+                    <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/></svg></div>
+                    <div>
+                        <h3>Voice Interaction</h3>
+                        <p>Always-on voice interfaces</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <!-- ========== APPLICATIONS ========== -->
-<section class="app-section">
+<section class="app-section" id="applications">
 <div class="app-inner">
 <div class="app-header">
 <div>
@@ -1402,39 +1432,38 @@
 </div>
 </div>
 <hr class="app-divider">
+            <p class="app-lead">From today's wearables to tomorrow's AI-native devices.</p>
 
-<div class="app-grid">
-<a class="app-card" href="solutions/asic/anix/apps-medical.html">
-<div class="app-card-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z"/>
-<path d="M4 12h3l1.5-3 2 5 1.5-3h4"/>
-</svg>
-</div>
-<h3>Medical Sensing</h3>
-<p>From wearable vital-sign monitors to implantable medical devices, ANIX sustains always-on sensing on battery power, making real-time analysis of physiological signals possible.</p>
-</a>
-<a class="app-card" href="solutions/asic/anix/apps-industrial.html">
-<div class="app-card-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<circle cx="12" cy="12" r="3"/>
-<path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>
-</svg>
-</div>
-<h3>Industrial Sensing</h3>
-<p>For predictive maintenance and anomaly detection, ANIX brings real-time inference to the edge — reducing downtime risk and extending the deployment life of sensor nodes.</p>
-</a>
-<a class="app-card" href="solutions/asic/anix/apps-consumer.html">
-<div class="app-card-icon">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-<rect x="7" y="4" width="10" height="16" rx="3"/>
-<line x1="10" y1="8" x2="14" y2="8"/>
-</svg>
-</div>
-<h3>Consumer Electronics</h3>
-<p>From true wireless earbuds to wearables, ANIX brings always-on intelligence and real-time response to consumer products within tight battery and space constraints.</p>
-</a>
-</div>
+            <div class="app-grid">
+                <div class="app-card">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="14" r="3.5"/><circle cx="17.5" cy="14" r="3.5"/><path d="M10 14h4M3 14l2-6h3M21 14l-2-6h-3"/></svg>
+                    </div>
+                    <h3>Smart Glasses & Wearables</h3>
+                    <p>From smart glasses to true wireless earbuds, ANIX brings always-on voice and vision intelligence to wearables within tight battery and space constraints.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 10l5-2v8l-5-2"/><circle cx="9.5" cy="12" r="2.5"/></svg>
+                    </div>
+                    <h3>Industrial Vision</h3>
+                    <p>For inline inspection and anomaly detection, ANIX brings real-time inference to the edge — reducing downtime risk and extending the deployment life of sensor nodes.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/><path d="M7 7l2 2M17 7l-2 2M7 17l2-2M17 17l-2-2"/></svg>
+                    </div>
+                    <h3>Autonomous Drones</h3>
+                    <p>On flight platforms constrained by both weight and power, ANIX delivers real-time perception and recognition at milliwatt-level power, extending mission endurance.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"/><circle cx="9.5" cy="13" r="1.2" fill="currentColor" stroke="none"/><circle cx="14.5" cy="13" r="1.2" fill="currentColor" stroke="none"/><path d="M12 8V5M10.5 3.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0M2 12v4M22 12v4M9 16.5h6"/></svg>
+                    </div>
+                    <h3>Robotics</h3>
+                    <p>From sensor fusion to voice interaction, ANIX gives next-generation AI-native robots low-power, low-latency on-device intelligence.</p>
+                </div>
+            </div>
 </div>
 </div>
 </section>
@@ -1504,42 +1533,30 @@
 <div class="circles-row">
 <!-- Circle 1 -->
 <div class="circle-item" data-circle="1">
-<div class="circle-img-wrap">
-<img alt="IP Licensing" src="../assets/img/1.png"/>
-<div class="circle-label-overlay">
-<p class="circle-label-text">IP<br/>Licensing</p>
+    <div class="circle-img-wrap">
+        <img src="../assets/img/2.png" alt="Ultra-Low-Power AI Chip Services">
+        <div class="circle-label-overlay">
+            <p class="circle-label-text">Ultra-Low-Power<br/>AI Chip Services</p>
+        </div>
+    </div>
+    <div class="circle-caption">
+        <p class="circle-caption-title">Ultra-Low-Power AI Chip Services</p>
+        <p class="circle-caption-desc">Built on the ANIX compute core<br/>purpose-built ultra-low-power AI chips for your application</p>
+    </div>
 </div>
-</div>
-<div class="circle-caption">
-<p class="circle-caption-title">IP Licensing</p>
-<p class="circle-caption-desc">License the ANIX core IP<br/>so IC design teams can quickly integrate ultra-low-power AI compute</p>
-</div>
-</div>
+
 <!-- Circle 2 -->
 <div class="circle-item" data-circle="2">
-<div class="circle-img-wrap">
-<img alt="Custom Design Services" src="../assets/img/2.png"/>
-<div class="circle-label-overlay">
-<p class="circle-label-text">Custom Design<br/>Services</p>
-</div>
-</div>
-<div class="circle-caption">
-<p class="circle-caption-title">Custom Design Services</p>
-<p class="circle-caption-desc">From architecture planning to mass production<br/>end-to-end custom ASIC / IP design partnership</p>
-</div>
-</div>
-<!-- Circle 3 -->
-<div class="circle-item" data-circle="3">
-<div class="circle-img-wrap">
-<img alt="Prototyping & Deployment" src="../assets/img/3.png"/>
-<div class="circle-label-overlay">
-<p class="circle-label-text">Prototyping &amp;<br/>Deployment</p>
-</div>
-</div>
-<div class="circle-caption">
-<p class="circle-caption-title">Prototyping &amp; Deployment</p>
-<p class="circle-caption-desc">Validate system architecture quickly with FPGA<br/>reducing the risk and timeline of adopting new technology</p>
-</div>
+    <div class="circle-img-wrap">
+        <img src="../assets/img/1.png" alt="AI Model Services">
+        <div class="circle-label-overlay">
+            <p class="circle-label-text">AI Model<br/>Services</p>
+        </div>
+    </div>
+    <div class="circle-caption">
+        <p class="circle-caption-title">AI Model Services</p>
+        <p class="circle-caption-desc">Model compression, quantization and compiler deployment<br/>so your AI models run on-chip at minimum power</p>
+    </div>
 </div>
 </div>
 </div>
@@ -1597,10 +1614,7 @@
 <div class="footer-links">
 <a href="solutions/asic/anix/tech.html">ANIX ultra-low power AI processor</a>
 <a href="solutions/asic/custom-asic.html">Custom ASIC</a>
-<a href="solutions/fpga/pqc.html">FPGA — PQC</a>
-<a href="solutions/fpga/event-camera.html">FPGA — Event Camera</a>
-<a href="solutions/fpga/rf.html">FPGA — RF Radio Frequency</a>
-<a href="solutions/fpga/vision-audio-preprocess.html">FPGA — Vision/Audio Preprocessing</a>
+<a href="solutions/fpga/design-service.html">FPGA Design Services</a>
 </div>
 </div>
 <!-- Company -->

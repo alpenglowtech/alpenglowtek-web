@@ -270,16 +270,6 @@
             transition: opacity 1.6s ease;
         }
         .hero-bg-slide.active { opacity: 1; }
-        .hero-bg-slide.hero-bg-edgeai {
-            background-image:
-                linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
-                url('../assets/img/edgeai-taipei-2026-bg.jpg');
-        }
-        .hero-bg-slide.hero-bg-switch {
-            background-image:
-                linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
-                url('../assets/img/switch-2026-bg.jpg');
-        }
         .hero-bg-slide.hero-bg-meettaipei {
             background-image:
                 linear-gradient(135deg, rgba(4,18,42,0.55) 0%, rgba(4,18,42,0.15) 55%, rgba(4,18,42,0.35) 100%),
@@ -291,9 +281,9 @@
             inset: 0;
             background: linear-gradient(
                 105deg,
-                rgba(4,18,42,0.88) 0%,
-                rgba(4,18,42,0.62) 45%,
-                rgba(4,18,42,0.15) 100%
+                rgba(4,18,42,0.70) 0%,
+                rgba(4,18,42,0.38) 45%,
+                rgba(4,18,42,0.04) 100%
             );
         }
         .hero-content {
@@ -529,7 +519,7 @@
             right: -8%;
             width: 55%;
             height: 100%;
-            background-image: url('../assets/img/hero_cim.png');
+            background-image: url('../assets/img/hero_anix_chip.jpg');
             background-size: cover;
             background-position: left center;
             opacity: 0.07;
@@ -674,10 +664,56 @@
             border-top: 1px solid rgba(0,74,173,0.12);
             margin-bottom: 3rem;
         }
+        .app-lead {
+            font-size: 1.08rem;
+            line-height: 1.9;
+            color: #5a6a90;
+            max-width: 760px;
+            margin: -1.5rem 0 2.5rem;
+        }
         .app-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.75rem;
+        }
+        /* Beachhead market */
+        .focus-section {
+            background: #f6f8fb;
+            padding: 6rem 1.5rem;
+        }
+        .focus-inner { max-width: 1200px; margin: 0 auto; }
+        .focus-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.75rem;
+        }
+        .focus-item {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            padding: 1.6rem 1.75rem;
+            background: #fff;
+            border-radius: 16px;
+            border-left: 3px solid var(--cyan);
+            box-shadow: 0 8px 28px rgba(0, 74, 173, 0.06);
+        }
+        .focus-icon {
+            width: 48px; height: 48px; flex-shrink: 0;
+            border-radius: 12px;
+            background: rgba(47,232,250,0.16);
+            color: #009bab;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .focus-icon svg { width: 24px; height: 24px; }
+        .focus-item h3 { font-size: 1.1rem; font-weight: 800; color: #061a3a; margin: 0 0 0.2rem; }
+        .focus-item p { font-size: 0.85rem; color: #5a6a90; margin: 0; letter-spacing: 0.03em; }
+        @media (max-width: 1100px) {
+            .app-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .app-grid { grid-template-columns: 1fr; }
+            .focus-grid { grid-template-columns: 1fr; }
+            .focus-section { padding: 4rem 1.25rem; }
         }
         .app-card {
             background: #f6f8fb;
@@ -727,7 +763,6 @@
         .app-card-link:hover { color: #009bab; }
         @media (max-width: 900px) {
             .anix-intro-grid { grid-template-columns: 1fr; }
-            .app-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 767px) {
             .app-section { padding: 4rem 1.25rem; }
@@ -1173,12 +1208,6 @@
                             <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">ANIX — 超低消費電力 AI プロセッサ</span>
                             <a href="solutions/asic/anix/tech.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">↳ 技術紹介</a>
                         </div>
-                        <div class="dd-col">
-                            <span class="dd-col-title">アプリケーション</span>
-                            <a href="solutions/asic/anix/apps-medical.html" class="dropdown-item">↳ 医療センシング応用</a>
-                            <a href="solutions/asic/anix/apps-industrial.html" class="dropdown-item">↳ 産業向けアプリケーション</a>
-                            <a href="solutions/asic/anix/apps-consumer.html" class="dropdown-item">↳ コンシューマ向けアプリケーション</a>
-                        </div>
                     </div>
                 </div>
 
@@ -1187,16 +1216,13 @@
                     <a href="javascript:void(0);" class="nav-link">サービス <span class="chev">▾</span></a>
                     <div class="dropdown dropdown-mega">
                         <div class="dd-col">
-                            <span class="dd-col-title">SoC</span>
-                            <a href="solutions/asic/anix/tech.html#ip-licensing" class="dropdown-item">ANIX IPライセンス</a>
-                            <a href="solutions/asic/custom-asic.html" class="dropdown-item">カスタム ASIC</a>
+                            <span class="dd-col-title">AIチップ</span>
+                            <a href="solutions/asic/custom-asic.html" class="dropdown-item">超低消費電力AIチップサービス</a>
+                            <a href="solutions/asic/anix/tech.html#model-services" class="dropdown-item">AIモデルサービス</a>
                         </div>
                         <div class="dd-col">
                             <span class="dd-col-title">FPGA</span>
-                            <a href="solutions/fpga/pqc.html" class="dropdown-item">PQC 暗号学</a>
-                            <a href="solutions/fpga/event-camera.html" class="dropdown-item">イベントカメラ</a>
-                            <a href="solutions/fpga/rf.html" class="dropdown-item">RF</a>
-                            <a href="solutions/fpga/vision-audio-preprocess.html" class="dropdown-item">視覚/聴覚前処理</a>
+                            <a href="solutions/fpga/design-service.html" class="dropdown-item">FPGA 設計サービス</a>
                         </div>
                     </div>
                 </div>
@@ -1245,21 +1271,14 @@
         <div class="m-sub">
             <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">ANIX — 超低消費電力 AI プロセッサ</span>
             <a href="solutions/asic/anix/tech.html">↳ 技術紹介</a>
-            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">アプリケーション</span>
-            <a href="solutions/asic/anix/apps-medical.html">↳ 医療センシング応用</a>
-            <a href="solutions/asic/anix/apps-industrial.html">↳ 産業向けアプリケーション</a>
-            <a href="solutions/asic/anix/apps-consumer.html">↳ コンシューマ向けアプリケーション</a>
         </div>
         <a href="javascript:void(0);" class="m-nav-link">サービス</a>
         <div class="m-sub">
-            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">SoC</span>
-            <a href="solutions/asic/anix/tech.html#ip-licensing">↳ ANIX IPライセンス</a>
-            <a href="solutions/asic/custom-asic.html">↳ カスタム ASIC</a>
+            <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">AIチップ</span>
+            <a href="solutions/asic/custom-asic.html">↳ 超低消費電力AIチップサービス</a>
+            <a href="solutions/asic/anix/tech.html#model-services">↳ AIモデルサービス</a>
             <span style="display:block; padding:0.5rem 0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.05em; color:#8899bb;">FPGA</span>
-            <a href="solutions/fpga/pqc.html">↳ PQC 暗号学</a>
-            <a href="solutions/fpga/event-camera.html">↳ イベントカメラ</a>
-            <a href="solutions/fpga/rf.html">↳ RF</a>
-            <a href="solutions/fpga/vision-audio-preprocess.html">↳ 視覚/聴覚前処理</a>
+            <a href="solutions/fpga/design-service.html">↳ FPGA 設計サービス</a>
         </div>
         <a href="javascript:void(0);" class="m-nav-link">会社概要</a>
         <div class="m-sub">
@@ -1272,9 +1291,7 @@
     <!-- ========== HERO ========== -->
     <section class="hero" id="hero">
         <div class="hero-bg" id="heroBg">
-            <div class="hero-bg-slide active" style="background-image:url('../assets/img/hero_cim.png');"></div>
-            <div class="hero-bg-slide hero-bg-edgeai"></div>
-            <div class="hero-bg-slide hero-bg-switch"></div>
+            <div class="hero-bg-slide active" style="background-image:url('../assets/img/hero_anix_chip.jpg');"></div>
             <div class="hero-bg-slide hero-bg-meettaipei"></div>
         </div>
         <div class="hero-overlay"></div>
@@ -1283,31 +1300,7 @@
             <div class="hero-slide-text active">
                 <h1><em>ANIX</em></h1>
                 <p class="hero-sub">
-                    超低消費電力AI推論コアが、次世代AIアプリケーションの境界を再定義する
-                </p>
-                <div class="hero-cta"></div>
-            </div>
-            <div class="hero-slide-text">
-                <div class="hero-label">EDGE AI Taipei 2026 スタートアップピッチ ファイナリスト</div>
-                <div class="hero-partner-badge"><img src="../assets/img/edgeai-2026-logo.png" alt="EDGE AI Foundation" style="height:64px;"></div>
-                <h1>EDGE AI <em>Taipei</em> 2026</h1>
-                <p class="hero-sub">
-                    COO Phyllis Huang がスタートアップピッチのファイナリストとして、超低消費電力AI推論技術「ANIX」を発表
-                </p>
-                <p class="hero-meta">
-                    10/22–10/23<span>|</span>台北国際会議センター（TICC）
-                </p>
-                <div class="hero-cta"></div>
-            </div>
-            <div class="hero-slide-text">
-                <div class="hero-label">SWITCH 2026 出展</div>
-                <div class="hero-partner-badge"><img src="../assets/img/switch-2026-logo.png" alt="SWITCH — Singapore Week of Innovation &amp; Technology" style="height:40px;"></div>
-                <h1>SWITCH <em>Singapore</em> 2026</h1>
-                <p class="hero-sub">
-                    臻至科技（Alpenglow Tek）がシンガポールで超低消費電力AI推論技術「ANIX」を出展
-                </p>
-                <p class="hero-meta">
-                    10/27–10/29<span>|</span>サンズ・エキスポ＆コンベンションセンター（シンガポール）
+                    超低消費電力・超低遅延の推論コアが、次世代AIアプリケーションの境界を再定義する
                 </p>
                 <div class="hero-cta"></div>
             </div>
@@ -1370,7 +1363,7 @@
                         </svg>
                     </div>
                     <h3>アナログ・メモリ内演算アーキテクチャ</h3>
-                    <p>演算ユニットとメモリアレイ（Memory Array）を一体化し、アナログ演算によって乗算累算（MAC）を実行。画期的なエネルギー効率と面積効率を実現します。</p>
+                    <p>演算ユニットとメモリアレイ（Memory Array）を一体化し、アナログ演算によって乗算累算（MAC）を実行。画期的なエネルギー効率と面積効率を実現します。エネルギー効率は従来のデジタルAIチップ比で最大100倍。</p>
                 </div>
                 <div class="anix-intro-card">
                     <div class="anix-intro-icon">
@@ -1403,8 +1396,45 @@
         </div>
     </section>
 
+    <!-- ========== BEACHHEAD MARKET ========== -->
+    <section class="focus-section">
+        <div class="focus-inner">
+            <div class="app-header">
+                <div>
+                    <span class="app-eyebrow">Beachhead Market</span>
+                    <h2 class="app-title">先進音声AI</h2>
+                </div>
+            </div>
+            <hr class="app-divider">
+            <p class="app-lead">ANIXはまず先進音声AIに注力します。音声認識、リアルタイム翻訳、音声インタラクションを、クラウドに依存せずミリワット級の消費電力でデバイス上で実現します。</p>
+            <div class="focus-grid">
+                <div class="focus-item">
+                    <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg></div>
+                    <div>
+                        <h3>音声テキスト変換</h3>
+                        <p>Speech-to-Text</p>
+                    </div>
+                </div>
+                <div class="focus-item">
+                    <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h9M7.5 3v2M5.5 5c0 4 3 7 6 8M10.5 5c0 3-3 7-7 9"/><path d="M12 21l4-9 4 9M13.5 18h5"/></svg></div>
+                    <div>
+                        <h3>リアルタイム翻訳</h3>
+                        <p>Real-Time Translation</p>
+                    </div>
+                </div>
+                <div class="focus-item">
+                    <div class="focus-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/></svg></div>
+                    <div>
+                        <h3>音声インタラクション</h3>
+                        <p>Voice Interaction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== APPLICATIONS ========== -->
-    <section class="app-section">
+    <section class="app-section" id="applications">
         <div class="app-inner">
             <div class="app-header">
                 <div>
@@ -1413,37 +1443,36 @@
                 </div>
             </div>
             <hr class="app-divider">
+            <p class="app-lead">今日のウェアラブルから、明日のAIネイティブデバイスへ。</p>
 
             <div class="app-grid">
-                <a class="app-card" href="solutions/asic/anix/apps-medical.html">
+                <div class="app-card">
                     <div class="app-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 21s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9z"/>
-                            <path d="M4 12h3l1.5-3 2 5 1.5-3h4"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="14" r="3.5"/><circle cx="17.5" cy="14" r="3.5"/><path d="M10 14h4M3 14l2-6h3M21 14l-2-6h-3"/></svg>
                     </div>
-                    <h3>医療センシング</h3>
-                    <p>ウェアラブル型の生体モニタリングから植込み型医療機器まで、ANIX はバッテリー駆動下でも長時間の常時センシングを維持し、生体信号のリアルタイム分析を可能にします。</p>
-                </a>
-                <a class="app-card" href="solutions/asic/anix/apps-industrial.html">
+                    <h3>スマートグラス・ウェアラブル</h3>
+                    <p>スマートグラスから完全ワイヤレスイヤホンまで、ANIXは限られたバッテリーと実装面積の中で、常時動作する音声・視覚インテリジェンスを実現します。</p>
+                </div>
+                <div class="app-card">
                     <div class="app-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 10l5-2v8l-5-2"/><circle cx="9.5" cy="12" r="2.5"/></svg>
                     </div>
-                    <h3>産業センシング</h3>
-                    <p>予知保全や異常検知の現場において、ANIX はエッジでのリアルタイム推論能力を提供し、ダウンタイムのリスクを低減しながらセンサーノードの稼働寿命を延ばします。</p>
-                </a>
-                <a class="app-card" href="solutions/asic/anix/apps-consumer.html">
+                    <h3>産業用ビジョン</h3>
+                    <p>インライン検査や異常検知の現場で、ANIXはエッジ側でのリアルタイム推論を提供し、ダウンタイムのリスクを低減しセンサーノードの運用寿命を延ばします。</p>
+                </div>
+                <div class="app-card">
                     <div class="app-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="7" y="4" width="10" height="16" rx="3"/>
-                            <line x1="10" y1="8" x2="14" y2="8"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><rect x="9" y="9" width="6" height="6" rx="1.5"/><path d="M7 7l2 2M17 7l-2 2M7 17l2-2M17 17l-2-2"/></svg>
                     </div>
-                    <h3>コンシューマ電子機器</h3>
-                    <p>完全ワイヤレスイヤホンからウェアラブル機器まで、ANIX は限られたバッテリーと省スペースの中で常時インテリジェンスとリアルタイム応答を実現します。</p>
+                    <h3>自律型ドローン</h3>
+                    <p>重量と電力の両方に制約のある飛行プラットフォームで、ANIXはミリワット級の消費電力でリアルタイムの知覚・認識を実現し、ミッションの航続時間を延ばします。</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="11" rx="2"/><circle cx="9.5" cy="13" r="1.2" fill="currentColor" stroke="none"/><circle cx="14.5" cy="13" r="1.2" fill="currentColor" stroke="none"/><path d="M12 8V5M10.5 3.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0M2 12v4M22 12v4M9 16.5h6"/></svg>
+                    </div>
+                    <h3>ロボティクス</h3>
+                    <p>センサーフュージョンから音声インタラクションまで、ANIXは次世代のAIネイティブロボットに低消費電力・低遅延のオンデバイス知能を提供します。</p>
                 </a>
             </div>
         </div>
@@ -1464,42 +1493,28 @@
                 <!-- Circle 1 -->
                 <div class="circle-item" data-circle="1">
                     <div class="circle-img-wrap">
-                        <img src="../assets/img/1.png" alt="IPライセンス提携">
+                        <img src="../assets/img/2.png" alt="超低消費電力AIチップサービス">
                         <div class="circle-label-overlay">
-                            <p class="circle-label-text">IP<br>ライセンス提携</p>
+                            <p class="circle-label-text">超低消費電力<br>AIチップサービス</p>
                         </div>
                     </div>
                     <div class="circle-caption">
-                        <p class="circle-caption-title">IPライセンス提携</p>
-                        <p class="circle-caption-desc">ANIX コア IP をライセンス供与<br>IC 設計チームが超低消費電力AI演算能力を迅速に統合</p>
+                        <p class="circle-caption-title">超低消費電力AIチップサービス</p>
+                        <p class="circle-caption-desc">ANIX演算コアをベースに<br>用途に合わせた超低消費電力AIチップを設計</p>
                     </div>
                 </div>
 
                 <!-- Circle 2 -->
                 <div class="circle-item" data-circle="2">
                     <div class="circle-img-wrap">
-                        <img src="../assets/img/2.png" alt="カスタム設計サービス">
+                        <img src="../assets/img/1.png" alt="AIモデルサービス">
                         <div class="circle-label-overlay">
-                            <p class="circle-label-text">カスタム<br>設計サービス</p>
+                            <p class="circle-label-text">AIモデル<br>サービス</p>
                         </div>
                     </div>
                     <div class="circle-caption">
-                        <p class="circle-caption-title">カスタム設計サービス</p>
-                        <p class="circle-caption-desc">アーキテクチャ設計から量産まで<br>エンドツーエンドのカスタム ASIC / IP 設計協業を提供</p>
-                    </div>
-                </div>
-
-                <!-- Circle 3 -->
-                <div class="circle-item" data-circle="3">
-                    <div class="circle-img-wrap">
-                        <img src="../assets/img/3.png" alt="プロトタイプ検証と導入">
-                        <div class="circle-label-overlay">
-                            <p class="circle-label-text">プロトタイプ検証<br>と導入</p>
-                        </div>
-                    </div>
-                    <div class="circle-caption">
-                        <p class="circle-caption-title">プロトタイプ検証と導入</p>
-                        <p class="circle-caption-desc">FPGA でシステムアーキテクチャを迅速に検証<br>新技術導入のリスクと期間を低減</p>
+                        <p class="circle-caption-title">AIモデルサービス</p>
+                        <p class="circle-caption-desc">モデル圧縮・量子化・コンパイル展開まで<br>お客様のAIモデルをチップ上で最小電力で動作</p>
                     </div>
                 </div>
             </div>
@@ -1612,10 +1627,7 @@
                 <div class="footer-links">
                     <a href="solutions/asic/anix/tech.html">ANIX超低消費電力AIプロセッサ</a>
                     <a href="solutions/asic/custom-asic.html">カスタム ASIC</a>
-                    <a href="solutions/fpga/pqc.html">FPGA — PQC 暗号学</a>
-                    <a href="solutions/fpga/event-camera.html">FPGA — イベントカメラ</a>
-                    <a href="solutions/fpga/rf.html">FPGA — RF</a>
-                    <a href="solutions/fpga/vision-audio-preprocess.html">FPGA — 視覚/聴覚前処理</a>
+                    <a href="solutions/fpga/design-service.html">FPGA 設計サービス</a>
                 </div>
             </div>
 
