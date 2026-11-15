@@ -67,6 +67,13 @@
             <span style="display:block; padding:0.6rem 0.9rem; font-size:0.85rem; color:#1a1a2e; cursor:default;">${t.anixTitle}</span>
             <a href="${root}${lang}/solutions/asic/anix/tech.html" class="dropdown-item" style="padding-left:1.4rem;font-size:.8rem">${t.anixTech}</a>
           </div>
+          <div class="dd-col">
+            <span class="dropdown-col-title">${t.appsTitle}</span>
+            <a href="${root}${lang}/solutions/asic/anix/apps-wearables.html" class="dropdown-item">${t.app_wearables}</a>
+            <a href="${root}${lang}/solutions/asic/anix/apps-industrial-vision.html" class="dropdown-item">${t.app_vision}</a>
+            <a href="${root}${lang}/solutions/asic/anix/apps-drones.html" class="dropdown-item">${t.app_drones}</a>
+            <a href="${root}${lang}/solutions/asic/anix/apps-robotics.html" class="dropdown-item">${t.app_robotics}</a>
+          </div>
         </div>
       </div>
 
@@ -164,6 +171,11 @@
         <span class="mobile-sub-cat">ANIX</span>
         <span style="display:block; padding:0.5rem 0.75rem; font-size:0.83rem; color:#556; cursor:default;">${t.anixTitle}</span>
         <a href="${root}${lang}/solutions/asic/anix/tech.html" class="mobile-sub-item">${t.anixTech}</a>
+        <span class="mobile-sub-cat">${t.appsTitle}</span>
+        <a href="${root}${lang}/solutions/asic/anix/apps-wearables.html" class="mobile-sub-item">${t.app_wearables}</a>
+        <a href="${root}${lang}/solutions/asic/anix/apps-industrial-vision.html" class="mobile-sub-item">${t.app_vision}</a>
+        <a href="${root}${lang}/solutions/asic/anix/apps-drones.html" class="mobile-sub-item">${t.app_drones}</a>
+        <a href="${root}${lang}/solutions/asic/anix/apps-robotics.html" class="mobile-sub-item">${t.app_robotics}</a>
       </div>
 
       <a href="javascript:void(0);" class="mobile-nav-link">${t.services}</a>
@@ -198,7 +210,7 @@
     zh: { 
       solutions: '技術突破', services: '服務項目', company: '公司簡介', news: '最新消息', careers: '加入臻至', contact: '聯絡我們',
       anixTech: '↳ 技術介紹',
-      chipColTitle: 'AI 晶片', chipService: '超低功耗 AI 晶片服務', modelService: 'AI 模型服務',
+      appsTitle: '應用場景', app_wearables: '↳ 智慧眼鏡與穿戴裝置', app_vision: '↳ 工業視覺', app_drones: '↳ 自主無人機', app_robotics: '↳ 機器人', chipColTitle: 'AI 晶片', chipService: '超低功耗 AI 晶片服務', modelService: 'AI 模型服務',
       customAsic: '客製化 ASIC', fpgaService: 'FPGA 設計服務',
       about: '關於', aboutUs: '關於我們', team: '核心成員', brandStory: '品牌故事',
       devNews: '發展動態', events: '最新活動', resources: '資源下載',
@@ -213,7 +225,7 @@
     en: { 
       solutions: 'Solutions', services: 'Services', company: 'Company', news: 'News', careers: 'Careers', contact: 'Contact',
       anixTech: '↳ Tech Overview',
-      chipColTitle: 'AI Silicon', chipService: 'Ultra-Low-Power AI Chip Services', modelService: 'AI Model Services',
+      appsTitle: 'Applications', app_wearables: '↳ Smart Glasses & Wearables', app_vision: '↳ Industrial Vision', app_drones: '↳ Autonomous Drones', app_robotics: '↳ Robotics', chipColTitle: 'AI Silicon', chipService: 'Ultra-Low-Power AI Chip Services', modelService: 'AI Model Services',
       customAsic: 'Custom ASIC', fpgaService: 'FPGA Design Services',
       about: 'About', aboutUs: 'About Us', team: 'Our Team', brandStory: 'Brand Story',
       devNews: 'Development Updates', events: 'Latest Events', resources: 'Resources',
@@ -228,7 +240,7 @@
     ja: { 
       solutions: 'ソリューション', services: 'サービス', company: '会社概要', news: 'ニュース', careers: '採用情報', contact: 'お問い合わせ',
       anixTech: '↳ 技術紹介',
-      chipColTitle: 'AIチップ', chipService: '超低消費電力AIチップサービス', modelService: 'AIモデルサービス',
+      appsTitle: 'アプリケーション', app_wearables: '↳ スマートグラス・ウェアラブル', app_vision: '↳ 産業用ビジョン', app_drones: '↳ 自律型ドローン', app_robotics: '↳ ロボティクス', chipColTitle: 'AIチップ', chipService: '超低消費電力AIチップサービス', modelService: 'AIモデルサービス',
       customAsic: 'カスタム ASIC', fpgaService: 'FPGA 設計サービス',
       about: 'アバウト', aboutUs: '私たちについて', team: 'コアメンバー', brandStory: 'ブランドストーリー',
       devNews: '発展動向', events: '最新イベント', resources: 'リソース',

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" href="../../../../favicon.png" type="image/png">
+<title>Robotics | Alpenglow Tek</title>
+<meta content="ANIX ultra-low-power AI processor enables instant and natural smart experience under Limited energy. Create edge AI for the new generation of smart terminals, wearable devices, smart cameras and home appliances." name="description"/>
+<link href="../../../../assets/css/main.css" rel="stylesheet"/>
+<link href="../../../../assets/css/header.css" rel="stylesheet"/>
+<link href="../../../../assets/css/footer.css" rel="stylesheet"/>
+<style>
+        .hero-consumer {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: #061a3a; /* fallback */
+        }
+        .hero-consumer-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+        .hero-consumer-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(
+                105deg,
+                rgba(4, 18, 42, 0.72) 0%,
+                rgba(4, 18, 42, 0.45) 55%,
+                rgba(4, 18, 42, 0.15) 100%
+            );
+        }
+        .hero-consumer .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            text-align: left;
+        }
+        .anix-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #2fe8fa;
+            background: rgba(47, 232, 250, 0.15);
+            border: 1px solid rgba(47, 232, 250, 0.35);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+        .anix-eyebrow::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #2fe8fa;
+        }
+        .hero-consumer h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+        }
+        .hero-subtitle {
+            color: var(--cyan);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+        .hero-desc {
+            max-width: 700px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* Fade Up */
+        .fade-up { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-up-delay-1 { transition-delay: 0.1s; }
+
+        /* Scroll hint */
+        .hero-scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .scroll-arrow {
+            width: 20px; height: 20px;
+            border-right: 2px solid rgba(255,255,255,0.4);
+            border-bottom: 2px solid rgba(255,255,255,0.4);
+            transform: rotate(45deg);
+            animation: scbounce 2s infinite;
+        }
+        @keyframes scbounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) rotate(45deg);}
+            40% {transform: translateY(10px) rotate(45deg);}
+            60% {transform: translateY(5px) rotate(45deg);}
+        }
+        
+        /* Two-column layout for features */
+        .feature-row {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 6rem;
+        }
+        @media (min-width: 900px) {
+            .feature-row { flex-direction: row; }
+            .feature-row:nth-child(even) { flex-direction: row-reverse; }
+            .feature-text { flex: 1; padding: 0 2rem; }
+            .feature-image { flex: 1; }
+        }
+        .feature-image img {
+            border-radius: 16px;
+            box-shadow: 0 16px 40px rgba(6, 26, 58, 0.12);
+            width: 100%;
+            object-fit: cover;
+        }
+        .feature-text h2 {
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+        }
+        .feature-text p {
+            color: var(--gray-700);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Conclusion Box */
+        .conclusion-box {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            color: var(--white);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 16px 48px rgba(6, 26, 58, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+        .conclusion-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(47, 232, 250, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .conclusion-box h3 {
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 2;
+        }
+        .conclusion-box p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ====================================================
+           MORE APPLICATIONS SECTION
+        ==================================================== */
+        .anix-more-apps {
+            background: #ffffff;
+            padding: 8rem 0;
+            border-top: 1px solid rgba(0, 74, 173, 0.05); /* Subtle divider */
+        }
+        .anix-more-apps-inner {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 3.5rem;
+            text-align: center;
+        }
+        .anix-more-header {
+            margin-bottom: 4.5rem;
+        }
+        .anix-more-header h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 800;
+            color: #004aad;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.25rem;
+        }
+        .anix-more-header p {
+            font-size: 1.15rem;
+            color: #6b7ba0;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .anix-app-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .anix-card {
+            position: relative;
+            display: block;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            text-decoration: none;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+            background: #000;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+        }
+        .anix-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 50px rgba(0, 74, 173, 0.18);
+        }
+
+        .anix-card-bg {
+            position: absolute;
+            inset: 0;
+            background-position: center;
+            background-size: cover;
+            transition: transform 0.5s ease;
+        }
+        .anix-card:hover .anix-card-bg {
+            transform: scale(1.08); /* minimal scale on hover */
+        }
+
+        .anix-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(4, 18, 42, 0.45);
+            transition: background 0.35s ease;
+            z-index: 1;
+        }
+        .anix-card:hover .anix-card-overlay {
+            background: rgba(4, 18, 42, 0.62); /* minimal darker on hover */
+        }
+
+        .anix-card-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .anix-card-content h3 {
+            color: #fff;
+            font-size: 2.2rem; /* increased font size as requested */
+            font-weight: 800;
+            margin: 0;
+            text-align: center;
+            letter-spacing: 0.1em;
+            text-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        }
+
+        /* Hero Responsive */
+        @media (max-width: 1024px) {
+            .hero-consumer .container { padding: 0 2rem; }
+            .hero-consumer h1 { font-size: clamp(2.5rem, 7vw, 4rem); }
+        }
+        @media (max-width: 767px) {
+            .hero-consumer { height: 75vh; min-height: 500px; }
+            .hero-consumer .container { padding: 0 1.5rem; }
+            .hero-scroll-hint { display: none; }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .anix-more-apps-inner { padding: 0 2rem; }
+            .anix-app-cards { gap: 1.5rem; }
+            .anix-card { height: 320px; }
+            .anix-card-content h3 { font-size: 1.8rem; }
+        }
+        @media (max-width: 767px) {
+            .anix-more-apps { padding: 6rem 0; }
+            .anix-app-cards { grid-template-columns: 1fr; gap: 1.5rem; }
+            .anix-card:hover { transform: none; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08); }
+            .anix-card:hover .anix-card-bg { transform: none; }
+        }
+
+        .app-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .app-point { background: #fff; border-radius: 16px; padding: 2rem; border-left: 3px solid var(--cyan, #2fe8fa); box-shadow: 0 8px 28px rgba(0,74,173,0.06); }
+        .app-point h3 { font-size: 1.15rem; font-weight: 800; color: #061a3a; margin: 0 0 0.6rem; }
+        .app-point p { font-size: 0.95rem; line-height: 1.75; color: #5a6a90; margin: 0; }
+        .app-intro { max-width: 820px; margin: 0 auto; text-align: center; font-size: 1.08rem; line-height: 1.9; color: #3e4c6e; }
+        .app-end { max-width: 820px; margin: 3rem auto 0; text-align: center; font-size: 1.05rem; color: #061a3a; font-weight: 600; }
+        .app-cta-row { text-align: center; margin-top: 2rem; }
+        .app-cta-btn { display: inline-block; padding: 0.9rem 2rem; border-radius: 999px; background: #0b3d91; color: #fff; font-weight: 700; text-decoration: none; }
+        .app-others { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 3.5rem; }
+        .app-others span { width: 100%; text-align: center; font-size: 0.8rem; letter-spacing: 0.08em; color: #8899bb; margin-bottom: 0.25rem; }
+        .app-others a { padding: 0.55rem 1.2rem; border-radius: 999px; border: 1px solid rgba(0,74,173,0.2); color: #0b3d91; font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+        .app-others a:hover { background: #eef2f9; }
+        @media (max-width: 900px) { .app-points { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<!-- Header will be dynamically injected here by main.js -->
+<div id="site-header"></div>
+<main>
+        <section class="hero-consumer">
+            <img src="../../../../assets/img/30.png" alt="Robotics" class="hero-consumer-img">
+            <div class="hero-consumer-overlay"></div>
+            <div class="container fade-up fade-up-delay-1">
+                <span class="anix-eyebrow">ANIX APPLICATIONS</span>
+                <h1>Robotics</h1>
+                <div class="hero-subtitle">Low-power, low-latency on-device intelligence for AI-native robots</div>
+            </div>
+            <div class="hero-scroll-hint">
+                <span>Scroll</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <p class="app-intro fade-up">From sensor fusion to voice interaction, ANIX lets next-generation robots keep sensing, understanding commands and reacting in real time on battery power.</p>
+                <div class="app-points fade-up fade-up-delay-1">
+                    <div class="app-point">
+                        <h3>Multi-Sensor Fusion</h3>
+                        <p>Vision, audio and tactile signals fused and inferred in real time at low power.</p>
+                    </div>
+                    <div class="app-point">
+                        <h3>Voice Interaction</h3>
+                        <p>Wake-up, recognition and understanding on the robot itself, responding faster with data kept on-device.</p>
+                    </div>
+                    <div class="app-point">
+                        <h3>Mobile &amp; Service Robots</h3>
+                        <p>Milliwatt-level always-on sensing lets robots work longer on a single charge.</p>
+                    </div>
+                </div>
+                <p class="app-end fade-up fade-up-delay-2">Robots are moving from pre-programmed to AI-native. ANIX makes on-device intelligence standard equipment.</p>
+                <div class="app-cta-row fade-up fade-up-delay-2">
+                    <a href="../../../index.html#contact" class="app-cta-btn">Contact Us →</a>
+                </div>
+                <div class="app-others fade-up fade-up-delay-3">
+                    <span>Other Applications</span>
+                    <a href="apps-wearables.html">Smart Glasses &amp; Wearables</a>
+                    <a href="apps-industrial-vision.html">Industrial Vision</a>
+                    <a href="apps-drones.html">Autonomous Drones</a>
+                </div>
+            </div>
+        </section>
+    </main>
+<!-- Footer will be dynamically injected here by main.js -->
+<div id="site-footer"></div>
+<script src="../../../../assets/js/main.js"></script>
+</body>
+</html>
